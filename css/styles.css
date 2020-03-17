@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+
+:root {
+    --main-dark-color: #333;
+    --main-light-color: #e6e6e6;
+    --light-gray: rgb(126, 123, 123);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.dark {
+    background-color: var(--main-dark-color);
+    color: var(--main-light-color);
+    transition: .3s ease;
+}
+
+.light {
+    background-color: var(--main-light-color);
+    color: var(--main-dark-color);
+    transition: .3s ease;
+}
+
+#container {
+    display: grid;
+    grid-template-columns: .5fr 5fr;
+    grid-auto-rows: .1fr 1fr 1fr;
+    grid-template-areas:
+        'sidebar head'
+        'sidebar mainContainer'
+        'sidebar mainContainer';
+}
+
+#sidebar {
+    display: flex;
+    flex-direction: column;
+    grid-area: sidebar;
+    width: 100px;
+    min-height: 100vh;
+    border-right: 1px solid rgb(143, 141, 141);
+    background-color: #666;
+}
+
+/* header */
+#head {
+    grid-area: head;
+}
+
+#page-title {
+    margin-left: 3rem;
+    padding: 2rem 0rem;
+    font-size: 2rem;
+}
+
+/* Main container */
+#main-container {
+    grid-area: mainContainer;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: .1fr 1fr;
+    grid-template-areas:
+        'search search'
+        'results results';
+}
+
+/* search container styles */
+#search-container {
+    position: sticky;
+    top: 0;
+    grid-area: search;
+    background-color: #666;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid var(--light-gray);
+}
+
+#search-input {
+    font-size: 1em;
+    padding: .5em;
+    border-radius: 5px 0 0 5px;
+    border: 1px solid #ccc;
+    transition: .2s ease-out;
+}
+
+#search-input:focus,
+#search-input:hover {
+    box-shadow: 0 0 5px rgb(0, 247, 255);
+}
+
+#submit-search {
+    font-size: 1em;
+    padding: .5em;
+    margin-left: -4px;
+    border-radius: 0 5px 5px 0;
+    border: 1px solid #ccc;
+    transition: .2s ease-out;
+}
+
+#submit-search:hover {
+    cursor: pointer;
+    box-shadow: 0 0 5px rgb(0, 247, 255);
+
+}
+
+/* search results container */
+#results-container {
+    grid-area: results;
+    margin-top: 1em;
+    display: grid;
+    grid-template-columns: 2fr 5fr;
+    grid-template-areas:
+        'searchResults videoPlayer';
+    grid-gap: 20px;
+}
+
+/* search results */
+#search-results {
+    grid-area: searchResults;
+    margin-left: 6%;
+}
+
+.search-item {
+    list-style-type: none;
+    font-size: .75em;
+    max-width: 250px;
+}
+
+.thumbnail {
+    width: 246px;
+    margin-top: 1em;
+}
+
+/* video player */
+#video {
+    grid-area: videoPlayer;
+    justify-self: center;
+    min-height: 0px;
+}
+
+/* slider */
+#color-mode {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 65px;
+    height: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 3px #000 inset, 0 0 5px var(--main-light-color), 0 0 5px var(--main-dark-color);
+    cursor: pointer;
+}
+
+#color-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .8em;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    transition: .2s linear;
+}
+
+#color-circle.right {
+    top: 50%;
+    left: 100%;
+    transform: translate(-100%, -50%);
+}
+
+@media(max-width: 590px) {
+    #search-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #search-input {
+        width: 80%;
+        border-radius: 5px;
+    }
+
+    #submit-search {
+        width: 80%;
+        border-radius: 5px;
+        margin: 2px 0 0 0;
+    }
+
+    #results-container {
+        grid-area: results;
+        margin-top: 1em;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            'videoPlayer'
+            'searchResults';
+    }
+
+    #search-results {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
