@@ -30,7 +30,7 @@ function changeColorMode() {
     colorCircle.classList.remove('dark');
     colorCircle.classList.add('light');
     colorCircle.classList.add('right');
-    colorCircle.innerText = 'Dark';
+    colorCircle.innerText = 'Light';
   } else if (body.classList.contains('light')) {
     //   Change background color/text color light->dark
     body.classList.remove('light');
@@ -45,7 +45,7 @@ function changeColorMode() {
     colorCircle.classList.remove('light');
     colorCircle.classList.add('dark');
     colorCircle.classList.remove('right');
-    colorCircle.innerText = 'Light';
+    colorCircle.innerText = 'Dark';
   }
   0;
 }
@@ -54,9 +54,12 @@ function changeColorMode() {
 // Youtube Section
 function submitQuery(e) {
   e.preventDefault();
-  youtube
-    .getSearchResults(searchInput.value)
-    .then(data => ui.displaySearchResults(data))
-    .catch(err => console.log(err));
+  //   submit search request and get results so long as user actually inputs something
+  if (searchInput.value !== '') {
+    youtube
+      .getSearchResults(searchInput.value)
+      .then(data => ui.displaySearchResults(data))
+      .catch(err => console.log(err));
+    searchInput.value = '';
+  }
 }
-
