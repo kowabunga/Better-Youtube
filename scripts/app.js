@@ -2,6 +2,7 @@ const colorSwitcher = document.getElementById('color-mode'),
   colorCircle = document.getElementById('color-circle'),
   body = document.body,
   searchContainer = document.getElementById('search-container'),
+  searchForm = document.getElementById('search-form'),
   searchInput = document.getElementById('search-input'),
   searchSubmit = document.getElementById('submit-search');
 
@@ -72,10 +73,18 @@ function submitQuery(e) {
   e.preventDefault();
   //   submit search request and get results so long as user actually inputs something
   if (searchInput.value !== '') {
+    if (searchInput.classList.contains('search-error') && searchSubmit.classList.contains('search-error')) {
+      searchInput.classList.remove('search-error');
+      searchSubmit.classList.remove('search-error');
+    }
     youtube
       .getSearchResults(searchInput.value)
       .then(data => ui.displaySearchResults(data))
       .catch(err => console.log(err));
     searchInput.value = '';
+  } else if (searchInput.value === '') {
+    searchInput.setAttribute('placeholder', 'Please enter something to search.');
+    searchInput.classList.add('search-error');
+    searchSubmit.classList.add('search-error');
   }
 }

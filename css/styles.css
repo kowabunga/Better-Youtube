@@ -2,9 +2,9 @@
 
 :root {
     --main-dark-color: #333;
-    --main-light-color: #f0f5fc;
+    --main-light-color: #e7eefd;
     --search-bar-dark: rgb(65, 65, 65);
-    --search-bar-light: #e7eefd;
+    --search-bar-light: #f0f5fc;
     --light-gray: rgb(126, 123, 123);
 }
 
@@ -30,17 +30,18 @@
 .search-dark {
     background-color: var(--search-bar-dark);
     color: var(--main-light-color);
+    transition: .3s ease;
 }
 
 .search-light {
     background-color: var(--search-bar-light);
+    transition: .3s ease;
     color: var(--main-dark-color);
 }
 
 #container {
     display: grid;
     grid-template-columns: 1fr;
-    grid-auto-rows: .1fr 1fr;
     grid-template-areas:
         'head'
         'mainContainer'
@@ -53,10 +54,13 @@
 
 #page-title {
     display: block;
-    margin-left: 3rem;
-    padding: 2rem 0rem;
+    margin: 2rem 0 2rem 3rem;
+    padding: 1rem;
     font-size: 3rem;
-    width: 250px;
+    width: 290px;
+    box-shadow: 0 0 10px;
+    border: 2px solid rgb(2, 129, 202);
+    border-radius: 20px;
 }
 
 /* Main container */
@@ -64,7 +68,6 @@
     grid-area: mainContainer;
     display: grid;
     grid-template-columns: 1fr;
-    grid-auto-rows: .1fr 1fr;
     grid-template-areas:
         'search search'
         'results results';
@@ -85,7 +88,6 @@
 #search-input,
 #submit-search {
     border: 2px solid rgb(2, 129, 202);
-    transition: .2s ease-out;
 }
 
 #search-input {
@@ -124,6 +126,13 @@
     grid-gap: 20px;
 }
 
+/* We want this class to override the colors given by the id's while they are added */
+.search-error {
+    border: 2px solid crimson !important;
+    box-shadow: 0 0 10px crimson !important;
+    color: crimson !important;
+}
+
 /* search results */
 #search-results {
     grid-area: searchResults;
@@ -131,14 +140,20 @@
 }
 
 .search-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     list-style-type: none;
     font-size: .75em;
     max-width: 250px;
+    border: 2px solid;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 5px;
 }
 
 .thumbnail {
-    width: 246px;
-    margin-top: 1em;
+    width: 230px;
 }
 
 /* video player */

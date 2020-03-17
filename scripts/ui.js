@@ -14,7 +14,6 @@ class UI {
                     <strong>${item.snippet.title}</strong> <br>
                     Author: <em>${item.snippet.channelTitle}</em>
                 </p>
-                <hr>
             </li>
         `;
     });
