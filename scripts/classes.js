@@ -1,6 +1,6 @@
 class Youtube {
   constructor() {
-    this.api_key = '';
+    this.api_key = 'AIzaSyDBvwg2Jr6a1CZ1jdroGeh_QVM5tS-AD7Y';
     this.part = 'snippet';
     this.type = 'video';
   }

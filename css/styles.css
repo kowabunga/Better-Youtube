@@ -2,7 +2,9 @@
 
 :root {
     --main-dark-color: #333;
-    --main-light-color: #e6e6e6;
+    --main-light-color: #f0f5fc;
+    --search-bar-dark: rgb(65, 65, 65);
+    --search-bar-light: #e7eefd;
     --light-gray: rgb(126, 123, 123);
 }
 
@@ -25,6 +27,16 @@
     transition: .3s ease;
 }
 
+.search-dark {
+    background-color: var(--search-bar-dark);
+    color: var(--main-light-color);
+}
+
+.search-light {
+    background-color: var(--search-bar-light);
+    color: var(--main-dark-color);
+}
+
 #container {
     display: grid;
     grid-template-columns: 1fr;
@@ -40,9 +52,11 @@
 }
 
 #page-title {
+    display: block;
     margin-left: 3rem;
     padding: 2rem 0rem;
-    font-size: 2rem;
+    font-size: 3rem;
+    width: 250px;
 }
 
 /* Main container */
@@ -61,7 +75,6 @@
     position: sticky;
     top: 0;
     grid-area: search;
-    background-color: #666;
     height: 100px;
     display: flex;
     align-items: center;
@@ -69,31 +82,34 @@
     border-bottom: 2px solid var(--light-gray);
 }
 
+#search-input,
+#submit-search {
+    border: 2px solid rgb(2, 129, 202);
+    transition: .2s ease-out;
+}
+
 #search-input {
     font-size: 1em;
     padding: .5em;
-    border-radius: 5px 0 0 5px;
-    border: 1px solid #ccc;
-    transition: .2s ease-out;
+    border-radius: 20px 0 0 20px;
 }
 
 #search-input:focus,
 #search-input:hover {
-    box-shadow: 0 0 5px rgb(0, 247, 255);
+    box-shadow: 0 0 10px rgb(2, 129, 202);
 }
 
 #submit-search {
     font-size: 1em;
     padding: .5em;
     margin-left: -4px;
-    border-radius: 0 5px 5px 0;
-    border: 1px solid #ccc;
-    transition: .2s ease-out;
+    border-radius: 0 20px 20px 0;
+    border-left: 0px;
 }
 
 #submit-search:hover {
     cursor: pointer;
-    box-shadow: 0 0 5px rgb(0, 247, 255);
+    box-shadow: 0 0 10px rgb(2, 129, 202);
 
 }
 
@@ -140,8 +156,12 @@
     width: 65px;
     height: 30px;
     border-radius: 20px;
-    box-shadow: 0 0 3px #000 inset, 0 0 5px var(--main-light-color), 0 0 5px var(--main-dark-color);
+    box-shadow: 0 0 10px var(--main-light-color), 0 0 10px var(--main-dark-color);
     cursor: pointer;
+}
+
+#color-mode.dark {
+    background-color: var(--light-gray);
 }
 
 #color-circle {
@@ -165,6 +185,7 @@
     transform: translate(-100%, -50%);
 }
 
+
 @media(max-width: 590px) {
     #search-form {
         display: flex;
@@ -174,13 +195,14 @@
 
     #search-input {
         width: 80%;
-        border-radius: 5px;
+        border-radius: 20px;
     }
 
     #submit-search {
         width: 80%;
-        border-radius: 5px;
+        border-radius: 20px;
         margin: 2px 0 0 0;
+        border: 2px solid rgb(2, 129, 202);
     }
 
     #results-container {

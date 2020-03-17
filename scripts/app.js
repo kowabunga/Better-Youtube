@@ -1,6 +1,7 @@
 const colorSwitcher = document.getElementById('color-mode'),
   colorCircle = document.getElementById('color-circle'),
   body = document.body,
+  searchContainer = document.getElementById('search-container'),
   searchInput = document.getElementById('search-input'),
   searchSubmit = document.getElementById('submit-search');
 
@@ -31,6 +32,14 @@ function changeColorMode() {
     colorCircle.classList.add('light');
     colorCircle.classList.add('right');
     colorCircle.innerText = 'Light';
+
+    // change form area colors
+    searchContainer.classList.remove('search-dark');
+    searchInput.classList.remove('search-dark');
+    searchSubmit.classList.remove('search-dark');
+    searchContainer.classList.add('search-light');
+    searchInput.classList.add('search-light');
+    searchSubmit.classList.add('search-light');
   } else if (body.classList.contains('light')) {
     //   Change background color/text color light->dark
     body.classList.remove('light');
@@ -46,8 +55,15 @@ function changeColorMode() {
     colorCircle.classList.add('dark');
     colorCircle.classList.remove('right');
     colorCircle.innerText = 'Dark';
+
+    // change form area colors
+    searchContainer.classList.remove('search-light');
+    searchInput.classList.remove('search-light');
+    searchSubmit.classList.remove('search-light');
+    searchContainer.classList.add('search-dark');
+    searchInput.classList.add('search-dark');
+    searchSubmit.classList.add('search-dark');
   }
-  0;
 }
 
 /* ------------------------------------------------------------------------- */
