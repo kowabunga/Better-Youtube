@@ -1,238 +1,263 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
 
 :root {
-    --main-dark-color: #333;
-    --main-light-color: #e7eefd;
-    --search-bar-dark: rgb(65, 65, 65);
-    --search-bar-light: #f0f5fc;
-    --light-gray: rgb(126, 123, 123);
+  --main-dark-color: #333;
+  --main-light-color: #f0f5fc;
+  --search-bar-dark: rgb(65, 65, 65);
+  --search-bar-light: #e7eefd;
+  --light-gray: rgb(126, 123, 123);
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
 .dark {
-    background-color: var(--main-dark-color);
-    color: var(--main-light-color);
-    transition: .3s ease;
+  background-color: var(--main-dark-color);
+  color: var(--main-light-color);
+  transition: 0.3s ease;
 }
 
 .light {
-    background-color: var(--main-light-color);
-    color: var(--main-dark-color);
-    transition: .3s ease;
+  background-color: var(--main-light-color);
+  color: var(--main-dark-color);
+  transition: 0.3s ease;
 }
 
 .search-dark {
-    background-color: var(--search-bar-dark);
-    color: var(--main-light-color);
-    transition: .3s ease;
+  background-color: var(--search-bar-dark);
+  color: var(--main-light-color);
+  transition: 0.3s ease;
 }
 
 .search-light {
-    background-color: var(--search-bar-light);
-    transition: .3s ease;
-    color: var(--main-dark-color);
+  background-color: var(--search-bar-light);
+  transition: 0.3s ease;
+  color: var(--main-dark-color);
 }
 
 #container {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-areas:
-        'head'
-        'mainContainer'
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'head'
+    'mainContainer';
 }
 
 /* header */
 #head {
-    grid-area: head;
+  grid-area: head;
+  background-color: rgba(2, 129, 202, 0.9);
 }
 
 #page-title {
-    display: block;
-    margin: 2rem 0 2rem 3rem;
-    padding: 1rem;
-    font-size: 3rem;
-    width: 290px;
-    box-shadow: 0 0 10px;
-    border: 2px solid rgb(2, 129, 202);
-    border-radius: 20px;
+  display: block;
+  margin: 1rem 0 1rem 3rem;
+  padding: 1rem;
+  font-size: 3rem;
+  color: var(--main-light-color);
+  box-shadow: 0 0 10px var(--main-light-color);
+  border: 1px solid rgb(2, 129, 202);
+  border-radius: 20px;
+  width: 290px;
 }
 
 /* Main container */
 #main-container {
-    grid-area: mainContainer;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-areas:
-        'search search'
-        'results results';
+  grid-area: mainContainer;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'search search'
+    'results results';
 }
 
 /* search container styles */
 #search-container {
-    position: sticky;
-    top: 0;
-    grid-area: search;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-bottom: 2px solid var(--light-gray);
+  position: sticky;
+  top: 0;
+  grid-area: search;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid var(--light-gray);
 }
 
 #search-input,
 #submit-search {
-    border: 2px solid rgb(2, 129, 202);
+  border: 2px solid rgb(2, 129, 202);
 }
 
 #search-input {
-    font-size: 1em;
-    padding: .5em;
-    border-radius: 20px 0 0 20px;
+  font-size: 1em;
+  padding: 0.5em;
+  border-radius: 20px 0 0 20px;
 }
 
 #search-input:focus,
 #search-input:hover {
-    box-shadow: 0 0 10px rgb(2, 129, 202);
+  box-shadow: 0 0 10px rgb(2, 129, 202);
 }
 
 #submit-search {
-    font-size: 1em;
-    padding: .5em;
-    margin-left: -4px;
-    border-radius: 0 20px 20px 0;
-    border-left: 0px;
+  font-size: 1em;
+  padding: 0.5em;
+  margin-left: -4px;
+  border-radius: 0 20px 20px 0;
+  border-left: 0px;
 }
 
 #submit-search:hover {
-    cursor: pointer;
-    box-shadow: 0 0 10px rgb(2, 129, 202);
-
+  cursor: pointer;
+  box-shadow: 0 0 10px rgb(2, 129, 202);
 }
 
 /* search results container */
 #results-container {
-    grid-area: results;
-    margin-top: 1em;
-    display: grid;
-    grid-template-columns: 2fr 5fr;
-    grid-template-areas:
-        'searchResults videoPlayer';
-    grid-gap: 20px;
+  grid-area: results;
+  margin: 1em 0;
+  display: grid;
+  grid-template-columns: 2fr 5fr;
+  grid-template-areas: 'searchResults videoPlayer';
+  grid-gap: 20px;
 }
 
 /* We want this class to override the colors given by the id's while they are added */
 .search-error {
-    border: 2px solid crimson !important;
-    box-shadow: 0 0 10px crimson !important;
-    color: crimson !important;
+  border: 2px solid crimson !important;
+  box-shadow: 0 0 10px crimson !important;
+  color: crimson !important;
 }
 
 /* search results */
 #search-results {
-    grid-area: searchResults;
-    margin-left: 6%;
+  grid-area: searchResults;
+  margin-left: 6%;
 }
 
 .search-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    list-style-type: none;
-    font-size: .75em;
-    max-width: 250px;
-    border: 2px solid;
-    border-radius: 5px;
-    padding: 5px;
-    margin-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style-type: none;
+  font-size: 0.75em;
+  max-width: 250px;
+  border: 2px solid;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 5px;
 }
 
 .thumbnail {
-    width: 230px;
+  width: 230px;
+}
+
+.buttons {
+  display: none;
+  justify-content: space-between;
+  margin: 10px 10px 0 10px;
+  width: 225px;
+}
+
+.btn {
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  background-color: rgb(2, 129, 2025);
+  font-size: 0.75em;
+  transition: 0.1s ease-out;
+  cursor: pointer;
+}
+
+.btn:active {
+  background-color: rgba(2, 129, 202, 0.8);
+}
+
+.clearfix {
+  clear: both;
 }
 
 /* video player */
 #video {
-    grid-area: videoPlayer;
-    justify-self: center;
-    min-height: 0px;
+  grid-area: videoPlayer;
+  justify-self: center;
+  min-height: 0px;
 }
 
 /* slider */
 #color-mode {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    width: 65px;
-    height: 30px;
-    border-radius: 20px;
-    box-shadow: 0 0 10px var(--main-light-color), 0 0 10px var(--main-dark-color);
-    cursor: pointer;
-}
-
-#color-mode.dark {
-    background-color: var(--light-gray);
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 65px;
+  height: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px var(--main-light-color), 0 0 10px var(--main-dark-color);
+  cursor: pointer;
 }
 
 #color-circle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: .8em;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translate(0, -50%);
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    transition: .2s linear;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8em;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(0, -50%);
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  transition: 0.2s linear;
 }
 
 #color-circle.right {
-    top: 50%;
-    left: 100%;
-    transform: translate(-100%, -50%);
+  top: 50%;
+  left: 100%;
+  transform: translate(-100%, -50%);
 }
 
+@media (max-width: 590px) {
+  #search-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-@media(max-width: 590px) {
-    #search-form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+  #search-input {
+    width: 80%;
+    border-radius: 20px;
+  }
 
-    #search-input {
-        width: 80%;
-        border-radius: 20px;
-    }
+  #submit-search {
+    width: 80%;
+    border-radius: 20px;
+    margin: 2px 0 0 0;
+    border: 2px solid rgb(2, 129, 202);
+  }
 
-    #submit-search {
-        width: 80%;
-        border-radius: 20px;
-        margin: 2px 0 0 0;
-        border: 2px solid rgb(2, 129, 202);
-    }
+  #results-container {
+    grid-area: results;
+    margin-top: 1em;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'videoPlayer'
+      'searchResults';
+  }
 
-    #results-container {
-        grid-area: results;
-        margin-top: 1em;
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-areas:
-            'videoPlayer'
-            'searchResults';
-    }
+  #search-results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-    #search-results {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+  .buttons {
+    display: flex;
+    justify-content: space-around;
+  }
 }
