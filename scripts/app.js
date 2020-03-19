@@ -108,14 +108,14 @@
   function prevPage(e) {
     e.preventDefault();
     youtube
-      .getPrevPage(prevBtn.getAttribute('data-prevpage'), searchParameter)
+      .getPrevOrNextPage(prevBtn.getAttribute('data-prevpage'), searchParameter)
       .then(data => ui.displaySearchResults(data))
       .catch(err => console.log(err));
   }
   function nextPage(e) {
     e.preventDefault();
     youtube
-      .getNextPage(nextBtn.getAttribute('data-nextpage'), searchParameter)
+      .getPrevOrNextPage(nextBtn.getAttribute('data-nextpage'), searchParameter)
       .then(data => ui.displaySearchResults(data))
       .catch(err => console.log(err));
   }
