@@ -1,5 +1,6 @@
 class UI {
   constructor() {
+    this.searchForm = document.getElementById('search-form');
     this.searchResults = document.getElementById('search-items');
     this.buttons = document.querySelector('.buttons');
     this.prevBtn = document.getElementById('prev');
@@ -23,15 +24,31 @@ class UI {
     });
     this.searchResults.innerHTML = output;
 
+    // Display message stating what the search value was.
+
     // Display buttons - these are display:none by default since they aren't needed when no search results are present.
     this.buttons.style.display = 'flex';
 
-    // Store next page token/prev page token in a data attribute in respective button
-    if (data.nextPageToken !== undefined) {
-      this.nextBtn.setAttribute('data-nextPage', data.nextPageToken);
-    }
+    // Store prev page token/next page token in a data attribute in respective button
     if (data.prevPageToken !== undefined) {
-      this.prevBtn.setAttribute('data-prevPage', data.prevPageToken);
+      this.prevBtn.setAttribute('data-prevpage', data.prevPageToken);
+    }
+    if (data.nextPageToken !== undefined) {
+      this.nextBtn.setAttribute('data-nextpage', data.nextPageToken);
+    }
+
+    // if prev button has attribute, set disabled to false. Otherwise, the button is disabled
+    if (this.prevBtn.hasAttribute('data-prevpage')) {
+      this.prevBtn.disabled = false;
+    } else {
+      this.prevBtn.disabled = true;
+    }
+
+    // if next button has attribute, set disabled to false. Otherwise, the button is disabled
+    if (this.nextBtn.hasAttribute('data-nextpage')) {
+      this.nextBtn.disabled = false;
+    } else {
+      this.nextBtn.disabled = true;
     }
   }
 }

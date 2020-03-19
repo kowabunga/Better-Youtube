@@ -2,9 +2,7 @@
   const colorSwitcher = document.getElementById('color-mode'),
     colorCircle = document.getElementById('color-circle'),
     body = document.body,
-    header = document.getElementById('head'),
     searchContainer = document.getElementById('search-container'),
-    searchForm = document.getElementById('search-form'),
     searchInput = document.getElementById('search-input'),
     searchSubmit = document.getElementById('submit-search'),
     prevBtn = document.getElementById('prev'),
@@ -94,8 +92,6 @@
         .getSearchResults(searchParameter)
         .then(data => ui.displaySearchResults(data))
         .catch(err => console.log(err));
-
-      searchInput.value = '';
     } else if (searchParameter === '') {
       searchInput.setAttribute('placeholder', 'Please enter something to search.');
       searchInput.classList.add('search-error');
@@ -103,22 +99,19 @@
     }
   }
 
+  /* ------------------------------------------------------------------------- */
   // Pagination
   function prevPage(e) {
     e.preventDefault();
-    console.log(e.target.dataset.prevpage);
-    console.log(searchParameter);
     youtube
-      .getPrevPage(e.target.dataset.prevpage, searchParameter)
+      .getPrevPage(prevBtn.dataset.prevpage, searchParameter)
       .then(data => ui.displaySearchResults(data))
       .catch(err => console.log(err));
   }
   function nextPage(e) {
     e.preventDefault();
-    console.log(searchParameter);
-    console.log(e.target.dataset.nextpage);
     youtube
-      .getNextPage(e.target.dataset.nextpage, searchParameter)
+      .getNextPage(nextBtn.dataset.nextpage, searchParameter)
       .then(data => ui.displaySearchResults(data))
       .catch(err => console.log(err));
   }
