@@ -12,11 +12,9 @@ class UI {
     data.items.forEach(item => {
       output += `
             <li class="search-item" data-videoId=${item.id.videoId}>
-                <a href="https://www.youtube.com/watch?v=${item.id.videoId}">
-                    <img class="thumbnail" src="${item.snippet.thumbnails.medium.url}" alt="Thumbnail for ${item.snippet.title}">
-                </a>
+                    <img class="thumbnail" src="${item.snippet.thumbnails.medium.url}" alt="Thumbnail for ${item.snippet.title}" data-videoId=${item.id.videoId}>
                 <p>
-                    <strong>${item.snippet.title}</strong> <br>
+                    <strong class="video-title" data-videoId=${item.id.videoId}>${item.snippet.title}</strong> <br>
                     Author: <em>${item.snippet.channelTitle}</em>
                 </p>
             </li>
@@ -30,15 +28,20 @@ class UI {
     this.buttons.style.display = 'flex';
 
     // Store prev page token/next page token in a data attribute in respective button
+    // otherwise, remove the data attribute (no more prev/next pages)
     if (data.prevPageToken !== undefined) {
       this.prevBtn.setAttribute('data-prevpage', data.prevPageToken);
+    } else {
+      this.prevBtn.removeAttribute('data-prevpage');
     }
     if (data.nextPageToken !== undefined) {
       this.nextBtn.setAttribute('data-nextpage', data.nextPageToken);
+    } else {
+      this.nextBtn.removeAttribute('data-nextpage');
     }
 
-    // if prev button has attribute, set disabled to false. Otherwise, the button is disabled
     if (this.prevBtn.hasAttribute('data-prevpage')) {
+      // if prev button has attribute, set disabled to false. Otherwise, the button is disabled
       this.prevBtn.disabled = false;
     } else {
       this.prevBtn.disabled = true;

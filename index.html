@@ -8,20 +8,32 @@
   </head>
 
   <body class="dark">
+    <!-- main container -->
+
     <div id="container">
+      <!-- color mode toggle switch-->
       <div id="color-mode" class="light">
-        <div id="color-circle" class="dark">Dark</div>
+        <span id="color-mode-text">Light</span>
+        <span id="color-circle" class="dark"></span>
       </div>
+
+      <!-- header section -->
       <header id="head">
         <p id="page-title">Youtube, <br />but better.</p>
       </header>
+
+      <!-- main container -->
       <div id="main-container">
+        <!-- search container -->
         <div id="search-container" class="search-dark">
           <form id="search-form">
             <input type="text" id="search-input" class="search-dark" placeholder="Search Youtube for videos..." />
             <button id="submit-search" class="search-dark">Search</button>
           </form>
+          <span id="searched-term"></span>
         </div>
+
+        <!-- results container -->
         <div id="results-container">
           <div id="search-results">
             <ul id="search-items">
@@ -33,7 +45,9 @@
             </div>
           </div>
           <div id="video">
-            Video
+            <div id="video-center">
+              <iframe id="player" type="text/html" width="640" height="390" src="" frameborder="0" autoplay allowfullscreen="allowfullscreen"></iframe>
+            </div>
           </div>
         </div>
       </div>

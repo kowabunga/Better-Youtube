@@ -1,12 +1,16 @@
 (function() {
   const colorSwitcher = document.getElementById('color-mode'),
+    colorSwitcherText = document.getElementById('color-mode-text'),
     colorCircle = document.getElementById('color-circle'),
     body = document.body,
     searchContainer = document.getElementById('search-container'),
     searchInput = document.getElementById('search-input'),
     searchSubmit = document.getElementById('submit-search'),
+    searchedTerm = document.getElementById('searched-term'),
     prevBtn = document.getElementById('prev'),
-    nextBtn = document.getElementById('next');
+    nextBtn = document.getElementById('next'),
+    videosUl = document.getElementById('search-items'),
+    videoPlayer = document.getElementById('player');
 
   // Other variables
   let searchParameter = '';
@@ -20,6 +24,7 @@
   searchSubmit.addEventListener('click', submitQuery);
   prevBtn.addEventListener('click', prevPage);
   nextBtn.addEventListener('click', nextPage);
+  videosUl.addEventListener('click', showVideo);
 
   /* ------------------------------------------------------------------------- */
   // Swapping light/dark mode
@@ -38,14 +43,12 @@
       colorCircle.classList.remove('dark');
       colorCircle.classList.add('light');
       colorCircle.classList.add('right');
-      colorCircle.innerText = 'Light';
+      colorSwitcherText.innerText = 'Dark';
 
       // change form area colors
-      // header.classList.remove( 'search-dark' );
       searchContainer.classList.remove('search-dark');
       searchInput.classList.remove('search-dark');
       searchSubmit.classList.remove('search-dark');
-      // header.classList.add( 'search-light' );
       searchContainer.classList.add('search-light');
       searchInput.classList.add('search-light');
       searchSubmit.classList.add('search-light');
@@ -63,14 +66,12 @@
       colorCircle.classList.remove('light');
       colorCircle.classList.add('dark');
       colorCircle.classList.remove('right');
-      colorCircle.innerText = 'Dark';
+      colorSwitcherText.innerText = 'Light';
 
       // change form area colors
-      // header.classList.remove( 'search-light' );
       searchContainer.classList.remove('search-light');
       searchInput.classList.remove('search-light');
       searchSubmit.classList.remove('search-light');
-      // header.classList.add( 'search-dark' );
       searchContainer.classList.add('search-dark');
       searchInput.classList.add('search-dark');
       searchSubmit.classList.add('search-dark');
@@ -92,8 +93,11 @@
         .getSearchResults(searchParameter)
         .then(data => ui.displaySearchResults(data))
         .catch(err => console.log(err));
+      // display searched term and clear search box
+      searchedTerm.innerText = `Showing videos for: ${searchParameter}`;
+      searchInput.value = '';
     } else if (searchParameter === '') {
-      searchInput.setAttribute('placeholder', 'Please enter something to search.');
+      searchedTerm.innerText = 'Please enter something to search.';
       searchInput.classList.add('search-error');
       searchSubmit.classList.add('search-error');
     }
@@ -104,15 +108,25 @@
   function prevPage(e) {
     e.preventDefault();
     youtube
-      .getPrevPage(prevBtn.dataset.prevpage, searchParameter)
+      .getPrevPage(prevBtn.getAttribute('data-prevpage'), searchParameter)
       .then(data => ui.displaySearchResults(data))
       .catch(err => console.log(err));
   }
   function nextPage(e) {
     e.preventDefault();
     youtube
-      .getNextPage(nextBtn.dataset.nextpage, searchParameter)
+      .getNextPage(nextBtn.getAttribute('data-nextpage'), searchParameter)
       .then(data => ui.displaySearchResults(data))
       .catch(err => console.log(err));
+  }
+
+  // show video function
+  function showVideo(e) {
+    // Check that the clicked target is *only* a child of the list item
+    // without this, clicking the ul can cause the video player to break
+    if (e.target.parentElement.classList.contains('search-item') || e.target.parentElement.parentElement.classList.contains('search-item')) {
+      videoPlayer.style.display = 'block';
+      videoPlayer.setAttribute('src', `https://www.youtube.com/embed/${e.target.getAttribute('data-videoid')}?autoplay=1`);
+    }
   }
 })();
