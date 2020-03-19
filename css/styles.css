@@ -183,8 +183,8 @@
 .buttons {
   display: none;
   justify-content: space-between;
-  margin: 10px 10px 0 10px;
   width: 225px;
+  margin: 0 auto;
 }
 
 .btn {
