@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
 
 :root {
-  --main-dark-color: #2d2d2d;
+  --main-dark-color: #1a1919;
   --main-light-color: #f0f5fc;
   --search-bar-dark: rgb(58, 57, 57);
   --search-bar-light: #e7eefd;
@@ -163,12 +163,13 @@
   list-style-type: none;
   font-size: 0.75em;
   max-width: 250px;
-  border: 2px solid;
+  border: 1px solid;
   border-radius: 5px;
   padding: 5px;
   margin-bottom: 5px;
   height: 250px;
   width: 250px;
+  text-align: center;
 }
 
 .thumbnail {
@@ -259,6 +260,7 @@
   height: 25px;
   border-radius: 50%;
   transition: 0.2s linear;
+  background-color: rgba(2, 129, 202, 0.9);
 }
 
 #color-circle.right {

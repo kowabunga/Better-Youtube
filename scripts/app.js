@@ -35,15 +35,12 @@
       body.classList.add('light');
 
       // Change color-switcher background color light->dark
-      colorSwitcher.classList.remove('light');
-      colorSwitcher.classList.add('dark');
+      colorSwitcher.classList.remove('dark');
+      colorSwitcher.classList.add('light');
 
-      // Change color-switcher background color dark->light and move to right
       // Change text from light to dark
-      colorCircle.classList.remove('dark');
-      colorCircle.classList.add('light');
       colorCircle.classList.add('right');
-      colorSwitcherText.innerText = 'Dark';
+      colorSwitcherText.innerText = 'Light';
 
       // change form area colors
       searchContainer.classList.remove('search-dark');
@@ -58,15 +55,12 @@
       body.classList.add('dark');
 
       // Change color-switcher background color dark->light
-      colorSwitcher.classList.remove('dark');
-      colorSwitcher.classList.add('light');
+      colorSwitcher.classList.remove('light');
+      colorSwitcher.classList.add('dark');
 
-      // Change color-switcher background color light->dark and move to left
       // Change text from dark to light
-      colorCircle.classList.remove('light');
-      colorCircle.classList.add('dark');
       colorCircle.classList.remove('right');
-      colorSwitcherText.innerText = 'Light';
+      colorSwitcherText.innerText = 'Dark';
 
       // change form area colors
       searchContainer.classList.remove('search-light');
