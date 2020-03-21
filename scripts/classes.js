@@ -21,4 +21,12 @@ class Youtube {
     const resData = await response.json();
     return resData;
   }
+
+  // Get relevant videos
+  async getRelevantVideos(videoId) {
+    console.log(videoId);
+    const response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=${this.part}&relatedToVideoId=${videoId}&type=${this.type}&maxResults=${this.numResults}&key=${this.api_key}`);
+    const resData = await response.json();
+    return resData;
+  }
 }

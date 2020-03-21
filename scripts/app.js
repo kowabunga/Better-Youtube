@@ -1,12 +1,14 @@
 (function() {
   const colorSwitcher = document.getElementById('color-mode'),
-    colorSwitcherText = document.getElementById('color-mode-text'),
     colorCircle = document.getElementById('color-circle'),
+    colorSun = document.getElementById('color-mode-icon-sun'),
+    colorMoon = document.getElementById('color-mode-icon-moon'),
     body = document.body,
     searchContainer = document.getElementById('search-container'),
+    searchResults = document.getElementById('search-results'),
     searchInput = document.getElementById('search-input'),
     searchSubmit = document.getElementById('submit-search'),
-    searchedTerm = document.getElementById('searched-term'),
+    searchedTerm = document.getElementById('results-term-field'),
     prevBtn = document.getElementById('prev'),
     nextBtn = document.getElementById('next'),
     videosUl = document.getElementById('search-items'),
@@ -38,10 +40,12 @@
       colorSwitcher.classList.remove('dark');
       colorSwitcher.classList.add('light');
 
-      // Change text from light to dark
+      // Move circle to right, show sun hide moon
       colorCircle.classList.add('right');
-      colorSwitcherText.innerText = 'Light';
-
+      if (colorSwitcher.classList.contains('light')) {
+        colorMoon.style.visibility = 'hidden';
+        colorSun.style.visibility = 'visible';
+      }
       // change form area colors
       searchContainer.classList.remove('search-dark');
       searchInput.classList.remove('search-dark');
@@ -60,8 +64,10 @@
 
       // Change text from dark to light
       colorCircle.classList.remove('right');
-      colorSwitcherText.innerText = 'Dark';
-
+      if (colorSwitcher.classList.contains('dark')) {
+        colorMoon.style.visibility = 'visible';
+        colorSun.style.visibility = 'hidden';
+      }
       // change form area colors
       searchContainer.classList.remove('search-light');
       searchInput.classList.remove('search-light');
@@ -88,9 +94,13 @@
         .then(data => ui.displaySearchResults(data))
         .catch(err => console.log(err));
       // display searched term and clear search box
-      searchedTerm.innerText = `Showing videos for: ${searchParameter}`;
+      searchedTerm.innerText = `Results for: ${searchParameter}`;
       searchInput.value = '';
+
+      // show search results - visibility hidden => visibility visible
+      searchResults.style.display = 'block';
     } else if (searchParameter === '') {
+      searchResults.style.display = 'block';
       searchedTerm.innerText = 'Please enter something to search.';
       searchInput.classList.add('search-error');
       searchSubmit.classList.add('search-error');
@@ -121,6 +131,12 @@
     if (e.target.parentElement.classList.contains('search-item') || e.target.parentElement.parentElement.classList.contains('search-item')) {
       videoPlayer.style.display = 'block';
       videoPlayer.setAttribute('src', `https://www.youtube.com/embed/${e.target.getAttribute('data-videoid')}?autoplay=1`);
+
+      // Call function to get relevant search videos.
+      youtube
+        .getRelevantVideos(e.target.getAttribute('data-videoid'))
+        .then(data => ui.displayRelevantVideos(data))
+        .catch(err => console.log(err));
     }
   }
 })();

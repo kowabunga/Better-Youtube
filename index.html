@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/styles.css" />
+    <script src="https://kit.fontawesome.com/ba6f5f095e.js" crossorigin="anonymous"></script>
     <title>Better Youtube</title>
   </head>
 
@@ -13,13 +14,14 @@
     <div id="container">
       <!-- color mode toggle switch-->
       <div id="color-mode" class="dark">
-        <span id="color-mode-text">Dark</span>
+        <span id="color-mode-icon-moon"><i class="far fa-moon"></i></span>
+        <span id="color-mode-icon-sun"><i class="fas fa-sun"></i></span>
         <span id="color-circle" class="dark"></span>
       </div>
 
       <!-- header section -->
       <header id="head">
-        <p id="page-title">Youtube, <br />but better.</p>
+        <p id="page-title">Youtube, but better.</p>
       </header>
 
       <!-- main container -->
@@ -28,14 +30,16 @@
         <div id="search-container" class="search-dark">
           <form id="search-form">
             <input type="text" id="search-input" class="search-dark" placeholder="Search Youtube for videos..." />
-            <button id="submit-search" class="search-dark">Search</button>
+            <button id="submit-search" class="search-dark"><i class="fas fa-search"></i></button>
           </form>
           <span id="searched-term"></span>
         </div>
 
         <!-- results container -->
         <div id="results-container">
-          <div id="search-results">
+          <div id="search-results" class="search-results-hidden">
+            <div id="results-term-field"></div>
+            <hr />
             <ul id="search-items">
               <!-- <li class="search-item">Item 1</li> -->
             </ul>
@@ -48,9 +52,15 @@
             <div id="video-center">
               <iframe id="player" type="text/html" width="640" height="390" src="" frameborder="0" autoplay allowfullscreen="allowfullscreen"></iframe>
             </div>
+            <div id="relevant-videos">
+              <ul id="relevant-video-items"></ul>
+            </div>
           </div>
         </div>
       </div>
+      <footer id="footer">
+        <p>Better Youtube. Designed by <span id="name">Anthony Siletti</span></p>
+      </footer>
     </div>
     <script src="scripts/ui.js"></script>
     <script src="scripts/classes.js"></script>
