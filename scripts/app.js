@@ -8,11 +8,13 @@
     searchResults = document.getElementById('search-results'),
     searchInput = document.getElementById('search-input'),
     searchSubmit = document.getElementById('submit-search'),
-    searchedTerm = document.getElementById('results-term-field'),
+    searchedTerm = document.getElementById('searched-term'),
+    resultsTermDisplay = document.getElementById('results-term-field'),
     prevBtn = document.getElementById('prev'),
     nextBtn = document.getElementById('next'),
     videosUl = document.getElementById('search-items'),
-    videoPlayer = document.getElementById('player');
+    videoPlayer = document.getElementById('player'),
+    relVideoItems = document.getElementById('relevant-video-items');
 
   // Other variables
   let searchParameter = '';
@@ -27,6 +29,7 @@
   prevBtn.addEventListener('click', prevPage);
   nextBtn.addEventListener('click', nextPage);
   videosUl.addEventListener('click', showVideo);
+  relVideoItems.addEventListener('click', showVideo);
 
   /* ------------------------------------------------------------------------- */
   // Swapping light/dark mode
@@ -41,7 +44,7 @@
       colorSwitcher.classList.add('light');
 
       // Move circle to right, show sun hide moon
-      colorCircle.classList.add('right');
+      colorCircle.classList.remove('right');
       if (colorSwitcher.classList.contains('light')) {
         colorMoon.style.visibility = 'hidden';
         colorSun.style.visibility = 'visible';
@@ -63,7 +66,7 @@
       colorSwitcher.classList.add('dark');
 
       // Change text from dark to light
-      colorCircle.classList.remove('right');
+      colorCircle.classList.add('right');
       if (colorSwitcher.classList.contains('dark')) {
         colorMoon.style.visibility = 'visible';
         colorSun.style.visibility = 'hidden';
@@ -79,6 +82,9 @@
   }
 
   /* ------------------------------------------------------------------------- */
+  // For some reason, when the page reloads, the iframe's src attribute doesn't always reset. This code ensures it resets and no video starts "ghost playing" in the background.
+  document.body.addEventListener('load', () => videoPlayer.removeAttribute('src'));
+
   // Youtube Section
   function submitQuery(e) {
     e.preventDefault();
@@ -94,13 +100,12 @@
         .then(data => ui.displaySearchResults(data))
         .catch(err => console.log(err));
       // display searched term and clear search box
-      searchedTerm.innerText = `Results for: ${searchParameter}`;
+      resultsTermDisplay.innerText = `Results for: ${searchParameter}`;
       searchInput.value = '';
 
       // show search results - visibility hidden => visibility visible
       searchResults.style.display = 'block';
     } else if (searchParameter === '') {
-      searchResults.style.display = 'block';
       searchedTerm.innerText = 'Please enter something to search.';
       searchInput.classList.add('search-error');
       searchSubmit.classList.add('search-error');
@@ -137,6 +142,9 @@
         .getRelevantVideos(e.target.getAttribute('data-videoid'))
         .then(data => ui.displayRelevantVideos(data))
         .catch(err => console.log(err));
+
+      // scroll to top so video can be seen
+      window.scrollTo(0, 0);
     }
   }
 })();

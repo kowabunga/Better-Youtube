@@ -53,7 +53,8 @@ body {
   grid-template-columns: 1fr;
   grid-template-areas:
     'head'
-    'mainContainer';
+    'mainContainer'
+    'footer';
 }
 
 hr {
@@ -89,7 +90,6 @@ hr {
   grid-template-areas:
     'search search'
     'results results';
-  margin-bottom: 3rem;
 }
 
 /* -------------------------------------------------------------- */
@@ -100,6 +100,7 @@ hr {
   grid-area: search;
   height: 100px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   border-bottom: 2px solid var(--light-gray);
@@ -152,6 +153,7 @@ hr {
 #results-container {
   grid-area: results;
   margin: 1em 0;
+  padding-bottom: 2rem;
   display: grid;
   grid-template-columns: 4fr 5fr;
   grid-template-areas: 'searchResults videoPlayer';
@@ -249,7 +251,8 @@ hr {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;
-  grid-auto-rows: 415px auto;
+  /* minmax sets the size of the the video player grid item (video) to 0px initially, then the appropriate minimum size when the iframe is displayed */
+  grid-auto-rows: minmax(0px, min-content) auto;
   grid-template-areas:
     'video'
     'releventVideos';
@@ -273,7 +276,18 @@ hr {
 
 #relevant-videos {
   grid-area: releventVideos;
+  display: none;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
+
+#video-desc {
+  display: none;
+  text-align: center;
+  margin-top: 1em;
+}
+
 #relevant-video-items {
   display: flex;
   flex-wrap: wrap;
@@ -310,18 +324,20 @@ hr {
   transition: 0.2s linear;
   background-color: rgb(2, 129, 202);
 }
+
 #color-mode-icon-sun {
   position: absolute;
   top: 30%;
-  left: 15%;
-  transform: scale(1.3) translate(-15%, -20%);
-  visibility: hidden;
+  right: 10%;
+  transform: scale(1.2) translate(-10%, -20%);
 }
+
 #color-mode-icon-moon {
   position: absolute;
   top: 50%;
-  right: 10%;
-  transform: translate(-10%, -50%);
+  left: 15%;
+  transform: translate(-15%, -50%);
+  visibility: hidden;
 }
 
 #color-circle.right {
@@ -333,6 +349,7 @@ hr {
 /* -------------------------------------------------------------- */
 /*  Footer  */
 #footer {
+  grid-area: footer;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -412,7 +429,7 @@ hr {
   }
 
   #search-results {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
   }

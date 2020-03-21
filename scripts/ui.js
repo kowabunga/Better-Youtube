@@ -6,8 +6,10 @@ class UI {
     this.buttons = document.querySelector('.buttons');
     this.prevBtn = document.getElementById('prev');
     this.nextBtn = document.getElementById('next');
+    this.videoSection = document.getElementById('video');
     this.relevantVideos = document.getElementById('relevant-videos');
     this.relevantVideoItems = document.getElementById('relevant-video-items');
+    this.videoDesc = document.getElementById('video-desc');
   }
 
   displaySearchResults(data) {
@@ -73,7 +75,9 @@ class UI {
             </li>
         `;
     });
-    this.relevantVideos.innerText = 'Videos you may like...';
     this.relevantVideoItems.innerHTML = output;
+    this.relevantVideos.style.display = 'flex';
+    this.videoDesc.style.display = 'block';
+    this.videoDesc.style.displaySearchResults = 'block';
   }
 }

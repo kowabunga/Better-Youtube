@@ -8,15 +8,15 @@
     <title>Better Youtube</title>
   </head>
 
-  <body class="dark">
+  <body class="light">
     <!-- main container -->
 
     <div id="container">
       <!-- color mode toggle switch-->
-      <div id="color-mode" class="dark">
+      <div id="color-mode" class="light">
         <span id="color-mode-icon-moon"><i class="far fa-moon"></i></span>
         <span id="color-mode-icon-sun"><i class="fas fa-sun"></i></span>
-        <span id="color-circle" class="dark"></span>
+        <span id="color-circle" class="light"></span>
       </div>
 
       <!-- header section -->
@@ -27,17 +27,17 @@
       <!-- main container -->
       <div id="main-container">
         <!-- search container -->
-        <div id="search-container" class="search-dark">
+        <div id="search-container" class="search-light">
           <form id="search-form">
-            <input type="text" id="search-input" class="search-dark" placeholder="Search Youtube for videos..." />
-            <button id="submit-search" class="search-dark"><i class="fas fa-search"></i></button>
+            <input type="text" id="search-input" class="search-light" placeholder="Search Youtube for videos..." />
+            <button id="submit-search" class="search-light"><i class="fas fa-search"></i></button>
           </form>
           <span id="searched-term"></span>
         </div>
 
         <!-- results container -->
         <div id="results-container">
-          <div id="search-results" class="search-results-hidden">
+          <div id="search-results" class="search-results">
             <div id="results-term-field"></div>
             <hr />
             <ul id="search-items">
@@ -53,6 +53,10 @@
               <iframe id="player" type="text/html" width="640" height="390" src="" frameborder="0" autoplay allowfullscreen="allowfullscreen"></iframe>
             </div>
             <div id="relevant-videos">
+              <span id="video-desc">
+                Videos you may like...
+                <hr />
+              </span>
               <ul id="relevant-video-items"></ul>
             </div>
           </div>
