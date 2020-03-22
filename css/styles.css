@@ -16,10 +16,6 @@
   outline: none;
 }
 
-html,
-body {
-  overflow-x: hidden;
-}
 /* -------------------------------------------------------------- */
 /* Light/dark mode color classes */
 .dark {
@@ -97,6 +93,7 @@ hr {
 #search-container {
   position: sticky;
   top: 0;
+  left: 0;
   grid-area: search;
   height: 100px;
   display: flex;
