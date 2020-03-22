@@ -72,6 +72,7 @@ class UI {
                     <strong class="video-title" data-videoId=${item.id.videoId}>${item.snippet.title}</strong> <br>
                     Author: <em>${item.snippet.channelTitle}</em>
                 </p>
+                
             </li>
         `;
     });

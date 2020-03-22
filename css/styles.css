@@ -193,8 +193,7 @@ hr {
   list-style-type: none;
   font-size: 0.75em;
   max-width: 250px;
-  border: 1px solid;
-  border-radius: 5px;
+  border-bottom: 1px solid;
   padding: 5px;
   margin-bottom: 5px;
   height: 250px;
