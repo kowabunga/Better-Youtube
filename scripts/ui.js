@@ -17,7 +17,7 @@ class UI {
     // loop through data items and add video, name, title, etc. to list item and append to output
     data.items.forEach(item => {
       output += `
-            <li class="search-item" data-videoId=${item.id.videoId}>
+            <li class="search-item" data-videoId=${item.id.videoId} data-videoName="${item.snippet.title}" data-Author="${item.snippet.channelTitle}">
                     <img class="thumbnail" src="${item.snippet.thumbnails.medium.url}" alt="Thumbnail for ${item.snippet.title}" data-videoId=${item.id.videoId}>
                 <p>
                     <strong class="video-title" data-videoId=${item.id.videoId}>${item.snippet.title}</strong> <br>
@@ -66,7 +66,7 @@ class UI {
     // loop through data items and add video, name, title, etc. to list item and append to output
     data.items.forEach(item => {
       output += `
-            <li class="search-item" data-videoId=${item.id.videoId}>
+            <li class="search-item" data-videoId=${item.id.videoId} data-videoName="${item.snippet.title}" data-Author="${item.snippet.channelTitle}">
                     <img class="thumbnail" src="${item.snippet.thumbnails.medium.url}" alt="Thumbnail for ${item.snippet.title}" data-videoId=${item.id.videoId}>
                 <p>
                     <strong class="video-title" data-videoId=${item.id.videoId}>${item.snippet.title}</strong> <br>
@@ -76,6 +76,7 @@ class UI {
             </li>
         `;
     });
+
     this.relevantVideoItems.innerHTML = output;
     this.relevantVideos.style.display = 'flex';
     this.videoDesc.style.display = 'block';

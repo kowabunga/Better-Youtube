@@ -1,9 +1,9 @@
 (function() {
-  const colorSwitcher = document.getElementById('color-mode'),
+  const body = document.body,
+    colorSwitcher = document.getElementById('color-mode'),
     colorCircle = document.getElementById('color-circle'),
     colorSun = document.getElementById('color-mode-icon-sun'),
     colorMoon = document.getElementById('color-mode-icon-moon'),
-    body = document.body,
     searchContainer = document.getElementById('search-container'),
     searchResults = document.getElementById('search-results'),
     searchInput = document.getElementById('search-input'),
@@ -15,6 +15,7 @@
     videosUl = document.getElementById('search-items'),
     videoPlayer = document.getElementById('player'),
     relVideoItems = document.getElementById('relevant-video-items');
+  videoCenter = document.getElementById('video-center');
 
   // Other variables
   let searchParameter = '';
@@ -143,8 +144,67 @@
         .then(data => ui.displayRelevantVideos(data))
         .catch(err => console.log(err));
 
+      // Fill in video title/author info below video
+      fillInDescription(e);
+
       // scroll to top so video can be seen
       window.scrollTo(0, 0);
+    }
+  }
+
+  function fillInDescription(e) {
+    // We can grab videos in two ways.
+    // The image, or the title.
+    // Both cases need to be checked, so we'll use an outer if statement checking that,
+    // First case is image. Need the parent elem of that (li)
+    // Second case is the title, need parent elem of parent elem  for that.
+
+    // This first checks if it is the VIDEO IMAGE that is clicked.
+    // target => parent
+    // img => LI
+    if (e.target.parentElement.classList.contains('search-item')) {
+      // If description (p element) exists, change inner html to new info
+      if (document.getElementById('video-information') !== null) {
+        document.getElementById('video-information').innerHTML = `
+          <strong>${e.target.parentElement.getAttribute('data-videoname')}</strong>
+          <br />
+          <em>Author</em> : ${e.target.parentElement.getAttribute('data-author')}
+        `;
+      } else {
+        // If p element does not exist, create it and give it required info
+        let p = document.createElement('p');
+        p.id = 'video-information';
+
+        p.innerHTML = `
+        <strong>${e.target.parentElement.getAttribute('data-videoname')}</strong>
+        <br/>
+        <em>Author</em> : ${e.target.parentElement.getAttribute('data-author')}
+      `;
+        videoCenter.appendChild(p);
+      }
+
+      // target => parent => parent
+      // text => p => li
+    } else if (e.target.parentElement.parentElement.classList.contains('search-item')) {
+      // If description (p element) exists, change inner html to new info
+      if (document.getElementById('video-information') !== null) {
+        document.getElementById('video-information').innerHTML = `
+          <strong>${e.target.parentElement.parentElement.getAttribute('data-videoname')}</strong>
+          <br />
+          <em>Author</em> : ${e.target.parentElement.parentElement.getAttribute('data-author')}
+        `;
+      } else {
+        // If p element does not exist, create it and give it required info
+        let p = document.createElement('p');
+        p.id = 'video-information';
+
+        p.innerHTML = `
+        <strong>${e.target.parentElement.parentElement.getAttribute('data-videoname')}</strong>
+        <br/>
+        <em>Author</em> : ${e.target.parentElement.parentElement.getAttribute('data-author')}
+      `;
+        videoCenter.appendChild(p);
+      }
     }
   }
 })();

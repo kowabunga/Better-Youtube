@@ -270,6 +270,12 @@ hr {
   display: none;
 }
 
+#video-information {
+  margin-top: 0.8em;
+  text-align: left;
+  line-height: 2em;
+}
+
 #relevant-videos {
   grid-area: releventVideos;
   display: none;
