@@ -145,6 +145,11 @@ hr {
   margin-top: 5px;
 }
 
+.to-the-left {
+  position: absolute;
+  left: -1000vh;
+}
+
 /* -------------------------------------------------------------- */
 /* search results container */
 #results-container {
@@ -152,8 +157,10 @@ hr {
   margin: 1em 0;
   padding-bottom: 2rem;
   display: grid;
-  grid-template-columns: 4fr 5fr;
-  grid-template-areas: 'searchResults videoPlayer';
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'videoPlayer'
+    'searchResults';
   grid-gap: 20px;
 }
 
@@ -370,12 +377,7 @@ hr {
 
 /* -------------------------------------------------------------- */
 /* All Media Queries */
-@media (max-width: 1200px) {
-  #results-container {
-    grid-template-columns: 2fr 5fr;
-    grid-template-areas: 'searchResults videoPlayer';
-  }
-}
+
 @media (max-width: 800px) {
   #page-title {
     width: 300px;
@@ -385,16 +387,10 @@ hr {
   #search-container {
     z-index: 1;
   }
-  #results-container {
-    grid-area: results;
-    margin-top: 1em;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      'videoPlayer'
-      'searchResults';
-  }
 
+  #search-results {
+    border-right: none;
+  }
   #search-items {
     flex-direction: row;
     flex-wrap: wrap;
