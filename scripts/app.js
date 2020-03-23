@@ -7,8 +7,10 @@
     searchContainer = document.getElementById('search-container'),
     searchResults = document.getElementById('search-results'),
     searchInput = document.getElementById('search-input'),
+    showSearchResults = document.getElementById('show-search'),
     searchSubmit = document.getElementById('submit-search'),
     searchedTerm = document.getElementById('searched-term'),
+    closeSearchBtn = document.getElementById('window-close'),
     resultsTermDisplay = document.getElementById('results-term-field'),
     prevBtn = document.getElementById('prev'),
     nextBtn = document.getElementById('next'),
@@ -31,7 +33,8 @@
   nextBtn.addEventListener('click', nextPage);
   videosUl.addEventListener('click', showVideo);
   relVideoItems.addEventListener('click', showVideo);
-
+  showSearchResults.addEventListener('click', showResults);
+  closeSearchBtn.addEventListener('click', hideResults);
   /* ------------------------------------------------------------------------- */
   // Swapping light/dark mode
   function changeColorMode() {
@@ -141,6 +144,7 @@
 
       // Move search results off page
       searchResults.classList.add('to-the-left');
+      showSearchResults.style.display = 'block';
 
       // Call function to get relevant search videos.
       youtube
@@ -153,6 +157,11 @@
 
       // scroll to top so video can be seen
       window.scrollTo(0, 0);
+
+      // check if search results overlay is present. If so, remove
+      if (searchResults.classList.contains('to-the-right')) {
+        hideResults();
+      }
     }
   }
 
@@ -211,5 +220,19 @@
         videoCenter.appendChild(p);
       }
     }
+  }
+
+  // show search results after they have been hidden
+  function showResults(e) {
+    e.preventDefault();
+    searchResults.classList.remove('to-the-left');
+    searchResults.classList.add('to-the-right');
+    closeSearchBtn.style.visibility = 'visible';
+  }
+
+  function hideResults() {
+    searchResults.classList.remove('to-the-right');
+    searchResults.classList.add('to-the-left');
+    closeSearchBtn.style.visibility = 'hidden';
   }
 })();

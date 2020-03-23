@@ -192,7 +192,7 @@ hr {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   list-style-type: none;
   font-size: 0.75em;
   max-width: 250px;
@@ -213,6 +213,11 @@ hr {
   cursor: pointer;
 }
 
+#show-search {
+  display: none;
+  margin: 0 0 12px 12px;
+  box-shadow: 0 0 10px rgb(255, 255, 255);
+}
 .to-the-left {
   position: absolute;
   left: -1000vh;
@@ -226,6 +231,20 @@ hr {
   bottom: 0;
   background-color: var(--main-light-color);
 }
+
+#window-close {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  color: currentColor;
+  visibility: hidden;
+  transform: scale(2);
+}
+
+#window-close:hover {
+  cursor: pointer;
+}
+
 /* -------------------------------------------------------------- */
 /* Buttons */
 .buttons {
@@ -393,9 +412,6 @@ hr {
     width: 300px;
     text-align: start;
     margin: 0.5rem 0 0.5rem 1rem;
-  }
-  #search-container {
-    z-index: 1;
   }
 
   #search-results {
