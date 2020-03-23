@@ -271,6 +271,7 @@ hr {
 #video iframe {
   width: 100%;
   top: 101px;
+  height: 500px;
 }
 
 #player {
