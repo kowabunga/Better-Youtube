@@ -145,11 +145,6 @@ hr {
   margin-top: 5px;
 }
 
-.to-the-left {
-  position: absolute;
-  left: -1000vh;
-}
-
 /* -------------------------------------------------------------- */
 /* search results container */
 #results-container {
