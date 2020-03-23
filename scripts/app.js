@@ -14,8 +14,8 @@
     nextBtn = document.getElementById('next'),
     videosUl = document.getElementById('search-items'),
     videoPlayer = document.getElementById('player'),
-    relVideoItems = document.getElementById('relevant-video-items');
-  videoCenter = document.getElementById('video-center');
+    relVideoItems = document.getElementById('relevant-video-items'),
+    videoCenter = document.getElementById('video-center');
 
   // Other variables
   let searchParameter = '';
@@ -137,6 +137,10 @@
     if (e.target.parentElement.classList.contains('search-item') || e.target.parentElement.parentElement.classList.contains('search-item')) {
       videoPlayer.style.display = 'block';
       videoPlayer.setAttribute('src', `https://www.youtube.com/embed/${e.target.getAttribute('data-videoid')}?autoplay=1`);
+      videoPlayer;
+
+      // Move search results off page
+      searchResults.classList.add('to-the-left');
 
       // Call function to get relevant search videos.
       youtube

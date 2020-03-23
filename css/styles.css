@@ -145,11 +145,6 @@ hr {
   margin-top: 5px;
 }
 
-.to-the-left {
-  position: absolute;
-  left: -1000vh;
-}
-
 /* -------------------------------------------------------------- */
 /* search results container */
 #results-container {
@@ -178,6 +173,7 @@ hr {
   grid-area: searchResults;
   padding: 1rem;
   border-right: 2px solid;
+  transition: 0.3s ease-out;
 }
 
 #results-term-field {
@@ -217,6 +213,19 @@ hr {
   cursor: pointer;
 }
 
+.to-the-left {
+  position: absolute;
+  left: -1000vh;
+}
+
+.to-the-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: var(--main-light-color);
+}
 /* -------------------------------------------------------------- */
 /* Buttons */
 .buttons {
