@@ -154,8 +154,8 @@
 
   function fillInDescription(e) {
     // We can grab videos in two ways.
-    // The image, or the title.
-    // Both cases need to be checked, so we'll use an outer if statement checking that,
+    // By clicking the image itself, or the title of the image.
+    // Both cases need to be checked, so we'll use an outer if statement checking if:
     // First case is image. Need the parent elem of that (li)
     // Second case is the title, need parent elem of parent elem  for that.
 
@@ -183,6 +183,7 @@
         videoCenter.appendChild(p);
       }
 
+      // Second case deals with title being clicked
       // target => parent => parent
       // text => p => li
     } else if (e.target.parentElement.parentElement.classList.contains('search-item')) {
