@@ -94,10 +94,12 @@
     e.preventDefault();
     //   submit search request and get results so long as user actually inputs something
     searchParameter = searchInput.value;
-    if (searchParameter !== '' && searchInput.classList.contains('search-error') && searchSubmit.classList.contains('search-error')) {
-      // remove eror classes
-      searchInput.classList.remove('search-error');
-      searchSubmit.classList.remove('search-error');
+    if (searchParameter !== '') {
+      if (searchInput.classList.contains('search-error') && searchSubmit.classList.contains('search-error')) {
+        // remove error classes
+        searchInput.classList.remove('search-error');
+        searchSubmit.classList.remove('search-error');
+      }
 
       // make request to api with search parameter and display in webpage
       youtube
