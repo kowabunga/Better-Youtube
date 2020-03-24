@@ -53,6 +53,7 @@
         colorMoon.style.visibility = 'hidden';
         colorSun.style.visibility = 'visible';
       }
+
       // change form area colors
       searchContainer.classList.remove('search-dark');
       searchInput.classList.remove('search-dark');
@@ -75,6 +76,7 @@
         colorMoon.style.visibility = 'visible';
         colorSun.style.visibility = 'hidden';
       }
+
       // change form area colors
       searchContainer.classList.remove('search-light');
       searchInput.classList.remove('search-light');
@@ -92,11 +94,12 @@
     e.preventDefault();
     //   submit search request and get results so long as user actually inputs something
     searchParameter = searchInput.value;
-    if (searchParameter !== '') {
-      if (searchInput.classList.contains('search-error') && searchSubmit.classList.contains('search-error')) {
-        searchInput.classList.remove('search-error');
-        searchSubmit.classList.remove('search-error');
-      }
+    if (searchParameter !== '' && searchInput.classList.contains('search-error') && searchSubmit.classList.contains('search-error')) {
+      // remove eror classes
+      searchInput.classList.remove('search-error');
+      searchSubmit.classList.remove('search-error');
+
+      // make request to api with search parameter and display in webpage
       youtube
         .getSearchResults(searchParameter)
         .then(data => ui.displaySearchResults(data))
@@ -108,6 +111,7 @@
       // show search results - visibility hidden => visibility visible
       searchResults.style.display = 'block';
     } else if (searchParameter === '') {
+      // If search is empty but submit is clicked/entered, add error classes
       searchedTerm.innerText = 'Please enter something to search.';
       searchInput.classList.add('search-error');
       searchSubmit.classList.add('search-error');
@@ -143,7 +147,7 @@
       videoPlayer;
 
       // Move search results off page
-      searchResults.classList.add('to-the-left');
+      searchResults.classList.add('hide-search');
       showSearchResults.style.display = 'block';
 
       // Call function to get relevant search videos.
@@ -159,7 +163,7 @@
       window.scrollTo(0, 0);
 
       // check if search results overlay is present. If so, remove
-      if (searchResults.classList.contains('to-the-right')) {
+      if (searchResults.classList.contains('show-search')) {
         hideResults();
       }
     }
@@ -226,8 +230,8 @@
   function showResults(e) {
     body.style.overflow = 'hidden';
     e.preventDefault();
-    searchResults.classList.remove('to-the-left');
-    searchResults.classList.add('to-the-right');
+    searchResults.classList.remove('hide-search');
+    searchResults.classList.add('show-search');
     closeSearchBtn.style.visibility = 'visible';
 
     // this if/else controls the background color based on light/dark mode selection
@@ -242,8 +246,8 @@
 
   function hideResults() {
     body.style.overflow = 'auto';
-    searchResults.classList.remove('to-the-right');
-    searchResults.classList.add('to-the-left');
+    searchResults.classList.remove('show-search');
+    searchResults.classList.add('hide-search');
     closeSearchBtn.style.visibility = 'hidden';
   }
 })();

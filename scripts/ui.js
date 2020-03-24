@@ -28,37 +28,17 @@ class UI {
     });
     this.searchItems.innerHTML = output;
 
-    // Display message stating what the search value was.
-
     // Display buttons - these are display:none by default since they aren't needed when no search results are present.
     this.buttons.style.display = 'flex';
 
     // Store prev page token/next page token in a data attribute in respective button
     // otherwise, remove the data attribute (no more prev/next pages)
-    if (data.prevPageToken !== undefined) {
-      this.prevBtn.setAttribute('data-prevpage', data.prevPageToken);
-    } else {
-      this.prevBtn.removeAttribute('data-prevpage');
-    }
-    if (data.nextPageToken !== undefined) {
-      this.nextBtn.setAttribute('data-nextpage', data.nextPageToken);
-    } else {
-      this.nextBtn.removeAttribute('data-nextpage');
-    }
+    data.prevPageToken !== undefined ? this.prevBtn.setAttribute('data-prevpage', data.prevPageToken) : this.prevBtn.removeAttribute('data-prevpage');
+    data.nextPageToken !== undefined ? this.nextBtn.setAttribute('data-nextpage', data.nextPageToken) : this.nextBtn.removeAttribute('data-nextpage');
 
-    if (this.prevBtn.hasAttribute('data-prevpage')) {
-      // if prev button has attribute, set disabled to false. Otherwise, the button is disabled
-      this.prevBtn.disabled = false;
-    } else {
-      this.prevBtn.disabled = true;
-    }
-
-    // if next button has attribute, set disabled to false. Otherwise, the button is disabled
-    if (this.nextBtn.hasAttribute('data-nextpage')) {
-      this.nextBtn.disabled = false;
-    } else {
-      this.nextBtn.disabled = true;
-    }
+    // Check if prev/next buttons have data-attribute (i.e. they will do something). If so, enable button else don't.
+    this.prevBtn.hasAttribute('data-prevpage') ? (this.prevBtn.disabled = false) : (this.prevBtn.disabled = true);
+    this.nextBtn.hasAttribute('data-nextpage') ? (this.nextBtn.disabled = false) : (this.nextBtn.disabled = true);
   }
 
   displayRelevantVideos(data) {
@@ -77,8 +57,10 @@ class UI {
         `;
     });
 
+    // add output to section and make section visible on website
     this.relevantVideoItems.innerHTML = output;
     this.relevantVideos.style.display = 'flex';
+    // add description and display below video
     this.videoDesc.style.display = 'block';
     this.videoDesc.style.displaySearchResults = 'block';
   }

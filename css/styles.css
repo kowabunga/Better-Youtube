@@ -88,8 +88,8 @@ hr {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-areas:
-    'search search'
-    'results results';
+    'search'
+    'results';
 }
 
 /* -------------------------------------------------------------- */
@@ -105,10 +105,6 @@ hr {
   align-items: center;
   justify-content: center;
   border-bottom: 2px solid var(--light-gray);
-}
-
-#search-form {
-  margin-top: 10px;
 }
 
 #search-input,
@@ -149,6 +145,13 @@ hr {
   margin-top: 5px;
 }
 
+/* We want this class to override the colors given by the id's while they are added */
+.search-error {
+  border: 2px solid crimson !important;
+  box-shadow: 0 0 10px crimson !important;
+  color: crimson !important;
+}
+
 /* -------------------------------------------------------------- */
 /* search results container */
 #results-container {
@@ -163,13 +166,6 @@ hr {
   grid-gap: 20px;
 }
 
-/* We want this class to override the colors given by the id's while they are added */
-.search-error {
-  border: 2px solid crimson !important;
-  box-shadow: 0 0 10px crimson !important;
-  color: crimson !important;
-}
-
 /* -------------------------------------------------------------- */
 /* search results */
 #search-results {
@@ -181,7 +177,6 @@ hr {
 }
 
 #results-term-field {
-  margin-bottom: 5px;
   text-align: center;
 }
 
@@ -190,8 +185,8 @@ hr {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  margin-top: 10px;
 }
+
 .search-item {
   display: flex;
   flex-direction: column;
@@ -200,9 +195,8 @@ hr {
   list-style-type: none;
   font-size: 0.75em;
   max-width: 250px;
-  border-bottom: 1px solid;
+  border-top: 1px solid;
   padding: 5px;
-  margin-bottom: 5px;
   height: 250px;
   width: 250px;
   text-align: center;
@@ -220,9 +214,15 @@ hr {
 #show-search {
   display: none;
   margin: 0 0 12px 12px;
-  box-shadow: 0 0 10px rgb(255, 255, 255);
+  background-color: #fff;
+  color: rgb(2, 129, 202);
 }
-.to-the-left {
+
+#show-search:active {
+  transform: scale(0.98);
+}
+
+.hide-search {
   position: absolute;
   top: 0;
   right: 0;
@@ -233,7 +233,7 @@ hr {
   transform: translateX(-100%);
 }
 
-.to-the-right {
+.show-search {
   position: absolute;
   transform: translateX(0);
   top: 0;
@@ -271,6 +271,7 @@ hr {
   border: none;
   border-radius: 5px;
   padding: 5px 10px;
+  margin-bottom: 5px;
   background-color: rgb(2, 129, 2025);
   font-size: 0.75em;
   transition: 0.1s ease-out;
@@ -354,7 +355,6 @@ hr {
   width: 75px;
   height: 30px;
   border-radius: 20px;
-  box-shadow: 0 0 10px var(--main-light-color);
   cursor: pointer;
   display: flex;
   align-items: center;

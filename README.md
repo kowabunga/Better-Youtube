@@ -7,6 +7,8 @@ This idea came from the idea that it can be annoying to be searching videos, acc
 # This currently supports the following functionalities:
 
 - Searching for videos
+  - Searched videos will hide themselves when video player is present, preventing over-crowding of web page.
+  - Ability to click button to go see search results without having to reload page
 - Paginating through said videos
 - Displaying video on page without reloading and losing current search position
 
