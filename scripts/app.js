@@ -228,6 +228,15 @@
     searchResults.classList.remove('to-the-left');
     searchResults.classList.add('to-the-right');
     closeSearchBtn.style.visibility = 'visible';
+
+    // this if/else controls the background color based on light/dark mode selection
+    if (body.classList.contains('dark')) {
+      searchResults.classList.remove('light');
+      searchResults.classList.add('dark');
+    } else {
+      searchResults.classList.remove('dark');
+      searchResults.classList.add('light');
+    }
   }
 
   function hideResults() {

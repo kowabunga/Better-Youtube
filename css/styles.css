@@ -220,16 +220,20 @@ hr {
 }
 .to-the-left {
   position: absolute;
-  left: -1000vh;
-}
-
-.to-the-right {
-  position: absolute;
   top: 0;
   right: 0;
   left: 0;
   bottom: 0;
-  background-color: var(--main-light-color);
+  transform: translateX(-100%);
+}
+
+.to-the-right {
+  position: absolute;
+  transform: translateX(0);
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
 }
 
 #window-close {
