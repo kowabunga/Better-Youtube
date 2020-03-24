@@ -75,6 +75,8 @@ hr {
   border: 1px solid rgb(2, 129, 202);
   border-radius: 20px;
   width: 510px;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 /* -------------------------------------------------------------- */
