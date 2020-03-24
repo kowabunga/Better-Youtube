@@ -86,8 +86,6 @@
   }
 
   /* ------------------------------------------------------------------------- */
-  // For some reason, when the page reloads, the iframe's src attribute doesn't always reset. This code ensures it resets and no video starts "ghost playing" in the background.
-  document.body.addEventListener('load', () => videoPlayer.removeAttribute('src'));
 
   // Youtube Section
   function submitQuery(e) {
@@ -137,6 +135,8 @@
   function showVideo(e) {
     // Check that the clicked target is *only* a child of the list item
     // without this, clicking the ul can cause the video player to break
+
+    // Checking if target is video thumbnail or video title
     if (e.target.parentElement.classList.contains('search-item') || e.target.parentElement.parentElement.classList.contains('search-item')) {
       videoPlayer.style.display = 'block';
       videoPlayer.setAttribute('src', `https://www.youtube.com/embed/${e.target.getAttribute('data-videoid')}?autoplay=1`);
@@ -224,6 +224,7 @@
 
   // show search results after they have been hidden
   function showResults(e) {
+    body.style.overflow = 'hidden';
     e.preventDefault();
     searchResults.classList.remove('to-the-left');
     searchResults.classList.add('to-the-right');
@@ -240,6 +241,7 @@
   }
 
   function hideResults() {
+    body.style.overflow = 'auto';
     searchResults.classList.remove('to-the-right');
     searchResults.classList.add('to-the-left');
     closeSearchBtn.style.visibility = 'hidden';

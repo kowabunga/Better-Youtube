@@ -223,7 +223,9 @@ hr {
   top: 0;
   right: 0;
   left: 0;
-  bottom: 0;
+  bottom: 3rem;
+  width: 100vw;
+  height: calc(100vh - 3rem);
   transform: translateX(-100%);
 }
 
@@ -233,7 +235,10 @@ hr {
   top: 0;
   right: 0;
   left: 0;
-  bottom: 0;
+  bottom: 3rem;
+  width: 100vw;
+  height: calc(100vh - 3rem);
+  overflow-y: auto !important;
 }
 
 #window-close {
