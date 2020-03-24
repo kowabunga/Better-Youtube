@@ -7,15 +7,17 @@
     searchContainer = document.getElementById('search-container'),
     searchResults = document.getElementById('search-results'),
     searchInput = document.getElementById('search-input'),
+    showSearchResults = document.getElementById('show-search'),
     searchSubmit = document.getElementById('submit-search'),
     searchedTerm = document.getElementById('searched-term'),
+    closeSearchBtn = document.getElementById('window-close'),
     resultsTermDisplay = document.getElementById('results-term-field'),
     prevBtn = document.getElementById('prev'),
     nextBtn = document.getElementById('next'),
     videosUl = document.getElementById('search-items'),
     videoPlayer = document.getElementById('player'),
-    relVideoItems = document.getElementById('relevant-video-items');
-  videoCenter = document.getElementById('video-center');
+    relVideoItems = document.getElementById('relevant-video-items'),
+    videoCenter = document.getElementById('video-center');
 
   // Other variables
   let searchParameter = '';
@@ -31,7 +33,8 @@
   nextBtn.addEventListener('click', nextPage);
   videosUl.addEventListener('click', showVideo);
   relVideoItems.addEventListener('click', showVideo);
-
+  showSearchResults.addEventListener('click', showResults);
+  closeSearchBtn.addEventListener('click', hideResults);
   /* ------------------------------------------------------------------------- */
   // Swapping light/dark mode
   function changeColorMode() {
@@ -83,8 +86,6 @@
   }
 
   /* ------------------------------------------------------------------------- */
-  // For some reason, when the page reloads, the iframe's src attribute doesn't always reset. This code ensures it resets and no video starts "ghost playing" in the background.
-  document.body.addEventListener('load', () => videoPlayer.removeAttribute('src'));
 
   // Youtube Section
   function submitQuery(e) {
@@ -134,9 +135,16 @@
   function showVideo(e) {
     // Check that the clicked target is *only* a child of the list item
     // without this, clicking the ul can cause the video player to break
+
+    // Checking if target is video thumbnail or video title
     if (e.target.parentElement.classList.contains('search-item') || e.target.parentElement.parentElement.classList.contains('search-item')) {
       videoPlayer.style.display = 'block';
       videoPlayer.setAttribute('src', `https://www.youtube.com/embed/${e.target.getAttribute('data-videoid')}?autoplay=1`);
+      videoPlayer;
+
+      // Move search results off page
+      searchResults.classList.add('to-the-left');
+      showSearchResults.style.display = 'block';
 
       // Call function to get relevant search videos.
       youtube
@@ -149,6 +157,11 @@
 
       // scroll to top so video can be seen
       window.scrollTo(0, 0);
+
+      // check if search results overlay is present. If so, remove
+      if (searchResults.classList.contains('to-the-right')) {
+        hideResults();
+      }
     }
   }
 
@@ -207,5 +220,30 @@
         videoCenter.appendChild(p);
       }
     }
+  }
+
+  // show search results after they have been hidden
+  function showResults(e) {
+    body.style.overflow = 'hidden';
+    e.preventDefault();
+    searchResults.classList.remove('to-the-left');
+    searchResults.classList.add('to-the-right');
+    closeSearchBtn.style.visibility = 'visible';
+
+    // this if/else controls the background color based on light/dark mode selection
+    if (body.classList.contains('dark')) {
+      searchResults.classList.remove('light');
+      searchResults.classList.add('dark');
+    } else {
+      searchResults.classList.remove('dark');
+      searchResults.classList.add('light');
+    }
+  }
+
+  function hideResults() {
+    body.style.overflow = 'auto';
+    searchResults.classList.remove('to-the-right');
+    searchResults.classList.add('to-the-left');
+    closeSearchBtn.style.visibility = 'hidden';
   }
 })();
