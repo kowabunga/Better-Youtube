@@ -133,9 +133,11 @@ hr {
   width: 20%;
   text-align: center;
 }
+
 #submit-search.search-error {
   border-left: 0 !important;
 }
+
 #submit-search:hover {
   cursor: pointer;
   box-shadow: 0 0 10px rgb(2, 129, 202);
@@ -195,11 +197,9 @@ hr {
   list-style-type: none;
   font-size: 0.75em;
   max-width: 250px;
-  border-top: 1px solid;
   padding: 5px;
-  height: 250px;
+  height: 225px;
   width: 250px;
-  text-align: center;
 }
 
 .thumbnail {
@@ -219,7 +219,7 @@ hr {
 }
 
 #show-search:active {
-  transform: scale(0.98);
+  transform: scale(0.95);
 }
 
 .hide-search {
@@ -283,6 +283,7 @@ hr {
 .btn:active {
   background-color: rgba(2, 129, 202, 0.8);
 }
+
 .btn:disabled {
   opacity: 0.7;
   cursor: default;
@@ -430,6 +431,7 @@ hr {
   #search-results {
     border-right: none;
   }
+
   #search-items {
     flex-direction: row;
     flex-wrap: wrap;
