@@ -65,11 +65,13 @@ hr {
 }
 
 #page-title {
+  cursor: pointer;
   display: block;
   margin: 1rem 0 1rem 3rem;
   padding: 1rem;
   font-size: 3rem;
   text-align: center;
+  text-decoration: none;
   color: var(--main-light-color);
   box-shadow: 2px 2px 5px var(--main-light-color);
   border: 1px solid rgb(2, 129, 202);
