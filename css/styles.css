@@ -224,7 +224,7 @@ hr {
 }
 
 #show-search:active {
-  transform: scale(0.95);
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.75);
 }
 
 .hide-search {
