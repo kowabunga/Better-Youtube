@@ -60,6 +60,7 @@ class UI {
     // add output to section and make section visible on website
     this.relevantVideoItems.innerHTML = output;
     this.relevantVideos.style.display = 'flex';
+
     // add description and display below video
     this.videoDesc.style.display = 'block';
     this.videoDesc.style.displaySearchResults = 'block';
