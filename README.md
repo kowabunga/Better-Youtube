@@ -16,5 +16,5 @@ This idea came from the idea that it can be annoying to be searching videos, acc
 
 - Numbered pagination
 - Ability to get user data
-  - Example reason: aforementioned looking through search history
+  - ~~Example reason: aforementioned looking through search history~~ -Deprecated by Youtube.
 - Whatever else I think of as this goes on

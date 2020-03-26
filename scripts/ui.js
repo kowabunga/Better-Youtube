@@ -47,12 +47,11 @@ class UI {
     data.items.forEach(item => {
       output += `
             <li class="search-item" data-videoId=${item.id.videoId} data-videoName="${item.snippet.title}" data-Author="${item.snippet.channelTitle}">
-                    <img class="thumbnail" src="${item.snippet.thumbnails.medium.url}" alt="Thumbnail for ${item.snippet.title}" data-videoId=${item.id.videoId}>
+                    <img class="thumbnail" src="${item.snippet.thumbnails.medium.url}" alt="Thumbnail for ${item.snippet.title}" >
                 <p>
-                    <strong class="video-title" data-videoId=${item.id.videoId}>${item.snippet.title}</strong> <br>
+                    <strong class="video-title" >${item.snippet.title}</strong> <br>
                     Author: <em>${item.snippet.channelTitle}</em>
                 </p>
-                
             </li>
         `;
     });

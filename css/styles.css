@@ -206,6 +206,7 @@ hr {
 
 .search-item:hover {
   transform: scale(1.1);
+  /* box-shadow: 0 0 10px #000; */
 }
 .thumbnail {
   width: 230px;
