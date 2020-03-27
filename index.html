@@ -21,7 +21,7 @@
 
       <!-- header section -->
       <header id="head">
-        <a href="#" id="page-title">Youtube, but better.</a>
+        <a href="#" id="brand">Youtube, but better.</a>
         <button class="btn" id="show-search">Search Results</button>
       </header>
 
@@ -45,25 +45,34 @@
             <ul id="search-items">
               <!-- <li class="search-item">Item 1</li> -->
             </ul>
+            <!-- pagination buttons -->
             <div class="buttons">
               <button class="btn" id="prev"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;&nbsp;Prev</button>
               <button class="btn" id="next">Next&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-arrow-right"></i></button>
             </div>
           </div>
+
+          <!-- video player -->
           <div id="video">
             <div id="video-center">
               <iframe id="player" type="text/html" frameborder="0" autoplay allowfullscreen="allowfullscreen"></iframe>
             </div>
+            <!-- relevent videos and comments section -->
             <div id="relevant-videos">
               <span id="video-desc">
-                Videos you may like...
+                Comments and Videos you may like...
                 <hr />
               </span>
-              <ul id="relevant-video-items"></ul>
+              <div class="comments-relvideos">
+                <ul id="comments-ul"></ul>
+                <ul id="relevant-video-items"></ul>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- footer -->
       <footer id="footer">
         <p>Better Youtube. Designed by <span id="name">Anthony Siletti</span></p>
       </footer>

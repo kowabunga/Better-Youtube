@@ -7,12 +7,12 @@
     searchedTerm = document.getElementById('searched-term'),
     closeSearchBtn = document.getElementById('window-close'),
     resultsTermDisplay = document.getElementById('results-term-field'),
-    prevBtn = document.getElementById('prev'),
-    nextBtn = document.getElementById('next'),
+    prevSearchBtn = document.getElementById('prev'),
+    nextSearchBtn = document.getElementById('next'),
     searchedVideoItems = document.getElementById('search-items'),
+    videoCenter = document.getElementById('video-center'),
     videoPlayer = document.getElementById('player'),
-    relatedVideoItems = document.getElementById('relevant-video-items'),
-    videoCenter = document.getElementById('video-center');
+    relatedVideoItems = document.getElementById('relevant-video-items');
 
   // Other variables
   let searchParameter = '';
@@ -24,8 +24,8 @@
   // Event Listeners
 
   searchSubmit.addEventListener('click', submitQuery);
-  prevBtn.addEventListener('click', prevPage);
-  nextBtn.addEventListener('click', nextPage);
+  prevSearchBtn.addEventListener('click', prevSearchPage);
+  nextSearchBtn.addEventListener('click', nextSearchPage);
   searchedVideoItems.addEventListener('click', showVideo);
   relatedVideoItems.addEventListener('click', showVideo);
   showSearchResults.addEventListener('click', showResults);
@@ -37,6 +37,10 @@
   // Youtube Section
   function submitQuery(e) {
     e.preventDefault();
+    // First check if search results is hidden, if so add the show class
+    if (searchResults.classList.contains('hide-search')) {
+      showResults(e);
+    }
     //   submit search request and get results so long as user actually inputs something
     searchParameter = searchInput.value;
     if (searchParameter !== '') {
@@ -67,14 +71,14 @@
 
   /* ------------------------------------------------------------------------- */
   // Pagination
-  function prevPage(e) {
+  function prevSearchPage(e) {
     e.preventDefault();
     youtube
       .getPrevOrNextPage(prevBtn.getAttribute('data-prevpage'), searchParameter)
       .then(data => ui.displaySearchResults(data))
       .catch(err => console.log(err));
   }
-  function nextPage(e) {
+  function nextSearchPage(e) {
     e.preventDefault();
     youtube
       .getPrevOrNextPage(nextBtn.getAttribute('data-nextpage'), searchParameter)
@@ -103,6 +107,10 @@
         .then(data => ui.displayRelevantVideos(data))
         .catch(err => console.log(err));
 
+      youtube
+        .getComments(e.target.getAttribute('data-videoid'))
+        .then(data => ui.displayVideoComments(data))
+        .catch(err => console.log(err));
       // Fill in video title/author info below video
       fillInDescription(e);
 

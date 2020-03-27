@@ -64,7 +64,7 @@ hr {
   background-color: rgb(2, 129, 202);
 }
 
-#page-title {
+#brand {
   cursor: pointer;
   display: block;
   margin: 1rem 0 1rem 3rem;
@@ -187,7 +187,7 @@ hr {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  /* padding-top: 10px; */
+  padding-top: 10px;
 }
 
 .search-item {
@@ -206,7 +206,8 @@ hr {
 
 .search-item:hover {
   transform: scale(1.1);
-  /* box-shadow: 0 0 10px #000; */
+  background-color: rgba(2, 129, 225, 0.5);
+  border-radius: 10px;
 }
 .thumbnail {
   width: 230px;
@@ -230,24 +231,24 @@ hr {
 
 .hide-search {
   position: absolute;
-  top: 0;
+  top: 280px;
   right: 0;
   left: 0;
   bottom: 3rem;
   width: 100vw;
-  height: calc(100vh - 3rem);
+  /* height: calc(100vh - 3rem); */
   transform: translateX(-100%);
 }
 
 .show-search {
   position: absolute;
   transform: translateX(0);
-  top: 0;
+  top: 280px;
   right: 0;
   left: 0;
   bottom: 3rem;
   width: 100vw;
-  height: calc(100vh - 3rem);
+  /* height: calc(100vh - 3rem); */
   overflow-y: auto !important;
 }
 
@@ -278,7 +279,7 @@ hr {
   border-radius: 5px;
   padding: 5px 10px;
   margin-bottom: 5px;
-  background-color: rgb(2, 129, 2025);
+  background-color: rgb(2, 129, 225);
   font-size: 0.75em;
   transition: 0.1s ease-out;
   cursor: pointer;
@@ -287,7 +288,7 @@ hr {
 }
 
 .btn:active {
-  background-color: rgba(2, 129, 202, 0.8);
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.75);
 }
 
 .btn:disabled {
@@ -346,10 +347,53 @@ hr {
   margin-top: 1em;
 }
 
+#comments-sec {
+  display: none;
+  text-align: center;
+  margin-top: 1em;
+}
+
+.headings {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+}
+.comments-relvideos {
+  display: grid;
+  column-gap: 20px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: 'comments relVideos';
+}
+
+#comments-ul {
+  padding: 10px;
+  list-style-type: none;
+}
+
+.comment {
+  line-height: 1.5;
+  margin: 2em 0;
+  border-radius: 10px;
+  box-shadow: 0 0 1px;
+  padding: 0.75em;
+}
+
+.comment .author {
+  font-weight: bold;
+}
+
+.comment .author-comment {
+  font-size: 0.75em;
+  margin-left: 5%;
+}
+
 #relevant-video-items {
+  grid-auto-columns: relVideos;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  align-content: flex-start; /* default for multi-line flexbox is stretch. Need to set to flex-start so that the items appear at the start so that the items do not have large gaps between.  */
+  padding-top: 10px;
 }
 
 /* -------------------------------------------------------------- */
@@ -427,7 +471,7 @@ hr {
 /* All Media Queries */
 
 @media (max-width: 800px) {
-  #page-title {
+  #brand {
     width: 300px;
     text-align: start;
     margin: 0.5rem 0 0.5rem 1rem;
@@ -445,6 +489,13 @@ hr {
 
   .buttons {
     margin: 0 auto;
+  }
+  .hide-search {
+    top: 337px;
+  }
+
+  .show-search {
+    top: 337px;
   }
 }
 
@@ -481,11 +532,25 @@ hr {
   .buttons {
     justify-content: space-around;
   }
+  .hide-search {
+    top: 362px;
+  }
+
+  .show-search {
+    top: 362px;
+  }
 }
 
-/* This singular query is for really small screens such that the logo would overlap with the color mode slider. This pushes the logo down so that they don't overlap */
+/* This singular query is for really small screens such that the logo would overlap with the color mode slider. This pushes the logo down so that they don't overlap. Also other things.*/
 @media (max-width: 410px) {
-  #page-title {
+  #brand {
     margin-top: 1em;
+  }
+  .hide-search {
+    top: 402px;
+  }
+
+  .show-search {
+    top: 402px;
   }
 }

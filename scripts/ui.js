@@ -1,17 +1,17 @@
 class UI {
   constructor() {
-    this.searchForm = document.getElementById('search-form');
     this.searchResults = document.getElementById('search-results');
     this.searchItems = document.getElementById('search-items');
     this.buttons = document.querySelector('.buttons');
     this.prevBtn = document.getElementById('prev');
     this.nextBtn = document.getElementById('next');
-    this.videoSection = document.getElementById('video');
     this.relevantVideos = document.getElementById('relevant-videos');
     this.relevantVideoItems = document.getElementById('relevant-video-items');
     this.videoDesc = document.getElementById('video-desc');
+    this.commentsUl = document.getElementById('comments-ul');
   }
 
+  // display results based on search query
   displaySearchResults(data) {
     let output = '';
     // loop through data items and add video, name, title, etc. to list item and append to output
@@ -41,6 +41,7 @@ class UI {
     this.nextBtn.hasAttribute('data-nextpage') ? (this.nextBtn.disabled = false) : (this.nextBtn.disabled = true);
   }
 
+  // display videos related to the video currently being viewed
   displayRelevantVideos(data) {
     let output = '';
     // loop through data items and add video, name, title, etc. to list item and append to output
@@ -63,5 +64,25 @@ class UI {
     // add description and display below video
     this.videoDesc.style.display = 'block';
     this.videoDesc.style.displaySearchResults = 'block';
+  }
+
+  displayVideoComments(data) {
+    const commentsList = data.items;
+    let output = '';
+    // We'll create the comments ul and add it in dynamically.
+
+    // Loop through each item in data array to get comments and add to ul
+    commentsList.forEach(comment => {
+      const author = comment.snippet.topLevelComment.snippet.authorDisplayName;
+      const displayComment = comment.snippet.topLevelComment.snippet.textDisplay;
+      output += `
+        <li class="comment">
+          <p class="author">${author}</p>
+          <p class="author-comment">${displayComment}</p>
+        </li>
+
+      `;
+    });
+    this.commentsUl.innerHTML = output;
   }
 }

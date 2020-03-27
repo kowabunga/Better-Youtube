@@ -6,9 +6,13 @@
     colorMoon = document.getElementById('color-mode-icon-moon'),
     searchContainer = document.getElementById('search-container'),
     searchInput = document.getElementById('search-input'),
-    searchSubmit = document.getElementById('submit-search');
+    searchSubmit = document.getElementById('submit-search'),
+    brand = document.getElementById('brand');
 
+  // Event listener for color change
   colorSwitcher.addEventListener('click', changeColorMode);
+  brand.addEventListener('click', reloadPage);
+
   // Swapping light/dark mode
   function changeColorMode() {
     if (body.classList.contains('dark')) {
@@ -58,5 +62,10 @@
       searchInput.classList.add('search-dark');
       searchSubmit.classList.add('search-dark');
     }
+  }
+
+  // simple page reload
+  function reloadPage() {
+    window.location.reload();
   }
 })();
