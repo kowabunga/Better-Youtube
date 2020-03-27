@@ -1,10 +1,5 @@
 (function() {
   const body = document.body,
-    colorSwitcher = document.getElementById('color-mode'),
-    colorCircle = document.getElementById('color-circle'),
-    colorSun = document.getElementById('color-mode-icon-sun'),
-    colorMoon = document.getElementById('color-mode-icon-moon'),
-    searchContainer = document.getElementById('search-container'),
     searchResults = document.getElementById('search-results'),
     searchInput = document.getElementById('search-input'),
     showSearchResults = document.getElementById('show-search'),
@@ -14,9 +9,9 @@
     resultsTermDisplay = document.getElementById('results-term-field'),
     prevBtn = document.getElementById('prev'),
     nextBtn = document.getElementById('next'),
-    videosUl = document.getElementById('search-items'),
+    searchedVideoItems = document.getElementById('search-items'),
     videoPlayer = document.getElementById('player'),
-    relVideoItems = document.getElementById('relevant-video-items'),
+    relatedVideoItems = document.getElementById('relevant-video-items'),
     videoCenter = document.getElementById('video-center');
 
   // Other variables
@@ -27,65 +22,15 @@
     ui = new UI();
   /* ------------------------------------------------------------------------- */
   // Event Listeners
-  colorSwitcher.addEventListener('click', changeColorMode);
+
   searchSubmit.addEventListener('click', submitQuery);
   prevBtn.addEventListener('click', prevPage);
   nextBtn.addEventListener('click', nextPage);
-  videosUl.addEventListener('click', showVideo);
-  relVideoItems.addEventListener('click', showVideo);
+  searchedVideoItems.addEventListener('click', showVideo);
+  relatedVideoItems.addEventListener('click', showVideo);
   showSearchResults.addEventListener('click', showResults);
   closeSearchBtn.addEventListener('click', hideResults);
   /* ------------------------------------------------------------------------- */
-  // Swapping light/dark mode
-  function changeColorMode() {
-    if (body.classList.contains('dark')) {
-      //   Change background color/text color dark->light
-      body.classList.remove('dark');
-      body.classList.add('light');
-
-      // Change color-switcher background color light->dark
-      colorSwitcher.classList.remove('dark');
-      colorSwitcher.classList.add('light');
-
-      // Move circle to right, show sun hide moon
-      colorCircle.classList.remove('right');
-      if (colorSwitcher.classList.contains('light')) {
-        colorMoon.style.visibility = 'hidden';
-        colorSun.style.visibility = 'visible';
-      }
-
-      // change form area colors
-      searchContainer.classList.remove('search-dark');
-      searchInput.classList.remove('search-dark');
-      searchSubmit.classList.remove('search-dark');
-      searchContainer.classList.add('search-light');
-      searchInput.classList.add('search-light');
-      searchSubmit.classList.add('search-light');
-    } else if (body.classList.contains('light')) {
-      //   Change background color/text color light->dark
-      body.classList.remove('light');
-      body.classList.add('dark');
-
-      // Change color-switcher background color dark->light
-      colorSwitcher.classList.remove('light');
-      colorSwitcher.classList.add('dark');
-
-      // Change text from dark to light
-      colorCircle.classList.add('right');
-      if (colorSwitcher.classList.contains('dark')) {
-        colorMoon.style.visibility = 'visible';
-        colorSun.style.visibility = 'hidden';
-      }
-
-      // change form area colors
-      searchContainer.classList.remove('search-light');
-      searchInput.classList.remove('search-light');
-      searchSubmit.classList.remove('search-light');
-      searchContainer.classList.add('search-dark');
-      searchInput.classList.add('search-dark');
-      searchSubmit.classList.add('search-dark');
-    }
-  }
 
   /* ------------------------------------------------------------------------- */
 
