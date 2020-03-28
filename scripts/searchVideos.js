@@ -7,8 +7,8 @@
     searchedTerm = document.getElementById('searched-term'),
     closeSearchBtn = document.getElementById('window-close'),
     resultsTermDisplay = document.getElementById('results-term-field'),
-    prevSearchBtn = document.getElementById('prev'),
-    nextSearchBtn = document.getElementById('next'),
+    prevSearchBtn = document.getElementById('prevSearch'),
+    nextSearchBtn = document.getElementById('nextSearch'),
     searchedVideoItems = document.getElementById('search-items'),
     videoCenter = document.getElementById('video-center'),
     videoPlayer = document.getElementById('player'),
@@ -35,6 +35,7 @@
   /* ------------------------------------------------------------------------- */
 
   // Youtube Section
+
   function submitQuery(e) {
     e.preventDefault();
     // First check if search results is hidden, if so add the show class
@@ -53,7 +54,7 @@
       // make request to api with search parameter and display in webpage
       youtube
         .getSearchResults(searchParameter)
-        .then(data => ui.displaySearchResults(data))
+        .then(data => ui.displaySearchResults(data.result))
         .catch(err => console.log(err));
       // display searched term and clear search box
       resultsTermDisplay.innerText = `Results for: ${searchParameter}`;
@@ -75,14 +76,14 @@
     e.preventDefault();
     youtube
       .getPrevOrNextPage(prevSearchBtn.getAttribute('data-prevpage'), searchParameter)
-      .then(data => ui.displaySearchResults(data))
+      .then(data => ui.displaySearchResults(data.result))
       .catch(err => console.log(err));
   }
   function nextSearchPage(e) {
     e.preventDefault();
     youtube
       .getPrevOrNextPage(nextSearchBtn.getAttribute('data-nextpage'), searchParameter)
-      .then(data => ui.displaySearchResults(data))
+      .then(data => ui.displaySearchResults(data.result))
       .catch(err => console.log(err));
   }
 
@@ -97,6 +98,9 @@
       videoPlayer.setAttribute('src', `https://www.youtube.com/embed/${e.target.getAttribute('data-videoid')}?autoplay=1`);
       videoPlayer;
 
+      // Fill in video title/author info below video
+      fillInDescription(e);
+
       // Move search results off page
       searchResults.classList.add('hide-search');
       showSearchResults.style.display = 'block';
@@ -104,15 +108,14 @@
       // Call function to get relevant search videos.
       youtube
         .getRelevantVideos(e.target.getAttribute('data-videoid'))
-        .then(data => ui.displayRelevantVideos(data))
+        .then(data => ui.displayRelevantVideos(data.result))
         .catch(err => console.log(err));
 
       youtube
         .getComments(e.target.getAttribute('data-videoid'))
-        .then(data => ui.displayVideoComments(data))
+        // .then(data => ui.displayVideoComments(data.result))
+        .then(data => console.log(data.result))
         .catch(err => console.log(err));
-      // Fill in video title/author info below video
-      fillInDescription(e);
 
       // scroll to top so video can be seen
       window.scrollTo(0, 0);

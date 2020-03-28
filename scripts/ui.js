@@ -3,8 +3,8 @@ class UI {
     this.searchResults = document.getElementById('search-results');
     this.searchItems = document.getElementById('search-items');
     this.buttons = document.querySelector('.buttons');
-    this.prevBtn = document.getElementById('prev');
-    this.nextBtn = document.getElementById('next');
+    this.prevSearchBtn = document.getElementById('prevSearch');
+    this.nextSearchBtn = document.getElementById('nextSearch');
     this.relevantVideos = document.getElementById('relevant-videos');
     this.relevantVideoItems = document.getElementById('relevant-video-items');
     this.videoDesc = document.getElementById('video-desc');
@@ -33,12 +33,12 @@ class UI {
 
     // Store prev page token/next page token in a data attribute in respective button
     // otherwise, remove the data attribute (no more prev/next pages)
-    data.prevPageToken !== undefined ? this.prevBtn.setAttribute('data-prevpage', data.prevPageToken) : this.prevBtn.removeAttribute('data-prevpage');
-    data.nextPageToken !== undefined ? this.nextBtn.setAttribute('data-nextpage', data.nextPageToken) : this.nextBtn.removeAttribute('data-nextpage');
+    data.prevPageToken !== undefined ? this.prevSearchBtn.setAttribute('data-prevpage', data.prevPageToken) : this.prevSearchBtn.removeAttribute('data-prevpage');
+    data.nextPageToken !== undefined ? this.nextSearchBtn.setAttribute('data-nextpage', data.nextPageToken) : this.nextSearchBtn.removeAttribute('data-nextpage');
 
     // Check if prev/next buttons have data-attribute (i.e. they will do something). If so, enable button else don't.
-    this.prevBtn.hasAttribute('data-prevpage') ? (this.prevBtn.disabled = false) : (this.prevBtn.disabled = true);
-    this.nextBtn.hasAttribute('data-nextpage') ? (this.nextBtn.disabled = false) : (this.nextBtn.disabled = true);
+    this.prevSearchBtn.hasAttribute('data-prevpage') ? (this.prevSearchBtn.disabled = false) : (this.prevSearchBtn.disabled = true);
+    this.nextSearchBtn.hasAttribute('data-nextpage') ? (this.nextSearchBtn.disabled = false) : (this.nextSearchBtn.disabled = true);
   }
 
   // display videos related to the video currently being viewed

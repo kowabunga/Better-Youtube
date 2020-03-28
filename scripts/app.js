@@ -1,4 +1,10 @@
 (function() {
+  const youtube = new Youtube();
+
+  // Loads the Google API Client library for use in all other files and init client
+  youtube.loadClient();
+
+  // Below deals with light/dark mode
   const body = document.body,
     colorSwitcher = document.getElementById('color-mode'),
     colorCircle = document.getElementById('color-circle'),
