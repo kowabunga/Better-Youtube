@@ -74,14 +74,14 @@
   function prevSearchPage(e) {
     e.preventDefault();
     youtube
-      .getPrevOrNextPage(prevBtn.getAttribute('data-prevpage'), searchParameter)
+      .getPrevOrNextPage(prevSearchBtn.getAttribute('data-prevpage'), searchParameter)
       .then(data => ui.displaySearchResults(data))
       .catch(err => console.log(err));
   }
   function nextSearchPage(e) {
     e.preventDefault();
     youtube
-      .getPrevOrNextPage(nextBtn.getAttribute('data-nextpage'), searchParameter)
+      .getPrevOrNextPage(nextSearchBtn.getAttribute('data-nextpage'), searchParameter)
       .then(data => ui.displaySearchResults(data))
       .catch(err => console.log(err));
   }

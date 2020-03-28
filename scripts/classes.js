@@ -1,6 +1,7 @@
 class Youtube {
   constructor() {
-    this.api_key = 'AIzaSyDT-GY5mQDwMvadzcWYtu-cRFbNecqowZs';
+    this.apiKey = 'AIzaSyDT-GY5mQDwMvadzcWYtu-cRFbNecqowZs';
+
     this.type = 'video';
     this.videosPart = 'snippet';
     this.commentsPart = 'snippet%2Creplies';
@@ -13,7 +14,7 @@ class Youtube {
 
   // Get initial search results
   async getSearchResults(searchValue) {
-    const response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=${this.videosPart}&q=${searchValue}&type=${this.type}&maxResults=${this.numofSearchResults}&key=${this.api_key}`);
+    const response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=${this.videosPart}&q=${searchValue}&type=${this.type}&maxResults=${this.numofSearchResults}&key=${this.apiKey}`);
     const resData = await response.json();
     return resData;
   }
@@ -21,7 +22,7 @@ class Youtube {
   // Get next page of search results using next page token in API call
   async getPrevOrNextPage(pageToken, searchValue) {
     const response = await fetch(
-      `https://www.googleapis.com/youtube/v3/search?part=${this.videosPart}&q=${searchValue}&type=${this.type}&maxResults=${this.numofSearchResults}&pageToken=${pageToken}&key=${this.api_key}`
+      `https://www.googleapis.com/youtube/v3/search?part=${this.videosPart}&q=${searchValue}&type=${this.type}&maxResults=${this.numofSearchResults}&pageToken=${pageToken}&key=${this.apiKey}`
     );
     const resData = await response.json();
     return resData;
@@ -30,7 +31,7 @@ class Youtube {
   // Get relevant videos
   async getRelevantVideos(videoId) {
     const response = await fetch(
-      `https://www.googleapis.com/youtube/v3/search?part=${this.videosPart}&relatedToVideoId=${videoId}&type=${this.type}&maxResults=${this.numOfRelevantVideos}&key=${this.api_key}`
+      `https://www.googleapis.com/youtube/v3/search?part=${this.videosPart}&relatedToVideoId=${videoId}&type=${this.type}&maxResults=${this.numOfRelevantVideos}&key=${this.apiKey}`
     );
     const resData = await response.json();
     return resData;
@@ -38,7 +39,7 @@ class Youtube {
 
   // Get comments
   async getComments(videoId) {
-    const response = await fetch(`https://www.googleapis.com/youtube/v3/commentThreads?part=${this.commentsPart}&videoId=${videoId}&maxResults=${this.numOfComments}&key=${this.api_key}`);
+    const response = await fetch(`https://www.googleapis.com/youtube/v3/commentThreads?part=${this.commentsPart}&videoId=${videoId}&maxResults=${this.numOfComments}&key=${this.apiKey}`);
     const resData = await response.json();
     return resData;
   }
