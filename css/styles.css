@@ -227,6 +227,7 @@ hr {
   margin: 0 0 12px 12px;
   background-color: #fff;
   color: rgb(2, 129, 202);
+  font-size: 1em;
 }
 
 #show-search:active {

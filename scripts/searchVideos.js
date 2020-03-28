@@ -113,8 +113,7 @@
 
       youtube
         .getComments(e.target.getAttribute('data-videoid'))
-        // .then(data => ui.displayVideoComments(data.result))
-        .then(data => console.log(data.result))
+        .then(data => ui.displayVideoComments(data.result))
         .catch(err => console.log(err));
 
       // scroll to top so video can be seen

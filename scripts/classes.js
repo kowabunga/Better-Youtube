@@ -24,7 +24,6 @@ class Youtube {
   }
 
   // Get next page of search results using next page token in API call
-
   getPrevOrNextPage(pageToken, searchValue) {
     return gapi.client.youtube.search.list({
       part: this.videosPart,
@@ -46,11 +45,6 @@ class Youtube {
   }
 
   // // Get comments
-  // async getComments(videoId) {
-  //   const response = await fetch(`https://www.googleapis.com/youtube/v3/commentThreads?part=${this.commentsPart}&videoId=${videoId}&maxResults=${this.numOfComments}&key=${this.apiKey}`);
-  //   const resData = await response.json();
-  //   return resData;
-  // }
   getComments(videoId) {
     return gapi.client.youtube.commentThreads.list({
       part: this.commentsPart,
