@@ -185,7 +185,7 @@
 
   // show search results after they have been hidden
   function showResults(e) {
-    body.style.overflow = 'hidden';
+    // body.style.overflow = 'hidden';
     e.preventDefault();
     searchResults.classList.remove('hide-search');
     searchResults.classList.add('show-search');

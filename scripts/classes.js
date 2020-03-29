@@ -6,7 +6,7 @@ class Youtube {
     this.type = 'video';
     this.videosPart = 'snippet';
     this.commentsPart = 'snippet,replies';
-    this.numofSearchResults = 10;
+    this.numofSearchResults = 25;
     this.numOfRelevantVideos = 10;
     this.numOfComments = 10;
     // Need to bind this to initClient function to be able to call apiKey and clientKey from inner function gapi.client.init()

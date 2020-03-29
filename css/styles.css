@@ -57,6 +57,10 @@ hr {
   color: currentColor;
 }
 
+body {
+  position: relative;
+}
+
 /* -------------------------------------------------------------- */
 /* header */
 #head {
@@ -252,7 +256,7 @@ hr {
   right: 0;
   left: 0;
   bottom: 3rem;
-  width: 100vw;
+  height: calc(100%-3rem);
   /* height: calc(100vh - 3rem); */
   overflow-y: auto !important;
 }
@@ -410,6 +414,7 @@ hr {
   justify-content: space-evenly;
   align-content: flex-start; /* default for multi-line flexbox is stretch. Need to set to flex-start so that the items appear at the start so that the items do not have large gaps between.  */
   padding-top: 10px;
+  overflow: scroll;
 }
 
 /* -------------------------------------------------------------- */
