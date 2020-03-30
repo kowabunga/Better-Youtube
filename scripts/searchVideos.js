@@ -7,8 +7,9 @@
     searchedTerm = document.getElementById('searched-term'),
     closeSearchBtn = document.getElementById('window-close'),
     resultsTermDisplay = document.getElementById('results-term-field'),
-    prevSearchBtn = document.getElementById('prevSearch'),
-    nextSearchBtn = document.getElementById('nextSearch'),
+    prevSearchBtn = document.getElementById('prev-search'),
+    nextSearchBtn = document.getElementById('next-search'),
+    moreCommentsBtn = document.getElementById('more-comments'),
     searchedVideoItems = document.getElementById('search-items'),
     videoCenter = document.getElementById('video-center'),
     videoPlayer = document.getElementById('player'),
@@ -26,6 +27,7 @@
   searchSubmit.addEventListener('click', submitQuery);
   prevSearchBtn.addEventListener('click', prevSearchPage);
   nextSearchBtn.addEventListener('click', nextSearchPage);
+  moreCommentsBtn.addEventListener('click', nextCommentsPage);
   searchedVideoItems.addEventListener('click', showVideo);
   relatedVideoItems.addEventListener('click', showVideo);
   showSearchResults.addEventListener('click', showResults);
@@ -75,15 +77,24 @@
   function prevSearchPage(e) {
     e.preventDefault();
     youtube
-      .getPrevOrNextPage(prevSearchBtn.getAttribute('data-prevpage'), searchParameter)
+      .getPrevOrNextSearchPage(prevSearchBtn.getAttribute('data-prevpage'), searchParameter)
       .then(data => ui.displaySearchResults(data.result))
       .catch(err => console.log(err));
   }
   function nextSearchPage(e) {
     e.preventDefault();
     youtube
-      .getPrevOrNextPage(nextSearchBtn.getAttribute('data-nextpage'), searchParameter)
+      .getPrevOrNextSearchPage(nextSearchBtn.getAttribute('data-nextpage'), searchParameter)
       .then(data => ui.displaySearchResults(data.result))
+      .catch(err => console.log(err));
+  }
+
+  function nextCommentsPage(e) {
+    e.preventDefault();
+    youtube
+      .getPrevOrNextCommentsPage(moreCommentsBtn.getAttribute('data-nextpage'), moreCommentsBtn.getAttribute('data-videoid'))
+      .then(data => ui.displayVideoComments(data.result))
+      // .then(data => console.log(data))
       .catch(err => console.log(err));
   }
 
@@ -185,7 +196,7 @@
 
   // show search results after they have been hidden
   function showResults(e) {
-    // body.style.overflow = 'hidden';
+    body.style.overflow = 'hidden';
     e.preventDefault();
     searchResults.classList.remove('hide-search');
     searchResults.classList.add('show-search');

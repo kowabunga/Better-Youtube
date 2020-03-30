@@ -16,6 +16,14 @@
   outline: none;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+body {
+  position: relative;
+}
+
 /* -------------------------------------------------------------- */
 /* Light/dark mode color classes */
 .dark {
@@ -57,15 +65,12 @@ hr {
   color: currentColor;
 }
 
-body {
-  position: relative;
-}
-
 /* -------------------------------------------------------------- */
 /* header */
 #head {
   grid-area: head;
   background-color: rgb(2, 129, 202);
+  position: relative;
 }
 
 #brand {
@@ -87,7 +92,7 @@ body {
 
 /* -------------------------------------------------------------- */
 /* Main container */
-#main-container {
+#videos-container {
   grid-area: mainContainer;
   display: grid;
   grid-template-columns: 1fr;
@@ -194,7 +199,7 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
   padding-top: 10px;
 }
 
@@ -316,6 +321,25 @@ body {
   cursor: default;
 }
 
+#more-comments {
+  margin: 5px auto;
+}
+
+#login,
+#logout {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  width: 80px;
+  background-color: #fff;
+  color: rgb(2, 129, 202);
+  font-size: 1em;
+}
+
+#logout {
+  display: none;
+}
+
 /* -------------------------------------------------------------- */
 /* video player */
 #video {
@@ -378,24 +402,38 @@ body {
   align-items: center;
   justify-self: center;
 }
-.comments-relvideos {
+#comments-relvideos {
   display: grid;
   column-gap: 20px;
   grid-template-columns: 1fr 1fr;
   grid-template-areas: 'comments relVideos';
 }
 
+#comments-section {
+  grid-area: comments;
+  /* max width is added because some comments can just *break* the grid template column entirely */
+  max-width: 50vw;
+  max-height: 1000px;
+  overflow: auto;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+  margin: 5px;
+  border-radius: 5px;
+}
+
 #comments-ul {
   padding: 10px;
   list-style-type: none;
+  overflow: auto;
 }
 
 .comment {
   line-height: 1.5;
   margin: 2em 0;
   border-radius: 10px;
-  box-shadow: 0 0 1px;
+  box-shadow: 0 0 2px currentColor;
   padding: 0.75em;
+  overflow: auto;
+  max-height: 150px;
 }
 
 .comment .author {
@@ -403,12 +441,20 @@ body {
 }
 
 .comment .author-comment {
-  font-size: 0.75em;
+  font-size: 0.9em;
   margin-left: 5%;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+}
+
+#relevant-videos-section {
+  grid-area: relVideos;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+  margin: 5px;
+  border-radius: 5px;
 }
 
 #relevant-video-items {
-  grid-auto-columns: relVideos;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -429,6 +475,7 @@ body {
   cursor: pointer;
   display: flex;
   align-items: center;
+  z-index: 1;
 }
 
 #color-circle {
@@ -490,6 +537,17 @@ body {
 
 /* -------------------------------------------------------------- */
 /* All Media Queries */
+
+@media (max-width: 1100px) {
+  #comments-relvideos {
+    grid-template-columns: 1fr;
+    grid-template-areas: 'relVideos' 'comments';
+  }
+  #comments-section {
+    margin: 0 5%;
+    max-width: 100vw;
+  }
+}
 
 @media (max-width: 800px) {
   #brand {

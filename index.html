@@ -23,10 +23,12 @@
       <header id="head">
         <a href="#" id="brand">Youtube, but better.</a>
         <button class="btn" id="show-search">Search Results</button>
+        <button class="btn" id="login">Login</button>
+        <button class="btn" id="logout">Logout</button>
       </header>
 
       <!-- main container -->
-      <div id="main-container">
+      <div id="videos-container">
         <!-- search container -->
         <div id="search-container" class="search-light">
           <form id="search-form">
@@ -45,8 +47,8 @@
             <ul id="search-items"></ul>
             <!-- pagination buttons -->
             <div class="buttons">
-              <button class="btn" id="prevSearch"><i class="fas fa-arrow-left"></i>Prev</button>
-              <button class="btn" id="nextSearch">Next<i class="fas fa-arrow-right"></i></button>
+              <button class="btn" id="prev-search"><i class="fas fa-arrow-left"></i>Prev</button>
+              <button class="btn" id="next-search">Next<i class="fas fa-arrow-right"></i></button>
             </div>
           </div>
 
@@ -61,9 +63,16 @@
                 Comments and Videos you may like...
                 <hr />
               </span>
-              <div class="comments-relvideos">
-                <ul id="comments-ul"></ul>
-                <ul id="relevant-video-items"></ul>
+              <div id="comments-relvideos">
+                <div id="comments-section">
+                  <ul id="comments-ul"></ul>
+                  <div class="buttons">
+                    <button class="btn" id="more-comments"><i class="fas fa-arrow-down fa-3x"></i></button>
+                  </div>
+                </div>
+                <div id="relevant-videos-section">
+                  <ul id="relevant-video-items"></ul>
+                </div>
               </div>
             </div>
           </div>

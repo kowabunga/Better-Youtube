@@ -1,8 +1,8 @@
 (function() {
-  const youtube = new Youtube();
+  const googleAuth = new GoogleAuth();
 
   // Loads the Google API Client library for use in all other files and init client
-  youtube.loadClient();
+  googleAuth.loadClient();
 
   // Below deals with light/dark mode
   const body = document.body,
