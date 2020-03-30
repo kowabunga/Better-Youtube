@@ -304,6 +304,7 @@ hr {
 .fa-arrow-left {
   margin-right: 15px;
 }
+
 .fa-arrow-right {
   margin-left: 15px;
 }
@@ -407,6 +408,7 @@ hr {
   column-gap: 20px;
   grid-template-columns: 1fr 1fr;
   grid-template-areas: 'comments relVideos';
+  margin: 5px;
 }
 
 #comments-section {
