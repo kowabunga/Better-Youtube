@@ -1,0 +1,59 @@
+/* -------------------------------------------------------------- */
+/* Overall container */
+#container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'head'
+    'mainContainer'
+    'footer';
+}
+
+hr {
+  color: currentColor;
+}
+
+/* -------------------------------------------------------------- */
+/* header */
+#head {
+  grid-area: head;
+  background-color: rgb(2, 129, 202);
+  position: relative;
+}
+
+#brand {
+  cursor: pointer;
+  display: block;
+  margin: 1rem 0 1rem 3rem;
+  padding: 1rem;
+  font-size: 3rem;
+  text-align: center;
+  text-decoration: none;
+  color: var(--main-light-color);
+  box-shadow: 2px 2px 5px var(--main-light-color);
+  border: 1px solid rgb(2, 129, 202);
+  border-radius: 20px;
+  width: 510px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* -------------------------------------------------------------- */
+/*  Footer  */
+#footer {
+  grid-area: footer;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(2, 129, 202);
+  color: #fff;
+}
+
+#name {
+  color: #000;
+}

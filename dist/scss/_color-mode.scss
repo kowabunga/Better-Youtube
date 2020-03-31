@@ -1,0 +1,77 @@
+/* -------------------------------------------------------------- */
+/* Light/dark mode color classes */
+.dark {
+  background-color: var(--main-dark-color);
+  color: var(--main-light-color);
+  transition: 0.3s ease;
+}
+
+.light {
+  background-color: var(--main-light-color);
+  color: var(--main-dark-color);
+  transition: 0.3s ease;
+}
+
+.search-dark {
+  background-color: var(--search-bar-dark);
+  color: var(--main-light-color);
+  transition: 0.3s ease;
+}
+
+.search-light {
+  background-color: var(--search-bar-light);
+  transition: 0.3s ease;
+  color: var(--main-dark-color);
+}
+
+/* -------------------------------------------------------------- */
+/* slider */
+#color-mode {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 75px;
+  height: 30px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+}
+
+#color-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8em;
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  transform: translate(-5%, -50%);
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  transition: 0.2s linear;
+  background-color: rgb(2, 129, 202);
+}
+
+#color-mode-icon-sun {
+  position: absolute;
+  top: 30%;
+  right: 10%;
+  transform: scale(1.2) translate(-10%, -20%);
+}
+
+#color-mode-icon-moon {
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  transform: translate(-15%, -50%);
+  visibility: hidden;
+}
+
+#color-circle.right {
+  top: 50%;
+  left: 95%;
+  transform: translate(-95%, -50%);
+}

@@ -1,0 +1,65 @@
+/* -------------------------------------------------------------- */
+/* search container styles */
+#search-container {
+  position: sticky;
+  top: 0;
+  left: 0;
+  grid-area: search;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid var(--light-gray);
+}
+
+#search-form {
+  width: 370px;
+}
+
+#search-input,
+#submit-search {
+  border: 2px solid rgb(2, 129, 202);
+}
+
+#search-input {
+  font-size: 1em;
+  padding: 0.5em;
+  border-radius: 20px 0 0 20px;
+  width: 80%;
+}
+
+#search-input:focus,
+#search-input:hover {
+  box-shadow: 0 0 10px rgb(2, 129, 202);
+}
+
+#submit-search {
+  font-size: 1em;
+  padding: 0.5em;
+  margin-left: -4px;
+  border-radius: 0 20px 20px 0;
+  border-left: 0px;
+  width: 20%;
+  text-align: center;
+}
+
+#submit-search.search-error {
+  border-left: 0 !important;
+}
+
+#submit-search:hover {
+  cursor: pointer;
+  box-shadow: 0 0 10px rgb(2, 129, 202);
+}
+
+#searched-term {
+  margin-top: 5px;
+}
+
+/* We want this class to override the colors given by the id's while they are added */
+.search-error {
+  border: 2px solid crimson !important;
+  box-shadow: 0 0 10px crimson !important;
+  color: crimson !important;
+}
