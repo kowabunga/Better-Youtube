@@ -15,7 +15,8 @@
     videoPlayer = document.getElementById('player'),
     relatedVideoItems = document.getElementById('relevant-video-items'),
     submitComment = document.getElementById('submit-comment'),
-    commentInput = document.getElementById('input-comment');
+    commentInput = document.getElementById('input-comment'),
+    commentsUl = document.getElementById('comments-ul');
 
   // Other variables
   let searchParameter = '';
@@ -115,6 +116,9 @@
         .getRelevantVideos(e.target.getAttribute('data-videoid'))
         .then(data => ui.displayVideos(data.result, 'relevant-videos'))
         .catch(err => console.log(err));
+
+      // This line clears the comments ul if we load a new video
+      commentsUl.innerHTML = '';
 
       youtube
         .getComments(e.target.getAttribute('data-videoid'))
