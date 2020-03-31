@@ -1,78 +1,238 @@
 (function() {
-  const googleAuth = new GoogleAuth();
-
-  // Loads the Google API Client library for use in all other files and init client
-  googleAuth.loadClient();
-
-  // Below deals with light/dark mode
   const body = document.body,
-    colorSwitcher = document.getElementById('color-mode'),
-    colorCircle = document.getElementById('color-circle'),
-    colorSun = document.getElementById('color-mode-icon-sun'),
-    colorMoon = document.getElementById('color-mode-icon-moon'),
-    searchContainer = document.getElementById('search-container'),
+    searchResults = document.getElementById('search-results'),
     searchInput = document.getElementById('search-input'),
+    showSearchResults = document.getElementById('show-search'),
     searchSubmit = document.getElementById('submit-search'),
-    brand = document.getElementById('brand');
+    searchedTerm = document.getElementById('searched-term'),
+    closeSearchBtn = document.getElementById('window-close'),
+    resultsTermDisplay = document.getElementById('results-term-field'),
+    prevSearchBtn = document.getElementById('prev-search'),
+    nextSearchBtn = document.getElementById('next-search'),
+    moreCommentsBtn = document.getElementById('more-comments'),
+    searchedVideoItems = document.getElementById('search-items'),
+    videoCenter = document.getElementById('video-center'),
+    videoPlayer = document.getElementById('player'),
+    relatedVideoItems = document.getElementById('relevant-video-items'),
+    submitComment = document.getElementById('submit-comment'),
+    commentInput = document.getElementById('input-comment');
 
-  // Event listener for color change
-  colorSwitcher.addEventListener('click', changeColorMode);
-  brand.addEventListener('click', reloadPage);
+  // Other variables
+  let searchParameter = '';
+  /* ------------------------------------------------------------------------- */
+  // Init classes
+  const youtube = new Youtube(),
+    ui = new UI();
+  googleAuth = new GoogleAuth();
+  /* ------------------------------------------------------------------------- */
+  // Event Listeners
 
-  // Swapping light/dark mode
-  function changeColorMode() {
-    if (body.classList.contains('dark')) {
-      //   Change background color/text color dark->light
-      body.classList.remove('dark');
-      body.classList.add('light');
+  searchSubmit.addEventListener('click', submitQuery);
+  prevSearchBtn.addEventListener('click', paginateThrough);
+  nextSearchBtn.addEventListener('click', paginateThrough);
+  moreCommentsBtn.addEventListener('click', nextCommentsPage);
+  searchedVideoItems.addEventListener('click', showVideo);
+  relatedVideoItems.addEventListener('click', showVideo);
+  showSearchResults.addEventListener('click', showResults);
+  closeSearchBtn.addEventListener('click', hideResults);
+  submitComment.addEventListener('click', addComment);
 
-      // Change color-switcher background color light->dark
-      colorSwitcher.classList.remove('dark');
-      colorSwitcher.classList.add('light');
+  /* ------------------------------------------------------------------------- */
 
-      // Move circle to right, show sun hide moon
-      colorCircle.classList.remove('right');
-      if (colorSwitcher.classList.contains('light')) {
-        colorMoon.style.visibility = 'hidden';
-        colorSun.style.visibility = 'visible';
+  // Youtube Section
+
+  function submitQuery(e) {
+    e.preventDefault();
+    // First check if search results is hidden, if so add the show class
+    if (searchResults.classList.contains('hide-search')) {
+      showResults(e);
+    }
+    //   submit search request and get results so long as user actually inputs something
+    searchParameter = searchInput.value;
+    if (searchParameter !== '') {
+      if (searchInput.classList.contains('search-error') && searchSubmit.classList.contains('search-error')) {
+        // remove error classes
+        searchInput.classList.remove('search-error');
+        searchSubmit.classList.remove('search-error');
       }
 
-      // change form area colors
-      searchContainer.classList.remove('search-dark');
-      searchInput.classList.remove('search-dark');
-      searchSubmit.classList.remove('search-dark');
-      searchContainer.classList.add('search-light');
-      searchInput.classList.add('search-light');
-      searchSubmit.classList.add('search-light');
-    } else if (body.classList.contains('light')) {
-      //   Change background color/text color light->dark
-      body.classList.remove('light');
-      body.classList.add('dark');
+      // make request to api with search parameter and display in webpage
+      youtube
+        .getSearchResults(searchParameter)
+        .then(data => ui.displayVideos(data.result, 'search-results'))
+        .catch(err => console.log(err));
+      // display searched term and clear search box
+      resultsTermDisplay.innerText = `Results for: ${searchParameter}`;
+      searchInput.value = '';
 
-      // Change color-switcher background color dark->light
-      colorSwitcher.classList.remove('light');
-      colorSwitcher.classList.add('dark');
-
-      // Change text from dark to light
-      colorCircle.classList.add('right');
-      if (colorSwitcher.classList.contains('dark')) {
-        colorMoon.style.visibility = 'visible';
-        colorSun.style.visibility = 'hidden';
-      }
-
-      // change form area colors
-      searchContainer.classList.remove('search-light');
-      searchInput.classList.remove('search-light');
-      searchSubmit.classList.remove('search-light');
-      searchContainer.classList.add('search-dark');
-      searchInput.classList.add('search-dark');
-      searchSubmit.classList.add('search-dark');
+      // show search results - visibility hidden => visibility visible
+      searchResults.style.display = 'block';
+    } else if (searchParameter === '') {
+      // If search is empty but submit is clicked/entered, add error classes
+      searchedTerm.innerText = 'Please enter something to search.';
+      searchInput.classList.add('search-error');
+      searchSubmit.classList.add('search-error');
     }
   }
 
-  // simple page reload
-  function reloadPage() {
-    window.location.reload();
+  /* ------------------------------------------------------------------------- */
+  // Pagination
+  function paginateThrough(e) {
+    e.preventDefault();
+    let pageToken = '';
+
+    e.target.getAttribute('data-prevpage') ? (pageToken = e.target.getAttribute('data-prevpage')) : (pageToken = e.target.getAttribute('data-nextpage'));
+
+    youtube
+      .getPrevOrNextSearchPage(pageToken, searchParameter)
+      .then(data => ui.displayVideos(data.result, 'search-results'))
+      .catch(err => console.log(err));
   }
-  // rework
+
+  // show video function
+  function showVideo(e) {
+    // Check that the clicked target is *only* a child of the list item
+    // without this, clicking the ul can cause the video player to break
+
+    // Checking if target is video thumbnail or video title
+    if (e.target.parentElement.classList.contains('search-item') || e.target.parentElement.parentElement.classList.contains('search-item')) {
+      videoPlayer.style.display = 'block';
+      videoPlayer.setAttribute('src', `https://www.youtube.com/embed/${e.target.getAttribute('data-videoid')}?autoplay=1`);
+      videoPlayer;
+
+      videoCenter.setAttribute('data-channelid', e.target.getAttribute('data-channelid'));
+      videoCenter.setAttribute('data-videoid', e.target.getAttribute('data-videoid'));
+
+      // Fill in video title/author info below video
+      fillInDescription(e);
+
+      // Move search results off page
+      searchResults.classList.add('hide-search');
+      showSearchResults.style.display = 'block';
+
+      // Call function to get relevant search videos.
+      youtube
+        .getRelevantVideos(e.target.getAttribute('data-videoid'))
+        .then(data => ui.displayVideos(data.result, 'relevant-videos'))
+        .catch(err => console.log(err));
+
+      youtube
+        .getComments(e.target.getAttribute('data-videoid'))
+        .then(data => ui.displayVideoComments(data.result))
+        .catch(err => console.log(err));
+
+      // scroll to top so video can be seen
+      window.scrollTo(0, 0);
+
+      // check if search results overlay is present. If so, remove
+      if (searchResults.classList.contains('show-search')) {
+        hideResults();
+      }
+    }
+  }
+
+  // fill in video description information
+  function fillInDescription(e) {
+    // We can grab videos in two ways.
+    // By clicking the image itself, or the title of the image.
+    // Both cases need to be checked, so we'll use an outer if statement checking if:
+    // First case is image. Need the parent elem of that (li)
+    // Second case is the title, need parent elem of parent elem  for that.
+
+    // This first checks if it is the VIDEO IMAGE that is clicked.
+    // target => parent
+    // img => LI
+    if (e.target.parentElement.classList.contains('search-item')) {
+      // If description (p element) exists, change inner html to new info
+      if (document.getElementById('video-information') !== null) {
+        document.getElementById('video-information').innerHTML = `
+          <strong>${e.target.parentElement.getAttribute('data-videoname')}</strong>
+          <br />
+          <em>Author</em> : ${e.target.parentElement.getAttribute('data-author')}
+        `;
+      } else {
+        // If p element does not exist, create it and give it required info
+        let p = document.createElement('p');
+        p.id = 'video-information';
+
+        p.innerHTML = `
+        <strong>${e.target.parentElement.getAttribute('data-videoname')}</strong>
+        <br/>
+        <em>Author</em> : ${e.target.parentElement.getAttribute('data-author')}
+      `;
+        videoCenter.appendChild(p);
+      }
+
+      // Second case deals with title being clicked
+      // target => parent => parent
+      // text => p => li
+    } else if (e.target.parentElement.parentElement.classList.contains('search-item')) {
+      // If description (p element) exists, change inner html to new info
+      if (document.getElementById('video-information') !== null) {
+        document.getElementById('video-information').innerHTML = `
+          <strong>${e.target.parentElement.parentElement.getAttribute('data-videoname')}</strong>
+          <br />
+          <em>Author</em> : ${e.target.parentElement.parentElement.getAttribute('data-author')}
+        `;
+      } else {
+        // If p element does not exist, create it and give it required info
+        let p = document.createElement('p');
+        p.id = 'video-information';
+
+        p.innerHTML = `
+        <strong>${e.target.parentElement.parentElement.getAttribute('data-videoname')}</strong>
+        <br/>
+        <em>Author</em> : ${e.target.parentElement.parentElement.getAttribute('data-author')}
+      `;
+        videoCenter.appendChild(p);
+      }
+    }
+  }
+
+  function nextCommentsPage(e) {
+    e.preventDefault();
+    youtube
+      .getPrevOrNextCommentsPage(moreCommentsBtn.getAttribute('data-nextpage'), moreCommentsBtn.getAttribute('data-videoid'))
+      .then(data => ui.displayVideoComments(data.result))
+      // .then(data => console.log(data))
+      .catch(err => console.log(err));
+  }
+
+  function addComment(e) {
+    e.preventDefault();
+    if (googleAuth.checkIfSignedIn()) {
+      youtube
+        .addComment(commentInput.value, videoCenter.getAttribute('data-channelid'), videoCenter.getAttribute('data-videoid'))
+        .then(console.log('success'))
+        .catch(err => console.log(err));
+      commentInput.value = '';
+    } else {
+      alert('You must log in to use this feature.');
+    }
+  }
+  // show search results after they have been hidden
+  function showResults(e) {
+    body.style.overflow = 'hidden';
+    e.preventDefault();
+    searchResults.classList.remove('hide-search');
+    searchResults.classList.add('show-search');
+    closeSearchBtn.style.visibility = 'visible';
+
+    // this if/else controls the background color based on light/dark mode selection
+    if (body.classList.contains('dark')) {
+      searchResults.classList.remove('light');
+      searchResults.classList.add('dark');
+    } else {
+      searchResults.classList.remove('dark');
+      searchResults.classList.add('light');
+    }
+  }
+
+  // hide search results if they are shown
+  function hideResults() {
+    body.style.overflow = 'auto';
+    searchResults.classList.remove('show-search');
+    searchResults.classList.add('hide-search');
+    closeSearchBtn.style.visibility = 'hidden';
+  }
 })();

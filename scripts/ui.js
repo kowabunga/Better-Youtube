@@ -10,59 +10,50 @@ class UI {
     this.videoDesc = document.getElementById('video-desc');
     this.commentsUl = document.getElementById('comments-ul');
     this.nextCommentsBtn = document.getElementById('more-comments');
-  }
-  // display results based on search query
-  displaySearchResults(data) {
-    let output = '';
-    // loop through data items and add video, name, title, etc. to list item and append to output
-    data.items.forEach(item => {
-      output += `
-            <li class="search-item" data-videoId=${item.id.videoId} data-videoName="${item.snippet.title}" data-Author="${item.snippet.channelTitle}">
-                <img class="thumbnail" src="${item.snippet.thumbnails.medium.url}" alt="Thumbnail for ${item.snippet.title}" data-videoId=${item.id.videoId}>
-                <p>
-                    <strong class="video-title" data-videoId=${item.id.videoId}>${item.snippet.title}</strong> <br>
-                    Author: <em>${item.snippet.channelTitle}</em>
-                </p>
-            </li>
-        `;
-    });
-    this.searchItems.innerHTML = output;
-
-    // make pagination buttons work
-    this.paginationButtons(data.prevPageToken, data.nextPageToken, this.prevSearchBtn, this.nextSearchBtn);
-
-    // Display buttons - these are display:none by default since they aren't needed when no search results are present.
-    if ((this.buttons[0].style.display = 'none')) {
-      this.buttons[0].style.display = 'flex';
-    }
+    this.videoCenter = document.getElementById('video-center');
   }
 
-  // display videos related to the video currently being viewed
-  displayRelevantVideos(data) {
+  // Display videos on page
+  displayVideos(data, pageSection) {
     console.log(data);
     let output = '';
     // loop through data items and add video, name, title, etc. to list item and append to output
     data.items.forEach(item => {
+      // this.videoCenter.setAttribute('data-channelid', item.snippet.channelId);
+      // this.videoCenter.setAttribute('data-videoid', item.id.videoId);
       output += `
-            <li class="search-item" data-videoId=${item.id.videoId} data-videoName="${item.snippet.title}" data-Author="${item.snippet.channelTitle}">
-                    <img class="thumbnail" src="${item.snippet.thumbnails.medium.url}" alt="Thumbnail for ${item.snippet.title}" data-videoId=${item.id.videoId}>
+            <li class="search-item" data-videoId=${item.id.videoId} data-videoName="${item.snippet.title}" data-Author="${item.snippet.channelTitle}" data-channelid=${item.snippet.channelId}>
+                    <img class="thumbnail" src="${item.snippet.thumbnails.medium.url}" alt="Thumbnail for ${item.snippet.title}" data-videoId=${item.id.videoId} data-channelid=${item.snippet.channelId} >
                 <p>
-                    <strong class="video-title" data-videoId=${item.id.videoId}>${item.snippet.title}</strong> <br>
+                    <strong class="video-title" data-videoId=${item.id.videoId} data-channelid=${item.snippet.channelId}>${item.snippet.title} </strong> <br>
                     Author: <em>${item.snippet.channelTitle}</em>
                 </p>
             </li>
         `;
     });
 
-    // add output to section and make section visible on website
-    this.relevantVideoItems.innerHTML = output;
-    this.relevantVideos.style.display = 'flex';
+    if (pageSection === 'search-results') {
+      this.searchItems.innerHTML = output;
 
-    // add description and display below video
-    this.videoDesc.style.display = 'block';
-    this.videoDesc.style.displaySearchResults = 'block';
+      // make pagination buttons work
+      this.paginationButtons(data.prevPageToken, data.nextPageToken, this.prevSearchBtn, this.nextSearchBtn);
+
+      // Display buttons - these are display:none by default since they aren't needed when no search results are present.
+      if ((this.buttons[0].style.display = 'none')) {
+        this.buttons[0].style.display = 'flex';
+      }
+    } else if (pageSection === 'relevant-videos') {
+      // add output to section and make section visible on website
+      this.relevantVideoItems.innerHTML = output;
+      this.relevantVideos.style.display = 'flex';
+
+      // add description and display below video
+      this.videoDesc.style.display = 'block';
+      this.videoDesc.style.displaySearchResults = 'block';
+    }
   }
 
+  // Display video comments on page
   displayVideoComments(data) {
     console.log(data);
     const commentsList = data.items;
@@ -97,6 +88,7 @@ class UI {
     if ((this.buttons[1].style.display = 'none')) {
       this.buttons[1].style.display = 'flex';
     }
+    console.log(this.videoId, this.channelId);
   }
 
   // Function to add data-attributes and disable/enable pagination buttons

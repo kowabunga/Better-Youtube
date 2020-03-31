@@ -48,6 +48,24 @@ class Youtube {
     });
   }
 
+  // Add a comment to the specific video in question
+  addComment(comment, channelId, videoId) {
+    return gapi.client.youtube.commentThreads.insert({
+      part: this.commentsPart,
+      resource: {
+        snippet: {
+          channelId: channelId,
+          topLevelComment: {
+            snippet: {
+              textOriginal: comment,
+              videoId: videoId
+            }
+          }
+        }
+      }
+    });
+  }
+
   getPrevOrNextCommentsPage(pageToken, videoId) {
     return gapi.client.youtube.commentThreads.list({
       part: this.commentsPart,
@@ -124,5 +142,10 @@ class GoogleAuth {
       // If user not logged in, log in.
       gapi.auth2.getAuthInstance().signIn();
     }
+  }
+
+  // check if user is signed in to perform actions which require account access such as adding/editing comments.
+  checkIfSignedIn() {
+    return gapi.auth2.getAuthInstance().isSignedIn.get();
   }
 }
