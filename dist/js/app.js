@@ -122,7 +122,7 @@
 
       youtube
         .getComments(e.target.getAttribute('data-videoid'))
-        .then(data => ui.displayVideoComments(data.result))
+        .then(data => ui.displayVideoComments(data.result, true))
         .catch(err => console.log(err));
 
       // scroll to top so video can be seen
@@ -197,7 +197,7 @@
     e.preventDefault();
     youtube
       .getPrevOrNextCommentsPage(moreCommentsBtn.getAttribute('data-nextpage'), moreCommentsBtn.getAttribute('data-videoid'))
-      .then(data => ui.displayVideoComments(data.result))
+      .then(data => ui.displayVideoComments(data.result, true))
       // .then(data => console.log(data))
       .catch(err => console.log(err));
   }
@@ -207,7 +207,8 @@
     if (googleAuth.checkIfSignedIn()) {
       youtube
         .addComment(commentInput.value, videoCenter.getAttribute('data-channelid'), videoCenter.getAttribute('data-videoid'))
-        .then(console.log('success'))
+        // .then(ui.displayVideoComments(data.result, true))
+        .then(data => ui.displayVideoComments(data.result, false))
         .catch(err => console.log(err));
       commentInput.value = '';
     } else {

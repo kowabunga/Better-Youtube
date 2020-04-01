@@ -15,7 +15,7 @@ class UI {
 
   // Display videos on page
   displayVideos(data, pageSection) {
-    console.log(data);
+    // console.log(data);
     let output = '';
     // loop through data items and add video, name, title, etc. to list item and append to output
     data.items.forEach(item => {
@@ -54,41 +54,59 @@ class UI {
   }
 
   // Display video comments on page
-  displayVideoComments(data) {
+  displayVideoComments(data, getAllComments) {
     console.log(data);
     const commentsList = data.items;
     let output = '';
-    // We'll create the comments ul and add it in dynamically.
+
+    // The following outer if/else deals with two conditions. If getAllComments is true, we loop through the returned result and append *all* items to the end of the ul.
+    // If it is false, we just add the newly added comment to the beginning of the ul.
 
     // Loop through each item in data array to get comments and add to ul
-    commentsList.forEach(comment => {
-      const author = comment.snippet.topLevelComment.snippet.authorDisplayName;
-      const displayComment = comment.snippet.topLevelComment.snippet.textDisplay;
-      output += `
+    if (getAllComments) {
+      commentsList.forEach(comment => {
+        const author = comment.snippet.topLevelComment.snippet.authorDisplayName;
+        const displayComment = comment.snippet.topLevelComment.snippet.textDisplay;
+        output += `
         <li class="comment">
+          <div id="comment-btns">
+            <button class="edit-comment" data-tooltip="Edit"><i class="far fa-edit "></i></button>
+            <br />
+            <button class="reply-comment" data-tooltip="Reply"><i class="fas fa-reply"></i></button>
+          </div>
           <p class="author">${author}</p>
           <br>
           <p class="author-comment">${displayComment}</p>
+
         </li>
-
       `;
-    });
-    // we use insertAdjascentHTML because we want to increase the list of comments, not replace them since there's no backwards pagination with this api
-    this.commentsUl.insertAdjacentHTML('beforeend', output);
-    // if ((this.commentsUl.innerHTML = '')) {
-    //   this.commentsUl.innerHTML = output;
-    // } else {
-    //   this.commentsUl.insertAdjacentHTML('beforeend', output);
-    // }
+      });
+      // we use insertAdjascentHTML because we want to increase the list of comments, not replace them since there's no backwards pagination with this api
+      this.commentsUl.insertAdjacentHTML('beforeend', output);
 
-    // make pagination buttons work
-    this.paginationButtons(undefined, data.nextPageToken, undefined, this.nextCommentsBtn, data.items[0].snippet.videoId);
+      // make pagination buttons work
+      this.paginationButtons(undefined, data.nextPageToken, undefined, this.nextCommentsBtn, data.items[0].snippet.videoId);
 
-    // Display buttons - these are display:none by default since they aren't needed when no search results are present.
-    if ((this.buttons[1].style.display = 'none')) {
-      this.buttons[1].style.display = 'flex';
+      // Display buttons - these are display:none by default since they aren't needed when no search results are present.
+      if ((this.buttons[1].style.display = 'none')) {
+        this.buttons[1].style.display = 'flex';
+      }
+      console.log(this.videoId, this.channelId);
+    } else {
+      const author = data.snippet.topLevelComment.snippet.authorDisplayName;
+      const displayComment = data.snippet.topLevelComment.snippet.textDisplay;
+      output = `
+          <li class="comment">
+            <p class="author">${author}</p>
+            <br>
+            <p class="author-comment">${displayComment}</p>
+            <button class="edit-comment" data-tooltip="Edit"><i class="far fa-edit "></i></button>
+            <br />
+            <button class="reply-comment" data-tooltip="Reply"><i class="fas fa-reply"></i></button>
+          </li>
+         `;
+      this.commentsUl.insertAdjacentHTML('afterbegin', output);
     }
-    console.log(this.videoId, this.channelId);
   }
 
   // Function to add data-attributes and disable/enable pagination buttons

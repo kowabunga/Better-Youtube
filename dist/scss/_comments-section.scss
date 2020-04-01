@@ -39,9 +39,7 @@
 
 #input-comment:hover,
 #input-comment:focus {
-  border-radius: 5px;
-  border-bottom: 1px solid transparent;
-  box-shadow: 0 3px 3px rgba(2, 129, 202, 0.75);
+  border-bottom: 1px solid rgba(2, 129, 225, 0.75);
 }
 
 #submit-comment {
@@ -54,12 +52,12 @@
   background-color: transparent;
   border: 2px solid rgba(2, 129, 225, 0.75);
   padding: 7px;
-  transition: 0.2s ease-out;
+  transition: 0.1s ease-out;
   cursor: pointer;
 }
 
-#submit-comment:hover {
-  box-shadow: 0 3px 3px rgb(2, 129, 202);
+#submit-comment:active {
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.75);
 }
 
 #comments-ul {
@@ -76,6 +74,7 @@
   padding: 0.75em;
   overflow: auto;
   max-height: 150px;
+  position: relative;
 }
 
 .comment .author {
@@ -87,4 +86,50 @@
   margin-left: 5%;
   word-wrap: break-word;
   text-overflow: ellipsis;
+}
+
+#comment-btns {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  transform: translate(-20px, -20px);
+}
+
+// Tooltips for edit/reply
+
+[data-tooltip]:hover {
+  color: rgb(2, 129, 225);
+}
+
+[data-tooltip] {
+  position: relative;
+  cursor: default;
+  padding: 0.3em 1em;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: 0.15s ease-out;
+  left: 94%;
+  transform: scale(1.5);
+}
+
+[data-tooltip]::after {
+  position: absolute;
+  width: 50px;
+  left: -150%;
+  font-size: 0.75em;
+  content: attr(data-tooltip);
+  color: white;
+  background-color: rgba(0, 0, 0, 0.75);
+  padding: 1px 3px;
+  border-radius: 10px;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.2s;
+}
+
+[data-tooltip]:hover::after {
+  opacity: 1;
+  visibility: visible;
 }

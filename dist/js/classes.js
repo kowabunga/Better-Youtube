@@ -134,7 +134,7 @@ class GoogleAuth {
       // If user is signed in, logout and deauthorize.
       // Deauthorizing requires reauthorizing the app when logging back in.
       confirm(
-        `Logging out will also revoke Better Youtube's access to your account. \n\nYou will have to reauthorize this website if you log back in to use it to its full extent. Are you sure you want to continue?`
+        `Logging out will prevent Better Youtube from being able to add comments, upload videos, and more. \n\nYou will have to reauthorize this website if you log back in to use it to its full extent. Are you sure you want to continue?`
       );
       gapi.auth2.getAuthInstance().signOut();
       gapi.auth2.getAuthInstance().disconnect();
