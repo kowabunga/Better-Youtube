@@ -37,11 +37,29 @@
   showSearchResults.addEventListener('click', showResults);
   closeSearchBtn.addEventListener('click', hideResults);
   submitComment.addEventListener('click', addComment);
-  commentsUl.addEventListener('click', showReplies);
+  commentsUl.addEventListener('click', replyFunctionality);
 
   /* ------------------------------------------------------------------------- */
 
   // Youtube Section
+
+  // show search results after they have been hidden
+  function showResults(e) {
+    body.style.overflow = 'hidden';
+    e.preventDefault();
+    searchResults.classList.remove('hide-search');
+    searchResults.classList.add('show-search');
+    closeSearchBtn.style.visibility = 'visible';
+
+    // this if/else controls the background color based on light/dark mode selection
+    if (body.classList.contains('dark')) {
+      searchResults.classList.remove('light');
+      searchResults.classList.add('dark');
+    } else {
+      searchResults.classList.remove('dark');
+      searchResults.classList.add('light');
+    }
+  }
 
   function submitQuery(e) {
     e.preventDefault();
@@ -77,7 +95,6 @@
     }
   }
 
-  /* ------------------------------------------------------------------------- */
   // Pagination
   function paginateThrough(e) {
     e.preventDefault();
@@ -218,26 +235,9 @@
       alert('You must log in to use this feature.');
     }
   }
-  // show search results after they have been hidden
-  function showResults(e) {
-    body.style.overflow = 'hidden';
-    e.preventDefault();
-    searchResults.classList.remove('hide-search');
-    searchResults.classList.add('show-search');
-    closeSearchBtn.style.visibility = 'visible';
 
-    // this if/else controls the background color based on light/dark mode selection
-    if (body.classList.contains('dark')) {
-      searchResults.classList.remove('light');
-      searchResults.classList.add('dark');
-    } else {
-      searchResults.classList.remove('dark');
-      searchResults.classList.add('light');
-    }
-  }
-
-  // Show hidden comment replies
-  function showReplies(e) {
+  // This function does two things: Show replies to comments and add replies to comments.
+  function replyFunctionality(e) {
     // Since the view/hide replies button is generated dynamically, we put the event listener on the comment box.
     // We check if the target's id is equal to the view reply button id, if so we add the event listeners because they exist
     if (e.target.classList.contains('view-replies')) {
@@ -255,6 +255,38 @@
         repliesUl.classList.remove('show');
         viewReplies.innerHTML = '<i class="fas fa-angle-down"></i> View Replies';
       }
+    }
+
+    // Add reply to comment
+    if (e.target.parentElement.classList.contains('reply-comment') || e.target.classList.contains('reply-comment')) {
+      // get comment id value stored as data-attribute in parent li
+      // reply button icon -> reply comment div -> comment btn div -> li-data-attribute OR
+      // reply comment div -> comment btn div -> comment div -> li-data-attribute
+      const commentLi = e.target.parentElement.parentElement.parentElement;
+      const commentId = commentLi.getAttribute('data-commentid') || e.target.parentElement.parentElement.getAttribute('data-commentid');
+      // This ones a bit complicated but it is as follows:
+      // reply button icon -> reply comment div -> comment btn div -> comment div -> 4th child of comment div = <form> OR
+      // reply comment div -> comment btn div -> comment div -> 4th child of comment div = <form>
+      // One will be false (undefined) and one will be true
+      const replyForm = commentLi.children[4] || e.target.parentElement.parentElement.children[4];
+
+      // Add classlist to show form submit
+      replyForm.classList.toggle('show');
+      // first form child (input)
+      const replyInput = replyForm.children[0];
+      // second form child (submit)
+      const replySubmit = replyForm.children[1];
+      replySubmit.addEventListener('click', e => {
+        e.preventDefault();
+        youtube
+          .addReply(commentId, replyInput.value)
+          .then(data => () => {
+            // ui.addReplies()
+            console.log(data);
+          })
+          .catch(err => console.log(err));
+      });
+      replyInput.value = '';
     }
   }
 

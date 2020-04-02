@@ -67,13 +67,18 @@ class UI {
         const author = comment.snippet.topLevelComment.snippet.authorDisplayName;
         const displayComment = comment.snippet.topLevelComment.snippet.textDisplay;
         output += `
-          <li class="comment">
+          <li class="comment" data-commentid = ${comment.id}>
             <div id="comment-btns">
               <button class="reply-comment" data-tooltip="Reply"><i class="fas fa-reply"></i></button>
             </div>
             <p class="author">${author}</p>
             <br>
             <p class="author-comment">${displayComment}</p>
+            <form class="reply-form">
+              <input type="text" class="input-box" placeholder="Add reply..." />
+              <input type="submit" id="submit-reply" value="Add Reply">
+            </form>
+
             ${comment.snippet.totalReplyCount > 0 ? this.addReplies(comment.replies.comments) : ''}
           </li>
       `;
@@ -81,25 +86,35 @@ class UI {
       // we use insertAdjascentHTML because we want to increase the list of comments, not replace them since there's no backwards pagination with this api
       this.commentsUl.insertAdjacentHTML('beforeend', output);
 
-      // make pagination buttons work, pass in undefined for prevPage information
-      this.paginationButtons(undefined, data.nextPageToken, undefined, this.nextCommentsBtn, data.items[0].snippet.videoId);
+      // make pagination buttons work, pass in undefined for prevPage information. First check if there are comments (date.items will be greater than 0)
+      if (data.items.length > 0) {
+        this.paginationButtons(undefined, data.nextPageToken, undefined, this.nextCommentsBtn, data.items[0].snippet.videoId);
 
-      // Display buttons - these are display:none by default since they aren't needed when no search results are present.
-      if ((this.buttons[1].style.display = 'none')) {
-        this.buttons[1].style.display = 'flex';
+        // Display buttons - these are display:none by default since they aren't needed when no search results are present.
+        if ((this.buttons[1].style.display = 'none')) {
+          this.buttons[1].style.display = 'flex';
+        }
       }
-      console.log(this.videoId, this.channelId);
     } else {
+      // NOTES
+      //
+      // RUN THIS FUNCTION TO SEE WHERE IF DATA.ID WORKS FOR PUTTING IN COMMENT ID
+      //
+      //
       const author = data.snippet.topLevelComment.snippet.authorDisplayName;
       const displayComment = data.snippet.topLevelComment.snippet.textDisplay;
       output = `
-        <li class="comment">
+        <li class="comment" data-commentid = ${data.id}>
           <div id="comment-btns">
           <button class="reply-comment" data-tooltip="Reply"><i class="fas fa-reply"></i></button>
           </div>
           <p class="author">${author}</p>
           <br>
           <p class="author-comment">${displayComment}</p>
+          <form class="reply-form">
+            <input type="text" class="input-box" placeholder="Add reply..." />
+            <input type="submit" id="submit-reply" value="Add Reply">
+          </form>
         </li>
         `;
       //  Here we insert the new comment at the beginning, as it was just posted.
@@ -122,6 +137,10 @@ class UI {
           <p class="author">${author}</p>
           <br>
           <p class="author-comment">${replyDisplay}</p>
+          <form class="reply-form">
+            <input type="text" class="input-box" placeholder="Add reply..." />
+            <input type="submit" id="submit-reply" value="Add Reply">
+          </form>
         </li>
       `;
     });
@@ -134,6 +153,8 @@ class UI {
       </ul>
     `;
   }
+
+  updateReplies() {}
 
   // Function to add data-attributes and disable/enable pagination buttons
   paginationButtons(prevPageToken, nextPageToken, prevBtn, nextBtn, videoId) {

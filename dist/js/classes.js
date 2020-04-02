@@ -67,6 +67,18 @@ class Youtube {
     });
   }
 
+  addReply(commentId, commentText) {
+    return gapi.client.youtube.comments.insert({
+      part: 'snippet',
+      resource: {
+        snippet: {
+          parentId: commentId,
+          textOriginal: commentText
+        }
+      }
+    });
+  }
+
   getPrevOrNextCommentsPage(pageToken, videoId) {
     return gapi.client.youtube.commentThreads.list({
       part: this.commentsPart,
