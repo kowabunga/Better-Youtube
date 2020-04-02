@@ -19,8 +19,6 @@ class UI {
     let output = '';
     // loop through data items and add video, name, title, etc. to list item and append to output
     data.items.forEach(item => {
-      // this.videoCenter.setAttribute('data-channelid', item.snippet.channelId);
-      // this.videoCenter.setAttribute('data-videoid', item.id.videoId);
       output += `
             <li class="search-item" data-videoId=${item.id.videoId} data-videoName="${item.snippet.title}" data-Author="${item.snippet.channelTitle}" data-channelid=${item.snippet.channelId}>
                     <img class="thumbnail" src="${item.snippet.thumbnails.medium.url}" alt="Thumbnail for ${item.snippet.title}" data-videoId=${item.id.videoId} data-channelid=${item.snippet.channelId} >
@@ -63,28 +61,27 @@ class UI {
     // If it is false, we just add the newly added comment to the beginning of the ul.
 
     // Loop through each item in data array to get comments and add to ul
+    // Also check and see if there are replies to the comment, if so add them. If not, add empty string.
     if (getAllComments) {
       commentsList.forEach(comment => {
         const author = comment.snippet.topLevelComment.snippet.authorDisplayName;
         const displayComment = comment.snippet.topLevelComment.snippet.textDisplay;
         output += `
-        <li class="comment">
-          <div id="comment-btns">
-            <button class="edit-comment" data-tooltip="Edit"><i class="far fa-edit "></i></button>
-            <br />
-            <button class="reply-comment" data-tooltip="Reply"><i class="fas fa-reply"></i></button>
-          </div>
-          <p class="author">${author}</p>
-          <br>
-          <p class="author-comment">${displayComment}</p>
-
-        </li>
+          <li class="comment">
+            <div id="comment-btns">
+              <button class="reply-comment" data-tooltip="Reply"><i class="fas fa-reply"></i></button>
+            </div>
+            <p class="author">${author}</p>
+            <br>
+            <p class="author-comment">${displayComment}</p>
+            ${comment.snippet.totalReplyCount > 0 ? this.addReplies(comment.replies.comments) : ''}
+          </li>
       `;
       });
       // we use insertAdjascentHTML because we want to increase the list of comments, not replace them since there's no backwards pagination with this api
       this.commentsUl.insertAdjacentHTML('beforeend', output);
 
-      // make pagination buttons work
+      // make pagination buttons work, pass in undefined for prevPage information
       this.paginationButtons(undefined, data.nextPageToken, undefined, this.nextCommentsBtn, data.items[0].snippet.videoId);
 
       // Display buttons - these are display:none by default since they aren't needed when no search results are present.
@@ -96,17 +93,46 @@ class UI {
       const author = data.snippet.topLevelComment.snippet.authorDisplayName;
       const displayComment = data.snippet.topLevelComment.snippet.textDisplay;
       output = `
-          <li class="comment">
-            <p class="author">${author}</p>
-            <br>
-            <p class="author-comment">${displayComment}</p>
-            <button class="edit-comment" data-tooltip="Edit"><i class="far fa-edit "></i></button>
-            <br />
-            <button class="reply-comment" data-tooltip="Reply"><i class="fas fa-reply"></i></button>
-          </li>
-         `;
+        <li class="comment">
+          <div id="comment-btns">
+          <button class="reply-comment" data-tooltip="Reply"><i class="fas fa-reply"></i></button>
+          </div>
+          <p class="author">${author}</p>
+          <br>
+          <p class="author-comment">${displayComment}</p>
+        </li>
+        `;
+      //  Here we insert the new comment at the beginning, as it was just posted.
       this.commentsUl.insertAdjacentHTML('afterbegin', output);
     }
+  }
+
+  // This function is called based on the conditional statement in displayVideComments(). It is called if totalReplyCount > 0, i.e. there are comments on the page. If so, this function creates a new unordered list with all comments within it and returns that unordered list to the calling function to be displayed on the page.
+  addReplies(replies) {
+    console.log('addReplies called');
+    let output = ``;
+    replies.forEach(reply => {
+      const author = reply.snippet.authorDisplayName;
+      const replyDisplay = reply.snippet.textDisplay;
+      output += `
+        <li class="comment">
+          <div id="comment-btns">
+          <button class="reply-comment" data-tooltip="Reply"><i class="fas fa-reply"></i></button>
+          </div>
+          <p class="author">${author}</p>
+          <br>
+          <p class="author-comment">${replyDisplay}</p>
+        </li>
+      `;
+    });
+    return `
+      <br><hr><br>
+      <a class="view-replies" href="#/"><i class="fas fa-angle-down"></i> View Replies</a>
+      <ul class="replies-ul">
+      <li>Replies:</li>
+        ${output}
+      </ul>
+    `;
   }
 
   // Function to add data-attributes and disable/enable pagination buttons

@@ -44,7 +44,8 @@ class Youtube {
     return gapi.client.youtube.commentThreads.list({
       part: this.commentsPart,
       videoId: videoId,
-      maxResults: this.numOfComments
+      maxResults: this.numOfComments,
+      order: 'relevance'
     });
   }
 

@@ -37,6 +37,7 @@
   showSearchResults.addEventListener('click', showResults);
   closeSearchBtn.addEventListener('click', hideResults);
   submitComment.addEventListener('click', addComment);
+  commentsUl.addEventListener('click', showReplies);
 
   /* ------------------------------------------------------------------------- */
 
@@ -193,6 +194,7 @@
     }
   }
 
+  // Add more comments to page for viewing
   function nextCommentsPage(e) {
     e.preventDefault();
     youtube
@@ -202,6 +204,7 @@
       .catch(err => console.log(err));
   }
 
+  // Add user comment to video
   function addComment(e) {
     e.preventDefault();
     if (googleAuth.checkIfSignedIn()) {
@@ -230,6 +233,28 @@
     } else {
       searchResults.classList.remove('dark');
       searchResults.classList.add('light');
+    }
+  }
+
+  // Show hidden comment replies
+  function showReplies(e) {
+    // Since the view/hide replies button is generated dynamically, we put the event listener on the comment box.
+    // We check if the target's id is equal to the view reply button id, if so we add the event listeners because they exist
+    if (e.target.classList.contains('view-replies')) {
+      // Note: We have to use e.target.nextElementSiblingto grab *the same reply ul* from the same comment box that the that the view replies button exists in.
+      // We also use e.target for changing the text of the clickable button
+      const repliesUl = e.target.nextElementSibling,
+        viewReplies = e.target;
+      // If hidden, show replies and change button text to hide replies
+      // console.log(e.target.nextElementSibling);
+      if (!repliesUl.classList.contains('show')) {
+        repliesUl.classList.add('show');
+        viewReplies.innerHTML = '<i class="fas fa-angle-up"></i> Hide Replies';
+      } else {
+        // hide replies and change button text to view replies
+        repliesUl.classList.remove('show');
+        viewReplies.innerHTML = '<i class="fas fa-angle-down"></i> View Replies';
+      }
     }
   }
 
