@@ -20,8 +20,8 @@
 
 .search-light {
   background-color: var(--search-bar-light);
-  transition: 0.3s ease;
   color: var(--main-dark-color);
+  transition: 0.3s ease;
 }
 
 /* -------------------------------------------------------------- */
@@ -37,6 +37,7 @@
   display: flex;
   align-items: center;
   z-index: 1;
+  border: 1px solid rgb(2, 129, 202);
 }
 
 #color-circle {

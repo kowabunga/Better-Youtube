@@ -20,6 +20,7 @@
   padding: 1rem;
   border-right: 2px solid;
   transition: 0.3s ease-out;
+  z-index: 100;
 }
 
 #results-term-field {
@@ -45,12 +46,12 @@
   padding: 15px 5px 5px 5px;
   height: 225px;
   width: 250px;
+
   transition: 0.3s ease-out;
 }
 
 .search-item:hover {
-  background-color: rgba(2, 129, 225, 0.5);
-  border-radius: 10px;
+  box-shadow: 0 0 4px currentColor;
 }
 .thumbnail {
   width: 230px;

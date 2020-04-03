@@ -16,7 +16,7 @@ hr {
 /* header */
 #head {
   grid-area: head;
-  background-color: rgb(2, 129, 202);
+  // background-color: rgb(2, 129, 202);
   position: relative;
 }
 
@@ -28,9 +28,9 @@ hr {
   font-size: 3rem;
   text-align: center;
   text-decoration: none;
-  color: var(--main-light-color);
-  box-shadow: 2px 2px 5px var(--main-light-color);
-  border: 1px solid rgb(2, 129, 202);
+  color: currentColor;
+  box-shadow: 2px 2px 5px currentColor;
+  border: 1px solid currentColor;
   border-radius: 20px;
   width: 510px;
   cursor: pointer;

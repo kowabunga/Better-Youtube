@@ -79,7 +79,7 @@ class UI {
               <input type="submit" id="submit-reply" value="Add Reply">
             </form>
 
-            ${comment.snippet.totalReplyCount > 0 ? this.addReplies(comment.replies.comments) : ''}
+            ${comment.snippet.totalReplyCount > 0 ? this.addReplies(comment.replies.comments, comment.id) : ''}
           </li>
       `;
       });
@@ -99,6 +99,8 @@ class UI {
       // NOTES
       //
       // RUN THIS FUNCTION TO SEE WHERE IF DATA.ID WORKS FOR PUTTING IN COMMENT ID
+      // DISABLE REPLY BUTTON ON COMMENT REPLIES'
+      // JUST ADD THE NEW REPLY TO THE TOP OF REPLIES
       //
       //
       const author = data.snippet.topLevelComment.snippet.authorDisplayName;
@@ -123,14 +125,14 @@ class UI {
   }
 
   // This function is called based on the conditional statement in displayVideComments(). It is called if totalReplyCount > 0, i.e. there are comments on the page. If so, this function creates a new unordered list with all comments within it and returns that unordered list to the calling function to be displayed on the page.
-  addReplies(replies) {
+  addReplies(replies, commentId) {
     console.log('addReplies called');
     let output = ``;
     replies.forEach(reply => {
       const author = reply.snippet.authorDisplayName;
       const replyDisplay = reply.snippet.textDisplay;
       output += `
-        <li class="comment">
+        <li class="comment" data-commentid = ${commentId}>
           <div id="comment-btns">
           <button class="reply-comment" data-tooltip="Reply"><i class="fas fa-reply"></i></button>
           </div>
@@ -148,13 +150,48 @@ class UI {
       <br><hr><br>
       <a class="view-replies" href="#/"><i class="fas fa-angle-down"></i> View Replies</a>
       <ul class="replies-ul">
-      <li>Replies:</li>
         ${output}
       </ul>
     `;
   }
 
-  updateReplies() {}
+  addReply(reply, commentId, firstReply) {
+    const author = reply.authorDisplayName;
+    const replyDisplay = reply.textDisplay;
+    const output = `        
+        <li class="comment" data-commentid=${commentId}>
+          <div id="comment-btns">
+          <button class="reply-comment" data-tooltip="Reply"><i class="fas fa-reply"></i></button>
+          </div>
+          <p class="author">${author}</p>
+          <br>
+          <p class="author-comment">${replyDisplay}</p>
+          <form class="reply-form">
+            <input type="text" class="input-box" placeholder="Add reply..." />
+            <input type="submit" id="submit-reply" value="Add Reply">
+          </form>
+        </li>`;
+    // If firstReply is true, add the replies ul + comment, else just add the comment
+    return firstReply
+      ? `
+      <br><hr><br>
+      <a class="view-replies" href="#/"><i class="fas fa-angle-down"></i> View Replies</a>
+      <ul class="replies-ul">
+      ${output}
+      </ul>
+    `
+      : output;
+  }
+
+  updateReplies(data, commentLi, commentId) {
+    console.log(data);
+    console.log(commentLi);
+    if (commentLi.lastElementChild.classList.contains('replies-ul')) {
+      commentLi.lastElementChild.insertAdjacentHTML('afterbegin', this.addReply(data.snippet, commentId, false));
+    } else {
+      commentLi.insertAdjacentHTML('beforeend', this.addReply(data.snippet, commentId, true));
+    }
+  }
 
   // Function to add data-attributes and disable/enable pagination buttons
   paginationButtons(prevPageToken, nextPageToken, prevBtn, nextBtn, videoId) {

@@ -61,6 +61,14 @@
     }
   }
 
+  // hide search results if they are shown
+  function hideResults() {
+    body.style.overflow = 'auto';
+    searchResults.classList.remove('show-search');
+    searchResults.classList.add('hide-search');
+    closeSearchBtn.style.visibility = 'hidden';
+  }
+
   function submitQuery(e) {
     e.preventDefault();
     // First check if search results is hidden, if so add the show class
@@ -259,42 +267,35 @@
 
     // Add reply to comment
     if (e.target.parentElement.classList.contains('reply-comment') || e.target.classList.contains('reply-comment')) {
+      // We need to make sure commentLi is actually the comment list item. Depending on whether the target is the font awesome icon OR the button that contains it, we what commentLi is off that.
+      console.log(e.target);
+      const commentLi = e.target.classList.contains('fas') ? e.target.parentElement.parentElement.parentElement : e.target.parentElement.parentElement;
+      console.log(commentLi);
+
       // get comment id value stored as data-attribute in parent li
-      // reply button icon -> reply comment div -> comment btn div -> li-data-attribute OR
-      // reply comment div -> comment btn div -> comment div -> li-data-attribute
-      const commentLi = e.target.parentElement.parentElement.parentElement;
-      const commentId = commentLi.getAttribute('data-commentid') || e.target.parentElement.parentElement.getAttribute('data-commentid');
-      // This ones a bit complicated but it is as follows:
-      // reply button icon -> reply comment div -> comment btn div -> comment div -> 4th child of comment div = <form> OR
-      // reply comment div -> comment btn div -> comment div -> 4th child of comment div = <form>
-      // One will be false (undefined) and one will be true
-      const replyForm = commentLi.children[4] || e.target.parentElement.parentElement.children[4];
+      const commentId = commentLi.getAttribute('data-commentid');
+
+      // Get comment reply form
+      const replyForm = commentLi.children[4];
 
       // Add classlist to show form submit
       replyForm.classList.toggle('show');
+
       // first form child (input)
       const replyInput = replyForm.children[0];
+
       // second form child (submit)
       const replySubmit = replyForm.children[1];
       replySubmit.addEventListener('click', e => {
         e.preventDefault();
         youtube
           .addReply(commentId, replyInput.value)
-          .then(data => () => {
-            // ui.addReplies()
-            console.log(data);
+          .then(data => {
+            ui.updateReplies(data.result, commentLi, commentId); //commentLi.children[9] is the replies ul
           })
           .catch(err => console.log(err));
       });
       replyInput.value = '';
     }
-  }
-
-  // hide search results if they are shown
-  function hideResults() {
-    body.style.overflow = 'auto';
-    searchResults.classList.remove('show-search');
-    searchResults.classList.add('hide-search');
-    closeSearchBtn.style.visibility = 'hidden';
   }
 })();
