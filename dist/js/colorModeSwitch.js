@@ -10,6 +10,7 @@
     colorCircle = document.getElementById('color-circle'),
     colorSun = document.getElementById('color-mode-icon-sun'),
     colorMoon = document.getElementById('color-mode-icon-moon'),
+    searchContainer = document.getElementById('search-container'),
     searchInput = document.getElementById('search-input'),
     searchSubmit = document.getElementById('submit-search'),
     brand = document.getElementById('brand');
@@ -37,8 +38,10 @@
       }
 
       // change form area colors
+      searchContainer.classList.remove('dark');
       searchInput.classList.remove('search-dark');
       searchSubmit.classList.remove('search-dark');
+      searchContainer.classList.add('light');
       searchInput.classList.add('search-light');
       searchSubmit.classList.add('search-light');
     } else if (body.classList.contains('light')) {
@@ -58,8 +61,10 @@
       }
 
       // change form area colors
+      searchContainer.classList.remove('light');
       searchInput.classList.remove('search-light');
       searchSubmit.classList.remove('search-light');
+      searchContainer.classList.add('dark');
       searchInput.classList.add('search-dark');
       searchSubmit.classList.add('search-dark');
     }

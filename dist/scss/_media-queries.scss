@@ -29,6 +29,11 @@
     justify-content: space-evenly;
   }
 
+  #search-results.show-search > #search-items {
+    height: calc(100vh - 425px);
+    overflow-y: auto;
+  }
+
   .buttons {
     margin: 0 auto;
   }
@@ -69,6 +74,11 @@
     display: none;
     flex-direction: column;
     align-items: center;
+  }
+
+  #search-results.show-search > #search-items {
+    height: calc(100vh - 450px);
+    overflow-y: auto;
   }
 
   .buttons {

@@ -75,8 +75,8 @@ class UI {
             <br>
             <p class="author-comment">${displayComment}</p>
             <form class="reply-form">
-              <input type="text" class="input-box" placeholder="Add reply..." />
-              <input type="submit" id="submit-reply" value="Add Reply">
+              <input type="text" class="input-box" class="btn" placeholder="Add reply..." />
+              <input type="submit" id="submit-reply" class="btn" value="Add Reply">
             </form>
 
             ${comment.snippet.totalReplyCount > 0 ? this.addReplies(comment.replies.comments, comment.id) : ''}
@@ -115,7 +115,7 @@ class UI {
           <p class="author-comment">${displayComment}</p>
           <form class="reply-form">
             <input type="text" class="input-box" placeholder="Add reply..." />
-            <input type="submit" id="submit-reply" value="Add Reply">
+            <input type="submit" id="submit-reply" class="btn" value="Add Reply">
           </form>
         </li>
         `;
@@ -126,7 +126,6 @@ class UI {
 
   // This function is called based on the conditional statement in displayVideComments(). It is called if totalReplyCount > 0, i.e. there are comments on the page. If so, this function creates a new unordered list with all comments within it and returns that unordered list to the calling function to be displayed on the page.
   addReplies(replies, commentId) {
-    console.log('addReplies called');
     let output = ``;
     replies.forEach(reply => {
       const author = reply.snippet.authorDisplayName;
@@ -141,7 +140,7 @@ class UI {
           <p class="author-comment">${replyDisplay}</p>
           <form class="reply-form">
             <input type="text" class="input-box" placeholder="Add reply..." />
-            <input type="submit" id="submit-reply" value="Add Reply">
+            <input type="submit" id="submit-reply" class="btn" value="Add Reply">
           </form>
         </li>
       `;
@@ -168,7 +167,7 @@ class UI {
           <p class="author-comment">${replyDisplay}</p>
           <form class="reply-form">
             <input type="text" class="input-box" placeholder="Add reply..." />
-            <input type="submit" id="submit-reply" value="Add Reply">
+            <input type="submit" id="submit-reply" class="btn" value="Add Reply">
           </form>
         </li>`;
     // If firstReply is true, add the replies ul + comment, else just add the comment

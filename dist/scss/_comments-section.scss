@@ -129,9 +129,6 @@
 }
 
 // Tooltips for edit/reply
-[data-tooltip]:hover {
-  color: rgb(2, 129, 225);
-}
 
 [data-tooltip] {
   position: relative;
@@ -143,6 +140,7 @@
   transition: 0.15s ease-out;
   left: 94%;
   transform: scale(1.5);
+  color: currentColor;
 }
 
 [data-tooltip]::after {
@@ -158,6 +156,10 @@
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.3s, transform 0.2s;
+}
+
+[data-tooltip]:hover {
+  color: rgb(2, 129, 225);
 }
 
 [data-tooltip]:hover::after {

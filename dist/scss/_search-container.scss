@@ -11,8 +11,8 @@
   align-items: center;
   justify-content: center;
   border-top: 2px solid var(--light-gray);
-
   border-bottom: 2px solid var(--light-gray);
+  z-index: 100;
 }
 
 #search-form {
@@ -52,7 +52,7 @@
 
 #submit-search:hover {
   cursor: pointer;
-  box-shadow: 0 0 10px rgb(2, 129, 202);
+  box-shadow: 0 0 5px rgb(2, 129, 202);
 }
 
 #searched-term {

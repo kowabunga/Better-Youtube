@@ -23,8 +23,8 @@
   /* ------------------------------------------------------------------------- */
   // Init classes
   const youtube = new Youtube(),
-    ui = new UI();
-  googleAuth = new GoogleAuth();
+    ui = new UI(),
+    googleAuth = new GoogleAuth();
   /* ------------------------------------------------------------------------- */
   // Event Listeners
 
@@ -47,9 +47,13 @@
   function showResults(e) {
     body.style.overflow = 'hidden';
     e.preventDefault();
-    searchResults.classList.remove('hide-search');
-    searchResults.classList.add('show-search');
-    closeSearchBtn.style.visibility = 'visible';
+    if (searchResults.classList.contains('hide-search')) {
+      searchResults.classList.remove('hide-search');
+      searchResults.classList.add('show-search');
+      closeSearchBtn.style.visibility = 'visible';
+    } else {
+      hideResults();
+    }
 
     // this if/else controls the background color based on light/dark mode selection
     if (body.classList.contains('dark')) {
@@ -79,9 +83,10 @@
     searchParameter = searchInput.value;
     if (searchParameter !== '') {
       if (searchInput.classList.contains('search-error') && searchSubmit.classList.contains('search-error')) {
-        // remove error classes
+        // remove error classes, make error text go away
         searchInput.classList.remove('search-error');
         searchSubmit.classList.remove('search-error');
+        searchedTerm.innerText = '';
       }
 
       // make request to api with search parameter and display in webpage
@@ -100,6 +105,16 @@
       searchedTerm.innerText = 'Please enter something to search.';
       searchInput.classList.add('search-error');
       searchSubmit.classList.add('search-error');
+
+      // Remove error after 10 seconds if user does not enter anything
+      setTimeout(() => {
+        if (searchInput.classList.contains('search-error') && searchSubmit.classList.contains('search-error')) {
+          // remove error classes, make error text go away
+          searchInput.classList.remove('search-error');
+          searchSubmit.classList.remove('search-error');
+          searchedTerm.innerText = '';
+        }
+      }, 10000);
     }
   }
 
@@ -286,14 +301,22 @@
 
       // second form child (submit)
       const replySubmit = replyForm.children[1];
+
       replySubmit.addEventListener('click', e => {
-        e.preventDefault();
-        youtube
-          .addReply(commentId, replyInput.value)
-          .then(data => {
-            ui.updateReplies(data.result, commentLi, commentId); //commentLi.children[9] is the replies ul
-          })
-          .catch(err => console.log(err));
+        if (googleAuth.checkIfSignedIn()) {
+          e.preventDefault();
+          youtube
+            .addReply(commentId, replyInput.value)
+            .then(data => {
+              ui.updateReplies(data.result, commentLi, commentId);
+            })
+            .catch(err => console.log(err));
+
+          // Hide comment reply box
+          replyForm.classList.remove('show');
+        } else {
+          alert('You must log in to use this feature.');
+        }
       });
       replyInput.value = '';
     }
