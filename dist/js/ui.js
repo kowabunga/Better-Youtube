@@ -96,13 +96,6 @@ class UI {
         }
       }
     } else {
-      // NOTES
-      //
-      // RUN THIS FUNCTION TO SEE WHERE IF DATA.ID WORKS FOR PUTTING IN COMMENT ID
-      // DISABLE REPLY BUTTON ON COMMENT REPLIES'
-      // JUST ADD THE NEW REPLY TO THE TOP OF REPLIES
-      //
-      //
       const author = data.snippet.topLevelComment.snippet.authorDisplayName;
       const displayComment = data.snippet.topLevelComment.snippet.textDisplay;
       output = `

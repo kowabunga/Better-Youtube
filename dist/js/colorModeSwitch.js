@@ -1,4 +1,4 @@
-(function() {
+(function () {
   const googleAuth = new GoogleAuth();
 
   // Loads the Google API Client library for use in all other files and init client
@@ -13,11 +13,13 @@
     searchContainer = document.getElementById('search-container'),
     searchInput = document.getElementById('search-input'),
     searchSubmit = document.getElementById('submit-search'),
-    brand = document.getElementById('brand');
+    searchResults = document.getElementById('search-results');
+  brand = document.getElementById('brand');
 
   // Event listener for color change
   colorSwitcher.addEventListener('click', changeColorMode);
-  brand.addEventListener('click', reloadPage);
+  // Simple page reload
+  brand.addEventListener('click', () => window.location.reload());
 
   // Swapping light/dark mode
   function changeColorMode() {
@@ -33,15 +35,18 @@
       // Move circle to right, show sun hide moon
       colorCircle.classList.remove('right');
       if (colorSwitcher.classList.contains('light')) {
-        colorMoon.style.visibility = 'hidden';
-        colorSun.style.visibility = 'visible';
+        colorMoon.style.opacity = '0';
+        colorSun.style.opacity = '1';
       }
 
       // change form area colors
       searchContainer.classList.remove('dark');
+      searchResults.classList.remove('dark');
       searchInput.classList.remove('search-dark');
       searchSubmit.classList.remove('search-dark');
+
       searchContainer.classList.add('light');
+      searchResults.classList.add('light');
       searchInput.classList.add('search-light');
       searchSubmit.classList.add('search-light');
     } else if (body.classList.contains('light')) {
@@ -56,23 +61,22 @@
       // Change text from dark to light
       colorCircle.classList.add('right');
       if (colorSwitcher.classList.contains('dark')) {
-        colorMoon.style.visibility = 'visible';
-        colorSun.style.visibility = 'hidden';
+        colorMoon.style.opacity = '1';
+        colorSun.style.opacity = '0';
       }
 
       // change form area colors
       searchContainer.classList.remove('light');
+      searchResults.classList.remove('light');
       searchInput.classList.remove('search-light');
       searchSubmit.classList.remove('search-light');
+
       searchContainer.classList.add('dark');
+      searchResults.classList.add('dark');
       searchInput.classList.add('search-dark');
       searchSubmit.classList.add('search-dark');
     }
   }
 
-  // simple page reload
-  function reloadPage() {
-    window.location.reload();
-  }
   // rework
 })();

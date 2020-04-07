@@ -3,25 +3,21 @@
 .dark {
   background-color: var(--main-dark-color);
   color: var(--main-light-color);
-  transition: 0.3s ease;
 }
 
 .light {
   background-color: var(--main-light-color);
   color: var(--main-dark-color);
-  transition: 0.3s ease;
 }
 
 .search-dark {
   background-color: var(--search-bar-dark);
   color: var(--main-light-color);
-  transition: 0.3s ease;
 }
 
 .search-light {
   background-color: var(--search-bar-light);
   color: var(--main-dark-color);
-  transition: 0.3s ease;
 }
 
 /* -------------------------------------------------------------- */
@@ -37,7 +33,7 @@
   display: flex;
   align-items: center;
   z-index: 1;
-  border: 1px solid rgb(2, 129, 202);
+  border: 1px solid var(--btn-blue);
 }
 
 #color-circle {
@@ -53,7 +49,7 @@
   height: 25px;
   border-radius: 50%;
   transition: 0.2s linear;
-  background-color: rgb(2, 129, 202);
+  background-color: var(--btn-blue);
 }
 
 #color-mode-icon-sun {
@@ -61,6 +57,7 @@
   top: 30%;
   right: 10%;
   transform: scale(1.2) translate(-10%, -20%);
+  transition: opacity 0.3s ease-out;
 }
 
 #color-mode-icon-moon {
@@ -68,7 +65,8 @@
   top: 50%;
   left: 15%;
   transform: translate(-15%, -50%);
-  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
 }
 
 #color-circle.right {

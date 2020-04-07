@@ -14,7 +14,7 @@ class Youtube {
       part: this.videosPart,
       q: searchValue,
       type: this.type,
-      maxResults: this.numofSearchResults
+      maxResults: this.numofSearchResults,
     });
   }
 
@@ -25,7 +25,7 @@ class Youtube {
       q: searchValue,
       type: this.type,
       maxResults: this.numofSearchResults,
-      pageToken: pageToken
+      pageToken: pageToken,
     });
   }
 
@@ -35,7 +35,7 @@ class Youtube {
       part: this.videosPart,
       relatedToVideoId: videoId,
       type: this.type,
-      maxResults: this.numOfRelevantVideos
+      maxResults: this.numOfRelevantVideos,
     });
   }
 
@@ -45,7 +45,7 @@ class Youtube {
       part: this.commentsPart,
       videoId: videoId,
       maxResults: this.numOfComments,
-      order: 'relevance'
+      order: 'relevance',
     });
   }
 
@@ -59,11 +59,11 @@ class Youtube {
           topLevelComment: {
             snippet: {
               textOriginal: comment,
-              videoId: videoId
-            }
-          }
-        }
-      }
+              videoId: videoId,
+            },
+          },
+        },
+      },
     });
   }
 
@@ -73,18 +73,19 @@ class Youtube {
       resource: {
         snippet: {
           parentId: commentId,
-          textOriginal: commentText
-        }
-      }
+          textOriginal: commentText,
+        },
+      },
     });
   }
 
-  getPrevOrNextCommentsPage(pageToken, videoId) {
+  getNextCommentsPage(pageToken, videoId) {
     return gapi.client.youtube.commentThreads.list({
       part: this.commentsPart,
       pageToken: pageToken,
       videoId: videoId,
-      maxResults: this.numOfComments
+      maxResults: this.numOfComments,
+      order: 'relevance',
     });
   }
 }
@@ -115,7 +116,7 @@ class GoogleAuth {
         apiKey: this.apiKey,
         clientId: this.clientId,
         discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'],
-        scope: this.scopes
+        scope: this.scopes,
       })
       .then(() => {
         // Constantly listen for sign in state change (helps deal with log in/out)

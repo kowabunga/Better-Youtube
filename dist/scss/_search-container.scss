@@ -21,7 +21,7 @@
 
 #search-input,
 #submit-search {
-  border: 2px solid rgb(2, 129, 202);
+  border: 2px solid var(--btn-blue);
 }
 
 #search-input {
@@ -33,7 +33,7 @@
 
 #search-input:focus,
 #search-input:hover {
-  box-shadow: 0 0 10px rgb(2, 129, 202);
+  box-shadow: 0 0 10px var(--btn-blue);
 }
 
 #submit-search {
@@ -44,6 +44,7 @@
   border-left: 0px;
   width: 20%;
   text-align: center;
+  color: var(--btn-blue);
 }
 
 #submit-search.search-error {
@@ -52,7 +53,7 @@
 
 #submit-search:hover {
   cursor: pointer;
-  box-shadow: 0 0 5px rgb(2, 129, 202);
+  box-shadow: 0 0 5px var(--btn-blue);
 }
 
 #searched-term {

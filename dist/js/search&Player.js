@@ -1,4 +1,4 @@
-(function() {
+(function () {
   const body = document.body,
     searchResults = document.getElementById('search-results'),
     searchInput = document.getElementById('search-input'),
@@ -42,6 +42,11 @@
   /* ------------------------------------------------------------------------- */
 
   // Youtube Section
+
+  // homepage
+  (function homePageResults() {
+    console.log('hi');
+  })();
 
   // show search results after they have been hidden
   function showResults(e) {
@@ -100,6 +105,7 @@
 
       // show search results - visibility hidden => visibility visible
       searchResults.style.display = 'block';
+      window.scrollTo(0, 0);
     } else if (searchParameter === '') {
       // If search is empty but submit is clicked/entered, add error classes
       searchedTerm.innerText = 'Please enter something to search.';
@@ -184,53 +190,40 @@
     // First case is image. Need the parent elem of that (li)
     // Second case is the title, need parent elem of parent elem  for that.
 
-    // This first checks if it is the VIDEO IMAGE that is clicked.
-    // target => parent
-    // img => LI
     if (e.target.parentElement.classList.contains('search-item')) {
-      // If description (p element) exists, change inner html to new info
-      if (document.getElementById('video-information') !== null) {
-        document.getElementById('video-information').innerHTML = `
-          <strong>${e.target.parentElement.getAttribute('data-videoname')}</strong>
-          <br />
-          <em>Author</em> : ${e.target.parentElement.getAttribute('data-author')}
-        `;
-      } else {
-        // If p element does not exist, create it and give it required info
-        let p = document.createElement('p');
-        p.id = 'video-information';
+      // This first checks if it is the VIDEO IMAGE that is clicked.
+      // target => parent
+      // img => LI
+      addVideoDescription(e.target.parentElement);
 
-        p.innerHTML = `
-        <strong>${e.target.parentElement.getAttribute('data-videoname')}</strong>
-        <br/>
-        <em>Author</em> : ${e.target.parentElement.getAttribute('data-author')}
-      `;
-        videoCenter.appendChild(p);
-      }
-
-      // Second case deals with title being clicked
+      // StargetElemcond case deals with title being clicked
+    } else if (e.target.parentElement.parentElement.classList.contains('search-item')) {
       // target => parent => parent
       // text => p => li
-    } else if (e.target.parentElement.parentElement.classList.contains('search-item')) {
-      // If description (p element) exists, change inner html to new info
-      if (document.getElementById('video-information') !== null) {
-        document.getElementById('video-information').innerHTML = `
-          <strong>${e.target.parentElement.parentElement.getAttribute('data-videoname')}</strong>
-          <br />
-          <em>Author</em> : ${e.target.parentElement.parentElement.getAttribute('data-author')}
-        `;
-      } else {
-        // If p element does not exist, create it and give it required info
-        let p = document.createElement('p');
-        p.id = 'video-information';
+      addVideoDescription(e.target.parentElement.parentElement);
+    }
+  }
 
-        p.innerHTML = `
-        <strong>${e.target.parentElement.parentElement.getAttribute('data-videoname')}</strong>
+  // function to create or modify video description. called by fillInDescription()
+  function addVideoDescription(target) {
+    // if description (p element) exists, update innerHTML
+    if (document.getElementById('video-information') !== null) {
+      document.getElementById('video-information').innerHTML = `
+          <strong>${target.getAttribute('data-videoname')}</strong>
+          <br />
+          <em>Author</em> : ${target.getAttribute('data-author')}
+        `;
+    } else {
+      // If p element does not exist, create it and give it required info and add to innerHTML
+      let p = document.createElement('p');
+      p.id = 'video-information';
+
+      p.innerHTML = `
+        <strong>${target.getAttribute('data-videoname')}</strong>
         <br/>
-        <em>Author</em> : ${e.target.parentElement.parentElement.getAttribute('data-author')}
+        <em>Author</em> : ${target.getAttribute('data-author')}
       `;
-        videoCenter.appendChild(p);
-      }
+      videoCenter.appendChild(p);
     }
   }
 
@@ -238,9 +231,8 @@
   function nextCommentsPage(e) {
     e.preventDefault();
     youtube
-      .getPrevOrNextCommentsPage(moreCommentsBtn.getAttribute('data-nextpage'), moreCommentsBtn.getAttribute('data-videoid'))
+      .getNextCommentsPage(moreCommentsBtn.getAttribute('data-nextpage'), moreCommentsBtn.getAttribute('data-videoid'))
       .then(data => ui.displayVideoComments(data.result, true))
-      // .then(data => console.log(data))
       .catch(err => console.log(err));
   }
 
