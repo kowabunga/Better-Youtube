@@ -4,7 +4,7 @@
   grid-area: results;
   margin: 1em 0;
   padding-bottom: 2rem;
-  display: grid;
+  display: none;
   grid-template-columns: 1fr;
   grid-template-areas:
     'videoPlayer'
@@ -18,7 +18,7 @@
   display: none;
   grid-area: searchResults;
   padding: 1rem;
-  transition: 0.3s ease;
+  transition: transform 0.3s ease;
   height: 100vh;
 }
 

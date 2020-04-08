@@ -1,5 +1,6 @@
 (function () {
   const body = document.body,
+    resultsContainer = document.getElementById('results-container'),
     searchResults = document.getElementById('search-results'),
     searchInput = document.getElementById('search-input'),
     showSearchResults = document.getElementById('show-search'),
@@ -16,7 +17,10 @@
     relatedVideoItems = document.getElementById('relevant-video-items'),
     submitComment = document.getElementById('submit-comment'),
     commentInput = document.getElementById('input-comment'),
-    commentsUl = document.getElementById('comments-ul');
+    commentsUl = document.getElementById('comments-ul'),
+    homePageContainer = document.getElementById('home-page-container'),
+    newsSection = document.getElementById('news'),
+    trendingSection = document.getElementById('trending');
 
   // Other variables
   let searchParameter = '';
@@ -34,6 +38,8 @@
   moreCommentsBtn.addEventListener('click', nextCommentsPage);
   searchedVideoItems.addEventListener('click', showVideo);
   relatedVideoItems.addEventListener('click', showVideo);
+  newsSection.addEventListener('click', showVideo);
+  trendingSection.addEventListener('click', showVideo);
   showSearchResults.addEventListener('click', showResults);
   closeSearchBtn.addEventListener('click', hideResults);
   submitComment.addEventListener('click', addComment);
@@ -44,9 +50,19 @@
   // Youtube Section
 
   // homepage
-  (function homePageResults() {
-    console.log('hi');
-  })();
+  function homePageResults() {
+    youtube
+      .getSearchResults('trending', 7)
+      .then(data => ui.displayVideos(data.result, 'main-trending'))
+      .catch(err => console.log(err));
+    youtube
+      .getSearchResults('news', 7)
+      .then(data => ui.displayVideos(data.result, 'main-news'))
+      .catch(err => console.log(err));
+  }
+
+  // Load homepage videos on page load
+  window.addEventListener('load', homePageResults);
 
   // show search results after they have been hidden
   function showResults(e) {
@@ -79,6 +95,8 @@
   }
 
   function submitQuery(e) {
+    console.log('clicked');
+
     e.preventDefault();
     // First check if search results is hidden, if so add the show class
     if (searchResults.classList.contains('hide-search')) {
@@ -93,10 +111,11 @@
         searchSubmit.classList.remove('search-error');
         searchedTerm.innerText = '';
       }
+      resultsContainer.style.display = 'grid';
 
       // make request to api with search parameter and display in webpage
       youtube
-        .getSearchResults(searchParameter)
+        .getSearchResults(searchParameter, 25)
         .then(data => ui.displayVideos(data.result, 'search-results'))
         .catch(err => console.log(err));
       // display searched term and clear search box
@@ -121,6 +140,7 @@
           searchedTerm.innerText = '';
         }
       }, 10000);
+      window.scrollTo(0, 0);
     }
   }
 
@@ -156,7 +176,12 @@
 
       // Move search results off page
       searchResults.classList.add('hide-search');
-      showSearchResults.style.display = 'block';
+
+      // Test if search-items UL has more than one li in it - meaning the user has searched for something.
+      // If so, set the showSearchResults button to block, otherwise keep at none
+      if (searchedVideoItems.getElementsByTagName('li').length > 0) {
+        showSearchResults.style.display = 'block';
+      }
 
       // Call function to get relevant search videos.
       youtube
@@ -179,6 +204,14 @@
       if (searchResults.classList.contains('show-search')) {
         hideResults();
       }
+
+      // Hide home page videos on showing clicked video
+      if ((homePageContainer.style.display = 'block')) {
+        homePageContainer.style.display = 'none';
+      }
+
+      // show video
+      resultsContainer.style.display = 'grid';
     }
   }
 
@@ -196,7 +229,7 @@
       // img => LI
       addVideoDescription(e.target.parentElement);
 
-      // StargetElemcond case deals with title being clicked
+      // Second case deals with title being clicked
     } else if (e.target.parentElement.parentElement.classList.contains('search-item')) {
       // target => parent => parent
       // text => p => li

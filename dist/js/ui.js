@@ -11,6 +11,8 @@ class UI {
     this.commentsUl = document.getElementById('comments-ul');
     this.nextCommentsBtn = document.getElementById('more-comments');
     this.videoCenter = document.getElementById('video-center');
+    this.newsSection = document.getElementById('news');
+    this.trendingSection = document.getElementById('trending');
   }
 
   // Display videos on page
@@ -48,6 +50,10 @@ class UI {
       // add description and display below video
       this.videoDesc.style.display = 'block';
       this.videoDesc.style.displaySearchResults = 'block';
+    } else if (pageSection === 'main-news') {
+      this.newsSection.innerHTML = output;
+    } else if (pageSection === 'main-trending') {
+      this.trendingSection.innerHTML = output;
     }
   }
 

@@ -39,7 +39,7 @@
         colorSun.style.opacity = '1';
       }
 
-      // change form area colors
+      // change area colors
       searchContainer.classList.remove('dark');
       searchResults.classList.remove('dark');
       searchInput.classList.remove('search-dark');
@@ -65,7 +65,7 @@
         colorSun.style.opacity = '0';
       }
 
-      // change form area colors
+      // change area colors
       searchContainer.classList.remove('light');
       searchResults.classList.remove('light');
       searchInput.classList.remove('search-light');
@@ -77,6 +77,4 @@
       searchSubmit.classList.add('search-dark');
     }
   }
-
-  // rework
 })();

@@ -38,11 +38,22 @@
           <span id="searched-term"></span>
         </div>
 
-        <!-- home page container
+        <!-- Home page -->
         <div id="home-page-container">
-          <ul id="trending"></ul>
-          <ul id="news"></ul>
-        </div> -->
+          <h2>Trending</h2>
+          <div id="trending-videos">
+            <button id="prevTrending"><i class="fas fa-chevron-left fa-3x"></i></button>
+            <ul id="trending"></ul>
+            <button id="nextTrending"><i class="fas fa-chevron-right fa-3x"></i></button>
+          </div>
+          <hr />
+          <h2>News</h2>
+          <div id="news-videos">
+            <button id="prevNews"><i class="fas fa-chevron-left fa-3x"></i></button>
+            <ul id="news"></ul>
+            <button id="nextNews"><i class="fas fa-chevron-right fa-3x"></i></button>
+          </div>
+        </div>
 
         <!-- results container -->
         <div id="results-container">
@@ -99,8 +110,8 @@
     <script src="https://apis.google.com/js/api.js"></script>
     <!-- Other stuff -->
     <script src="dist/js/classes.js"></script>
+    <script src="dist/js/colorModeSwitch.js"></script>
     <script src="dist/js/ui.js"></script>
     <script src="dist/js/search&Player.js"></script>
-    <script src="dist/js/colorModeSwitch.js"></script>
   </body>
 </html>

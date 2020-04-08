@@ -3,18 +3,17 @@ class Youtube {
     this.type = 'video';
     this.videosPart = 'snippet';
     this.commentsPart = 'snippet,replies';
-    this.numofSearchResults = 25;
     this.numOfRelevantVideos = 10;
     this.numOfComments = 10;
   }
 
   // Get initial search results
-  getSearchResults(searchValue) {
+  getSearchResults(searchValue, numOfSearchResults) {
     return gapi.client.youtube.search.list({
       part: this.videosPart,
       q: searchValue,
       type: this.type,
-      maxResults: this.numofSearchResults,
+      maxResults: numOfSearchResults,
     });
   }
 

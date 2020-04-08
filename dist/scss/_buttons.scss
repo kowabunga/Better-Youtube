@@ -20,6 +20,35 @@
   cursor: pointer;
   /* This setting takes the color property from the body's color property */
 }
+#prevNews,
+#prevTrending {
+  position: absolute;
+  top: 50%;
+  left: 2%;
+  transform: translate(-2%, -50%);
+  border: none;
+  background-color: transparent;
+  opacity: 30%;
+}
+
+#nextNews,
+#nextTrending {
+  position: absolute;
+  top: 50%;
+  right: 2%;
+  transform: translate(-2%, -50%);
+  border: none;
+  background-color: transparent;
+  opacity: 30%;
+}
+
+#prevNews:hover,
+#prevTrending:hover,
+#nextNews:hover,
+#nextTrending:hover {
+  cursor: pointer;
+  opacity: 75%;
+}
 
 .fa-arrow-left {
   margin-right: 15px;

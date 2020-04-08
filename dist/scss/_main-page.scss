@@ -56,3 +56,28 @@ hr {
 #name {
   color: #000;
 }
+
+#home-page-container h2 {
+  margin: 0 0 0 1em;
+}
+
+#home-page-container hr {
+  margin: 1em 0 1em 0;
+}
+
+#news-videos,
+#trending-videos {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+#trending,
+#news {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 90%;
+  margin: 0 auto;
+}
