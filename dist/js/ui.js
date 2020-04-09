@@ -13,11 +13,15 @@ class UI {
     this.videoCenter = document.getElementById('video-center');
     this.newsSection = document.getElementById('news');
     this.trendingSection = document.getElementById('trending');
+    this.prevTrendingBtn = document.getElementById('prev-trending');
+    this.nextTrendingBtn = document.getElementById('next-trending');
+    this.prevNewsBtn = document.getElementById('prev-news');
+    this.nextNewsBtn = document.getElementById('next-news');
   }
 
   // Display videos on page
   displayVideos(data, pageSection) {
-    // console.log(data);
+    console.log(data);
     let output = '';
     // loop through data items and add video, name, title, etc. to list item and append to output
     data.items.forEach(item => {
@@ -51,9 +55,17 @@ class UI {
       this.videoDesc.style.display = 'block';
       this.videoDesc.style.displaySearchResults = 'block';
     } else if (pageSection === 'main-news') {
+      // add results to page
       this.newsSection.innerHTML = output;
+
+      // make pagination buttons work
+      this.paginationButtons(data.prevPageToken, data.nextPageToken, this.prevNewsBtn, this.nextNewsBtn);
     } else if (pageSection === 'main-trending') {
+      // add results to page
       this.trendingSection.innerHTML = output;
+
+      // make pagination buttons work
+      this.paginationButtons(data.prevPageToken, data.nextPageToken, this.prevTrendingBtn, this.nextTrendingBtn);
     }
   }
 

@@ -124,6 +124,11 @@
 
       // show search results - visibility hidden => visibility visible
       searchResults.style.display = 'block';
+
+      // Hide home page on search
+      if ((homePageContainer.style.display = 'block')) {
+        homePageContainer.style.display = 'none';
+      }
       window.scrollTo(0, 0);
     } else if (searchParameter === '') {
       // If search is empty but submit is clicked/entered, add error classes
