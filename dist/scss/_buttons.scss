@@ -13,10 +13,9 @@
   padding: 5px 10px;
   margin-top: 10px;
   background-color: transparent;
-  border: 2px solid var(--btn-blue);
-  color: var(--btn-blue);
+  border: 2px solid $btn-blue;
+  color: $btn-blue;
   font-size: 0.75em;
-  transition: 0.1s ease-out;
   cursor: pointer;
   /* This setting takes the color property from the body's color property */
 }
@@ -28,7 +27,8 @@
   transform: translate(-2%, -50%);
   border: none;
   background-color: transparent;
-  opacity: 30%;
+  opacity: 0.8;
+  transition: 0.2s ease-out;
 }
 
 #next-news,
@@ -40,6 +40,7 @@
   border: none;
   background-color: transparent;
   opacity: 0.8;
+  transition: 0.2s ease-out;
 }
 
 #prev-news:hover,
@@ -59,11 +60,11 @@
 }
 
 .btn:hover {
-  box-shadow: 0 0 5px var(--btn-blue);
+  box-shadow: 0 0 5px $btn-blue;
 }
 
 .btn:active {
-  box-shadow: inset 0 0 5px var(--btn-blue);
+  box-shadow: inset 0 0 5px $btn-blue;
 }
 
 #prev-news:disabled,

@@ -28,7 +28,7 @@ hr {
   font-size: 3rem;
   text-align: center;
   text-decoration: none;
-  color: var(--btn-blue);
+  color: $btn-blue;
   box-shadow: 1px 1px 5px currentColor;
   border: 1px solid currentColor;
   border-radius: 20px;
@@ -49,7 +49,7 @@ hr {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--btn-blue);
+  background-color: $btn-blue;
   color: #fff;
 }
 
@@ -80,4 +80,7 @@ hr {
   flex-wrap: wrap;
   width: 90%;
   margin: 0 auto;
+  box-shadow: inset 0 0 5px currentColor;
+  border-radius: 5px;
+  padding: 0.8em;
 }

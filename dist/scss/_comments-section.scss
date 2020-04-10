@@ -1,5 +1,11 @@
 /* -------------------------------------------------------------- */
 /* Comments and related videos */
+#comments-sec {
+  display: none;
+  text-align: center;
+  margin-top: 1em;
+}
+
 #comments-relvideos {
   display: grid;
   column-gap: 20px;
@@ -14,7 +20,7 @@
   max-width: 66vw;
   max-height: 1000px;
   overflow: auto;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 5px currentColor;
   margin: 5px;
   border-radius: 5px;
   padding: 0 1em;

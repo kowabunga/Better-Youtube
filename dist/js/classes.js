@@ -18,12 +18,12 @@ class Youtube {
   }
 
   // Get next page of search results using next page token in API call
-  getPrevOrNextSearchPage(pageToken, searchValue) {
+  getPrevOrNextVideoPage(pageToken, searchValue, numOfResults) {
     return gapi.client.youtube.search.list({
       part: this.videosPart,
       q: searchValue,
       type: this.type,
-      maxResults: this.numofSearchResults,
+      maxResults: numOfResults,
       pageToken: pageToken,
     });
   }
@@ -118,7 +118,7 @@ class GoogleAuth {
         scope: this.scopes,
       })
       .then(() => {
-        // Constantly listen for sign in state change (helps deal with log in/out)
+        // Constantly listen for sign in state change (deal with log in/out)
         gapi.auth2.getAuthInstance().isSignedIn.listen(this.updateSignInStatus);
 
         // Handle initial sign in state, checking if user is logged in

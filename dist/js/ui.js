@@ -17,6 +17,7 @@ class UI {
     this.nextTrendingBtn = document.getElementById('next-trending');
     this.prevNewsBtn = document.getElementById('prev-news');
     this.nextNewsBtn = document.getElementById('next-news');
+    this.showResults = this.showResults.bind(this);
   }
 
   // Display videos on page
@@ -222,5 +223,39 @@ class UI {
       prevBtn.hasAttribute('data-prevpage') ? (prevBtn.disabled = false) : (prevBtn.disabled = true);
       nextBtn.hasAttribute('data-nextpage') ? (nextBtn.disabled = false) : (nextBtn.disabled = true);
     }
+  }
+
+  // show search results after they have been hidden
+  showResults(e) {
+    body.style.overflow = 'hidden';
+    e.preventDefault();
+    if (searchResults.classList.contains('hide-search')) {
+      searchResults.classList.remove('hide-search');
+      searchResults.classList.add('show-search');
+      closeSearchBtn.style.visibility = 'visible';
+    } else {
+      this.hideResults();
+    }
+
+    // this if/else controls the background color based on light/dark mode selection
+    if (body.classList.contains('dark')) {
+      searchResults.classList.remove('light');
+      searchResults.classList.add('dark');
+    } else {
+      searchResults.classList.remove('dark');
+      searchResults.classList.add('light');
+    }
+  }
+
+  // NOTE
+  // NOTE
+  // TEST HIDE RESULTS FUNCTIONALITY
+
+  // hide search results if they are shown
+  hideResults() {
+    body.style.overflow = 'auto';
+    searchResults.classList.remove('show-search');
+    searchResults.classList.add('hide-search');
+    closeSearchBtn.style.visibility = 'hidden';
   }
 }

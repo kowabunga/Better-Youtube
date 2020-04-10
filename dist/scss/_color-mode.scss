@@ -1,23 +1,23 @@
 /* -------------------------------------------------------------- */
 /* Light/dark mode color classes */
 .dark {
-  background-color: var(--main-dark-color);
-  color: var(--main-light-color);
+  background-color: $main-dark-color;
+  color: $main-light-color;
 }
 
 .light {
-  background-color: var(--main-light-color);
-  color: var(--main-dark-color);
+  background-color: $main-light-color;
+  color: $main-dark-color;
 }
 
 .search-dark {
-  background-color: var(--search-bar-dark);
-  color: var(--main-light-color);
+  background-color: $search-bar-dark;
+  color: $main-light-color;
 }
 
 .search-light {
-  background-color: var(--search-bar-light);
-  color: var(--main-dark-color);
+  background-color: $search-bar-light;
+  color: $main-dark-color;
 }
 
 /* -------------------------------------------------------------- */
@@ -33,7 +33,7 @@
   display: flex;
   align-items: center;
   z-index: 1;
-  border: 1px solid var(--btn-blue);
+  border: 1px solid $btn-blue;
 }
 
 #color-circle {
@@ -49,7 +49,7 @@
   height: 25px;
   border-radius: 50%;
   transition: 0.2s linear;
-  background-color: var(--btn-blue);
+  background-color: $btn-blue;
 }
 
 #color-mode-icon-sun {
