@@ -14,9 +14,8 @@
 
 @media (max-width: 800px) {
   #brand {
-    width: 300px;
     text-align: start;
-    margin: 0.5rem 0 0.5rem 1rem;
+    margin: 1em auto 1em auto;
   }
 
   #search-results {
@@ -44,9 +43,22 @@
   .show-search {
     top: 337px;
   }
+  #prev-news,
+  #prev-trending {
+    left: 1px;
+  }
+  #next-news,
+  #next-trending {
+    right: 1px;
+  }
 }
 
 @media (max-width: 500px) {
+  #brand {
+    width: 90%;
+    margin-top: 1em;
+  }
+
   #search-container {
     height: 125px;
   }
@@ -90,19 +102,5 @@
 
   .show-search {
     top: 362px;
-  }
-}
-
-/* This singular query is for really small screens such that the logo would overlap with the color mode slider. This pushes the logo down so that they don't overlap. Also other things.*/
-@media (max-width: 410px) {
-  #brand {
-    margin-top: 1em;
-  }
-  .hide-search {
-    top: 402px;
-  }
-
-  .show-search {
-    top: 402px;
   }
 }

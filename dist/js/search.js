@@ -1,21 +1,20 @@
 (function () {
-  // Other variables
-  let searchParameter = '';
   /* ------------------------------------------------------------------------- */
   // Init classes
 
   // Event listeners
   searchSubmit.addEventListener('click', submitQuery);
   showSearchResults.addEventListener('click', ui.showResults);
+  closeSearchBtn.addEventListener('click', ui.hideResults);
 
   // homepage
   function setUpHomePage() {
     youtube
-      .getSearchResults('trending', 7)
+      .getSearchResults('trending', 12)
       .then(data => ui.displayVideos(data.result, 'main-trending'))
       .catch(err => console.log(err));
     youtube
-      .getSearchResults('news', 7)
+      .getSearchResults('news', 12)
       .then(data => ui.displayVideos(data.result, 'main-news'))
       .catch(err => console.log(err));
   }

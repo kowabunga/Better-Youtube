@@ -36,7 +36,7 @@
       // Test if search-items UL has more than one li in it - meaning the user has searched for something.
       // If so, set the showSearchResults button to block, otherwise keep at none
       if (searchedVideoItems.getElementsByTagName('li').length > 0) {
-        showSearchResults.style.display = 'block';
+        showSearchResults.style.visibility = 'visible';
       }
 
       // Call function to get relevant search videos.

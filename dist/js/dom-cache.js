@@ -18,7 +18,7 @@ const body = document.body,
   videoSection = document.getElementById('video'),
   videoCenter = document.getElementById('video-center'),
   videoPlayer = document.getElementById('player'),
-  relatedVideoItems = document.getElementById('relevant-video-items'),
+  relatedVideoItems = document.getElementById('relevant-videos-items'),
   commentsUl = document.getElementById('comments-ul'),
   homePageContainer = document.getElementById('home-page-container'),
   newsSection = document.getElementById('news'),
@@ -38,3 +38,6 @@ const body = document.body,
 const youtube = new Youtube(),
   ui = new UI(),
   googleAuth = new GoogleAuth();
+
+// Other variables
+let searchParameter = '';

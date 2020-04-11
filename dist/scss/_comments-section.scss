@@ -1,29 +1,32 @@
 /* -------------------------------------------------------------- */
 /* Comments and related videos */
-#comments-sec {
-  display: none;
-  text-align: center;
-  margin-top: 1em;
-}
 
-#comments-relvideos {
-  display: grid;
-  column-gap: 20px;
-  grid-template-columns: 2fr 1fr;
-  grid-template-areas: 'comments relVideos';
-  margin: 5px;
-}
+#comments {
+  &-sec {
+    display: none;
+    text-align: center;
+    margin-top: 1em;
+  }
 
-#comments-section {
-  grid-area: comments;
-  /* max width is added because some comments can just *break* the grid template column entirely */
-  max-width: 66vw;
-  max-height: 1000px;
-  overflow: auto;
-  box-shadow: inset 0 0 5px currentColor;
-  margin: 5px;
-  border-radius: 5px;
-  padding: 0 1em;
+  &-relvideos {
+    display: grid;
+    column-gap: 20px;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas: 'comments relVideos';
+    margin: 5px;
+  }
+
+  &-section {
+    grid-area: comments;
+    /* max width is added because some comments can just *break* the grid template column entirely */
+    max-width: 66vw;
+    max-height: 1000px;
+    overflow: auto;
+    box-shadow: inset 0 0 5px currentColor;
+    margin: 5px;
+    border-radius: 5px;
+    padding: 0 1em;
+  }
 }
 
 /* add comment styles */
@@ -35,12 +38,11 @@
 
 .reply-form {
   display: none;
-}
-
-.reply-form.show {
-  display: block;
-  display: flex;
-  margin: 1em 0;
+  &.show {
+    display: block;
+    display: flex;
+    margin: 1em 0;
+  }
 }
 
 .input-box {
@@ -54,28 +56,32 @@
   padding: 7px;
 }
 
-#input-comment:hover,
-#input-comment:focus {
-  border-bottom: 1px solid rgba(2, 129, 225, 0.75);
+#input-comment {
+  &:focus,
+  &:hover {
+    border-color: $btn-blue;
+  }
 }
 
-#submit-reply,
-#submit-comment {
-  margin-left: 2%;
-  width: 28%;
-  border: none;
-  font-size: 1em;
-  border-radius: 5px;
-  color: currentColor;
-  background-color: transparent;
-  border: 2px solid rgba(2, 129, 225, 0.75);
-  padding: 7px;
-  transition: 0.1s ease-out;
-  cursor: pointer;
-}
+#submit {
+  &-reply,
+  &-comment {
+    margin-left: 2%;
+    width: 28%;
+    border: none;
+    font-size: 1em;
+    border-radius: 5px;
+    color: currentColor;
+    background-color: transparent;
+    border: 2px solid $btn-blue;
+    padding: 7px;
+    transition: 0.1s ease-out;
+    cursor: pointer;
+  }
 
-#submit-comment:active {
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.75);
+  &-comment:active {
+    box-shadow: inset 0 0 5px $btn-blue;
+  }
 }
 
 #comments-ul,
@@ -85,12 +91,11 @@
   list-style-type: none;
 }
 
-.replies-ul li {
-  list-style-type: none;
-}
-
 .replies-ul {
   display: none;
+  li {
+    list-style-type: none;
+  }
 }
 
 .comment {
@@ -100,24 +105,24 @@
   padding: 0.75em;
   overflow: none;
   position: relative;
-}
 
-.comment .author {
-  font-weight: bold;
-}
+  .author {
+    font-weight: bold;
 
-.comment .author-comment {
-  font-size: 0.9em;
-  margin-left: 5%;
-  word-wrap: break-word;
-  text-overflow: ellipsis;
-}
+    &-comment {
+      font-size: 0.9em;
+      margin-left: 5%;
+      word-wrap: break-word;
+      text-overflow: ellipsis;
+    }
 
-#comment-btns {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  transform: translate(-20px, -20px);
+    #comment-btns {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      transform: translate(-20px, -20px);
+    }
+  }
 }
 
 .view-replies {
@@ -146,28 +151,28 @@
   left: 94%;
   transform: scale(1.5);
   color: currentColor;
-}
 
-[data-tooltip]::after {
-  position: absolute;
-  width: 50px;
-  left: -150%;
-  font-size: 0.75em;
-  content: attr(data-tooltip);
-  color: white;
-  background-color: rgba(0, 0, 0, 0.75);
-  padding: 1px 3px;
-  border-radius: 10px;
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.3s, transform 0.2s;
-}
+  &:hover {
+    color: $btn-blue;
+  }
 
-[data-tooltip]:hover {
-  color: rgb(2, 129, 225);
-}
+  &:hover::after {
+    opacity: 1;
+    visibility: visible;
+  }
 
-[data-tooltip]:hover::after {
-  opacity: 1;
-  visibility: visible;
+  &::after {
+    position: absolute;
+    width: 50px;
+    left: -150%;
+    font-size: 0.75em;
+    content: attr(data-tooltip);
+    color: white;
+    background-color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    border-radius: 10px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.2s;
+  }
 }

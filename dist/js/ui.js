@@ -6,7 +6,7 @@ class UI {
     this.prevSearchBtn = document.getElementById('prev-search');
     this.nextSearchBtn = document.getElementById('next-search');
     this.relevantVideos = document.getElementById('relevant-videos');
-    this.relevantVideoItems = document.getElementById('relevant-video-items');
+    this.relevantVideoItems = document.getElementById('relevant-videos-items');
     this.videoDesc = document.getElementById('video-desc');
     this.commentsUl = document.getElementById('comments-ul');
     this.nextCommentsBtn = document.getElementById('more-comments');
@@ -17,7 +17,6 @@ class UI {
     this.nextTrendingBtn = document.getElementById('next-trending');
     this.prevNewsBtn = document.getElementById('prev-news');
     this.nextNewsBtn = document.getElementById('next-news');
-    this.showResults = this.showResults.bind(this);
   }
 
   // Display videos on page
@@ -226,7 +225,8 @@ class UI {
   }
 
   // show search results after they have been hidden
-  showResults(e) {
+  // arrow function is used to bind class's 'this' to function to use hideResults() within
+  showResults = e => {
     body.style.overflow = 'hidden';
     e.preventDefault();
     if (searchResults.classList.contains('hide-search')) {
@@ -245,11 +245,7 @@ class UI {
       searchResults.classList.remove('dark');
       searchResults.classList.add('light');
     }
-  }
-
-  // NOTE
-  // NOTE
-  // TEST HIDE RESULTS FUNCTIONALITY
+  };
 
   // hide search results if they are shown
   hideResults() {

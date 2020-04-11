@@ -3,21 +3,21 @@
 .dark {
   background-color: $main-dark-color;
   color: $main-light-color;
+
+  &-search {
+    background-color: $search-bar-dark;
+    color: $main-light-color;
+  }
 }
 
 .light {
   background-color: $main-light-color;
   color: $main-dark-color;
-}
 
-.search-dark {
-  background-color: $search-bar-dark;
-  color: $main-light-color;
-}
-
-.search-light {
-  background-color: $search-bar-light;
-  color: $main-dark-color;
+  &-search {
+    background-color: $search-bar-light;
+    color: $main-dark-color;
+  }
 }
 
 /* -------------------------------------------------------------- */
@@ -34,43 +34,43 @@
   align-items: center;
   z-index: 1;
   border: 1px solid $btn-blue;
-}
 
-#color-circle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.8em;
-  position: absolute;
-  top: 50%;
-  left: 5%;
-  transform: translate(-5%, -50%);
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  transition: 0.2s linear;
-  background-color: $btn-blue;
-}
+  &-icon-sun {
+    position: absolute;
+    top: 30%;
+    right: 10%;
+    transform: scale(1.2) translate(-10%, -20%);
+    transition: opacity 0.3s ease-out;
+  }
 
-#color-mode-icon-sun {
-  position: absolute;
-  top: 30%;
-  right: 10%;
-  transform: scale(1.2) translate(-10%, -20%);
-  transition: opacity 0.3s ease-out;
-}
+  &-icon-moon {
+    position: absolute;
+    top: 50%;
+    left: 15%;
+    transform: translate(-15%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+  }
 
-#color-mode-icon-moon {
-  position: absolute;
-  top: 50%;
-  left: 15%;
-  transform: translate(-15%, -50%);
-  opacity: 0;
-  transition: opacity 0.3s ease-out;
-}
+  #color-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8em;
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translate(-5%, -50%);
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    transition: 0.2s linear;
+    background-color: $btn-blue;
 
-#color-circle.right {
-  top: 50%;
-  left: 95%;
-  transform: translate(-95%, -50%);
+    &.right {
+      top: 50%;
+      left: 95%;
+      transform: translate(-95%, -50%);
+    }
+  }
 }

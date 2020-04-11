@@ -29,13 +29,13 @@ function changeColorMode() {
     // change area colors
     searchContainer.classList.remove('dark');
     searchResults.classList.remove('dark');
-    searchInput.classList.remove('search-dark');
-    searchSubmit.classList.remove('search-dark');
+    searchInput.classList.remove('dark-search');
+    searchSubmit.classList.remove('dark-search');
 
     searchContainer.classList.add('light');
     searchResults.classList.add('light');
-    searchInput.classList.add('search-light');
-    searchSubmit.classList.add('search-light');
+    searchInput.classList.add('light-search');
+    searchSubmit.classList.add('light-search');
   } else if (body.classList.contains('light')) {
     //   Change background color/text color light->dark
     body.classList.remove('light');
@@ -55,12 +55,12 @@ function changeColorMode() {
     // change area colors
     searchContainer.classList.remove('light');
     searchResults.classList.remove('light');
-    searchInput.classList.remove('search-light');
-    searchSubmit.classList.remove('search-light');
+    searchInput.classList.remove('light-search');
+    searchSubmit.classList.remove('light-search');
 
     searchContainer.classList.add('dark');
     searchResults.classList.add('dark');
-    searchInput.classList.add('search-dark');
-    searchSubmit.classList.add('search-dark');
+    searchInput.classList.add('dark-search');
+    searchSubmit.classList.add('dark-search');
   }
 }
