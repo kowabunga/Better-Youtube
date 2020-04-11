@@ -11,10 +11,15 @@ This idea came from the idea that it can be annoying to be searching videos, acc
   - Ability to click button to go see search results without having to reload page
 - Paginating through said videos
 - Displaying video on page without reloading and losing current search position
+- Logging in with Google for the following:
+  - Adding comments
+  - Replying to comments
 
 # Adding in due time:
 
 - Numbered pagination
 - Ability to get user data
   - ~~Example reason: aforementioned looking through search history~~ -Deprecated by Youtube.
-- Whatever else I think of as this goes on
+- Logging in with Google for:
+  - Liking/disliking videos
+  - General Youtube account management.
