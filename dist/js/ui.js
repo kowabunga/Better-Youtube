@@ -17,6 +17,8 @@ class UI {
     this.nextTrendingBtn = document.getElementById('next-trending');
     this.prevNewsBtn = document.getElementById('prev-news');
     this.nextNewsBtn = document.getElementById('next-news');
+    // Need to bind *this* instead of arrow function - Safari evidently does not support arrow func in class
+    this.showResults = this.showResults.bind(this);
   }
 
   // Display videos on page
@@ -226,7 +228,7 @@ class UI {
 
   // show search results after they have been hidden
   // arrow function is used to bind class's 'this' to function to use hideResults() within
-  showResults = e => {
+  showResults(e) {
     body.style.overflow = 'hidden';
     e.preventDefault();
     if (searchResults.classList.contains('hide-search')) {
@@ -245,7 +247,7 @@ class UI {
       searchResults.classList.remove('dark');
       searchResults.classList.add('light');
     }
-  };
+  }
 
   // hide search results if they are shown
   hideResults() {
