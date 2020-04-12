@@ -2,13 +2,16 @@
 /* All Media Queries */
 
 @media (max-width: 1100px) {
-  #comments-relvideos {
-    grid-template-columns: 1fr;
-    grid-template-areas: 'relVideos' 'comments';
-  }
-  #comments-section {
-    margin: 0 5%;
-    max-width: 100vw;
+  #comments {
+    &-relvideos {
+      grid-template-columns: 1fr;
+      grid-template-areas: 'relVideos' 'comments';
+    }
+
+    &-section {
+      margin: 0 5%;
+      max-width: 100vw;
+    }
   }
 }
 
@@ -20,6 +23,11 @@
 
   #search-results {
     border-right: none;
+
+    &.show-search > #search-items {
+      height: calc(100vh - 435px);
+      overflow-y: auto;
+    }
   }
 
   #search-items {
@@ -28,14 +36,10 @@
     justify-content: space-evenly;
   }
 
-  #search-results.show-search > #search-items {
-    height: calc(100vh - 425px);
-    overflow-y: auto;
-  }
-
   .buttons {
     margin: 0 auto;
   }
+
   .hide-search {
     top: 337px;
   }
@@ -89,7 +93,7 @@
   }
 
   #search-results.show-search > #search-items {
-    height: calc(100vh - 450px);
+    height: calc(100vh - 460px);
     overflow-y: auto;
   }
 

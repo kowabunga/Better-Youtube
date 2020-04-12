@@ -21,6 +21,16 @@
     padding: 1rem;
     transition: transform 0.3s ease;
     height: 100vh;
+
+    #results-term-field {
+      text-align: center;
+    }
+
+    // Target search-items when search-results has class of show-search
+    &.show-search > #search-items {
+      height: calc(100vh - 375px);
+      overflow-y: auto;
+    }
   }
 
   &-items {
@@ -35,12 +45,6 @@
     border-radius: 5px;
     overflow-y: auto;
     margin: 5px 5px 0px 5px;
-  }
-
-  // Target search-items when search-results has class of show-search
-  .show-search > #search-items {
-    height: calc(100vh - 375px);
-    overflow-y: auto;
   }
 }
 
@@ -74,8 +78,6 @@
   text-overflow: ellipsis;
   cursor: pointer;
 }
-
-
 
 .hide-search {
   position: absolute;
