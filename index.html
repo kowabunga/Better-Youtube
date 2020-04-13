@@ -22,9 +22,9 @@
       <!-- header section -->
       <header id="head">
         <a href="#" id="brand">Youtube, but better.</a>
-        <button class="btn" id="show-search">Search Results</button>
-        <button class="btn" id="login">Login</button>
-        <button class="btn" id="logout">Logout</button>
+        <button class="btn-square" id="show-search">Search Results</button>
+        <button class="btn-square" id="login">Login</button>
+        <button class="btn-square" id="logout">Logout</button>
       </header>
 
       <!-- main container -->
@@ -42,16 +42,16 @@
         <div id="home-page-container">
           <h2>Trending</h2>
           <div id="trending-videos">
-            <button id="prev-trending"><i class="fas fa-chevron-left fa-3x"></i></button>
+            <button class="btn" id="prev-trending"><i class="btn fas fa-chevron-left fa-3x"></i></button>
             <ul id="trending"></ul>
-            <button id="next-trending"><i class="fas fa-chevron-right fa-3x"></i></button>
+            <button class="btn" id="next-trending"><i class="btn fas fa-chevron-right fa-3x"></i></button>
           </div>
           <br />
           <h2>News</h2>
           <div id="news-videos">
-            <button id="prev-news"><i class="fas fa-chevron-left fa-3x"></i></button>
+            <button class="btn" id="prev-news"><i class="fas fa-chevron-left fa-3x"></i></button>
             <ul id="news"></ul>
-            <button id="next-news"><i class="fas fa-chevron-right fa-3x"></i></button>
+            <button class="btn" id="next-news"><i class="fas fa-chevron-right fa-3x"></i></button>
           </div>
         </div>
 
@@ -61,12 +61,11 @@
             <span id="window-close">&times;</span>
             <div id="results-term-field"></div>
             <hr />
+            <button class="btn" id="prev-search"><i class="fas fa-chevron-left fa-3x"></i></button>
             <ul id="search-items"></ul>
+            <button class="btn" id="next-search"><i class="fas fa-chevron-right fa-3x"></i></button>
+
             <!-- pagination buttons -->
-            <div class="buttons">
-              <button class="btn" id="prev-search"><i class="fas fa-chevron-left"></i>Prev</button>
-              <button class="btn" id="next-search">Next<i class="fas fa-chevron-right"></i></button>
-            </div>
           </div>
 
           <!-- video player -->
@@ -87,9 +86,7 @@
                     <input type="submit" id="submit-comment" class="btn" value="Add Comment" />
                   </form>
                   <ul id="comments-ul"></ul>
-                  <div class="buttons">
-                    <button class="btn" id="more-comments">Load More</button>
-                  </div>
+                  <button class="btn-square" id="more-comments">Load More</button>
                 </div>
                 <div id="relevant-videos-section">
                   <ul id="relevant-videos-items"></ul>
@@ -109,13 +106,13 @@
     <!-- Google API Client -->
     <script src="https://apis.google.com/js/api.js"></script>
     <!-- Other stuff -->
-    <script src="dist/js/classes.js"></script>
-    <script src="dist/js/ui.js"></script>
-    <script src="dist/js/dom-cache.js"></script>
-    <script src="dist/js/color-mode.js"></script>
-    <script src="dist/js/comments.js"></script>
-    <script src="dist/js/search.js"></script>
-    <script src="dist/js/player.js"></script>
-    <script src="dist/js/pagination.js"></script>
+    <script src="dist/js/searchAndVideo/classes.js"></script>
+    <script src="dist/js/searchAndVideo/ui.js"></script>
+    <script src="dist/js/searchAndVideo/dom-cache.js"></script>
+    <script src="dist/js/searchAndVideo/color-mode.js"></script>
+    <script src="dist/js/searchAndVideo/comments.js"></script>
+    <script src="dist/js/searchAndVideo/search.js"></script>
+    <script src="dist/js/searchAndVideo/player.js"></script>
+    <script src="dist/js/searchAndVideo/pagination.js"></script>
   </body>
 </html>

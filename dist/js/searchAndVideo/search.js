@@ -46,15 +46,15 @@
 
       // make request to api with search parameter and display in webpage
       youtube
-        .getSearchResults(searchParameter, 25)
+        .getSearchResults(searchParameter, 12)
         .then(data => ui.displayVideos(data.result, 'search-results'))
         .catch(err => console.log(err));
       // display searched term and clear search box
       resultsTermDisplay.innerText = `Results for: ${searchParameter}`;
       searchInput.value = '';
 
-      // show search results - visibility hidden => visibility visible
-      searchResults.style.display = 'block';
+      // show search results - none => flex
+      searchResults.style.display = 'flex';
 
       // Hide home page on search
       if ((homePageContainer.style.display = 'block')) {

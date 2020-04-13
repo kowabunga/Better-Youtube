@@ -73,6 +73,7 @@ hr {
   display: flex;
   justify-content: center;
   position: relative;
+  height: 475px;
 
   #trending,
   #news {
@@ -85,5 +86,6 @@ hr {
     box-shadow: inset 0 0 5px currentColor;
     border-radius: 5px;
     padding: 0.8em;
+    overflow: auto;
   }
 }

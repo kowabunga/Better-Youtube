@@ -17,13 +17,12 @@ class UI {
     this.nextTrendingBtn = document.getElementById('next-trending');
     this.prevNewsBtn = document.getElementById('prev-news');
     this.nextNewsBtn = document.getElementById('next-news');
-    // Need to bind *this* instead of arrow function - Safari evidently does not support arrow func in class
+    // Need to bind *this* instead of arrow function - Safari evidently does not support arrow func in class in expected manner
     this.showResults = this.showResults.bind(this);
   }
 
   // Display videos on page
   displayVideos(data, pageSection) {
-    console.log(data);
     let output = '';
     // loop through data items and add video, name, title, etc. to list item and append to output
     data.items.forEach(item => {
@@ -43,11 +42,6 @@ class UI {
 
       // make pagination buttons work
       this.paginationButtons(data.prevPageToken, data.nextPageToken, this.prevSearchBtn, this.nextSearchBtn);
-
-      // Display buttons - these are display:none by default since they aren't needed when no search results are present.
-      if ((this.buttons[0].style.display = 'none')) {
-        this.buttons[0].style.display = 'flex';
-      }
     } else if (pageSection === 'relevant-videos') {
       // add output to section and make section visible on website
       this.relevantVideoItems.innerHTML = output;
@@ -73,7 +67,6 @@ class UI {
 
   // Display video comments on page
   displayVideoComments(data, getAllComments) {
-    console.log(data);
     const commentsList = data.items;
     let output = '';
 
@@ -109,11 +102,6 @@ class UI {
       // make pagination buttons work, pass in undefined for prevPage information. First check if there are comments (date.items will be greater than 0)
       if (data.items.length > 0) {
         this.paginationButtons(undefined, data.nextPageToken, undefined, this.nextCommentsBtn, data.items[0].snippet.videoId);
-
-        // Display buttons - these are display:none by default since they aren't needed when no search results are present.
-        if ((this.buttons[1].style.display = 'none')) {
-          this.buttons[1].style.display = 'flex';
-        }
       }
     } else {
       const author = data.snippet.topLevelComment.snippet.authorDisplayName;
@@ -196,8 +184,6 @@ class UI {
   }
 
   updateReplies(data, commentLi, commentId) {
-    console.log(data);
-    console.log(commentLi);
     if (commentLi.lastElementChild.classList.contains('replies-ul')) {
       commentLi.lastElementChild.insertAdjacentHTML('afterbegin', this.addReply(data.snippet, commentId, false));
     } else {
@@ -227,7 +213,6 @@ class UI {
   }
 
   // show search results after they have been hidden
-  // arrow function is used to bind class's 'this' to function to use hideResults() within
   showResults(e) {
     body.style.overflow = 'hidden';
     e.preventDefault();
