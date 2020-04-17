@@ -69,7 +69,7 @@
   animation: fade 1s forwards;
 
   &:hover {
-    background-color: lighten($color: $btn-blue, $amount: 50);
+    background-color: $btn-blue;
     border-radius: 10px;
     z-index: 5;
   }

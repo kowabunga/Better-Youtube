@@ -31,7 +31,9 @@ const body = document.body,
   colorSun = document.getElementById('color-mode-icon-sun'),
   colorMoon = document.getElementById('color-mode-icon-moon'),
   searchContainer = document.getElementById('search-container'),
-  brand = document.getElementById('brand');
+  brand = document.getElementById('brand'),
+  likeBtn = document.getElementById('like'),
+  dislikeBtn = document.getElementById('dislike');
 
 /* ------------------------------------------------------------------------- */
 // classes

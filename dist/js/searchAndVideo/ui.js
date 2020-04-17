@@ -241,4 +241,27 @@ class UI {
     searchResults.classList.add('hide-search');
     closeSearchBtn.style.visibility = 'hidden';
   }
+
+  // START HERE
+  editRating(result, clickedBtn) {
+    const likeBtn = document.getElementById('like'),
+      dislikeBtn = document.getElementById('dislike');
+    if (!result) {
+      if (clickedBtn.id === 'like') {
+        likeBtn.classList.add('liked');
+        likeBtn.innerText = 'Liked';
+        if (dislikeBtn.classList.contains('disliked')) {
+          dislikeBtn.classList.remove('disliked');
+          dislikeBtn.innerText = 'Dislike';
+        }
+      } else if (clickedBtn.id === 'dislike') {
+        dislikeBtn.classList.add('disliked');
+        dislikeBtn.innerText = 'Disliked';
+        if (likeBtn.classList.contains('liked')) {
+          likeBtn.classList.remove('liked');
+          likeBtn.innerText = 'Like';
+        }
+      }
+    }
+  }
 }

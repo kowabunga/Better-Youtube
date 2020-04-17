@@ -13,7 +13,6 @@
     padding: 5px 10px;
     margin-top: 10px;
     border: 2px solid $btn-blue;
-    color: $btn-blue;
     font-size: 0.75em;
 
     &:hover {
@@ -87,14 +86,6 @@
   transform: translate(-2%, -50%);
 }
 
-.fa-arrow-left {
-  margin-right: 15px;
-}
-
-.fa-arrow-right {
-  margin-left: 15px;
-}
-
 #show-search {
   visibility: hidden;
   margin: 0 0 12px 12px;
@@ -114,4 +105,20 @@
 
 #logout {
   display: none;
+}
+
+#like,
+#dislike {
+  font-size: 1rem;
+  width: 93px;
+}
+
+.liked {
+  color: rgb(39, 241, 32);
+  border-color: rgb(39, 241, 32);
+}
+
+.disliked {
+  color: crimson;
+  border-color: crimson;
 }

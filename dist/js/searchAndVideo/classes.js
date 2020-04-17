@@ -87,12 +87,32 @@ class Youtube {
       order: 'relevance',
     });
   }
+
+  videoStatistics(videoId) {
+    return gapi.client.youtube.videos.list({
+      part: 'statistics',
+      id: videoId,
+    });
+  }
+
+  rateVideo(videoId, rating) {
+    return gapi.client.youtube.videos.rate({
+      id: videoId,
+      rating: rating,
+    });
+  }
+
+  getVideoRating(videoId) {
+    return gapi.client.youtube.videos.getRating({
+      id: videoId,
+    });
+  }
 }
 
 class GoogleAuth {
   constructor() {
-    this.apiKey = 'AIzaSyDT-GY5mQDwMvadzcWYtu-cRFbNecqowZs';
-    this.clientId = '332565945864-n1pli34f5pr6q51h03s7ju67bjjc2vja.apps.googleusercontent.com';
+    this.apiKey = 'AIzaSyBjUVV2VX72DpzdLlEt7F0jGZkcizCZ95w';
+    this.clientId = '332565945864-sk1ns9m4nh05h6nis2cthopv43nl394e.apps.googleusercontent.com';
     this.scopes = 'https://www.googleapis.com/auth/youtube.force-ssl';
     // Need to bind this to initClient function to be able to call apiKey and clientKey from inner function gapi.client.init()
     this.initClient = this.initClient.bind(this);

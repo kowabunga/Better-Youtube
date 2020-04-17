@@ -95,24 +95,65 @@
 
   // function to create or modify video description. called by fillInDescription()
   function addVideoDescription(target) {
+    // Calls getVideoRating to get authorized user rating, then gets video statistics once first api call has returned and calls function to build and populate video description section with video info, statistics, and like/dislike buttons
+    // Like/dislike function is enabled only if user is logged in
+    if (googleAuth.checkIfSignedIn()) {
+      youtube
+        .getVideoRating(target.getAttribute('data-videoid'))
+        .then(data =>
+          youtube
+            .videoStatistics(data.result.items[0].videoId)
+            .then(statData => videoDescBuilder(target, statData, data.result.items[0].rating))
+            .catch(err => console.log(err))
+        )
+        .catch(err => console.log(err));
+    } else {
+      // If user is not logged in, still display video statistics
+      youtube
+        .videoStatistics(target.getAttribute('data-videoid'))
+        .then(statData => videoDescBuilder(target, statData))
+        .catch(err => console.log(err));
+    }
+  }
+
+  // function to build video description and statistic information
+  function videoDescBuilder(target, data, rating) {
+    console.log(target, data, rating);
     // if description (p element) exists, update innerHTML
     if (document.getElementById('video-information') !== null) {
-      document.getElementById('video-information').innerHTML = `
-          <strong>${target.getAttribute('data-videoname')}</strong>
-          <br />
-          <em>Author</em> : ${target.getAttribute('data-author')}
-        `;
+      document.getElementById('video-information').innerHTML = videoDescItemsBuilder(target, data, rating);
     } else {
       // If p element does not exist, create it and give it required info and add to innerHTML
       let p = document.createElement('p');
       p.id = 'video-information';
 
-      p.innerHTML = `
-        <strong>${target.getAttribute('data-videoname')}</strong>
-        <br/>
-        <em>Author</em> : ${target.getAttribute('data-author')}
-      `;
+      p.innerHTML = videoDescItemsBuilder(target, data, rating);
       videoCenter.appendChild(p);
     }
+  }
+
+  // helper function to construct actual content for above function
+  function videoDescItemsBuilder(target, videoStats, rating) {
+    const stats = videoStats.result.items[0].statistics;
+    return `
+      <div>
+        <strong>${target.getAttribute('data-videoname')}</strong>
+        <br />
+        <em>Author</em> : ${target.getAttribute('data-author')}
+      </div>
+      <div>
+        <p id="v-views">Views: ${stats.viewCount}</p>
+        <p id="v-likes">Likes : ${stats.likeCount}</p>
+        <p id="v-dislikes" >Dislikes : ${stats.dislikeCount}</p>
+      </div>
+      <div>
+        <button class="btn btn-square ${rating === 'like' ? 'liked' : ''}" id="like" data-videoid = ${target.getAttribute('data-videoid')}><i class="far fa-thumbs-up"></i> ${
+      rating === 'like' ? 'Liked' : 'Like'
+    }</button>
+        <button class="btn btn-square ${rating === 'dislike' ? 'disliked' : ''}" id="dislike" data-videoid = ${target.getAttribute('data-videoid')}><i class="far fa-thumbs-down"></i> ${
+      rating === 'dislike' ? 'Disliked' : 'Dislike'
+    }</button>
+      </div>
+          `;
   }
 })();
