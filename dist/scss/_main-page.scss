@@ -24,7 +24,6 @@ hr {
   cursor: pointer;
   display: block;
   margin: 1rem 0 1rem 3rem;
-  padding: 1rem;
   font-size: 3rem;
   text-align: center;
   text-decoration: none;
@@ -32,9 +31,13 @@ hr {
   box-shadow: 1px 1px 5px currentColor;
   border: 1px solid currentColor;
   border-radius: 20px;
-  width: 510px;
+  width: 400px;
   cursor: pointer;
   text-decoration: none;
+
+  #my {
+    font-size: 2em;
+  }
 }
 
 /* -------------------------------------------------------------- */

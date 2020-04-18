@@ -9,18 +9,12 @@
     }
 
     &-section {
-      margin: 0 5%;
       max-width: 100vw;
     }
   }
 }
 
 @media (max-width: 800px) {
-  #brand {
-    text-align: start;
-    margin: 1em auto 1em auto;
-  }
-
   #search-results {
     border-right: none;
 
@@ -57,9 +51,8 @@
   }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 590px) {
   #brand {
-    width: 90%;
     margin-top: 1em;
   }
 
@@ -90,6 +83,7 @@
     display: none;
     flex-direction: column;
     align-items: center;
+    top: calc(320px + 4rem);
   }
 
   #search-results.show-search > #search-items {

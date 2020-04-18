@@ -22,8 +22,7 @@
     flex-direction: column;
     justify-content: center;
     position: absolute;
-    top: 280px !important;
-    top: 0;
+    top: 320px;
     right: 0;
     left: 0;
     bottom: 3rem;
@@ -47,6 +46,7 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 10px;
+    height: 470px;
     width: 90%;
     box-shadow: inset 0 0 5px currentColor;
     border-radius: 5px;
