@@ -244,42 +244,41 @@ class UI {
 
   // START HERE
   editRating(result, clickedBtn) {
-    const likeBtn = document.getElementById('like'),
-      dislikeBtn = document.getElementById('dislike');
     // result value is returned as false by api if it succeeds (for some reason...), need true to continue
     if (!result) {
-      // if button clicked is like, add like class to button and change text.
+      // if clicked button is like button
       if (clickedBtn.id === 'like') {
         // If button was already pressed, revert to unclicked status
         if (clickedBtn.classList.contains('liked')) {
-          likeBtn.classList.remove('liked');
-          likeBtn.innerText = 'Like';
+          clickedBtn.classList.remove('liked');
+          clickedBtn.innerText = 'Like';
         } else {
           // If button clicked is like, add liked class to button and change text.
-          likeBtn.classList.add('liked');
-          likeBtn.innerText = 'Liked';
+          clickedBtn.classList.add('liked');
+          clickedBtn.innerText = 'Liked';
         }
 
         // Also, if video was previously disliked, remove appropriate classes from dislike button
-        if (dislikeBtn.classList.contains('disliked')) {
-          dislikeBtn.classList.remove('disliked');
-          dislikeBtn.innerText = 'Dislike';
+        if (clickedBtn.classList.contains('disliked')) {
+          clickedBtn.classList.remove('disliked');
+          clickedBtn.innerText = 'Dislike';
         }
+        // If clicked button was dislike button
       } else if (clickedBtn.id === 'dislike') {
         // If button was already pressed, revert to unclicked status
         if (clickedBtn.classList.contains('disliked')) {
-          dislikeBtn.classList.remove('disliked');
-          dislikeBtn.innerText = 'Dislike';
+          clickedBtn.classList.remove('disliked');
+          clickedBtn.innerText = 'Dislike';
         } else {
           // if button clicked is dislike, add disliked class to button and change text.
-          dislikeBtn.classList.add('disliked');
-          dislikeBtn.innerText = 'Disliked';
+          clickedBtn.classList.add('disliked');
+          clickedBtn.innerText = 'Disliked';
         }
 
         // Also, if video was previously liked, remove appropriate classes from like button
-        if (likeBtn.classList.contains('liked')) {
-          likeBtn.classList.remove('liked');
-          likeBtn.innerText = 'Like';
+        if (clickedBtn.classList.contains('liked')) {
+          clickedBtn.classList.remove('liked');
+          clickedBtn.innerText = 'Like';
         }
       }
     }
