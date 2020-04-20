@@ -4,7 +4,7 @@
   cursor: pointer;
   border: none;
   background-color: transparent;
-  color: $btn-blue;
+  color: $main-blue;
   opacity: 0.9;
   transition: 0.2s ease-out;
 
@@ -12,16 +12,16 @@
     border-radius: 5px;
     padding: 5px 10px;
     margin-top: 10px;
-    border: 2px solid $btn-blue;
+    border: 2px solid $main-blue;
     font-size: 0.75em;
 
     &:hover {
       cursor: pointer;
-      box-shadow: 0 0 5px $btn-blue;
+      box-shadow: 0 0 5px $main-blue;
     }
 
     &:active {
-      box-shadow: 0 0 5px $btn-blue, inset 0 0 5px $btn-blue;
+      box-shadow: 0 0 5px $main-blue, inset 0 0 5px $main-blue;
     }
   }
 
@@ -31,11 +31,11 @@
   }
 
   &:active {
-    text-shadow: 0 0 5px $btn-blue;
+    text-shadow: 0 0 5px $main-blue;
   }
 
   &:disabled {
-    color: $btn-blue;
+    color: $main-blue;
     opacity: 0.5;
     cursor: default;
     box-shadow: none;
@@ -84,7 +84,7 @@
   visibility: hidden;
   margin: 0 0 12px 12px;
   background-color: transparent;
-  color: $btn-blue;
+  color: $main-blue;
   font-size: 1em;
 }
 
