@@ -4,24 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="dist/css/styles.min.css" />
-    <script src="https://kit.fontawesome.com/ba6f5f095e.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/ba6f5f095e.js"
+      crossorigin="anonymous"
+    ></script>
     <title>MyTube</title>
   </head>
 
-  <body class="light">
+  <body class="dark">
     <!-- main container -->
 
     <div id="container">
-      <!-- color mode toggle switch-->
-      <div id="color-mode" class="light">
-        <span id="color-mode-icon-moon"><i class="fas fa-moon"></i></span>
-        <span id="color-mode-icon-sun"><i class="fas fa-sun"></i></span>
-        <span id="color-circle" class="light"></span>
-      </div>
-
       <!-- header section -->
       <header id="head">
-        <a href="#" id="brand"><span id="my">My</span><span id="tube">Tube</span></a>
+        <a href="#" id="brand"
+          ><span id="my">My</span><span id="tube">Tube</span></a
+        >
         <button class="btn btn-square" id="show-search">Search Results</button>
         <button class="btn btn-square" id="login">Login</button>
         <button class="btn btn-square" id="logout">Logout</button>
@@ -30,10 +28,17 @@
       <!-- main container -->
       <div id="videos-container">
         <!-- search container -->
-        <div id="search-container" class="light">
+        <div id="search-container" class="dark">
           <form id="search-form">
-            <input type="text" id="search-input" class="light-search" placeholder="Search Youtube for videos..." />
-            <button id="submit-search" class="light-search"><i class="fas fa-search"></i></button>
+            <input
+              type="text"
+              id="search-input"
+              class="dark-search"
+              placeholder="Search Youtube for videos..."
+            />
+            <button id="submit-search" class="dark-search">
+              <i class="fas fa-search"></i>
+            </button>
           </form>
           <span id="searched-term"></span>
         </div>
@@ -42,16 +47,24 @@
         <div id="home-page-container">
           <h2>Trending</h2>
           <div id="trending-videos">
-            <button class="btn" id="prev-trending"><i class="btn fas fa-chevron-left fa-3x"></i></button>
+            <button class="btn" id="prev-trending">
+              <i class="btn fas fa-chevron-left fa-3x"></i>
+            </button>
             <ul id="trending"></ul>
-            <button class="btn" id="next-trending"><i class="btn fas fa-chevron-right fa-3x"></i></button>
+            <button class="btn" id="next-trending">
+              <i class="btn fas fa-chevron-right fa-3x"></i>
+            </button>
           </div>
           <br />
           <h2>News</h2>
           <div id="news-videos">
-            <button class="btn" id="prev-news"><i class="fas fa-chevron-left fa-3x"></i></button>
+            <button class="btn" id="prev-news">
+              <i class="fas fa-chevron-left fa-3x"></i>
+            </button>
             <ul id="news"></ul>
-            <button class="btn" id="next-news"><i class="fas fa-chevron-right fa-3x"></i></button>
+            <button class="btn" id="next-news">
+              <i class="fas fa-chevron-right fa-3x"></i>
+            </button>
           </div>
         </div>
 
@@ -61,9 +74,13 @@
             <span id="window-close">&times;</span>
             <div id="results-term-field"></div>
             <hr />
-            <button class="btn" id="prev-search"><i class="fas fa-chevron-left fa-3x"></i></button>
+            <button class="btn" id="prev-search">
+              <i class="fas fa-chevron-left fa-3x"></i>
+            </button>
             <ul id="search-items"></ul>
-            <button class="btn" id="next-search"><i class="fas fa-chevron-right fa-3x"></i></button>
+            <button class="btn" id="next-search">
+              <i class="fas fa-chevron-right fa-3x"></i>
+            </button>
 
             <!-- pagination buttons -->
           </div>
@@ -71,7 +88,13 @@
           <!-- video player -->
           <div id="video">
             <div id="video-center">
-              <iframe id="player" type="text/html" frameborder="0" autoplay allowfullscreen="allowfullscreen"></iframe>
+              <iframe
+                id="player"
+                type="text/html"
+                frameborder="0"
+                autoplay
+                allowfullscreen="allowfullscreen"
+              ></iframe>
             </div>
             <!-- relevent videos and comments section -->
             <div id="relevant-videos">
@@ -82,11 +105,23 @@
               <div id="comments-relvideos">
                 <div id="comments-section">
                   <form id="add-comments">
-                    <input type="text" class="input-box" id="input-comment" placeholder="Add comment..." />
-                    <input type="submit" id="submit-comment" class="btn" value="Add Comment" />
+                    <input
+                      type="text"
+                      class="input-box"
+                      id="input-comment"
+                      placeholder="Add comment..."
+                    />
+                    <input
+                      type="submit"
+                      id="submit-comment"
+                      class="btn btn-square"
+                      value="Add Comment"
+                    />
                   </form>
                   <ul id="comments-ul"></ul>
-                  <button class="btn btn-square" id="more-comments">Load More</button>
+                  <button class="btn btn-square" id="more-comments">
+                    Load More
+                  </button>
                 </div>
                 <div id="relevant-videos-section">
                   <ul id="relevant-videos-items"></ul>
@@ -99,7 +134,9 @@
 
       <!-- footer -->
       <footer id="footer">
-        <p>Better Youtube. Designed by <span id="name">Anthony Siletti</span></p>
+        <p>
+          Better Youtube. Designed by <span id="name">Anthony Siletti</span>
+        </p>
       </footer>
     </div>
 
@@ -109,7 +146,6 @@
     <script src="dist/js/searchAndVideo/classes.js"></script>
     <script src="dist/js/searchAndVideo/ui.js"></script>
     <script src="dist/js/searchAndVideo/dom-cache.js"></script>
-    <script src="dist/js/searchAndVideo/color-mode.js"></script>
     <script src="dist/js/searchAndVideo/comments.js"></script>
     <script src="dist/js/searchAndVideo/search.js"></script>
     <script src="dist/js/searchAndVideo/player.js"></script>

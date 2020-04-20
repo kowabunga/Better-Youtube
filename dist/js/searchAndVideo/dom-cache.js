@@ -26,10 +26,6 @@ const body = document.body,
   moreCommentsBtn = document.getElementById('more-comments'),
   submitComment = document.getElementById('submit-comment'),
   commentInput = document.getElementById('input-comment'),
-  colorSwitcher = document.getElementById('color-mode'),
-  colorCircle = document.getElementById('color-circle'),
-  colorSun = document.getElementById('color-mode-icon-sun'),
-  colorMoon = document.getElementById('color-mode-icon-moon'),
   searchContainer = document.getElementById('search-container'),
   brand = document.getElementById('brand'),
   likeBtn = document.getElementById('like'),
@@ -43,3 +39,9 @@ const youtube = new Youtube(),
 
 // Other variables
 let searchParameter = '';
+
+// Loads the Google API Client library for use in all other files and init client
+googleAuth.loadClient();
+
+// Allows page reload by clicking brand logo
+brand.addEventListener('click', () => window.location.reload());

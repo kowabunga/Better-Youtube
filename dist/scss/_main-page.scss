@@ -28,7 +28,7 @@ hr {
   text-align: center;
   text-decoration: none;
   color: $btn-blue;
-  box-shadow: 1px 1px 5px currentColor;
+  box-shadow: 1px 1px 5px currentColor, inset 0 0 10px $btn-blue;
   border: 1px solid currentColor;
   border-radius: 20px;
   width: 400px;

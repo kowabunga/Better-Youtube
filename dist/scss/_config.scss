@@ -24,3 +24,13 @@ body {
 body {
   position: relative;
 }
+
+.dark {
+  background-color: $main-dark-color;
+  color: $main-light-color;
+
+  &-search {
+    background-color: $search-bar-dark;
+    color: $main-light-color;
+  }
+}
