@@ -17,6 +17,8 @@ hr {
 #head {
   grid-area: head;
   position: relative;
+  z-index: 100;
+  background-color: $main-dark-color;
 }
 
 #brand {
@@ -79,7 +81,7 @@ hr {
   display: flex;
   justify-content: center;
   position: relative;
-  height: 475px;
+  height: 480px;
 
   #trending,
   #news {

@@ -46,14 +46,11 @@
   text-align: center;
   color: $main-blue;
 
-  .search-error {
-    border-left: 0 !important;
-  }
-
   &:focus,
   &:hover {
     cursor: pointer;
     box-shadow: 0 0 5px $main-blue;
+    text-shadow: 0 0 5px $main-blue;
   }
 }
 
@@ -63,7 +60,8 @@
 
 /* We want this class to override the colors given by the id's while they are added */
 .search-error {
-  border: 2px solid crimson !important;
+  border-color: crimson !important;
   box-shadow: 0 0 10px crimson !important;
   color: crimson !important;
+  text-shadow: 0 0 5px crimson !important;
 }
