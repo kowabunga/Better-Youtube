@@ -104,7 +104,7 @@ class UI {
             <p class="author">${author}</p>
             <br>
             <p class="author-comment">${displayComment}</p>
-            <form class="reply-form">
+            <form class="reply-form" autocomplete="off">
               <input type="text" class="input-box" class="btn" placeholder="Add reply..." />
               <input type="submit" id="submit-reply" class="btn" value="Add Reply">
             </form>
@@ -141,7 +141,7 @@ class UI {
           <p class="author">${author}</p>
           <br>
           <p class="author-comment">${displayComment}</p>
-          <form class="reply-form">
+          <form class="reply-form" autocomplete="off">
             <input type="text" class="input-box" placeholder="Add reply..." />
             <input type="submit" id="submit-reply" class="btn" value="Add Reply">
           </form>
@@ -166,7 +166,7 @@ class UI {
           <p class="author">${author}</p>
           <br>
           <p class="author-comment">${replyDisplay}</p>
-          <form class="reply-form">
+          <form class="reply-form" autocomplete="off">
             <input type="text" class="input-box" placeholder="Add reply..." />
             <input type="submit" id="submit-reply" class="btn" value="Add Reply">
           </form>
@@ -193,7 +193,7 @@ class UI {
           <p class="author">${author}</p>
           <br>
           <p class="author-comment">${replyDisplay}</p>
-          <form class="reply-form">
+          <form class="reply-form" autocomplete="off">
             <input type="text" class="input-box" placeholder="Add reply..." />
             <input type="submit" id="submit-reply" class="btn" value="Add Reply">
           </form>
