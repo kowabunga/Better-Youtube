@@ -41,7 +41,12 @@ class UI {
       this.searchItems.innerHTML = output;
 
       // make pagination buttons work
-      this.paginationButtons(data.prevPageToken, data.nextPageToken, this.prevSearchBtn, this.nextSearchBtn);
+      this.paginationButtons(
+        data.prevPageToken,
+        data.nextPageToken,
+        this.prevSearchBtn,
+        this.nextSearchBtn
+      );
     } else if (pageSection === 'relevant-videos') {
       // add output to section and make section visible on website
       this.relevantVideoItems.innerHTML = output;
@@ -55,13 +60,23 @@ class UI {
       this.newsSection.innerHTML = output;
 
       // make pagination buttons work
-      this.paginationButtons(data.prevPageToken, data.nextPageToken, this.prevNewsBtn, this.nextNewsBtn);
+      this.paginationButtons(
+        data.prevPageToken,
+        data.nextPageToken,
+        this.prevNewsBtn,
+        this.nextNewsBtn
+      );
     } else if (pageSection === 'main-trending') {
       // add results to page
       this.trendingSection.innerHTML = output;
 
       // make pagination buttons work
-      this.paginationButtons(data.prevPageToken, data.nextPageToken, this.prevTrendingBtn, this.nextTrendingBtn);
+      this.paginationButtons(
+        data.prevPageToken,
+        data.nextPageToken,
+        this.prevTrendingBtn,
+        this.nextTrendingBtn
+      );
     }
   }
 
@@ -77,8 +92,10 @@ class UI {
     // Also check and see if there are replies to the comment, if so add them. If not, add empty string.
     if (getAllComments) {
       commentsList.forEach(comment => {
-        const author = comment.snippet.topLevelComment.snippet.authorDisplayName;
-        const displayComment = comment.snippet.topLevelComment.snippet.textDisplay;
+        const author =
+          comment.snippet.topLevelComment.snippet.authorDisplayName;
+        const displayComment =
+          comment.snippet.topLevelComment.snippet.textDisplay;
         output += `
           <li class="comment" data-commentid = ${comment.id}>
             <div id="comment-btns">
@@ -92,7 +109,11 @@ class UI {
               <input type="submit" id="submit-reply" class="btn" value="Add Reply">
             </form>
 
-            ${comment.snippet.totalReplyCount > 0 ? this.addReplies(comment.replies.comments, comment.id) : ''}
+            ${
+              comment.snippet.totalReplyCount > 0
+                ? this.addReplies(comment.replies.comments, comment.id)
+                : ''
+            }
           </li>
       `;
       });
@@ -101,7 +122,13 @@ class UI {
 
       // make pagination buttons work, pass in undefined for prevPage information. First check if there are comments (date.items will be greater than 0)
       if (data.items.length > 0) {
-        this.paginationButtons(undefined, data.nextPageToken, undefined, this.nextCommentsBtn, data.items[0].snippet.videoId);
+        this.paginationButtons(
+          undefined,
+          data.nextPageToken,
+          undefined,
+          this.nextCommentsBtn,
+          data.items[0].snippet.videoId
+        );
       }
     } else {
       const author = data.snippet.topLevelComment.snippet.authorDisplayName;
@@ -185,9 +212,15 @@ class UI {
 
   updateReplies(data, commentLi, commentId) {
     if (commentLi.lastElementChild.classList.contains('replies-ul')) {
-      commentLi.lastElementChild.insertAdjacentHTML('afterbegin', this.addReply(data.snippet, commentId, false));
+      commentLi.lastElementChild.insertAdjacentHTML(
+        'afterbegin',
+        this.addReply(data.snippet, commentId, false)
+      );
     } else {
-      commentLi.insertAdjacentHTML('beforeend', this.addReply(data.snippet, commentId, true));
+      commentLi.insertAdjacentHTML(
+        'beforeend',
+        this.addReply(data.snippet, commentId, true)
+      );
     }
   }
 
@@ -195,20 +228,34 @@ class UI {
   paginationButtons(prevPageToken, nextPageToken, prevBtn, nextBtn, videoId) {
     // Some parts of the api don't return previous page tokens, only next page. The pagination function is called with undefined variables in place of prevPageToken and prevBtn if the respective api call doesn't have such parameters
     if (prevPageToken === undefined && prevBtn === undefined) {
-      nextPageToken !== undefined ? nextBtn.setAttribute('data-nextpage', nextPageToken) : nextBtn.removeAttribute('data-nextpage');
-      nextBtn.hasAttribute('data-nextpage') ? (nextBtn.disabled = false) : (nextBtn.disabled = true);
+      nextPageToken !== undefined
+        ? nextBtn.setAttribute('data-nextpage', nextPageToken)
+        : nextBtn.removeAttribute('data-nextpage');
+      nextBtn.hasAttribute('data-nextpage')
+        ? (nextBtn.disabled = false)
+        : (nextBtn.disabled = true);
       if (videoId !== null) {
-        nextPageToken !== undefined ? nextBtn.setAttribute('data-videoid', videoId) : nextBtn.removeAttribute('data-nextpage');
+        nextPageToken !== undefined
+          ? nextBtn.setAttribute('data-videoid', videoId)
+          : nextBtn.removeAttribute('data-nextpage');
       }
     } else {
       // Store prev page token/next page token in a data attribute in respective button
       // otherwise, remove the data attribute (no more prev/next pages)
-      prevPageToken !== undefined ? prevBtn.setAttribute('data-prevpage', prevPageToken) : prevBtn.removeAttribute('data-prevpage');
-      nextPageToken !== undefined ? nextBtn.setAttribute('data-nextpage', nextPageToken) : nextBtn.removeAttribute('data-nextpage');
+      prevPageToken !== undefined
+        ? prevBtn.setAttribute('data-prevpage', prevPageToken)
+        : prevBtn.removeAttribute('data-prevpage');
+      nextPageToken !== undefined
+        ? nextBtn.setAttribute('data-nextpage', nextPageToken)
+        : nextBtn.removeAttribute('data-nextpage');
 
       // Check if prev/next buttons have data-attribute (i.e. they will do something). If so, enable button else don't.
-      prevBtn.hasAttribute('data-prevpage') ? (prevBtn.disabled = false) : (prevBtn.disabled = true);
-      nextBtn.hasAttribute('data-nextpage') ? (nextBtn.disabled = false) : (nextBtn.disabled = true);
+      prevBtn.hasAttribute('data-prevpage')
+        ? (prevBtn.disabled = false)
+        : (prevBtn.disabled = true);
+      nextBtn.hasAttribute('data-nextpage')
+        ? (nextBtn.disabled = false)
+        : (nextBtn.disabled = true);
     }
   }
 
@@ -242,10 +289,11 @@ class UI {
     closeSearchBtn.style.visibility = 'hidden';
   }
 
-  // START HERE
+  // MAKE BUTTONS SWITCH IF OPPOSITE IS PRESSED WHILE ACTIVE
   editRating(result, clickedBtn) {
     // result value is returned as false by api if it succeeds (for some reason...), need true to continue
     if (!result) {
+      console.log(clickedBtn);
       // if clicked button is like button
       if (clickedBtn.id === 'like') {
         // If button was already pressed, revert to unclicked status
@@ -259,9 +307,9 @@ class UI {
         }
 
         // Also, if video was previously disliked, remove appropriate classes from dislike button
-        if (clickedBtn.classList.contains('disliked')) {
-          clickedBtn.classList.remove('disliked');
-          clickedBtn.innerText = 'Dislike';
+        if (clickedBtn.nextElementSibling.classList.contains('disliked')) {
+          clickedBtn.nextElementSibling.classList.remove('disliked');
+          clickedBtn.nextElementSibling.innerText = 'Dislike';
         }
         // If clicked button was dislike button
       } else if (clickedBtn.id === 'dislike') {
@@ -276,9 +324,9 @@ class UI {
         }
 
         // Also, if video was previously liked, remove appropriate classes from like button
-        if (clickedBtn.classList.contains('liked')) {
-          clickedBtn.classList.remove('liked');
-          clickedBtn.innerText = 'Like';
+        if (clickedBtn.previousElementSibling.classList.contains('liked')) {
+          clickedBtn.previousElementSibling.classList.remove('liked');
+          clickedBtn.previousElementSibling.innerText = 'Like';
         }
       }
     }

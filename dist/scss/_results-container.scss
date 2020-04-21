@@ -82,8 +82,13 @@
 
 .video-title {
   font-size: 1.1em;
-  // text-overflow: ellipsis; // need it?
   cursor: pointer;
+  // A lot of stuff for text overflow if I do say so myself...
+  display: block;
+  width: 210px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .hide-search {

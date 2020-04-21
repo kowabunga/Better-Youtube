@@ -112,7 +112,8 @@ class Youtube {
 class GoogleAuth {
   constructor() {
     this.apiKey = 'AIzaSyBjUVV2VX72DpzdLlEt7F0jGZkcizCZ95w';
-    this.clientId = '332565945864-sk1ns9m4nh05h6nis2cthopv43nl394e.apps.googleusercontent.com';
+    this.clientId =
+      '332565945864-sk1ns9m4nh05h6nis2cthopv43nl394e.apps.googleusercontent.com';
     this.scopes = 'https://www.googleapis.com/auth/youtube.force-ssl';
     // Need to bind this to initClient function to be able to call apiKey and clientKey from inner function gapi.client.init()
     this.initClient = this.initClient.bind(this);
@@ -134,7 +135,9 @@ class GoogleAuth {
       .init({
         apiKey: this.apiKey,
         clientId: this.clientId,
-        discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'],
+        discoveryDocs: [
+          'https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest',
+        ],
         scope: this.scopes,
       })
       .then(() => {
@@ -167,7 +170,7 @@ class GoogleAuth {
       // If user is signed in, logout and deauthorize.
       // Deauthorizing requires reauthorizing the app when logging back in.
       confirm(
-        `Logging out will prevent Better Youtube from being able to add comments, upload videos, and more. \n\nYou will have to reauthorize this website if you log back in to use it to its full extent. Are you sure you want to continue?`
+        `Logging out will prevent MyTube from being able to add comments, upload videos, at your request. \n\nYou will have to reauthorize this website if you log back in to use it to its full extent. Are you sure you want to continue?`
       );
       gapi.auth2.getAuthInstance().signOut();
       gapi.auth2.getAuthInstance().disconnect();
