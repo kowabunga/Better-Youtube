@@ -46,11 +46,14 @@
   text-align: center;
   color: $main-blue;
 
-  &:focus,
   &:hover {
     cursor: pointer;
     box-shadow: 0 0 5px $main-blue;
+  }
+
+  &:focus {
     text-shadow: 0 0 5px $main-blue;
+    box-shadow: 0 0 5px $main-blue;
   }
 }
 

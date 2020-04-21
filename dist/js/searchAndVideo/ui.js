@@ -12,9 +12,9 @@ class UI {
     this.nextCommentsBtn = document.getElementById('more-comments');
     this.videoCenter = document.getElementById('video-center');
     this.newsSection = document.getElementById('news');
-    this.trendingSection = document.getElementById('trending');
-    this.prevTrendingBtn = document.getElementById('prev-trending');
-    this.nextTrendingBtn = document.getElementById('next-trending');
+    this.comedySection = document.getElementById('comedy');
+    this.prevComedyBtn = document.getElementById('prev-comedy');
+    this.nextComedyBtn = document.getElementById('next-comedy');
     this.prevNewsBtn = document.getElementById('prev-news');
     this.nextNewsBtn = document.getElementById('next-news');
     // Need to bind *this* instead of arrow function - Safari evidently does not support arrow func in class in expected manner
@@ -66,16 +66,16 @@ class UI {
         this.prevNewsBtn,
         this.nextNewsBtn
       );
-    } else if (pageSection === 'main-trending') {
+    } else if (pageSection === 'main-comedy') {
       // add results to page
-      this.trendingSection.innerHTML = output;
+      this.comedySection.innerHTML = output;
 
       // make pagination buttons work
       this.paginationButtons(
         data.prevPageToken,
         data.nextPageToken,
-        this.prevTrendingBtn,
-        this.nextTrendingBtn
+        this.prevComedyBtn,
+        this.nextComedyBtn
       );
     }
   }

@@ -10,8 +10,8 @@
   // homepage
   function setUpHomePage() {
     youtube
-      .getSearchResults('trending', 12)
-      .then(data => ui.displayVideos(data.result, 'main-trending'))
+      .getSearchResults('comedy', 12)
+      .then(data => ui.displayVideos(data.result, 'main-comedy'))
       .catch(err => console.log(err));
     youtube
       .getSearchResults('news', 12)
@@ -35,7 +35,10 @@
     //   submit search request and get results so long as user actually inputs something
     searchParameter = searchInput.value;
     if (searchParameter !== '') {
-      if (searchInput.classList.contains('search-error') && searchSubmit.classList.contains('search-error')) {
+      if (
+        searchInput.classList.contains('search-error') &&
+        searchSubmit.classList.contains('search-error')
+      ) {
         // remove error classes, make error text go away
         searchInput.classList.remove('search-error');
         searchSubmit.classList.remove('search-error');
@@ -69,7 +72,10 @@
 
       // Remove error after 10 seconds if user does not enter anything
       setTimeout(() => {
-        if (searchInput.classList.contains('search-error') && searchSubmit.classList.contains('search-error')) {
+        if (
+          searchInput.classList.contains('search-error') &&
+          searchSubmit.classList.contains('search-error')
+        ) {
           // remove error classes, make error text go away
           searchInput.classList.remove('search-error');
           searchSubmit.classList.remove('search-error');

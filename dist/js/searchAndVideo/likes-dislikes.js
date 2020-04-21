@@ -31,7 +31,6 @@ function btnClick(e) {
 
     setVideoRating(clickedBtn, clickedBtnValue);
   }
-  console.log('click');
 }
 
 function setVideoRating(clickedBtn, clickedBtnValue) {

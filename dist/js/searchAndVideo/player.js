@@ -5,7 +5,7 @@
   searchedVideoItems.addEventListener('click', showVideo);
   relatedVideoItems.addEventListener('click', showVideo);
   newsSection.addEventListener('click', showVideo);
-  trendingSection.addEventListener('click', showVideo);
+  comedySection.addEventListener('click', showVideo);
 
   /* ------------------------------------------------------------------------- */
 
@@ -17,15 +17,29 @@
     // without this, clicking the ul can cause the video player to break
 
     // Checking if target is video thumbnail or video title
-    if (e.target.parentElement.classList.contains('search-item') || e.target.parentElement.parentElement.classList.contains('search-item')) {
+    if (
+      e.target.parentElement.classList.contains('search-item') ||
+      e.target.parentElement.parentElement.classList.contains('search-item')
+    ) {
       videoPlayer.style.display = 'block';
       videoSection.style.display = 'block';
 
-      videoPlayer.setAttribute('src', `https://www.youtube.com/embed/${e.target.getAttribute('data-videoid')}?autoplay=1`);
+      videoPlayer.setAttribute(
+        'src',
+        `https://www.youtube.com/embed/${e.target.getAttribute(
+          'data-videoid'
+        )}?autoplay=1`
+      );
       videoPlayer;
 
-      videoCenter.setAttribute('data-channelid', e.target.getAttribute('data-channelid'));
-      videoCenter.setAttribute('data-videoid', e.target.getAttribute('data-videoid'));
+      videoCenter.setAttribute(
+        'data-channelid',
+        e.target.getAttribute('data-channelid')
+      );
+      videoCenter.setAttribute(
+        'data-videoid',
+        e.target.getAttribute('data-videoid')
+      );
 
       // Fill in video title/author info below video
       fillInDescription(e);
@@ -86,7 +100,9 @@
       addVideoDescription(e.target.parentElement);
 
       // Second case deals with title being clicked
-    } else if (e.target.parentElement.parentElement.classList.contains('search-item')) {
+    } else if (
+      e.target.parentElement.parentElement.classList.contains('search-item')
+    ) {
       // target => parent => parent
       // text => p => li
       addVideoDescription(e.target.parentElement.parentElement);
@@ -103,7 +119,9 @@
         .then(data =>
           youtube
             .videoStatistics(data.result.items[0].videoId)
-            .then(statData => videoDescBuilder(target, statData, data.result.items[0].rating))
+            .then(statData =>
+              videoDescBuilder(target, statData, data.result.items[0].rating)
+            )
             .catch(err => console.log(err))
         )
         .catch(err => console.log(err));
@@ -121,7 +139,9 @@
     console.log(target, data, rating);
     // if description (p element) exists, update innerHTML
     if (document.getElementById('video-information') !== null) {
-      document.getElementById('video-information').innerHTML = videoDescItemsBuilder(target, data, rating);
+      document.getElementById(
+        'video-information'
+      ).innerHTML = videoDescItemsBuilder(target, data, rating);
     } else {
       // If p element does not exist, create it and give it required info and add to innerHTML
       let p = document.createElement('p');
@@ -147,10 +167,18 @@
         <p id="v-dislikes" >Dislikes : ${stats.dislikeCount}</p>
       </div>
       <div>
-        <button class="btn btn-square ${rating === 'like' ? 'liked' : ''}" id="like" data-videoid = ${target.getAttribute('data-videoid')}><i class="far fa-thumbs-up"></i> ${
+        <button class="btn btn-square ${
+          rating === 'like' ? 'liked' : ''
+        }" id="like" data-videoid = ${target.getAttribute(
+      'data-videoid'
+    )}><i class="far fa-thumbs-up"></i> ${
       rating === 'like' ? 'Liked' : 'Like'
     }</button>
-        <button class="btn btn-square ${rating === 'dislike' ? 'disliked' : ''}" id="dislike" data-videoid = ${target.getAttribute('data-videoid')}><i class="far fa-thumbs-down"></i> ${
+        <button class="btn btn-square ${
+          rating === 'dislike' ? 'disliked' : ''
+        }" id="dislike" data-videoid = ${target.getAttribute(
+      'data-videoid'
+    )}><i class="far fa-thumbs-down"></i> ${
       rating === 'dislike' ? 'Disliked' : 'Dislike'
     }</button>
       </div>

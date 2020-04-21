@@ -36,6 +36,15 @@
     line-height: 2em;
     display: flex;
     justify-content: space-between;
+
+    // Sets the width of the buttons so they dont' collapse ontop of each other until media query sets in
+    > div {
+      + div {
+        + div {
+          width: 258px;
+        }
+      }
+    }
   }
 
   &-desc {

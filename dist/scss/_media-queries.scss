@@ -30,6 +30,21 @@
     justify-content: space-evenly;
   }
 
+  // Ensures all items in video information section maintain reasonable space between each other (can be squished at small screen sizes)
+  #video {
+    &-information {
+      > div {
+        width: 30%;
+        + div {
+          width: 30%;
+          + div {
+            width: 30%;
+          }
+        }
+      }
+    }
+  }
+
   .buttons {
     margin: 0 auto;
   }
