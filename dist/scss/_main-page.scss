@@ -1,5 +1,5 @@
 /* Overall container */
-#container {
+#search-video-container {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-areas:
@@ -19,6 +19,18 @@ hr {
   position: relative;
   z-index: 100;
   background-color: $main-dark-color;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-areas: 'leftHead rightHead';
+  grid-gap: 1em;
+}
+
+.left-header {
+  grid-area: leftHead;
+}
+
+.right-header {
+  grid-area: rightHead;
 }
 
 #brand {
@@ -48,9 +60,9 @@ hr {
 /*  Footer  */
 #footer {
   grid-area: footer;
-  // position: fixed;
-  // bottom: 0;
-  // left: 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
   width: 100%;
   height: 3rem;
   display: flex;
@@ -87,9 +99,9 @@ hr {
     flex-wrap: wrap;
     width: 90%;
     margin: 0 auto;
-    box-shadow: inset 0 0 5px $main-blue;
     border-radius: 5px;
     padding: 0.8em;
     overflow: auto;
+    box-shadow: inset 0 0 5px $main-blue;
   }
 }
