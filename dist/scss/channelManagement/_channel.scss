@@ -1,0 +1,22 @@
+#channel {
+  &-container {
+    display: none;
+    // grid-template-columns: ;
+  }
+
+  // make grid, deal with placement better
+  &-buttons {
+    display: none;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    grid-area: channelBtns;
+  }
+}
+
+.show {
+  display: flex;
+}
+.hide {
+  display: none;
+}

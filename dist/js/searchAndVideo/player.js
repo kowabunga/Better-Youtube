@@ -56,7 +56,7 @@
       // Call function to get relevant search videos.
       youtube
         .getRelevantVideos(e.target.getAttribute('data-videoid'))
-        .then(data => ui.displayVideos(data.result, 'relevant-videos'))
+        .then(data => svUI.displayVideos(data.result, 'relevant-videos'))
         .catch(err => console.log(err));
 
       // This line clears the comments ul if we load a new video
@@ -64,7 +64,7 @@
 
       youtube
         .getComments(e.target.getAttribute('data-videoid'))
-        .then(data => ui.displayVideoComments(data.result, true))
+        .then(data => svUI.displayVideoComments(data.result, true))
         .catch(err => console.log(err));
 
       // scroll to top so video can be seen
@@ -72,7 +72,7 @@
 
       // check if search results overlay is present. If so, remove
       if (searchResults.classList.contains('show-search')) {
-        ui.hideResults();
+        svUI.hideResults();
       }
 
       // Hide home page videos on showing clicked video

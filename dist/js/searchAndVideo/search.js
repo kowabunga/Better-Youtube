@@ -4,25 +4,25 @@
 
   // Event listeners
   searchSubmit.addEventListener('click', submitQuery);
-  showSearchResults.addEventListener('click', ui.showResults);
-  closeSearchBtn.addEventListener('click', ui.hideResults);
+  showSearchResults.addEventListener('click', svUI.showResults);
+  closeSearchBtn.addEventListener('click', svUI.hideResults);
 
   // homepage
   function setUpHomePage() {
     youtube
       .getSearchResults('comedy', 12)
-      .then(data => ui.displayVideos(data.result, 'main-comedy'))
+      .then(data => svUI.displayVideos(data.result, 'main-comedy'))
       .catch(err => console.log(err));
     youtube
       .getSearchResults('news', 12)
-      .then(data => ui.displayVideos(data.result, 'main-news'))
+      .then(data => svUI.displayVideos(data.result, 'main-news'))
       .catch(err => console.log(err));
   }
 
   // I think this is the best way? Need to check on that eventually
   window.addEventListener('load', () => {
     setTimeout(() => {
-      setUpHomePage();
+      // setUpHomePage();
     }, 1000);
   });
 
@@ -30,7 +30,7 @@
     e.preventDefault();
     // First check if search results is hidden, if so add the show class
     if (searchResults.classList.contains('hide-search')) {
-      ui.showResults(e);
+      svUI.showResults(e);
     }
     //   submit search request and get results so long as user actually inputs something
     searchParameter = searchInput.value;
@@ -50,7 +50,7 @@
       // make request to api with search parameter and display in webpage
       youtube
         .getSearchResults(searchParameter, 12)
-        .then(data => ui.displayVideos(data.result, 'search-results'))
+        .then(data => svUI.displayVideos(data.result, 'search-results'))
         .catch(err => console.log(err));
       // display searched term and clear search box
       resultsTermDisplay.innerText = `Results for: ${searchParameter}`;

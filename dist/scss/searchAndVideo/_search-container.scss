@@ -50,11 +50,6 @@
     cursor: pointer;
     box-shadow: 0 0 10px $main-blue;
   }
-
-  &:focus {
-    text-shadow: 0 0 5px $main-blue;
-    box-shadow: 0 0 10px $main-blue;
-  }
 }
 
 #searched-term {

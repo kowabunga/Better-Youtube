@@ -1,7 +1,6 @@
 /* Main container */
 #videos-container {
   grid-area: mainContainer;
-  display: grid;
   grid-template-columns: 1fr;
   grid-template-areas:
     'search'
@@ -68,7 +67,7 @@
 
   &-section {
     grid-area: relVideos;
-    box-shadow: inset 0 0 5px $main-blue;
+    box-shadow: 0 0 5px $main-blue;
     margin: 5px;
     border-radius: 5px;
     max-height: 1000px;

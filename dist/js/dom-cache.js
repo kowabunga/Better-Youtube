@@ -29,12 +29,16 @@ const body = document.body,
   searchContainer = document.getElementById('search-container'),
   brand = document.getElementById('brand'),
   likeBtn = document.getElementById('like'),
-  dislikeBtn = document.getElementById('dislike');
+  dislikeBtn = document.getElementById('dislike'),
+  videoContainer = document.getElementById('videos-container'),
+  channelContainer = document.getElementById('channel-container'),
+  viewChannel = document.getElementById('view-channel'),
+  channelButtons = document.getElementById('channel-buttons');
 
 /* ------------------------------------------------------------------------- */
 // classes
 const youtube = new Youtube(),
-  ui = new UI(),
+  svUI = new SearchAndVideoUi(),
   googleAuth = new GoogleAuth();
 
 // Other variables

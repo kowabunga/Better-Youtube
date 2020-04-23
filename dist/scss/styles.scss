@@ -1,8 +1,9 @@
 @import 'config';
 @import 'main-page';
-@import 'search-container';
-@import 'results-container';
-@import 'videos';
 @import 'buttons';
-@import 'comments-section';
+@import './searchAndVideo/search-container';
+@import './searchAndVideo/results-container';
+@import './searchAndVideo/videos';
+@import './searchAndVideo/comments-section';
+@import './channelManagement/channel';
 @import 'media-queries';

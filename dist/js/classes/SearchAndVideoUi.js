@@ -1,4 +1,4 @@
-class UI {
+class SearchAndVideoUi {
   constructor() {
     this.searchResults = document.getElementById('search-results');
     this.searchItems = document.getElementById('search-items');

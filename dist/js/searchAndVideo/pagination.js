@@ -52,7 +52,7 @@
 
     youtube
       .getPrevOrNextVideoPage(pageToken, searchParameter, numOfItems)
-      .then(data => ui.displayVideos(data.result, targetSection))
+      .then(data => svUI.displayVideos(data.result, targetSection))
       .catch(err => console.log(err));
   }
 })();

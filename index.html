@@ -14,10 +14,10 @@
   <body class="dark">
     <!-- main container -->
 
-    <div id="search-video-container">
+    <div id="container">
       <!-- header section -->
       <header id="head">
-        <div class="left-header">
+        <div id="left-header">
           <a href="#" id="brand"
             ><span id="my">My</span><span id="tube">Tube</span></a
           >
@@ -25,14 +25,35 @@
             View Search Results
           </button>
         </div>
-        <div class="right-header">
-          <button class="btn btn-square" id="login">Login</button>
-          <button class="btn btn-square" id="logout">Logout</button>
+        <div id="right-header">
+          <div id="channel-buttons">
+            <button class="btn btn-square btn-channel" id="view-channel">
+              View Channel
+            </button>
+            <button class="btn btn-square btn-channel" id="btn2">
+              btn2
+            </button>
+            <button class="btn btn-square btn-channel" id="btn3">
+              btn3
+            </button>
+            <button class="btn btn-square btn-channel" id="btn4">
+              btn4
+            </button>
+            <button class="btn btn-square btn-channel" id="btn5">
+              btn5
+            </button>
+            <button class="btn btn-square btn-channel" id="btn6">
+              btn6
+            </button>
+          </div>
+          <div id="login-buttons">
+            <button class="btn btn-square" id="login">Login</button>
+            <button class="btn btn-square" id="logout">Logout</button>
+          </div>
         </div>
       </header>
 
-      <!-- main container -->
-      <div id="videos-container">
+      <div id="videos-container" style="display: grid;">
         <!-- search container -->
         <div id="search-container" class="dark">
           <form id="search-form" autocomplete="off">
@@ -82,7 +103,9 @@
             <button class="btn" id="prev-search">
               <i class="fas fa-chevron-left fa-3x"></i>
             </button>
-            <ul id="search-items"></ul>
+            <div class="shadow">
+              <ul id="search-items"></ul>
+            </div>
             <button class="btn" id="next-search">
               <i class="fas fa-chevron-right fa-3x"></i>
             </button>
@@ -136,6 +159,9 @@
           </div>
         </div>
       </div>
+      <div id="channel-container" style="display: none;">
+        Hi
+      </div>
     </div>
 
     <!-- footer -->
@@ -145,9 +171,11 @@
     <!-- Google API Client -->
     <script src="https://apis.google.com/js/api.js"></script>
     <!-- Other stuff -->
-    <script src="dist/js/searchAndVideo/classes.js"></script>
-    <script src="dist/js/searchAndVideo/ui.js"></script>
-    <script src="dist/js/searchAndVideo/dom-cache.js"></script>
+    <script src="dist/js/classes/Youtube.js"></script>
+    <script src="dist/js/classes/Google.js"></script>
+    <script src="dist/js/classes/searchAndVideoUi.js"></script>
+    <script src="dist/js/dom-cache.js"></script>
+    <script src="dist/js/videoChannelSwitch.js"></script>
     <script src="dist/js/searchAndVideo/comments.js"></script>
     <script src="dist/js/searchAndVideo/search.js"></script>
     <script src="dist/js/searchAndVideo/player.js"></script>

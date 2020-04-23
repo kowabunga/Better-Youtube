@@ -11,7 +11,7 @@
         moreCommentsBtn.getAttribute('data-nextpage'),
         moreCommentsBtn.getAttribute('data-videoid')
       )
-      .then(data => ui.displayVideoComments(data.result, true))
+      .then(data => svUI.displayVideoComments(data.result, true))
       .catch(err => console.log(err));
   }
 
@@ -25,8 +25,8 @@
           videoCenter.getAttribute('data-channelid'),
           videoCenter.getAttribute('data-videoid')
         )
-        // .then(ui.displayVideoComments(data.result, true))
-        .then(data => ui.displayVideoComments(data.result, false))
+        // .then(svUI.displayVideoComments(data.result, true))
+        .then(data => svUI.displayVideoComments(data.result, false))
         .catch(err => console.log(err));
       commentInput.value = '';
     } else {
@@ -86,7 +86,7 @@
           youtube
             .addReply(commentId, replyInput.value)
             .then(data => {
-              ui.updateReplies(data.result, commentLi, commentId);
+              svUI.updateReplies(data.result, commentLi, commentId);
             })
             .catch(err => console.log(err));
 

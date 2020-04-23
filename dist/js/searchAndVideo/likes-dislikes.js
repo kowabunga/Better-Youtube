@@ -37,7 +37,7 @@ function setVideoRating(clickedBtn, clickedBtnValue) {
   if (googleAuth.checkIfSignedIn()) {
     youtube
       .rateVideo(clickedBtn.getAttribute('data-videoid'), clickedBtnValue)
-      .then(data => ui.editRating(data.result, clickedBtn))
+      .then(data => svUI.editRating(data.result, clickedBtn))
       .catch(err => console.log(err));
   } else {
     alert('You must log in to use this feature.');
