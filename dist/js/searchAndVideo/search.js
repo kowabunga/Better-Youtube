@@ -22,7 +22,7 @@
   // I think this is the best way? Need to check on that eventually
   window.addEventListener('load', () => {
     setTimeout(() => {
-      // setUpHomePage();
+      setUpHomePage();
     }, 1000);
   });
 
