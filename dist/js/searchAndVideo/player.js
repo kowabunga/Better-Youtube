@@ -136,7 +136,6 @@
 
   // function to build video description and statistic information
   function videoDescBuilder(target, data, rating) {
-    // console.log(target, data, rating);
     // if description (p element) exists, update innerHTML
     if (document.getElementById('video-information') !== null) {
       document.getElementById(
