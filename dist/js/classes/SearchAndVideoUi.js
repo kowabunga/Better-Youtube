@@ -293,7 +293,6 @@ class SearchAndVideoUi {
   editRating(result, clickedBtn) {
     // result value is returned as false by api if it succeeds (for some reason...), need true to continue
     if (!result) {
-      console.log(clickedBtn);
       // if clicked button is like button
       if (clickedBtn.id === 'like') {
         // If button was already pressed, revert to unclicked status
