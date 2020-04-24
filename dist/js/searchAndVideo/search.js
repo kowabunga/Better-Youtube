@@ -10,7 +10,7 @@
   // homepage
   function setUpHomePage() {
     youtube
-      .getSearchResults('comedy', 12)
+      .getSearchResults('funniest home', 12)
       .then(data => svUI.displayVideos(data.result, 'main-comedy'))
       .catch(err => console.log(err));
     youtube
