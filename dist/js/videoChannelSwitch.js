@@ -12,4 +12,16 @@ function changePage(e) {
     videoContainer.style.display = 'grid';
     viewChannel.innerText = 'View Channel';
   }
+  loadChannel(e);
+}
+
+function loadChannel(e) {
+  let channelId;
+  if (e.target.id === 'channel-author') {
+    channelId = e.target.getAttribute('data-channelid');
+    youtube
+      .getChannelInformation(channelId)
+      .then(data => chUI.populateChannelSection(data))
+      .catch(err => console.log(err));
+  }
 }

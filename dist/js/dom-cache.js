@@ -39,6 +39,7 @@ const body = document.body,
 // classes
 const youtube = new Youtube(),
   svUI = new SearchAndVideoUi(),
+  chUI = new ChannelsUi(),
   googleAuth = new GoogleAuth();
 
 // Other variables

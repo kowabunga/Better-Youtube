@@ -162,7 +162,6 @@
 
   // helper function to construct actual content for above function
   function videoDescItemsBuilder(target, videoStats, rating) {
-    console.log(target);
     const stats = videoStats.result.items[0].statistics;
     return `
       <div>

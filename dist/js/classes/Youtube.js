@@ -1,18 +1,10 @@
 class Youtube {
-  constructor() {
-    this.type = 'video';
-    this.videosPart = 'snippet';
-    this.commentsPart = 'snippet,replies';
-    this.numOfRelevantVideos = 10;
-    this.numOfComments = 10;
-  }
-
   // Get initial search results
   getSearchResults(searchValue, numOfSearchResults) {
     return gapi.client.youtube.search.list({
-      part: this.videosPart,
+      part: 'snippet',
       q: searchValue,
-      type: this.type,
+      type: 'video',
       maxResults: numOfSearchResults,
     });
   }
@@ -20,9 +12,9 @@ class Youtube {
   // Get next page of search results using next page token in API call
   getPrevOrNextVideoPage(pageToken, searchValue, numOfResults) {
     return gapi.client.youtube.search.list({
-      part: this.videosPart,
+      part: 'snippet',
       q: searchValue,
-      type: this.type,
+      type: 'video',
       maxResults: numOfResults,
       pageToken: pageToken,
     });
@@ -31,19 +23,19 @@ class Youtube {
   // Get relevant videos
   getRelevantVideos(videoId) {
     return gapi.client.youtube.search.list({
-      part: this.videosPart,
+      part: 'snippet',
       relatedToVideoId: videoId,
-      type: this.type,
-      maxResults: this.numOfRelevantVideos,
+      type: 'video',
+      maxResults: 10,
     });
   }
 
   // Get comments
   getComments(videoId) {
     return gapi.client.youtube.commentThreads.list({
-      part: this.commentsPart,
+      part: 'snippet,replies',
       videoId: videoId,
-      maxResults: this.numOfComments,
+      maxResults: 10,
       order: 'relevance',
     });
   }
@@ -51,7 +43,7 @@ class Youtube {
   // Add a comment to the specific video in question
   addComment(comment, channelId, videoId) {
     return gapi.client.youtube.commentThreads.insert({
-      part: this.commentsPart,
+      part: 'snippet,replies',
       resource: {
         snippet: {
           channelId: channelId,
@@ -80,10 +72,10 @@ class Youtube {
 
   getNextCommentsPage(pageToken, videoId) {
     return gapi.client.youtube.commentThreads.list({
-      part: this.commentsPart,
+      part: 'snippet,replies',
       pageToken: pageToken,
       videoId: videoId,
-      maxResults: this.numOfComments,
+      maxResults: 10,
       order: 'relevance',
     });
   }
@@ -105,6 +97,13 @@ class Youtube {
   getVideoRating(videoId) {
     return gapi.client.youtube.videos.getRating({
       id: videoId,
+    });
+  }
+
+  getChannelInformation(channelId) {
+    return gapi.client.youtube.channels.list({
+      part: 'snippet,contentDetails,statistics,brandingSettings',
+      id: channelId,
     });
   }
 }

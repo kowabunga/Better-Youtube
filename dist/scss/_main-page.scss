@@ -20,6 +20,7 @@ hr {
   z-index: 100;
   background-color: $main-dark-color;
   max-height: 230px;
+  border-bottom: 2px solid $light-gray;
 }
 
 #login-buttons {
