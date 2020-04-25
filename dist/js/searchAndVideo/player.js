@@ -141,6 +141,11 @@
       document.getElementById(
         'video-information'
       ).innerHTML = videoDescItemsBuilder(target, data, rating);
+
+      // Once video is set up, add event listener to author name to bring up author's channel
+      document
+        .getElementById('channel-author')
+        .addEventListener('click', changePage);
     } else {
       // If p element does not exist, create it and give it required info and add to innerHTML
       let p = document.createElement('p');
@@ -149,16 +154,23 @@
       p.innerHTML = videoDescItemsBuilder(target, data, rating);
       videoCenter.appendChild(p);
     }
+    // Once video is set up, add event listener to author name to bring up author's channel
+    document
+      .getElementById('channel-author')
+      .addEventListener('click', changePage);
   }
 
   // helper function to construct actual content for above function
   function videoDescItemsBuilder(target, videoStats, rating) {
+    console.log(target);
     const stats = videoStats.result.items[0].statistics;
     return `
       <div>
         <strong>${target.getAttribute('data-videoname')}</strong>
         <br />
-        <em>Author</em> : ${target.getAttribute('data-author')}
+        <em>Author</em> : <a href="#!" data-channelid=${target.getAttribute(
+          'data-channelid'
+        )} id="channel-author">${target.getAttribute('data-author')}</a>
       </div>
       <div>
         <p id="v-views">Views: ${stats.viewCount}</p>

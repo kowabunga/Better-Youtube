@@ -19,31 +19,15 @@ hr {
   position: relative;
   z-index: 100;
   background-color: $main-dark-color;
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-template-areas: 'leftHead rightHead';
-  grid-gap: 1em;
   max-height: 230px;
 }
 
-#left-header {
-  grid-area: leftHead;
-}
-
-#right-header {
-  grid-area: rightHead;
-  display: grid;
-  grid-template-columns: 1fr 1fr 0.3fr;
-  grid-template-areas:
-    'channelBtns channelBtns .'
-    'channelBtns channelBtns usrLog';
-  grid-gap: 1.5em;
-}
-
 #login-buttons {
-  grid-area: usrLog;
-  justify-self: end;
-  align-self: flex-end;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 #brand {

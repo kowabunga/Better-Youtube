@@ -93,3 +93,13 @@
   display: none;
   box-shadow: 0 3px 10px $main-light-color;
 }
+
+#channel-author {
+  text-decoration: none;
+  cursor: default;
+  color: $main-light-color;
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}

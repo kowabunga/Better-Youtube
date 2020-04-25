@@ -14,6 +14,7 @@
     margin-top: 10px;
     border: 2px solid $main-blue;
     font-size: 0.75em;
+    max-height: 39px;
 
     &:hover {
       cursor: pointer;
@@ -23,10 +24,6 @@
     &:active {
       box-shadow: 0 0 5px $main-blue, inset 0 0 5px $main-blue;
     }
-  }
-
-  &-channel {
-    font-size: 1em;
   }
 
   &:hover {
@@ -87,8 +84,11 @@
 #show-search {
   visibility: hidden;
   margin: 0 0 12px 12px;
-  background-color: transparent;
-  color: $main-blue;
+  font-size: 1em;
+}
+
+#view-channel {
+  margin-right: 12px;
   font-size: 1em;
 }
 
