@@ -2,10 +2,10 @@
   // event listeners
   prevSearchBtn.addEventListener('click', paginateThrough);
   nextSearchBtn.addEventListener('click', paginateThrough);
-  prevComedy.addEventListener('click', paginateThrough);
-  nextComedy.addEventListener('click', paginateThrough);
-  prevNews.addEventListener('click', paginateThrough);
-  nextNews.addEventListener('click', paginateThrough);
+  prevComedyBtn.addEventListener('click', paginateThrough);
+  nextComedyBtn.addEventListener('click', paginateThrough);
+  prevNewsBtn.addEventListener('click', paginateThrough);
+  nextNewsBtn.addEventListener('click', paginateThrough);
 
   // Pagination
   function paginateThrough(e) {

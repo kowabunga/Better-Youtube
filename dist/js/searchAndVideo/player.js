@@ -3,7 +3,7 @@
   // Event Listeners
 
   searchedVideoItems.addEventListener('click', showVideo);
-  relatedVideoItems.addEventListener('click', showVideo);
+  relevantVideoItems.addEventListener('click', showVideo);
   newsSection.addEventListener('click', showVideo);
   comedySection.addEventListener('click', showVideo);
 

@@ -18,10 +18,7 @@
 
     &:hover {
       cursor: pointer;
-      box-shadow: 0 0 5px $main-blue;
-    }
-
-    &:active {
+      text-shadow: 0 0 5px $main-blue;
       box-shadow: 0 0 5px $main-blue, inset 0 0 5px $main-blue;
     }
   }

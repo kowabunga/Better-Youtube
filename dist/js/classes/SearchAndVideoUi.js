@@ -1,22 +1,5 @@
 class SearchAndVideoUi {
   constructor() {
-    this.searchResults = document.getElementById('search-results');
-    this.searchItems = document.getElementById('search-items');
-    this.buttons = document.querySelectorAll('.buttons');
-    this.prevSearchBtn = document.getElementById('prev-search');
-    this.nextSearchBtn = document.getElementById('next-search');
-    this.relevantVideos = document.getElementById('relevant-videos');
-    this.relevantVideoItems = document.getElementById('relevant-videos-items');
-    this.videoDesc = document.getElementById('video-desc');
-    this.commentsUl = document.getElementById('comments-ul');
-    this.nextCommentsBtn = document.getElementById('more-comments');
-    this.videoCenter = document.getElementById('video-center');
-    this.newsSection = document.getElementById('news');
-    this.comedySection = document.getElementById('comedy');
-    this.prevComedyBtn = document.getElementById('prev-comedy');
-    this.nextComedyBtn = document.getElementById('next-comedy');
-    this.prevNewsBtn = document.getElementById('prev-news');
-    this.nextNewsBtn = document.getElementById('next-news');
     // Need to bind *this* instead of arrow function - Safari evidently does not support arrow func in class in expected manner
     this.showResults = this.showResults.bind(this);
   }
@@ -38,44 +21,44 @@ class SearchAndVideoUi {
     });
 
     if (pageSection === 'search-results') {
-      this.searchItems.innerHTML = output;
+      searchedVideoItems.innerHTML = output;
 
       // make pagination buttons work
       this.paginationButtons(
         data.prevPageToken,
         data.nextPageToken,
-        this.prevSearchBtn,
-        this.nextSearchBtn
+        prevSearchBtn,
+        nextSearchBtn
       );
     } else if (pageSection === 'relevant-videos') {
       // add output to section and make section visible on website
-      this.relevantVideoItems.innerHTML = output;
-      this.relevantVideos.style.display = 'flex';
+      relevantVideoItems.innerHTML = output;
+      relevantVideos.style.display = 'flex';
 
       // add description and display below video
-      this.videoDesc.style.display = 'block';
-      this.videoDesc.style.displaySearchResults = 'block';
+      videoDesc.style.display = 'block';
+      videoDesc.style.displaySearchResults = 'block';
     } else if (pageSection === 'main-news') {
       // add results to page
-      this.newsSection.innerHTML = output;
+      newsSection.innerHTML = output;
 
       // make pagination buttons work
       this.paginationButtons(
         data.prevPageToken,
         data.nextPageToken,
-        this.prevNewsBtn,
-        this.nextNewsBtn
+        prevNewsBtn,
+        nextNewsBtn
       );
     } else if (pageSection === 'main-comedy') {
       // add results to page
-      this.comedySection.innerHTML = output;
+      comedySection.innerHTML = output;
 
       // make pagination buttons work
       this.paginationButtons(
         data.prevPageToken,
         data.nextPageToken,
-        this.prevComedyBtn,
-        this.nextComedyBtn
+        prevComedyBtn,
+        nextComedyBtn
       );
     }
   }
@@ -92,8 +75,7 @@ class SearchAndVideoUi {
     // Also check and see if there are replies to the comment, if so add them. If not, add empty string.
     if (getAllComments) {
       commentsList.forEach(comment => {
-        const author =
-          comment.snippet.topLevelComment.snippet.authorDisplayName;
+        const author = comment.snippet.topLevelComment.snippet.authorDisplayName;
         const displayComment =
           comment.snippet.topLevelComment.snippet.textDisplay;
         output += `
@@ -118,7 +100,7 @@ class SearchAndVideoUi {
       `;
       });
       // we use insertAdjascentHTML because we want to increase the list of comments, not replace them since there's no backwards pagination with this api
-      this.commentsUl.insertAdjacentHTML('beforeend', output);
+      commentsUl.insertAdjacentHTML('beforeend', output);
 
       // make pagination buttons work, pass in undefined for prevPage information. First check if there are comments (date.items will be greater than 0)
       if (data.items.length > 0) {
@@ -126,7 +108,7 @@ class SearchAndVideoUi {
           undefined,
           data.nextPageToken,
           undefined,
-          this.nextCommentsBtn,
+          moreCommentsBtn,
           data.items[0].snippet.videoId
         );
       }
@@ -148,7 +130,7 @@ class SearchAndVideoUi {
         </li>
         `;
       //  Here we insert the new comment at the beginning, as it was just posted.
-      this.commentsUl.insertAdjacentHTML('afterbegin', output);
+      commentsUl.insertAdjacentHTML('afterbegin', output);
     }
   }
 
