@@ -33,10 +33,12 @@ const body = document.body,
   likeBtn = document.getElementById('like'),
   dislikeBtn = document.getElementById('dislike'),
   videoContainer = document.getElementById('videos-container'),
-  channelContainer = document.getElementById('channel-container'),
   viewChannel = document.getElementById('view-channel'),
-  channelButtons = document.getElementById('channel-buttons');
-
+  channelContainer = document.getElementById('channel-container'),
+  channelBanner = document.getElementById('channel-banner'),
+  channelTitle = document.getElementById('channel-info-title'),
+  channelDescription = document.getElementById('channel-info-description'),
+  channelThumbnail = document.getElementById('channel-info-thumbnail');
 /* ------------------------------------------------------------------------- */
 // classes
 const youtube = new Youtube(),

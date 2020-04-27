@@ -24,7 +24,6 @@
           View Search Results
         </button>
 
-        <div id="channel-buttons"></div>
         <div id="login-buttons">
           <button class="btn btn-square" id="view-channel">View Channel</button>
           <button class="btn btn-square" id="login">Login</button>
@@ -32,7 +31,7 @@
         </div>
       </header>
 
-      <div id="videos-container" style="display: grid;">
+      <section id="videos-container" style="display: grid;">
         <!-- search container -->
         <div id="search-container" class="dark">
           <form id="search-form" autocomplete="off">
@@ -50,7 +49,7 @@
         </div>
 
         <!-- Home page -->
-        <div id="home-page-container">
+        <section id="home-page-container">
           <h2>Comedy</h2>
           <div id="comedy-videos">
             <button class="btn" id="prev-comedy">
@@ -72,10 +71,10 @@
               <i class="fas fa-chevron-right fa-3x"></i>
             </button>
           </div>
-        </div>
+        </section>
 
         <!-- results container -->
-        <div id="results-container">
+        <section id="results-container">
           <div id="search-results" class="search-results">
             <span id="window-close">&times;</span>
             <div id="results-term-field"></div>
@@ -93,7 +92,7 @@
           </div>
 
           <!-- video player -->
-          <div id="video">
+          <section id="video">
             <div id="video-center">
               <iframe
                 id="player"
@@ -135,10 +134,19 @@
                 </div>
               </div>
             </div>
-          </div>
+          </section>
+        </section>
+      </section>
+      <section id="channel-container" style="display: none;">
+        <div id="channel-header">
+          <div id="channel-banner"></div>
         </div>
-      </div>
-      <div id="channel-container" style="display: none;"></div>
+        <div id="channel-info">
+          <div id="channel-info-thumbnail"></div>
+          <div id="channel-info-title"></div>
+          <div id="channel-info-description"></div>
+        </div>
+      </section>
     </div>
 
     <!-- footer -->
@@ -153,7 +161,7 @@
     <script src="dist/js/classes//channelsUi.js"></script>
     <script src="dist/js/classes/searchAndVideoUi.js"></script>
     <script src="dist/js/dom-cache.js"></script>
-    <script src="dist/js/videoChannelSwitch.js"></script>
+    <script src="dist/js/channelAndManagement/videoChannelSwitch.js"></script>
     <script src="dist/js/searchAndVideo/comments.js"></script>
     <script src="dist/js/searchAndVideo/search.js"></script>
     <script src="dist/js/searchAndVideo/player.js"></script>

@@ -64,7 +64,35 @@
   #next-comedy {
     right: 1px;
   }
+
+  #channel {
+    &-container {
+      display: none;
+    }
+
+    &-banner {
+      margin: 0 auto;
+      img {
+        width: 100%;
+      }
+    }
+
+    &-info {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-areas: 'title' 'desc';
+      &-thumbnail {
+        display: none;
+      }
+    }
+
+    &-title,
+    &-description {
+      width: 95%;
+    }
+  }
 }
+
 @media (max-width: 590px) {
   #search-container {
     height: 125px;

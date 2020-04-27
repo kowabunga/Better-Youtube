@@ -12,7 +12,7 @@ class SearchAndVideoUi {
       output += `
             <li class="search-item" data-videoId=${item.id.videoId} data-videoName="${item.snippet.title}" data-Author="${item.snippet.channelTitle}" data-channelid=${item.snippet.channelId}>
                     <img class="thumbnail" src="${item.snippet.thumbnails.medium.url}" alt="Thumbnail for ${item.snippet.title}" data-videoId=${item.id.videoId} data-channelid=${item.snippet.channelId} >
-                <p>
+                <p data-videoId=${item.id.videoId} data-channelid=${item.snippet.channelId}>
                     <strong class="video-title" data-videoId=${item.id.videoId} data-channelid=${item.snippet.channelId}>${item.snippet.title} </strong> <br>
                     Author: <em>${item.snippet.channelTitle}</em>
                 </p>

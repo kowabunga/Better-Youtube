@@ -1,22 +1,60 @@
 #channel {
   &-container {
     display: none;
+    grid-template-columns: 1fr 5fr;
+    grid-template-areas:
+      'side banner'
+      'side content';
+    grid-gap: 1.5em;
+  }
+
+  &-header {
+    grid-area: banner;
   }
 
   &-banner {
-  }
-
-  &-title {
-  }
-  &-description {
-  }
-  &-thumbnail {
-  }
-
-  &-statistics {
-    &-subscribers {
+    grid-area: banner;
+    margin: 0 auto;
+    img {
+      width: 100%;
     }
-    &-video-count {
+  }
+  &-info {
+    grid-area: side;
+    display: flex;
+    flex-direction: column;
+    margin: 1em 0 0 1em;
+
+    &-title {
+      grid-area: title;
+      p {
+        width: 50%;
+        #chan-title {
+          font-size: 2em;
+        }
+      }
+    }
+
+    &-description {
+      grid-area: desc;
+      width: 90%;
+      margin: 0 auto;
+      // overflow: auto; //work on this
+    }
+
+    &-thumbnail {
+      grid-area: thumb;
+      img {
+        border-radius: 50%;
+        width: 100%;
+      }
+    }
+
+    &-statistics {
+      &-subscribers {
+      }
+      &-video-count {
+      }
     }
   }
 }
