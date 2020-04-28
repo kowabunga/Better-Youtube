@@ -30,6 +30,12 @@
     justify-content: space-evenly;
   }
 
+  #comedy,
+  #news,
+  #search-items {
+    width: 85%;
+  }
+
   // Ensures all items in video information section maintain reasonable space between each other (can be squished at small screen sizes)
   #video {
     &-information {
@@ -68,21 +74,26 @@
   #channel {
     &-container {
       display: none;
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        'banner'
+        'side'
+        'items';
     }
-
+    &-info {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-evenly;
+      &-title,
+      &-description,
+      &-thumbnail {
+        width: 30%;
+      }
+    }
     &-banner {
       margin: 0 auto;
       img {
         width: 100%;
-      }
-    }
-
-    &-info {
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-template-areas: 'title' 'desc';
-      &-thumbnail {
-        display: none;
       }
     }
 

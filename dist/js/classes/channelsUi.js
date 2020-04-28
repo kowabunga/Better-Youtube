@@ -15,25 +15,29 @@ class ChannelsUi {
     channelBanner.appendChild(banner);
 
     // Title and Subscriber count
-    const titleInfo = document.createElement('p'),
-      title = document.createElement('span'),
-      subscribers = document.createElement('span'),
+    const titleInfo = document.createElement('div'),
+      title = document.createElement('p'),
+      subscribers = document.createElement('p'),
       br = document.createElement('br');
 
-    title.innerText = brandingSettings.channel.title;
-    subscribers.innerText = `Subscribers:  ${statistics.subscriberCount}`;
+    title.textContent = brandingSettings.channel.title;
+    subscribers.textContent = `Subscribers: ${parseInt(
+      statistics.subscriberCount
+    ).toLocaleString()}`;
 
     title.id = 'chan-title';
-    title.sub = 'chan-subs';
+    subscribers.id = 'chan-subs';
 
-    titleInfo.appendChild(title).appendChild(br);
+    titleInfo.appendChild(title);
+    // titleInfo.appendChild(br);
     titleInfo.appendChild(subscribers);
 
     channelTitle.appendChild(titleInfo);
+    channelTitle.appendChild(br);
 
     // channel Description
     const description = document.createElement('p');
-    description.innerText = `${brandingSettings.channel.description}`;
+    description.textContent = `${brandingSettings.channel.description}`;
     channelDescription.appendChild(description);
 
     // Channel thumbnail

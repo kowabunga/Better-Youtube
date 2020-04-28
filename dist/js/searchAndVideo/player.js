@@ -26,9 +26,7 @@
 
       videoPlayer.setAttribute(
         'src',
-        `https://www.youtube.com/embed/${e.target.getAttribute(
-          'data-videoid'
-        )}?autoplay=1`
+        `https://www.youtube.com/embed/${e.target.getAttribute('data-videoid')}`
       );
       videoPlayer;
 

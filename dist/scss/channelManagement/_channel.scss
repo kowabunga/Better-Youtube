@@ -1,11 +1,12 @@
 #channel {
   &-container {
     display: none;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 1.5fr 5fr;
+    grid-auto-rows: minmax(0, min-content) auto;
     grid-template-areas:
       'side banner'
-      'side content';
-    grid-gap: 1.5em;
+      'side items';
+    margin-bottom: 4rem;
   }
 
   &-header {
@@ -19,43 +20,77 @@
       width: 100%;
     }
   }
+
   &-info {
     grid-area: side;
     display: flex;
     flex-direction: column;
-    margin: 1em 0 0 1em;
-
+    box-shadow: 0 0 5px $main-blue;
+    padding: 0 0.5em;
     &-title {
       grid-area: title;
-      p {
+      div {
         width: 50%;
         #chan-title {
           font-size: 2em;
+          font-weight: bold;
+        }
+
+        #chan-subs {
+          font-size: 1.2em;
         }
       }
     }
 
     &-description {
-      grid-area: desc;
       width: 90%;
-      margin: 0 auto;
-      // overflow: auto; //work on this
+      overflow: auto; //work on this
     }
 
     &-thumbnail {
-      grid-area: thumb;
       img {
         border-radius: 50%;
         width: 100%;
       }
     }
+  }
 
-    &-statistics {
-      &-subscribers {
-      }
-      &-video-count {
+  &-content {
+    grid-area: items;
+    display: grid;
+    grid-template-columns: 1fr;
+    // grid-auto-rows: minmax(0, min-content) auto;
+    grid-template-areas:
+      'navbar'
+      'videos';
+
+    &-navbar {
+      grid-area: navbar;
+      &-ul {
+        display: flex;
+        flex-direction: row;
+        list-style-type: none;
+        align-items: center;
+        justify-content: center;
       }
     }
+
+    &-videos {
+      display: none;
+    }
+
+    &-playlists {
+      display: none;
+    }
+  }
+
+  &-videos-btn {
+    width: 100px;
+    margin-right: 0.5em;
+  }
+  &-playlists-btn {
+    margin-left: 0.5em;
+    width: 100px;
   }
 }
 
