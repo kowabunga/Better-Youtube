@@ -6,6 +6,7 @@
   relevantVideoItems.addEventListener('click', showVideo);
   newsSection.addEventListener('click', showVideo);
   comedySection.addEventListener('click', showVideo);
+  channelVideosUl.addEventListener('click', showVideo);
 
   /* ------------------------------------------------------------------------- */
 
@@ -78,6 +79,12 @@
         homePageContainer.style.display = 'none';
       }
 
+      if (
+        e.target.parentElement.id === 'channel-content-videos-list' ||
+        e.target.parentElement.parentElement.id === 'channel-content-videos-list'
+      ) {
+        changePage(e);
+      }
       // show video
       resultsContainer.style.display = 'grid';
     }

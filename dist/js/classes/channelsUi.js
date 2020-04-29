@@ -1,5 +1,9 @@
 class ChannelsUi {
-  buildHeaderSection(channelInfo) {
+  constructor() {
+    this.isHeaderBuilt = false;
+  }
+
+  buildChannelDetailsSection(channelInfo) {
     console.log(channelInfo);
     const brandingSettings = channelInfo.brandingSettings,
       statistics = channelInfo.statistics,
@@ -47,8 +51,23 @@ class ChannelsUi {
     channelThumbnail.appendChild(thumbnail);
   }
 
+  buildChannelVideosSection(data) {
+    console.log(data);
+    svUI.displayVideos(data.result, 'channel-videos');
+    channelVideosSection.style.display = 'flex';
+  }
+
   populateChannelSection(data) {
     const channelInfo = data.result.items[0];
-    this.buildHeaderSection(channelInfo);
+    // prevent channel header section from being rebuilt every time channel is loaded
+    if (!this.isHeaderBuilt) {
+      this.buildChannelDetailsSection(channelInfo);
+      this.isHeaderBuilt = true;
+    }
+    // Get videos for channel
+    youtube
+      .getAllChannelVideos(channelInfo.contentDetails.relatedPlaylists.uploads)
+      .then(data => this.buildChannelVideosSection(data))
+      .catch(err => console.log(err));
   }
 }

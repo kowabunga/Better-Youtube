@@ -13,6 +13,8 @@ const body = document.body,
   nextComedyBtn = document.getElementById('next-comedy'),
   prevNewsBtn = document.getElementById('prev-news'),
   nextNewsBtn = document.getElementById('next-news'),
+  prevChannelVidBtn = document.getElementById('prev-channel-video'),
+  nextChannelVidBtn = document.getElementById('next-channel-video'),
   resultsContainer = document.getElementById('results-container'),
   searchedVideoItems = document.getElementById('search-items'),
   videoSection = document.getElementById('video'),
@@ -38,7 +40,9 @@ const body = document.body,
   channelBanner = document.getElementById('channel-banner'),
   channelTitle = document.getElementById('channel-info-title'),
   channelDescription = document.getElementById('channel-info-description'),
-  channelThumbnail = document.getElementById('channel-info-thumbnail');
+  channelThumbnail = document.getElementById('channel-info-thumbnail'),
+  channelVideosSection = document.getElementById('channel-content-videos'),
+  channelVideosUl = document.getElementById('channel-content-videos-list');
 /* ------------------------------------------------------------------------- */
 // classes
 const youtube = new Youtube(),

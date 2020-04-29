@@ -106,4 +106,12 @@ class Youtube {
       id: channelId,
     });
   }
+
+  getAllChannelVideos(playlistId) {
+    return gapi.client.youtube.playlistItems.list({
+      part: 'snippet,contentDetails',
+      maxResults: 25,
+      playlistId: playlistId,
+    });
+  }
 }

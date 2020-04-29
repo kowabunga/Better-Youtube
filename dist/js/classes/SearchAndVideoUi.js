@@ -10,10 +10,24 @@ class SearchAndVideoUi {
     // loop through data items and add video, name, title, etc. to list item and append to output
     data.items.forEach(item => {
       output += `
-            <li class="search-item" data-videoId=${item.id.videoId} data-videoName="${item.snippet.title}" data-Author="${item.snippet.channelTitle}" data-channelid=${item.snippet.channelId}>
-                    <img class="thumbnail" src="${item.snippet.thumbnails.medium.url}" alt="Thumbnail for ${item.snippet.title}" data-videoId=${item.id.videoId} data-channelid=${item.snippet.channelId} >
-                <p data-videoId=${item.id.videoId} data-channelid=${item.snippet.channelId}>
-                    <strong class="video-title" data-videoId=${item.id.videoId} data-channelid=${item.snippet.channelId}>${item.snippet.title} </strong> <br>
+            <li class="search-item" data-videoId=${
+              item.id.videoId || item.contentDetails.videoId
+            } data-videoName="${item.snippet.title}" data-Author="${
+        item.snippet.channelTitle
+      }" data-channelid=${item.snippet.channelId}>
+                    <img class="thumbnail" src="${
+                      item.snippet.thumbnails.medium.url
+                    }" alt="Thumbnail for ${item.snippet.title}" data-videoId=${
+        item.id.videoId || item.contentDetails.videoId
+      } data-channelid=${item.snippet.channelId} >
+                <p data-videoId=${
+                  item.id.videoId || item.contentDetails.videoId
+                } data-channelid=${item.snippet.channelId}>
+                    <strong class="video-title" data-videoId=${
+                      item.id.videoId || item.contentDetails.videoId
+                    } data-channelid=${item.snippet.channelId}>${
+        item.snippet.title
+      } </strong> <br>
                     Author: <em>${item.snippet.channelTitle}</em>
                 </p>
             </li>
@@ -54,6 +68,14 @@ class SearchAndVideoUi {
       comedySection.innerHTML = output;
 
       // make pagination buttons work
+      this.paginationButtons(
+        data.prevPageToken,
+        data.nextPageToken,
+        prevComedyBtn,
+        nextComedyBtn
+      );
+    } else if (pageSection === 'channel-videos') {
+      channelVideosUl.innerHTML = output;
       this.paginationButtons(
         data.prevPageToken,
         data.nextPageToken,

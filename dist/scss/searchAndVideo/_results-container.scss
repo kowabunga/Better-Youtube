@@ -22,12 +22,14 @@
     flex-direction: column;
     justify-content: center;
     position: absolute;
+    background-color: $main-dark-color;
+    border-top: 2px solid $light-gray;
     top: 320px;
     right: 0;
     left: 0;
-    bottom: 3rem;
+    bottom: 0;
     width: 100%;
-    z-index: 15;
+    z-index: 100;
 
     #results-term-field {
       text-align: center;
