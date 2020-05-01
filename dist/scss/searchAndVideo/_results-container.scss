@@ -67,8 +67,6 @@
   padding: 15px 5px 5px 5px;
   height: 225px;
   width: 250px;
-  opacity: 0;
-  animation: fade 1s forwards;
 
   &:hover {
     box-shadow: 0 0 10px $main-blue;
@@ -127,13 +125,4 @@
 }
 .channel-author-id:hover {
   text-decoration: underline;
-}
-
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
