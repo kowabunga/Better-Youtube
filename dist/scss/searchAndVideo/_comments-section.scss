@@ -113,6 +113,10 @@
       margin-left: 5%;
       word-wrap: break-word;
       text-overflow: ellipsis;
+
+      a {
+        color: $main-blue;
+      }
     }
 
     #comment-btns {

@@ -53,6 +53,10 @@ class ChannelsUi {
 
   buildChannelVideosSection(data) {
     console.log(data);
+    channelVideosUl.setAttribute(
+      'data-playlistid',
+      data.result.items[0].snippet.playlistId || null
+    );
     svUI.displayVideos(data.result, 'channel-videos');
     channelVideosSection.style.display = 'flex';
   }

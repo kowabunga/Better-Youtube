@@ -21,15 +21,16 @@
       text-shadow: 0 0 5px $main-blue;
       box-shadow: 0 0 5px $main-blue, inset 0 0 5px $main-blue;
     }
+
+    &:active {
+      text-shadow: 0 0 5px $main-blue;
+      background-color: lighten($main-dark-color, 5);
+    }
   }
 
   &:hover {
     cursor: pointer;
     opacity: 1;
-  }
-
-  &:active {
-    text-shadow: 0 0 5px $main-blue;
   }
 
   &:disabled {
@@ -79,8 +80,9 @@
   transform: translate(-2%, -50%);
 }
 
-#show-search {
-  visibility: hidden;
+#show-search,
+#hide-channel {
+  display: none;
   margin: 0 0 12px 12px;
 }
 
@@ -114,4 +116,8 @@
   color: crimson;
   border-color: crimson;
   box-shadow: 0 0 5px crimson !important;
+}
+
+.search-channel-btns {
+  display: flex;
 }

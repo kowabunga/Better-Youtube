@@ -10,14 +10,23 @@ class Youtube {
   }
 
   // Get next page of search results using next page token in API call
-  getPrevOrNextVideoPage(pageToken, searchValue, numOfResults) {
-    return gapi.client.youtube.search.list({
-      part: 'snippet',
-      q: searchValue,
-      type: 'video',
-      maxResults: numOfResults,
-      pageToken: pageToken,
-    });
+  getPrevOrNextVideoPage(pageToken, searchValue, playlistId, numOfResults) {
+    if (searchValue) {
+      return gapi.client.youtube.search.list({
+        part: 'snippet',
+        q: searchValue,
+        type: 'video',
+        maxResults: numOfResults,
+        pageToken: pageToken,
+      });
+    } else if (playlistId) {
+      return gapi.client.youtube.playlistItems.list({
+        part: 'snippet,contentDetails',
+        maxResults: 12,
+        playlistId: playlistId,
+        pageToken: pageToken,
+      });
+    }
   }
 
   // Get relevant videos
@@ -110,7 +119,7 @@ class Youtube {
   getAllChannelVideos(playlistId) {
     return gapi.client.youtube.playlistItems.list({
       part: 'snippet,contentDetails',
-      maxResults: 25,
+      maxResults: 12,
       playlistId: playlistId,
     });
   }

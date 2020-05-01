@@ -20,9 +20,14 @@
         <a href="#" id="brand"
           ><span id="my">My</span><span id="tube">Tube</span></a
         >
-        <button class="btn btn-square" id="show-search">
-          View Search Results
-        </button>
+        <div class="search-channel-btns">
+          <button class="btn btn-square" id="show-search">
+            View Search Results
+          </button>
+          <button class="btn btn-square" id="hide-channel">
+            Hide Channel
+          </button>
+        </div>
 
         <div id="login-buttons">
           <button class="btn btn-square" id="view-channel">View Channel</button>
@@ -81,9 +86,7 @@
             <button class="btn" id="prev-search">
               <i class="fas fa-chevron-left fa-3x"></i>
             </button>
-            <div class="shadow">
-              <ul id="search-items"></ul>
-            </div>
+            <ul id="search-items"></ul>
             <button class="btn" id="next-search">
               <i class="fas fa-chevron-right fa-3x"></i>
             </button>

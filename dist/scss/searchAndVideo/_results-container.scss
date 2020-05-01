@@ -29,7 +29,7 @@
     left: 0;
     bottom: 0;
     width: 100%;
-    z-index: 100;
+    z-index: 1;
 
     #results-term-field {
       text-align: center;
@@ -110,7 +110,7 @@
   position: absolute;
   top: 15px;
   left: 20px;
-  color: $main-light-color;
+  color: $main-blue;
   visibility: hidden;
   transform: scale(2);
   transition: 0.2s;
@@ -118,6 +118,15 @@
     cursor: pointer;
     transform: scale(2.5);
   }
+}
+
+.channel-author-id {
+  color: white;
+  text-decoration: none;
+  font-style: italic;
+}
+.channel-author-id:hover {
+  text-decoration: underline;
 }
 
 @keyframes fade {

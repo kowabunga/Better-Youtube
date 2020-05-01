@@ -10,6 +10,7 @@ class GoogleAuth {
     this.updateSignInStatus = this.updateSignInStatus.bind(this);
     this.loginBtn = document.getElementById('login');
     this.logoutBtn = document.getElementById('logout');
+    this.viewChannelBtn = document.getElementById('view-channel');
   }
   // This function calls and loads
   loadClient() {
@@ -48,10 +49,12 @@ class GoogleAuth {
       // If user is signed in, hide login button and display logout button. Also, display channel management buttons
       this.loginBtn.style.display = 'none';
       this.logoutBtn.style.display = 'block';
+      this.viewChannelBtn.style.display = 'block';
     } else {
       // If user is signed out, hide logout button and display login button. Also, hide channel management buttons
       this.logoutBtn.style.display = 'none';
       this.loginBtn.style.display = 'block';
+      this.viewChannelBtn.style.display = 'none';
     }
   }
 

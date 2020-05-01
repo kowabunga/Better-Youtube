@@ -6,6 +6,7 @@ class SearchAndVideoUi {
 
   // Display videos on page
   displayVideos(data, pageSection) {
+    // console.log(data);
     let output = '';
     // loop through data items and add video, name, title, etc. to list item and append to output
     data.items.forEach(item => {
@@ -28,7 +29,9 @@ class SearchAndVideoUi {
                     } data-channelid=${item.snippet.channelId}>${
         item.snippet.title
       } </strong> <br>
-                    Author: <em>${item.snippet.channelTitle}</em>
+                    Author: <a href='#!' data-channelid=${
+                      item.snippet.channelId
+                    } class='channel-author-id'>${item.snippet.channelTitle}</a>
                 </p>
             </li>
         `;
@@ -79,8 +82,8 @@ class SearchAndVideoUi {
       this.paginationButtons(
         data.prevPageToken,
         data.nextPageToken,
-        prevComedyBtn,
-        nextComedyBtn
+        prevChannelVidBtn,
+        nextChannelVidBtn
       );
     }
   }

@@ -1,4 +1,15 @@
+let searchesPresent = false;
 viewChannel.addEventListener('click', changePage);
+hideChannelBtn.addEventListener('click', revertPage);
+
+function revertPage(e) {
+  e.preventDefault();
+
+  hideChannelBtn.style.display = 'none';
+  channelContainer.style.display = 'none';
+  showSearchResultsBtn.style.display = 'block';
+  videoContainer.style.display = 'block';
+}
 
 // Handles page change when switching from general youtube video searching/commenting etc. to channel management
 function changePage(e) {
@@ -16,11 +27,15 @@ function changePage(e) {
 }
 
 function loadChannel(e) {
-  let channelId;
-  if (e.target.id === 'channel-author') {
-    channelId = e.target.getAttribute('data-channelid');
+  hideChannelBtn.style.display = 'block';
+  showSearchResultsBtn.style.display = 'none';
+
+  if (
+    e.target.id === 'channel-author' ||
+    e.target.classList.contains('channel-author-id')
+  ) {
     youtube
-      .getChannelInformation(channelId)
+      .getChannelInformation(e.target.getAttribute('data-channelid'))
       .then(data => chUI.populateChannelSection(data))
       .catch(err => console.log(err));
   }
