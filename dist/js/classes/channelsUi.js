@@ -4,7 +4,7 @@ class ChannelsUi {
   }
 
   buildChannelDetailsSection(channelInfo) {
-    console.log(channelInfo);
+    // console.log(channelInfo);
     const brandingSettings = channelInfo.brandingSettings,
       statistics = channelInfo.statistics,
       snippet = channelInfo.snippet;
@@ -52,7 +52,7 @@ class ChannelsUi {
   }
 
   buildChannelVideosSection(data) {
-    console.log(data);
+    // console.log(data);
     channelVideosUl.setAttribute(
       'data-playlistid',
       data.result.items[0].snippet.playlistId || null
