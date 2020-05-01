@@ -15,11 +15,11 @@ This idea came from the idea that it can be annoying to be searching videos, acc
   - Adding comments
   - Replying to comments
   - Liking/disliking videos
+- Viewing channel of video uploader
+  - Ability to paginate through all videos uploaded by said user
 
 # Adding in due time:
 
-- Numbered pagination
-- Ability to get user data
-  - ~~Example reason: aforementioned looking through search history~~ -Deprecated by Youtube.
 - Logging in with Google for:
-  - General Youtube account management.
+  - Page management
+    - e.g. Video uploads, channel banner changes, etc.
