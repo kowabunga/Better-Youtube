@@ -64,6 +64,7 @@ function paginateThrough(e) {
 
     // Channel videos are set up as playlists. In order to paginate through, it needs the playlist ID
     playlistId = channelVideosUl.getAttribute('data-playlistid');
+    numOfItems = 10;
   }
 
   youtube

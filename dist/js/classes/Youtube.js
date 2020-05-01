@@ -119,7 +119,7 @@ class Youtube {
   getAllChannelVideos(playlistId) {
     return gapi.client.youtube.playlistItems.list({
       part: 'snippet,contentDetails',
-      maxResults: 12,
+      maxResults: 10,
       playlistId: playlistId,
     });
   }
