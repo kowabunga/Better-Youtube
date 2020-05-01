@@ -73,5 +73,6 @@ class ChannelsUi {
       .getAllChannelVideos(channelInfo.contentDetails.relatedPlaylists.uploads)
       .then(data => this.buildChannelVideosSection(data))
       .catch(err => console.log(err));
+    //
   }
 }
