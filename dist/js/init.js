@@ -12,3 +12,5 @@ googleAuth.loadClient();
 
 // Allows page reload by clicking brand logo
 brand.addEventListener('click', () => window.location.reload());
+
+//
