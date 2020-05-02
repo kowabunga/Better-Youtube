@@ -20,10 +20,6 @@ body {
   height: 100%;
 }
 
-body {
-  position: relative;
-}
-
 .dark {
   background-color: $main-dark-color;
   color: $main-light-color;
@@ -32,4 +28,3 @@ body {
     background-color: $search-bar-dark;
   }
 }
-

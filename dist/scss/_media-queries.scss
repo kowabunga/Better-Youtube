@@ -110,9 +110,6 @@
   #brand {
     margin: 1rem auto 4rem auto;
   }
-  #search-container {
-    height: 125px;
-  }
 
   #search-form {
     display: flex;
@@ -122,14 +119,10 @@
   }
 
   #search-input {
-    width: 80%;
-    border-radius: 20px 0 0 20px;
     border-right: none;
   }
 
   #submit-search {
-    width: 20%;
-    border-radius: 0 20px 20px 0;
     border: 2px solid $main-blue;
   }
 
@@ -153,5 +146,20 @@
 
   .show-search {
     top: 362px;
+  }
+
+  #news-videos,
+  #comedy-videos {
+    #comedy,
+    #news {
+      width: 80%;
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  #search-results {
+    width: 400px;
+    height: 70%;
   }
 }
