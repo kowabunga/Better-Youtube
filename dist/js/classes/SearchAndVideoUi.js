@@ -274,6 +274,7 @@ class SearchAndVideoUi {
       searchResults.classList.remove('hide-search');
       searchResults.classList.add('show-search');
       closeSearchBtn.style.visibility = 'visible';
+      videoSection.style.visibility = 'hidden';
     } else {
       this.hideResults();
     }
@@ -294,6 +295,7 @@ class SearchAndVideoUi {
     searchResults.classList.remove('show-search');
     searchResults.classList.add('hide-search');
     closeSearchBtn.style.visibility = 'hidden';
+    videoSection.style.visibility = 'visible';
   }
 
   // MAKE BUTTONS SWITCH IF OPPOSITE IS PRESSED WHILE ACTIVE
