@@ -45,7 +45,7 @@ function submitQuery(e) {
     if (searchResults.classList.contains('hide-search')) {
       svUI.showResults(e);
     }
-
+    videoSection.style.visibility = 'hidden';
     resultsContainer.style.display = 'grid';
 
     // make request to api with search parameter and display in webpage

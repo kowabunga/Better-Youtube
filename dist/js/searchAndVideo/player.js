@@ -23,7 +23,7 @@ function showVideo(e) {
     e.target.classList.contains('video-title')
   ) {
     videoPlayer.style.display = 'block';
-    videoSection.style.display = 'block';
+    videoSection.style.visibility = 'visible';
 
     videoPlayer.setAttribute(
       'src',
