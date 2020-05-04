@@ -1,27 +1,29 @@
-let searchesPresent = false;
 viewChannel.addEventListener('click', changePage);
 hideChannelBtn.addEventListener('click', revertPage);
 
-function revertPage(e) {
-  e.preventDefault();
-
+function revertPage() {
   hideChannelBtn.style.display = 'none';
   channelContainer.style.display = 'none';
-  showSearchResultsBtn.style.display = 'block';
   videoContainer.style.display = 'block';
+
+  if (searchedVideoItems.getElementsByTagName('li').length > 0) {
+    showSearchResultsBtn.style.display = 'block';
+  }
+
+  // Only want the view channel button to show when page reverts IF user is signed in
+  if ((viewChannel.style.display = 'none' && googleAuth.checkIfSignedIn())) {
+    viewChannel.style.display = 'block';
+  }
 }
 
 // Handles page change when switching from general youtube video searching/commenting etc. to channel management
 function changePage(e) {
   e.preventDefault();
-  if (channelContainer.style.display === 'none') {
-    channelContainer.style.display = 'grid';
-    videoContainer.style.display = 'none';
-    viewChannel.innerText = 'Search Videos';
-  } else {
-    channelContainer.style.display = 'none';
-    videoContainer.style.display = 'grid';
-    viewChannel.innerText = 'View Channel';
+
+  channelContainer.style.display = 'grid';
+  videoContainer.style.display = 'none';
+  if (viewChannel.style.display === 'block') {
+    viewChannel.style.display = 'none';
   }
   loadChannel(e);
 }
@@ -37,6 +39,12 @@ function loadChannel(e) {
     youtube
       .getChannelInformation(e.target.getAttribute('data-channelid'))
       .then(data => chUI.populateChannelSection(data))
+      .catch(err => console.log(err));
+  }
+  if (e.target.id === 'view-channel') {
+    youtube
+      .getChannelInformation(e.target.getAttribute('data-channelid'), true)
+      .then(data => chUI.populateChannelSection(data, true))
       .catch(err => console.log(err));
   }
 }

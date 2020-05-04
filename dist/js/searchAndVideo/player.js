@@ -17,6 +17,7 @@ function showVideo(e) {
   if (e.target.classList.contains('channel-author-id')) {
     changePage(e);
   }
+
   // Checking if target is video thumbnail or video title
   if (
     e.target.classList.contains('thumbnail') ||
@@ -79,14 +80,19 @@ function showVideo(e) {
       homePageContainer.style.display = 'none';
     }
 
-    if (
-      e.target.parentElement.id === 'channel-content-videos-list' ||
-      e.target.parentElement.parentElement.id === 'channel-content-videos-list'
-    ) {
-      changePage(e);
-    }
+    // if (
+    //   e.target.parentElement.id === 'channel-content-videos-list' ||
+    //   e.target.parentElement.parentElement.id === 'channel-content-videos-list'
+    // ) {
+    //   changePage(e);
+    // }
+
     // show video
     resultsContainer.style.display = 'grid';
+
+    if (channelContainer.style.display === 'grid') {
+      revertPage();
+    }
   }
 }
 

@@ -9,34 +9,37 @@ class SearchAndVideoUi {
     // console.log(data);
     let output = '';
     // loop through data items and add video, name, title, etc. to list item and append to output
-    data.items.forEach(item => {
-      output += `
+    if (data.items.length > 0) {
+      data.items.forEach(item => {
+        output += `
             <li class="search-item" data-videoId=${
               item.id.videoId || item.contentDetails.videoId
             } data-videoName="${item.snippet.title}" data-Author="${
-        item.snippet.channelTitle
-      }" data-channelid=${item.snippet.channelId}>
+          item.snippet.channelTitle
+        }" data-channelid=${item.snippet.channelId}>
                     <img class="thumbnail" src="${
                       item.snippet.thumbnails.medium.url
                     }" alt="Thumbnail for ${item.snippet.title}" data-videoId=${
-        item.id.videoId || item.contentDetails.videoId
-      } data-channelid=${item.snippet.channelId} >
+          item.id.videoId || item.contentDetails.videoId
+        } data-channelid=${item.snippet.channelId} >
                 <p data-videoId=${
                   item.id.videoId || item.contentDetails.videoId
                 } data-channelid=${item.snippet.channelId}>
                     <strong class="video-title" data-videoId=${
                       item.id.videoId || item.contentDetails.videoId
                     } data-channelid=${item.snippet.channelId}>${
-        item.snippet.title
-      } </strong> <br>
+          item.snippet.title
+        } </strong> <br>
                     Author: <a href='#!' data-channelid=${
                       item.snippet.channelId
                     } class='channel-author-id'>${item.snippet.channelTitle}</a>
                 </p>
             </li>
         `;
-    });
-
+      });
+    } else {
+      output = 'No videos.';
+    }
     if (pageSection === 'search-results') {
       searchedVideoItems.innerHTML = output;
 
@@ -99,11 +102,13 @@ class SearchAndVideoUi {
     // Loop through each item in data array to get comments and add to ul
     // Also check and see if there are replies to the comment, if so add them. If not, add empty string.
     if (getAllComments) {
-      commentsList.forEach(comment => {
-        const author = comment.snippet.topLevelComment.snippet.authorDisplayName;
-        const displayComment =
-          comment.snippet.topLevelComment.snippet.textDisplay;
-        output += `
+      if (commentsList.length > 0) {
+        commentsList.forEach(comment => {
+          const author =
+            comment.snippet.topLevelComment.snippet.authorDisplayName;
+          const displayComment =
+            comment.snippet.topLevelComment.snippet.textDisplay;
+          output += `
           <li class="comment" data-commentid = ${comment.id}>
             <div id="comment-btns">
               <button class="reply-comment" data-tooltip="Reply"><i class="fas fa-reply"></i></button>
@@ -123,7 +128,12 @@ class SearchAndVideoUi {
             }
           </li>
       `;
-      });
+        });
+      } else {
+        output = 'No comments.';
+        moreCommentsBtn.setAttribute('disabled', true);
+      }
+
       // we use insertAdjascentHTML because we want to increase the list of comments, not replace them since there's no backwards pagination with this api
       commentsUl.insertAdjacentHTML('beforeend', output);
 

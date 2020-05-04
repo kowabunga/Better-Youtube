@@ -52,8 +52,8 @@ class GoogleAuth {
       this.viewChannelBtn.style.display = 'block';
     } else {
       // If user is signed out, hide logout button and display login button. Also, hide channel management buttons
-      this.logoutBtn.style.display = 'none';
       this.loginBtn.style.display = 'block';
+      this.logoutBtn.style.display = 'none';
       this.viewChannelBtn.style.display = 'none';
     }
   }

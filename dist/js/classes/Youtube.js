@@ -109,11 +109,18 @@ class Youtube {
     });
   }
 
-  getChannelInformation(channelId) {
-    return gapi.client.youtube.channels.list({
-      part: 'snippet,contentDetails,statistics,brandingSettings',
-      id: channelId,
-    });
+  getChannelInformation(channelId, mine) {
+    if (mine) {
+      return gapi.client.youtube.channels.list({
+        part: 'snippet,contentDetails,statistics,brandingSettings',
+        mine: true,
+      });
+    } else {
+      return gapi.client.youtube.channels.list({
+        part: 'snippet,contentDetails,statistics,brandingSettings',
+        id: channelId,
+      });
+    }
   }
 
   getAllChannelVideos(playlistId) {
