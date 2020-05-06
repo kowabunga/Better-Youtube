@@ -1,7 +1,7 @@
 viewChannel.addEventListener('click', changePage);
 hideChannelBtn.addEventListener('click', revertPage);
 channelVideosBtn.addEventListener('click', viewVideos);
-channelPlaylistsBtn.addEventListener('click', uploadVideo);
+channelPlaylistsBtn.addEventListener('click', viewPlaylists);
 
 function revertPage() {
   hideChannelBtn.style.display = 'none';
@@ -42,20 +42,19 @@ function loadChannel(e) {
     const channelId = e.target.getAttribute('data-channelid');
     youtube
       .getChannelInformation(channelId)
-      .then(data => chUI.populateChannelSection(data))
+      .then(data => populateChannelSection(data))
       .catch(err => console.log(err));
 
     //check if user is subscribed
     if (googleAuth.checkIfSignedIn()) {
       youtube
         .checkIfSubscribed(channelId)
-        // .then(data => console.log(data))
         .then(data =>
           handleSubscriptionBtnClick(data, data.result.items.length > 0)
         )
         .catch(err => console.log(err));
     } else {
-      chUI.setSubscriptionButton(data, false);
+      chUI.setSubscriptionButton(null, false);
     }
 
     // Check if subscribe button is display none, if so make it block and visible
@@ -63,9 +62,11 @@ function loadChannel(e) {
       'none' && (subscribeBtn.style.display = 'block');
   }
   if (e.target.id === 'view-channel') {
+    const channelId = e.target.getAttribute('data-channelid');
+
     youtube
       .getChannelInformation(channelId, true)
-      .then(data => chUI.populateChannelSection(data, true))
+      .then(data => populateChannelSection(data, true))
       .catch(err => console.log(err));
 
     // check if target (view channel btn) channelid attribute is same as channelid attribute in subscribe button. If so, hide subscribe button.
@@ -75,13 +76,29 @@ function loadChannel(e) {
   }
 }
 
+function populateChannelSection(data, myChannel) {
+  // save logged in user's channel id to view channel button. this will be used in changePage function to determine if current channel page is logged in user's page.
+  myChannel &&
+    viewChannel.setAttribute('data-channelid', data.result.items[0].id);
+
+  const channelInfo = data.result.items[0];
+  // prevent channel header section from being rebuilt every time channel is loaded
+  chUI.buildChannelDetailsSection(channelInfo);
+
+  // Get videos for channel
+  youtube
+    .getAllChannelVideos(channelInfo.contentDetails.relatedPlaylists.uploads)
+    .then(data => chUI.buildChannelVideosSection(data))
+    .catch(err => console.log(err));
+}
+
 function viewVideos(e) {
   e.preventDefault();
   channelPlaylistSec.style.display = 'none';
   channelVideosSection.style.display = 'flex';
 }
 
-function uploadVideo(e) {
+function viewPlaylists(e) {
   e.preventDefault();
   channelVideosSection.style.display = 'none';
   channelPlaylistSec.style.display = 'flex';

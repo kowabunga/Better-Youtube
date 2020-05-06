@@ -24,10 +24,14 @@ function subscribeOrUnSubscribe(e) {
 // move code?
 function handleSubscriptionBtnClick(data, check) {
   if (check) {
-    console.log(data);
     subscribeBtn.classList.add('subscribed');
     subscribeBtn.textContent = 'Subscribed';
-    subscribeBtn.setAttribute('data-subid', data.result.items[0].id);
+
+    // Depending on which api request is made, it either returns a data.result.id value OR a data.result.id[array].id value
+    subscribeBtn.setAttribute(
+      'data-subid',
+      data.result.id || data.result.items[0].id
+    );
   } else {
     chUI.setSubscriptionButton(data, check);
   }

@@ -73,22 +73,6 @@ class ChannelsUi {
     channelVideosSection.style.display = 'flex';
   }
 
-  populateChannelSection(data, myChannel) {
-    // save logged in user's channel id to view channel button. this will be used in changePage function to determine if current channel page is logged in user's page.
-    myChannel &&
-      viewChannel.setAttribute('data-channelid', data.result.items[0].id);
-
-    const channelInfo = data.result.items[0];
-    // prevent channel header section from being rebuilt every time channel is loaded
-    this.buildChannelDetailsSection(channelInfo);
-
-    // Get videos for channel
-    youtube
-      .getAllChannelVideos(channelInfo.contentDetails.relatedPlaylists.uploads)
-      .then(data => this.buildChannelVideosSection(data))
-      .catch(err => console.log(err));
-  }
-
   setSubscriptionButton(data, isSubscribed) {
     if (isSubscribed) {
       subscribeBtn.classList.add('subscribed');
