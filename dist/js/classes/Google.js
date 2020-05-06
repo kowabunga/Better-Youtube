@@ -11,6 +11,8 @@ class GoogleAuth {
     this.loginBtn = document.getElementById('login');
     this.logoutBtn = document.getElementById('logout');
     this.viewChannelBtn = document.getElementById('view-channel');
+    this.subscriptionBtn = document.getElementById('subscribe-btn');
+    this.channelContainer = document.getElementById('channel-container');
   }
   // This function calls and loads
   loadClient() {
@@ -50,11 +52,20 @@ class GoogleAuth {
       this.loginBtn.style.display = 'none';
       this.logoutBtn.style.display = 'block';
       this.viewChannelBtn.style.display = 'block';
+
+      // reload on login
+      this.channelContainer.style.display === 'grid' && window.location.reload();
     } else {
       // If user is signed out, hide logout button and display login button. Also, hide channel management buttons
       this.loginBtn.style.display = 'block';
       this.logoutBtn.style.display = 'none';
       this.viewChannelBtn.style.display = 'none';
+
+      // If user signs out while on a channel page, remove subscribed class from channel sub. button
+      if (this.subscriptionBtn.classList.contains('subscribed')) {
+        subscribeBtn.classList.remove('subscribed');
+        subscribeBtn.textContent = 'Subscribe';
+      }
     }
   }
 

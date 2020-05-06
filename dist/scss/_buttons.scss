@@ -107,6 +107,7 @@
   width: 125px;
 }
 
+.subscribed,
 .liked {
   color: rgb(39, 241, 32);
   border-color: rgb(39, 241, 32);
@@ -132,4 +133,9 @@
   position: absolute;
   bottom: 0;
   left: 0;
+}
+
+#subscribe-btn {
+  margin: 0.5em auto;
+  width: 50%;
 }

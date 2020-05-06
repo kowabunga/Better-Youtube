@@ -130,4 +130,32 @@ class Youtube {
       playlistId: playlistId,
     });
   }
+
+  subscribeToChannel(channelId) {
+    return gapi.client.youtube.subscriptions.insert({
+      part: 'snippet',
+      resource: {
+        snippet: {
+          resourceId: {
+            kind: 'youtube#channel',
+            channelId: channelId,
+          },
+        },
+      },
+    });
+  }
+
+  unSubscribeFromChannel(subscriptionId) {
+    return gapi.client.youtube.subscriptions.delete({
+      id: subscriptionId,
+    });
+  }
+
+  checkIfSubscribed(channelId) {
+    return gapi.client.youtube.subscriptions.list({
+      part: 'snippet,contentDetails',
+      forChannelId: channelId,
+      mine: true,
+    });
+  }
 }

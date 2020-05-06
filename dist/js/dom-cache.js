@@ -43,5 +43,8 @@ const body = document.body,
   channelDescription = document.getElementById('channel-info-description'),
   channelThumbnail = document.getElementById('channel-info-thumbnail'),
   channelVideosSection = document.getElementById('channel-content-videos'),
-  channelVideosUl = document.getElementById('channel-content-videos-list');
-/* ------------------------------------------------------------------------- */
+  channelVideosUl = document.getElementById('channel-content-videos-list'),
+  channelVideosBtn = document.getElementById('channel-videos-btn'),
+  channelPlaylistSec = document.getElementById('channel-content-playlists'),
+  channelPlaylistsBtn = document.getElementById('channel-playlists'),
+  subscribeBtn = document.getElementById('subscribe-btn');
