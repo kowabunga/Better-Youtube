@@ -80,13 +80,6 @@ function showVideo(e) {
       homePageContainer.style.display = 'none';
     }
 
-    // if (
-    //   e.target.parentElement.id === 'channel-content-videos-list' ||
-    //   e.target.parentElement.parentElement.id === 'channel-content-videos-list'
-    // ) {
-    //   changePage(e);
-    // }
-
     // show video
     resultsContainer.style.display = 'grid';
 

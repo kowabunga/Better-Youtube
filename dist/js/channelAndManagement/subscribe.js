@@ -22,13 +22,13 @@ function subscribeOrUnSubscribe(e) {
 
 // start here, make sure it handles checking subscription and changing sub button styles on channel load correctly
 // move code?
-function handleSubscriptionBtnClick(data, isSubscribed, check) {
+function handleSubscriptionBtnClick(data, check) {
   if (check) {
     console.log(data);
     subscribeBtn.classList.add('subscribed');
     subscribeBtn.textContent = 'Subscribed';
     subscribeBtn.setAttribute('data-subid', data.result.items[0].id);
   } else {
-    chUI.setSubscriptionButton(data, isSubscribed);
+    chUI.setSubscriptionButton(data, check);
   }
 }

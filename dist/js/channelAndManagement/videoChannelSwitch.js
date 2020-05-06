@@ -49,12 +49,13 @@ function loadChannel(e) {
     if (googleAuth.checkIfSignedIn()) {
       youtube
         .checkIfSubscribed(channelId)
+        // .then(data => console.log(data))
         .then(data =>
-          chUI.setSubscriptionButton(data, data.result.items.length > 0)
+          handleSubscriptionBtnClick(data, data.result.items.length > 0)
         )
         .catch(err => console.log(err));
     } else {
-      chUI.setSubscriptionButton(null, false);
+      chUI.setSubscriptionButton(data, false);
     }
 
     // Check if subscribe button is display none, if so make it block and visible
