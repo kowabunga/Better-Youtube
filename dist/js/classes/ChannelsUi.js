@@ -83,4 +83,48 @@ class ChannelsUi {
       subscribeBtn.textContent = 'Subscribe';
     }
   }
+
+  buildPlaylistSection(data) {
+    console.log(data);
+    const playlistItems = document.createDocumentFragment();
+    const items = data.result.items;
+
+    if (items.length > 0) {
+      items.forEach(item => {
+        const playlistItem = this.buildListItems(item);
+        playlistItems.appendChild(playlistItem);
+      });
+    } else {
+      const p = document.createElement('p');
+      p.textContent = 'This channel has no playlists.';
+      mainPlaylistUl.appendChild(p);
+    }
+    mainPlaylistUl.appendChild(playlistItems);
+
+    svUI.paginationButtons(
+      data.result.prevPageToken,
+      data.result.nextPageToken,
+      prevPlaylistBtn,
+      nextPlaylistBtn
+    );
+  }
+
+  buildListItems(item) {
+    const li = document.createElement('li');
+    li.classList.add('playlist-item');
+    li.setAttribute('data-playlistid', item.id);
+
+    const img = document.createElement('img');
+    img.classList.add('thumbnail');
+    img.setAttribute('src', item.snippet.thumbnails.high.url);
+
+    const p = document.createElement('p');
+    p.classList.add('playlist-title');
+    p.textContent = item.snippet.title;
+
+    li.appendChild(img);
+    li.appendChild(p);
+
+    return li;
+  }
 }

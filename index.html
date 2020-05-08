@@ -155,7 +155,7 @@
             <ul id="channel-content-navbar-ul">
               <li class="channel-content-navbar-li">
                 <button class="btn btn-square" id="channel-videos-btn">
-                  All Videos
+                  Videos
                 </button>
               </li>
               <li class="channel-content-navbar-li">
@@ -175,7 +175,13 @@
             </button>
           </div>
           <div id="channel-content-playlists">
-            Playlists
+            <button class="btn" id="prev-playlist">
+              <i class="btn fas fa-chevron-left fa-3x"></i>
+            </button>
+            <ul id="channel-content-playlists-main"></ul>
+            <button class="btn" id="next-playlist">
+              <i class="btn fas fa-chevron-right fa-3x"></i>
+            </button>
           </div>
         </div>
       </section>
@@ -196,6 +202,7 @@
     <script src="dist/js/init.js"></script>
     <script src="dist/js/channelAndManagement/videoChannelSwitch.js"></script>
     <script src="dist/js/channelAndManagement/subscribe.js"></script>
+    <script src="dist/js/channelAndManagement/playlists.js"></script>
     <script src="dist/js/searchAndVideo/comments.js"></script>
     <script src="dist/js/searchAndVideo/search.js"></script>
     <script src="dist/js/searchAndVideo/player.js"></script>

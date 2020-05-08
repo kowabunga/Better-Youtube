@@ -7,6 +7,8 @@ prevNewsBtn.addEventListener('click', paginateThrough);
 nextNewsBtn.addEventListener('click', paginateThrough);
 prevChannelVidBtn.addEventListener('click', paginateThrough);
 nextChannelVidBtn.addEventListener('click', paginateThrough);
+prevPlaylistBtn.addEventListener('click', paginateThrough);
+nextPlaylistBtn.addEventListener('click', paginateThrough);
 
 // Pagination
 function paginateThrough(e) {
@@ -65,6 +67,23 @@ function paginateThrough(e) {
     // Channel videos are set up as playlists. In order to paginate through, it needs the playlist ID
     playlistId = channelVideosUl.getAttribute('data-playlistid');
     numOfItems = 10;
+  } else if (
+    e.target.parentElement.id === 'prev-playlist' ||
+    e.target.parentElement.id === 'next-playlist'
+  ) {
+    e.target.parentElement.getAttribute('data-prevpage')
+      ? (pageToken = e.target.parentElement.getAttribute('data-prevpage'))
+      : (pageToken = e.target.parentElement.getAttribute('data-nextpage'));
+
+    youtube
+      .getPrevOrNextPlaylists(
+        pageToken,
+        10,
+        subscribeBtn.getAttribute('data-channelid')
+      )
+      .then(data => chUI.buildPlaylistSection(data))
+      .catch(err => console.log(err));
+    return;
   }
 
   youtube

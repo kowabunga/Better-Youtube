@@ -75,10 +75,9 @@ class GoogleAuth {
       // If user is signed in, logout and deauthorize.
       // Deauthorizing requires reauthorizing the app when logging back in.
       confirm(
-        `Logging out will prevent MyTube from being able to add comments, upload videos, at your request. \n\nYou will have to reauthorize this website if you log back in to use it to its full extent. Are you sure you want to continue?`
+        `Logging out will prevent MyTube from being able to add comments, upload videos, at your request. \n\nYou will have to log back in to use the features previously listed.`
       );
       gapi.auth2.getAuthInstance().signOut();
-      gapi.auth2.getAuthInstance().disconnect();
     } else {
       // If user not logged in, log in.
       gapi.auth2.getAuthInstance().signIn();

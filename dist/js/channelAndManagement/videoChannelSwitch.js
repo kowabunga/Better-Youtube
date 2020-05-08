@@ -1,7 +1,6 @@
 viewChannel.addEventListener('click', changePage);
 hideChannelBtn.addEventListener('click', revertPage);
 channelVideosBtn.addEventListener('click', viewVideos);
-channelPlaylistsBtn.addEventListener('click', viewPlaylists);
 
 function revertPage() {
   hideChannelBtn.style.display = 'none';
@@ -32,6 +31,11 @@ function changePage(e) {
 }
 
 function loadChannel(e) {
+  // On channel load, check if the playlist ul has items in it, if so remove them so that they will not be present when checking playlists for new channel
+  while (mainPlaylistUl.hasChildNodes()) {
+    mainPlaylistUl.removeChild(mainPlaylistUl.firstChild);
+  }
+
   hideChannelBtn.style.display = 'block';
   showSearchResultsBtn.style.display = 'none';
 
@@ -87,7 +91,7 @@ function populateChannelSection(data, myChannel) {
 
   // Get videos for channel
   youtube
-    .getAllChannelVideos(channelInfo.contentDetails.relatedPlaylists.uploads)
+    .getPlaylistVideos(channelInfo.contentDetails.relatedPlaylists.uploads, 10)
     .then(data => chUI.buildChannelVideosSection(data))
     .catch(err => console.log(err));
 }
@@ -96,10 +100,4 @@ function viewVideos(e) {
   e.preventDefault();
   channelPlaylistSec.style.display = 'none';
   channelVideosSection.style.display = 'flex';
-}
-
-function viewPlaylists(e) {
-  e.preventDefault();
-  channelVideosSection.style.display = 'none';
-  channelPlaylistSec.style.display = 'flex';
 }

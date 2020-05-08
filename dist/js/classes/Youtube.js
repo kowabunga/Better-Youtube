@@ -123,10 +123,27 @@ class Youtube {
     }
   }
 
-  getAllChannelVideos(playlistId) {
+  getChannelPlaylists(channelId, numOfResults) {
+    return gapi.client.youtube.playlists.list({
+      part: 'snippet',
+      channelId: channelId,
+      maxResults: numOfResults,
+    });
+  }
+
+  getPrevOrNextPlaylists(pageToken, numOfResults, channelId) {
+    return gapi.client.youtube.playlists.list({
+      part: 'snippet',
+      channelId: channelId,
+      maxResults: numOfResults,
+      pageToken: pageToken,
+    });
+  }
+
+  getPlaylistVideos(playlistId, numOfResults) {
     return gapi.client.youtube.playlistItems.list({
       part: 'snippet,contentDetails',
-      maxResults: 10,
+      maxResults: numOfResults,
       playlistId: playlistId,
     });
   }

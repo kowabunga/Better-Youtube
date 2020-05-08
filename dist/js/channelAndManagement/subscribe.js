@@ -20,8 +20,6 @@ function subscribeOrUnSubscribe(e) {
   }
 }
 
-// start here, make sure it handles checking subscription and changing sub button styles on channel load correctly
-// move code?
 function handleSubscriptionBtnClick(data, check) {
   if (check) {
     subscribeBtn.classList.add('subscribed');
