@@ -7,41 +7,18 @@ class SearchAndVideoUi {
   // Display videos on page
   displayVideos(data, pageSection) {
     // console.log(data);
-    let output = '';
+    let output = document.createDocumentFragment();
     // loop through data items and add video, name, title, etc. to list item and append to output
     if (data.items.length > 0) {
       data.items.forEach(item => {
-        output += `
-            <li class="search-item" data-videoId=${
-              item.id.videoId || item.contentDetails.videoId
-            } data-videoName="${item.snippet.title}" data-Author="${
-          item.snippet.channelTitle
-        }" data-channelid=${item.snippet.channelId}>
-                    <img class="thumbnail" src="${
-                      item.snippet.thumbnails.medium.url
-                    }" alt="Thumbnail for ${item.snippet.title}" data-videoId=${
-          item.id.videoId || item.contentDetails.videoId
-        } data-channelid=${item.snippet.channelId} >
-                <p data-videoId=${
-                  item.id.videoId || item.contentDetails.videoId
-                } data-channelid=${item.snippet.channelId}>
-                    <strong class="video-title" data-videoId=${
-                      item.id.videoId || item.contentDetails.videoId
-                    } data-channelid=${item.snippet.channelId}>${
-          item.snippet.title
-        } </strong> <br>
-                    Author: <a href='#!' data-channelid=${
-                      item.snippet.channelId
-                    } class='channel-author-id'>${item.snippet.channelTitle}</a>
-                </p>
-            </li>
-        `;
+        const li = this.buildVideoLi(item);
+        output.appendChild(li);
       });
     } else {
       output = 'No videos.';
     }
     if (pageSection === 'search-results') {
-      searchedVideoItems.innerHTML = output;
+      searchedVideoItems.appendChild(output);
 
       // make pagination buttons work
       this.paginationButtons(
@@ -52,7 +29,7 @@ class SearchAndVideoUi {
       );
     } else if (pageSection === 'relevant-videos') {
       // add output to section and make section visible on website
-      relevantVideoItems.innerHTML = output;
+      relevantVideoItems.appendChild(output);
       relevantVideos.style.display = 'flex';
 
       // add description and display below video
@@ -60,7 +37,7 @@ class SearchAndVideoUi {
       videoDesc.style.displaySearchResults = 'block';
     } else if (pageSection === 'main-news') {
       // add results to page
-      newsSection.innerHTML = output;
+      newsSection.appendChild(output);
 
       // make pagination buttons work
       this.paginationButtons(
@@ -71,7 +48,7 @@ class SearchAndVideoUi {
       );
     } else if (pageSection === 'web-development') {
       // add results to page
-      webDevSection.innerHTML = output;
+      webDevSection.appendChild(output);
 
       // make pagination buttons work
       this.paginationButtons(
@@ -81,7 +58,7 @@ class SearchAndVideoUi {
         nextWebDevBtn
       );
     } else if (pageSection === 'channel-videos') {
-      channelVideosUl.innerHTML = output;
+      channelVideosUl.appendChild(output);
       this.paginationButtons(
         data.prevPageToken,
         data.nextPageToken,
@@ -91,10 +68,69 @@ class SearchAndVideoUi {
     }
   }
 
+  buildVideoLi(item) {
+    // create list item
+    const li = document.createElement('li');
+    li.classList.add('search-item');
+    li.setAttribute(
+      'data-videoid',
+      item.id.videoId || item.contentDetails.videoId
+    );
+    li.setAttribute('data-videoname', item.snippet.title);
+    li.setAttribute('data-author', item.snippet.channelTitle);
+    li.setAttribute('data-channelid', item.snippet.channelId);
+
+    // create img element
+    const img = document.createElement('img');
+    img.classList.add('thumbnail');
+    img.setAttribute('src', item.snippet.thumbnails.medium.url);
+    img.setAttribute('alt', `Thumbnail for ${item.snippet.title}`);
+    img.setAttribute(
+      'data-videoid',
+      item.id.videoId || item.contentDetails.videoId
+    );
+    img.setAttribute('data-channelid', item.snippet.channelId);
+
+    // create p element
+    const p = document.createElement('p');
+    p.setAttribute(
+      'data-videoid',
+      item.id.videoId || item.contentDetails.videoId
+    );
+    p.setAttribute('data-channelid', item.snippet.channelId);
+
+    // create strong element within p element
+    const strong = document.createElement('strong');
+    strong.classList.add('video-title');
+    strong.setAttribute(
+      'data-videoid',
+      item.id.videoId || item.contentDetails.videoId
+    );
+    strong.setAttribute('data-channelid', item.snippet.channelId);
+    strong.textContent = item.snippet.title;
+
+    const pText = document.createTextNode('Author: ');
+
+    const a = document.createElement('a');
+    a.classList.add('channel-author-id');
+    a.setAttribute('href', '#!');
+    a.setAttribute('data-channelid', item.snippet.channelId);
+    a.textContent = item.snippet.channelTitle;
+
+    p.appendChild(strong);
+    p.appendChild(document.createElement('br'));
+    p.appendChild(pText);
+    p.appendChild(a);
+
+    li.appendChild(img);
+    li.appendChild(p);
+    return li;
+  }
+
   // Display video comments on page
   displayVideoComments(data, getAllComments) {
     const commentsList = data.items;
-    let output = '';
+    let output = document.createDocumentFragment();
 
     // The following outer if/else deals with two conditions. If getAllComments is true, we loop through the returned result and append *all* items to the end of the ul.
     // If it is false, we just add the newly added comment to the beginning of the ul.
@@ -104,30 +140,8 @@ class SearchAndVideoUi {
     if (getAllComments) {
       if (commentsList.length > 0) {
         commentsList.forEach(comment => {
-          const author =
-            comment.snippet.topLevelComment.snippet.authorDisplayName;
-          const displayComment =
-            comment.snippet.topLevelComment.snippet.textDisplay;
-          output += `
-          <li class="comment" data-commentid = ${comment.id}>
-            <div id="comment-btns">
-              <button class="reply-comment" data-tooltip="Reply"><i class="fas fa-reply"></i></button>
-            </div>
-            <p class="author">${author}</p>
-            <br>
-            <p class="author-comment">${displayComment}</p>
-            <form class="reply-form" autocomplete="off">
-              <input type="text" class="input-box" class="btn" placeholder="Add reply..." />
-              <input type="submit" id="submit-reply" class="btn" value="Add Reply">
-            </form>
-
-            ${
-              comment.snippet.totalReplyCount > 0
-                ? this.addReplies(comment.replies.comments, comment.id)
-                : ''
-            }
-          </li>
-      `;
+          const commentLi = this.buildCommentLi(comment);
+          output.appendChild(commentLi);
         });
       } else {
         output = 'No comments.';
@@ -167,6 +181,40 @@ class SearchAndVideoUi {
       //  Here we insert the new comment at the beginning, as it was just posted.
       commentsUl.insertAdjacentHTML('afterbegin', output);
     }
+  }
+  buildCommentLi(comment) {
+    const author = comment.snippet.topLevelComment.snippet.authorDisplayName;
+    const displayComment = comment.snippet.topLevelComment.snippet.textDisplay;
+
+    const li = document.createElement('li');
+    li.classList.add('comment');
+    li.setAttribute('data-commentid', comment.id);
+
+    const div = document.createElement('div');
+    div.id = 'comment-btns';
+
+    const button = document.createElement('button');
+    button.classList.add('reply-comment');
+    button.setAttribute('data-tooltip', 'Reply');
+
+    const icon = document.createElement('i');
+    icon.classList.add('fas fa-reply');
+
+    const pAuthor = document.createElement('p');
+    pAuthor.classList.add('author');
+    pAuthor.textContent = author;
+
+    const pAuthorComment = document.createElement('p');
+    pAuthorComment.classList.add('author-comment');
+    pAuthorComment.textContent = displayComment;
+
+    button.appendChild(icon);
+    div.appendChild(button);
+
+    li.appendChild(div);
+    li.appendChild(pAuthor);
+    li.appendChild(document.createElement('br'));
+    li.appendChild(pAuthorComment);
   }
 
   // This function is called based on the conditional statement in displayVideComments(). It is called if totalReplyCount > 0, i.e. there are comments on the page. If so, this function creates a new unordered list with all comments within it and returns that unordered list to the calling function to be displayed on the page.
@@ -308,7 +356,6 @@ class SearchAndVideoUi {
     videoSection.style.visibility = 'visible';
   }
 
-  // MAKE BUTTONS SWITCH IF OPPOSITE IS PRESSED WHILE ACTIVE
   editRating(result, clickedBtn) {
     // result value is returned as false by api if it succeeds (for some reason...), need true to continue
     if (!result) {
