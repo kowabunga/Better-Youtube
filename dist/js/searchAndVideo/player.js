@@ -4,7 +4,7 @@
 searchedVideoItems.addEventListener('click', showVideo);
 relevantVideoItems.addEventListener('click', showVideo);
 newsSection.addEventListener('click', showVideo);
-comedySection.addEventListener('click', showVideo);
+webDevSection.addEventListener('click', showVideo);
 channelVideosUl.addEventListener('click', showVideo);
 
 /* ------------------------------------------------------------------------- */

@@ -1,7 +1,6 @@
 class ChannelsUi {
   constructor() {
     this.isHeaderBuilt = false;
-    this.buildChannelDetailsSection = this.buildChannelDetailsSection.bind(this);
   }
 
   buildChannelDetailsSection(channelInfo) {
@@ -85,10 +84,15 @@ class ChannelsUi {
   }
 
   buildPlaylistSection(data) {
-    console.log(data);
     const playlistItems = document.createDocumentFragment();
     const items = data.result.items;
 
+    // Clear playlists if channel is loaded. Ensures new channel playlist sec. does not have playlists of prevoiusly selected channel. Also removes old playlists to show newly paginated playlists
+    while (mainPlaylistUl.hasChildNodes()) {
+      mainPlaylistUl.removeChild(mainPlaylistUl.firstChild);
+    }
+
+    // Make sure playlists exist
     if (items.length > 0) {
       items.forEach(item => {
         const playlistItem = this.buildListItems(item);

@@ -9,8 +9,8 @@ closeSearchBtn.addEventListener('click', svUI.hideResults);
 // homepage
 function setUpHomePage() {
   youtube
-    .getSearchResults('funniest home', 12)
-    .then(data => svUI.displayVideos(data.result, 'main-comedy'))
+    .getSearchResults('web development', 12)
+    .then(data => svUI.displayVideos(data.result, 'web-development'))
     .catch(err => console.log(err));
   youtube
     .getSearchResults('news', 12)

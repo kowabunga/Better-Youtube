@@ -1,8 +1,8 @@
 // event listeners
 prevSearchBtn.addEventListener('click', paginateThrough);
 nextSearchBtn.addEventListener('click', paginateThrough);
-prevComedyBtn.addEventListener('click', paginateThrough);
-nextComedyBtn.addEventListener('click', paginateThrough);
+prevWebDevBtn.addEventListener('click', paginateThrough);
+nextWebDevBtn.addEventListener('click', paginateThrough);
 prevNewsBtn.addEventListener('click', paginateThrough);
 nextNewsBtn.addEventListener('click', paginateThrough);
 prevChannelVidBtn.addEventListener('click', paginateThrough);
@@ -29,13 +29,13 @@ function paginateThrough(e) {
       ? (pageToken = e.target.parentElement.getAttribute('data-prevpage'))
       : (pageToken = e.target.parentElement.getAttribute('data-nextpage'));
   } else if (
-    e.target.parentElement.id === 'prev-comedy' ||
-    e.target.parentElement.id === 'next-comedy'
+    e.target.parentElement.id === 'prev-web-dev' ||
+    e.target.parentElement.id === 'next-web-dev'
   ) {
-    // if target is prev comedy or next comedy buttons, set targetSection, num of items, and get page token from button
+    // if target is prev web-dev or next web-dev buttons, set targetSection, num of items, and get page token from button
 
-    targetSection = 'main-comedy';
-    searchParameter = 'comedy';
+    targetSection = 'web-development';
+    searchParameter = 'web development';
 
     e.target.parentElement.getAttribute('data-prevpage')
       ? (pageToken = e.target.parentElement.getAttribute('data-prevpage'))

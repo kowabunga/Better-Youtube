@@ -16,8 +16,13 @@ function viewPlaylistVideos(e) {
     e.target.parentElement.classList.contains('playlist-item')
   ) {
     const playlistId = e.target.parentElement.getAttribute('data-playlistid');
-    console.log(playlistId);
+    youtube
+      .getPlaylistVideos(playlistId, 10)
+      .then(data => chUI.buildChannelVideosSection(data))
+      .catch(err => console.log(err));
   }
+  channelPlaylistSec.style.display = 'none';
+  channelVideosSection.style.display = 'flex';
 }
 
 function createPlaylistSection(channelId) {

@@ -30,7 +30,7 @@
     justify-content: space-evenly;
   }
 
-  #comedy,
+  #web-dev,
   #news,
   #search-items {
     width: 85%;
@@ -62,14 +62,18 @@
   .show-search {
     top: 337px;
   }
+
+  #prev-playlist,
   #prev-channel-video,
   #prev-news,
-  #prev-comedy {
+  #prev-web-dev {
     left: 1px;
   }
+
+  #next-playlist,
   #next-channel-video,
   #next-news,
-  #next-comedy {
+  #next-web-dev {
     right: 1px;
   }
 
@@ -154,8 +158,8 @@
   }
 
   #news-videos,
-  #comedy-videos {
-    #comedy,
+  #web-dev-videos {
+    #web-dev,
     #news {
       width: 80%;
     }

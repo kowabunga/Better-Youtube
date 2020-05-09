@@ -69,16 +69,16 @@ class SearchAndVideoUi {
         prevNewsBtn,
         nextNewsBtn
       );
-    } else if (pageSection === 'main-comedy') {
+    } else if (pageSection === 'web-development') {
       // add results to page
-      comedySection.innerHTML = output;
+      webDevSection.innerHTML = output;
 
       // make pagination buttons work
       this.paginationButtons(
         data.prevPageToken,
         data.nextPageToken,
-        prevComedyBtn,
-        nextComedyBtn
+        prevWebDevBtn,
+        nextWebDevBtn
       );
     } else if (pageSection === 'channel-videos') {
       channelVideosUl.innerHTML = output;

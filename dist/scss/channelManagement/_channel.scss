@@ -81,10 +81,13 @@
       }
     }
 
+    &-playlists,
     &-videos {
       display: none;
       justify-content: center;
       position: relative;
+
+      &-main,
       &-list {
         display: flex;
         align-items: center;
@@ -101,39 +104,16 @@
       }
     }
 
-    &-playlists {
-      display: none;
-      position: relative;
-
-      &-main {
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 10px;
-        height: 550px;
-        width: 90%;
-        box-shadow: 0 0 5px $main-blue;
-        border-radius: 5px;
-        margin: 1em auto 0px auto;
-        overflow: auto;
-      }
-    }
-
     .playlist-title {
       font-size: 1.5em;
       text-align: center;
     }
   }
 
+  &-playlists-btn,
   &-videos-btn {
     width: 100px;
     margin-right: 0.5em;
-  }
-
-  &-playlists-btn {
-    margin-left: 0.5em;
-    width: 100px;
   }
 }
 
