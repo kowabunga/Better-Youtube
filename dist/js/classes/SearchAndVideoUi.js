@@ -162,26 +162,16 @@ class SearchAndVideoUi {
         );
       }
     } else {
-      const author = data.snippet.topLevelComment.snippet.authorDisplayName;
-      const displayComment = data.snippet.topLevelComment.snippet.textDisplay;
-      output = `
-        <li class="comment" data-commentid = ${data.id}>
-          <div id="comment-btns">
-          <button class="reply-comment" data-tooltip="Reply"><i class="fas fa-reply"></i></button>
-          </div>
-          <p class="author">${author}</p>
-          <br>
-          <p class="author-comment">${displayComment}</p>
-          <form class="reply-form" autocomplete="off">
-            <input type="text" class="input-box" placeholder="Add reply..." />
-            <input type="submit" id="submit-reply" class="btn" value="Add Reply">
-          </form>
-        </li>
-        `;
+      const commentLi = this.buildCommentLi(data);
+      output.appendChild(commentLi);
       //  Here we insert the new comment at the beginning, as it was just posted.
-      commentsUl.insertAdjacentHTML('afterbegin', output);
+
+      // @Todo HERE
+      // Check how this works. Probably not going to work right
+      commentsUl.insertAdjascentElement('afterbegin', output);
     }
   }
+
   buildCommentLi(comment) {
     const author = comment.snippet.topLevelComment.snippet.authorDisplayName;
     const displayComment = comment.snippet.topLevelComment.snippet.textDisplay;
@@ -208,16 +198,42 @@ class SearchAndVideoUi {
     pAuthorComment.classList.add('author-comment');
     pAuthorComment.textContent = displayComment;
 
+    const form = document.createElement('form');
+    form.classList.add('reply-form');
+    form.setAttribute('autocomplete', 'off');
+
+    const textInput = document.createElement('input');
+    textInput.classList.add('btn input-box');
+    textInput.setAttribute('type', 'text');
+    textInput.setAttribute('placeholder', 'Add reply...');
+
+    const submitInput = document.createElement('submit');
+    submitInput.id = 'submit-reply';
+    submitInput.classList.add('btn');
+    submitInput.setAttribute('value', 'Add Reply');
+    submitInput.setAttribute('type', 'submit');
+
     button.appendChild(icon);
     div.appendChild(button);
+
+    form.appendChild(textInput);
+    form.appendChild(submitInput);
 
     li.appendChild(div);
     li.appendChild(pAuthor);
     li.appendChild(document.createElement('br'));
     li.appendChild(pAuthorComment);
+    li.appendChild(form);
+
+    comment.snippet.totalReplyCount > 0 &&
+      this.addReplies(comment.replies.comments, comment.id);
+
+    return li;
   }
 
   // This function is called based on the conditional statement in displayVideComments(). It is called if totalReplyCount > 0, i.e. there are comments on the page. If so, this function creates a new unordered list with all comments within it and returns that unordered list to the calling function to be displayed on the page.
+
+  // FIRST CHECK IF BUILDCOMMENTLI WORKS. IF SO, IT CAN BE MODIFIED TO WORK HERE.
   addReplies(replies, commentId) {
     let output = ``;
     replies.forEach(reply => {

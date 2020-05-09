@@ -152,7 +152,7 @@ function videoDescBuilder(target, data, rating) {
       .addEventListener('click', changePage);
   } else {
     // If p element does not exist, create it and give it required info and add to innerHTML
-    let p = document.createElement('p');
+    const p = document.createElement('p');
     p.id = 'video-information';
 
     p.innerHTML = videoDescItemsBuilder(target, data, rating);
