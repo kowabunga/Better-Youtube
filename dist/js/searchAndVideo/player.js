@@ -156,7 +156,7 @@ function videoDescBuilder(target, data, rating) {
     p.id = 'video-information';
 
     p.innerHTML = videoDescItemsBuilder(target, data, rating);
-    videoCenter.appendChild(p);
+    videoCenter.append(p);
   }
   // Once video is set up, add event listener to author name to bring up author's channel
   document

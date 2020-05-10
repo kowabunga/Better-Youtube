@@ -21,7 +21,7 @@ class ChannelsUi {
       'alt',
       `${brandingSettings.channel.title}'s channel banner.`
     );
-    channelBanner.appendChild(banner);
+    channelBanner.append(banner);
 
     // Title and Subscriber count
     const titleInfo = document.createElement('div'),
@@ -37,12 +37,12 @@ class ChannelsUi {
     title.id = 'chan-title';
     subscribers.id = 'chan-subs';
 
-    titleInfo.appendChild(title);
-    // titleInfo.appendChild(br);
-    titleInfo.appendChild(subscribers);
+    titleInfo.append(title);
+    // titleInfo.append(br);
+    titleInfo.append(subscribers);
 
-    channelTitle.appendChild(titleInfo);
-    channelTitle.appendChild(br);
+    channelTitle.append(titleInfo);
+    channelTitle.append(br);
 
     // channel Description
     const description = document.createElement('p');
@@ -50,13 +50,13 @@ class ChannelsUi {
       brandingSettings.channel.description !== undefined
         ? brandingSettings.channel.description
         : 'No description.';
-    channelDescription.appendChild(description);
+    channelDescription.append(description);
 
     // Channel thumbnail
     const thumbnail = document.createElement('img');
     thumbnail.setAttribute('src', `${snippet.thumbnails.high.url}`);
     thumbnail.setAttribute('alt', `${snippet.title}'s channel thumbnail.`);
-    channelThumbnail.appendChild(thumbnail);
+    channelThumbnail.append(thumbnail);
   }
 
   buildChannelVideosSection(data) {
@@ -96,14 +96,14 @@ class ChannelsUi {
     if (items.length > 0) {
       items.forEach(item => {
         const playlistItem = this.buildListItems(item);
-        playlistItems.appendChild(playlistItem);
+        playlistItems.append(playlistItem);
       });
     } else {
       const p = document.createElement('p');
       p.textContent = 'This channel has no playlists.';
-      mainPlaylistUl.appendChild(p);
+      mainPlaylistUl.append(p);
     }
-    mainPlaylistUl.appendChild(playlistItems);
+    mainPlaylistUl.append(playlistItems);
 
     svUI.paginationButtons(
       data.result.prevPageToken,
@@ -126,8 +126,8 @@ class ChannelsUi {
     p.classList.add('playlist-title');
     p.textContent = item.snippet.title;
 
-    li.appendChild(img);
-    li.appendChild(p);
+    li.append(img);
+    li.append(p);
 
     return li;
   }

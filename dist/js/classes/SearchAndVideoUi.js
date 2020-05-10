@@ -12,13 +12,13 @@ class SearchAndVideoUi {
     if (data.items.length > 0) {
       data.items.forEach(item => {
         const li = this.buildVideoLi(item);
-        output.appendChild(li);
+        output.append(li);
       });
     } else {
       output = 'No videos.';
     }
     if (pageSection === 'search-results') {
-      searchedVideoItems.appendChild(output);
+      searchedVideoItems.append(output);
 
       // make pagination buttons work
       this.paginationButtons(
@@ -29,7 +29,7 @@ class SearchAndVideoUi {
       );
     } else if (pageSection === 'relevant-videos') {
       // add output to section and make section visible on website
-      relevantVideoItems.appendChild(output);
+      relevantVideoItems.append(output);
       relevantVideos.style.display = 'flex';
 
       // add description and display below video
@@ -37,7 +37,7 @@ class SearchAndVideoUi {
       videoDesc.style.displaySearchResults = 'block';
     } else if (pageSection === 'main-news') {
       // add results to page
-      newsSection.appendChild(output);
+      newsSection.append(output);
 
       // make pagination buttons work
       this.paginationButtons(
@@ -48,7 +48,7 @@ class SearchAndVideoUi {
       );
     } else if (pageSection === 'web-development') {
       // add results to page
-      webDevSection.appendChild(output);
+      webDevSection.append(output);
 
       // make pagination buttons work
       this.paginationButtons(
@@ -58,7 +58,7 @@ class SearchAndVideoUi {
         nextWebDevBtn
       );
     } else if (pageSection === 'channel-videos') {
-      channelVideosUl.appendChild(output);
+      channelVideosUl.append(output);
       this.paginationButtons(
         data.prevPageToken,
         data.nextPageToken,
@@ -117,13 +117,13 @@ class SearchAndVideoUi {
     a.setAttribute('data-channelid', item.snippet.channelId);
     a.textContent = item.snippet.channelTitle;
 
-    p.appendChild(strong);
-    p.appendChild(document.createElement('br'));
-    p.appendChild(pText);
-    p.appendChild(a);
+    p.append(strong);
+    p.append(document.createElement('br'));
+    p.append(pText);
+    p.append(a);
 
-    li.appendChild(img);
-    li.appendChild(p);
+    li.append(img);
+    li.append(p);
     return li;
   }
 
@@ -141,15 +141,15 @@ class SearchAndVideoUi {
       if (commentsList.length > 0) {
         commentsList.forEach(comment => {
           const commentLi = this.buildCommentLi(comment);
-          output.appendChild(commentLi);
+          output.append(commentLi);
         });
       } else {
-        output = 'No comments.';
+        output = document.createTextNode('No comments');
         moreCommentsBtn.setAttribute('disabled', true);
       }
 
-      // we use insertAdjascentHTML because we want to increase the list of comments, not replace them since there's no backwards pagination with this api
-      commentsUl.insertAdjacentHTML('beforeend', output);
+      // append new comments to end of ul as there is no backwards pagination with thi sapi
+      commentsUl.append(output);
 
       // make pagination buttons work, pass in undefined for prevPage information. First check if there are comments (date.items will be greater than 0)
       if (data.items.length > 0) {
@@ -163,12 +163,9 @@ class SearchAndVideoUi {
       }
     } else {
       const commentLi = this.buildCommentLi(data);
-      output.appendChild(commentLi);
-      //  Here we insert the new comment at the beginning, as it was just posted.
-
-      // @Todo HERE
-      // Check how this works. Probably not going to work right
-      commentsUl.insertAdjascentElement('afterbegin', output);
+      output.append(commentLi);
+      //  Here we prepend the new comment at the beginning, as it was just posted.
+      commentsUl.prepend(output);
     }
   }
 
@@ -188,7 +185,8 @@ class SearchAndVideoUi {
     button.setAttribute('data-tooltip', 'Reply');
 
     const icon = document.createElement('i');
-    icon.classList.add('fas fa-reply');
+    icon.classList.add('fas');
+    icon.classList.add('fa-reply');
 
     const pAuthor = document.createElement('p');
     pAuthor.classList.add('author');
@@ -196,14 +194,14 @@ class SearchAndVideoUi {
 
     const pAuthorComment = document.createElement('p');
     pAuthorComment.classList.add('author-comment');
-    pAuthorComment.textContent = displayComment;
+    pAuthorComment.innerHTML = displayComment;
 
     const form = document.createElement('form');
     form.classList.add('reply-form');
     form.setAttribute('autocomplete', 'off');
 
     const textInput = document.createElement('input');
-    textInput.classList.add('btn input-box');
+    textInput.classList.add('input-box');
     textInput.setAttribute('type', 'text');
     textInput.setAttribute('placeholder', 'Add reply...');
 
@@ -213,95 +211,159 @@ class SearchAndVideoUi {
     submitInput.setAttribute('value', 'Add Reply');
     submitInput.setAttribute('type', 'submit');
 
-    button.appendChild(icon);
-    div.appendChild(button);
+    button.append(icon);
+    div.append(button);
 
-    form.appendChild(textInput);
-    form.appendChild(submitInput);
+    form.append(textInput);
+    form.append(submitInput);
 
-    li.appendChild(div);
-    li.appendChild(pAuthor);
-    li.appendChild(document.createElement('br'));
-    li.appendChild(pAuthorComment);
-    li.appendChild(form);
-
-    comment.snippet.totalReplyCount > 0 &&
+    const replies =
+      comment.snippet.totalReplyCount > 0 &&
       this.addReplies(comment.replies.comments, comment.id);
+
+    li.append(div);
+    li.append(pAuthor);
+    li.append(document.createElement('br'));
+    li.append(pAuthorComment);
+    li.append(form);
+
+    replies && li.append(replies);
 
     return li;
   }
 
   // This function is called based on the conditional statement in displayVideComments(). It is called if totalReplyCount > 0, i.e. there are comments on the page. If so, this function creates a new unordered list with all comments within it and returns that unordered list to the calling function to be displayed on the page.
 
-  // FIRST CHECK IF BUILDCOMMENTLI WORKS. IF SO, IT CAN BE MODIFIED TO WORK HERE.
+  buildReply(commentId, author, replyDisplay) {
+    const li = document.createElement('li');
+    li.classList.add('comment');
+    li.setAttribute('data-commentid', commentId);
+
+    const div = document.createElement('div');
+    div.id = 'coment-btns';
+
+    const button = document.createElement('button');
+    button.classList.add('reply-comment');
+    button.setAttribute('data-tooltip', 'Reply');
+
+    const icon = document.createElement('i');
+    icon.classList.add('fas');
+    icon.classList.add('fa-reply');
+
+    const pAuthor = document.createElement('p');
+    pAuthor.classList.add('author');
+    pAuthor.textContent = author;
+
+    const pAuthorComment = document.createElement('p');
+    pAuthorComment.classList.add('author-comment');
+    pAuthorComment.innerHTML = replyDisplay;
+
+    const form = document.createElement('form');
+    form.classList.add('reply-form');
+    form.setAttribute('autocomplete', 'off');
+
+    const textInput = document.createElement('input');
+    textInput.classList.add('input-box');
+    textInput.setAttribute('type', 'text');
+    textInput.setAttribute('placeholder', 'Add reply...');
+
+    const submitInput = document.createElement('submit');
+    submitInput.id = 'submit-reply';
+    submitInput.classList.add('btn');
+    submitInput.setAttribute('value', 'Add Reply');
+    submitInput.setAttribute('type', 'submit');
+
+    button.append(icon);
+    div.append(button);
+
+    form.append(textInput);
+    form.append(submitInput);
+
+    li.append(div);
+    li.append(pAuthor);
+    li.append(document.createElement('br'));
+    li.append(pAuthorComment);
+    li.append(form);
+
+    return li;
+  }
+
   addReplies(replies, commentId) {
-    let output = ``;
+    const output = document.createDocumentFragment();
     replies.forEach(reply => {
       const author = reply.snippet.authorDisplayName;
       const replyDisplay = reply.snippet.textDisplay;
-      output += `
-        <li class="comment" data-commentid = ${commentId}>
-          <div id="comment-btns">
-          <button class="reply-comment" data-tooltip="Reply"><i class="fas fa-reply"></i></button>
-          </div>
-          <p class="author">${author}</p>
-          <br>
-          <p class="author-comment">${replyDisplay}</p>
-          <form class="reply-form" autocomplete="off">
-            <input type="text" class="input-box" placeholder="Add reply..." />
-            <input type="submit" id="submit-reply" class="btn" value="Add Reply">
-          </form>
-        </li>
-      `;
+      output.append(this.buildReply(commentId, author, replyDisplay));
     });
-    return `
-      <br><hr><br>
-      <a class="view-replies" href="#/"><i class="fas fa-angle-down"></i> View Replies</a>
-      <ul class="replies-ul">
-        ${output}
-      </ul>
-    `;
+
+    const returnOutput = document.createDocumentFragment();
+
+    const a = document.createElement('a');
+    a.classList.add('view-replies');
+    a.setAttribute('href', '#/');
+
+    const icon = document.createElement('i');
+    icon.classList.add('fas');
+    icon.classList.add('fa-angle-down');
+
+    const aText = document.createTextNode('View Replies');
+
+    a.append(icon);
+    a.append(aText);
+
+    const ul = document.createElement('ul');
+    ul.classList.add('replies-ul');
+    ul.append(output);
+
+    returnOutput.append(document.createElement('br'));
+    returnOutput.append(document.createElement('hr'));
+    returnOutput.append(document.createElement('br'));
+    returnOutput.append(a);
+    returnOutput.append(ul);
+    return returnOutput;
   }
 
   addReply(reply, commentId, firstReply) {
     const author = reply.authorDisplayName;
     const replyDisplay = reply.textDisplay;
-    const output = `        
-        <li class="comment" data-commentid=${commentId}>
-          <div id="comment-btns">
-          <button class="reply-comment" data-tooltip="Reply"><i class="fas fa-reply"></i></button>
-          </div>
-          <p class="author">${author}</p>
-          <br>
-          <p class="author-comment">${replyDisplay}</p>
-          <form class="reply-form" autocomplete="off">
-            <input type="text" class="input-box" placeholder="Add reply..." />
-            <input type="submit" id="submit-reply" class="btn" value="Add Reply">
-          </form>
-        </li>`;
+    const output = this.buildReply(commentId, author, replyDisplay);
     // If firstReply is true, add the replies ul + comment, else just add the comment
-    return firstReply
-      ? `
-      <br><hr><br>
-      <a class="view-replies" href="#/"><i class="fas fa-angle-down"></i> View Replies</a>
-      <ul class="replies-ul">
-      ${output}
-      </ul>
-    `
-      : output;
+
+    const initReply = document.createDocumentFragment();
+
+    const a = document.createElement('a');
+    a.classList.add('view-replies');
+    a.setAttribute('href', '#/');
+
+    const icon = document.createElement('i');
+    icon.classList.add('fas');
+    icon.classList.add('fa-angle-down');
+
+    const aText = document.createTextNode('View Replies');
+
+    a.append(icon);
+    a.append(aText);
+
+    const ul = document.createElement('ul');
+    ul.classList.add('replies-ul');
+    ul.append(output);
+
+    initReply.append(document.createElement('br'));
+    initReply.append(document.createElement('hr'));
+    initReply.append(document.createElement('br'));
+    initReply.append(a);
+    initReply.append(ul);
+
+    return firstReply ? initReply : output;
   }
 
   updateReplies(data, commentLi, commentId) {
     if (commentLi.lastElementChild.classList.contains('replies-ul')) {
-      commentLi.lastElementChild.insertAdjacentHTML(
-        'afterbegin',
+      commentLi.lastElementChild.prepend(
         this.addReply(data.snippet, commentId, false)
       );
     } else {
-      commentLi.insertAdjacentHTML(
-        'beforeend',
-        this.addReply(data.snippet, commentId, true)
-      );
+      commentLi.append(this.addReply(data.snippet, commentId, true));
     }
   }
 
