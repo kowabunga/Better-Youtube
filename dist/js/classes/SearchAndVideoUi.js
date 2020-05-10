@@ -205,7 +205,7 @@ class SearchAndVideoUi {
     textInput.setAttribute('type', 'text');
     textInput.setAttribute('placeholder', 'Add reply...');
 
-    const submitInput = document.createElement('submit');
+    const submitInput = document.createElement('input');
     submitInput.id = 'submit-reply';
     submitInput.classList.add('btn');
     submitInput.setAttribute('value', 'Add Reply');
@@ -267,7 +267,7 @@ class SearchAndVideoUi {
     textInput.setAttribute('type', 'text');
     textInput.setAttribute('placeholder', 'Add reply...');
 
-    const submitInput = document.createElement('submit');
+    const submitInput = document.createElement('input');
     submitInput.id = 'submit-reply';
     submitInput.classList.add('btn');
     submitInput.setAttribute('value', 'Add Reply');
