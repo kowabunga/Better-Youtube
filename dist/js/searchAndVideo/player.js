@@ -140,22 +140,22 @@ function addVideoDescription(target) {
 
 // function to build video description and statistic information
 function videoDescBuilder(target, data, rating) {
-  // if description (p element) exists, update innerHTML
+  // if description (p element) exists, update video desc
   if (document.getElementById('video-information') !== null) {
-    document.getElementById(
-      'video-information'
-    ).innerHTML = videoDescItemsBuilder(target, data, rating);
+    document
+      .getElementById('video-information')
+      .append(videoDescItemsBuilder(target, data, rating));
 
     // Once video is set up, add event listener to author name to bring up author's channel
     document
       .getElementById('channel-author')
       .addEventListener('click', changePage);
   } else {
-    // If p element does not exist, create it and give it required info and add to innerHTML
+    // If p element does not exist, create it and give it required info
     const p = document.createElement('p');
     p.id = 'video-information';
 
-    p.innerHTML = videoDescItemsBuilder(target, data, rating);
+    p.append(videoDescItemsBuilder(target, data, rating));
     videoCenter.append(p);
   }
   // Once video is set up, add event listener to author name to bring up author's channel
@@ -166,35 +166,99 @@ function videoDescBuilder(target, data, rating) {
 
 // helper function to construct actual content for above function
 function videoDescItemsBuilder(target, videoStats, rating) {
-  const stats = videoStats.result.items[0].statistics;
-  return `
-      <div>
-        <strong>${target.getAttribute('data-videoname')}</strong>
-        <br />
-        <em>Author</em> : <a href="#!" data-channelid=${target.getAttribute(
-          'data-channelid'
-        )} id="channel-author">${target.getAttribute('data-author')}</a>
-      </div>
-      <div>
-        <p id="v-views">Views: ${stats.viewCount}</p>
-        <p id="v-likes">Likes : ${stats.likeCount}</p>
-        <p id="v-dislikes" >Dislikes : ${stats.dislikeCount}</p>
-      </div>
-      <div>
-        <button class="btn btn-square ${
-          rating === 'like' ? 'liked' : ''
-        }" id="like" data-videoid = ${target.getAttribute(
-    'data-videoid'
-  )}><i class="far fa-thumbs-up"></i> ${
-    rating === 'like' ? 'Liked' : 'Like'
-  }</button>
-        <button class="btn btn-square ${
-          rating === 'dislike' ? 'disliked' : ''
-        }" id="dislike" data-videoid = ${target.getAttribute(
-    'data-videoid'
-  )}><i class="far fa-thumbs-down"></i> ${
-    rating === 'dislike' ? 'Disliked' : 'Dislike'
-  }</button>
-      </div>
-          `;
+  const stats = videoStats.result.items[0].statistics,
+    videoName = target.getAttribute('data-videoname'),
+    videoId = target.getAttribute('data-videoid'),
+    channelId = target.getAttribute('data-channelid'),
+    channelAuthor = target.getAttribute('data-author'),
+    videoRate = '';
+
+  const videoDesc = document.createDocumentFragment();
+
+  // first div
+  const div1 = document.createElement('div');
+  const strong = document.createElement('strong');
+  strong.textContent = videoName;
+
+  const em = document.createElement('em');
+  em.textContent = 'Author';
+
+  const text = document.createTextNode(' : ');
+
+  const a = document.createElement('a');
+  a.id = 'channel-author';
+  a.setAttribute('href', '#!');
+  a.setAttribute('data-channelid', channelId);
+  a.textContent = channelAuthor;
+
+  // second div
+  const div2 = document.createElement('div');
+  const p1 = document.createElement('p'),
+    p2 = document.createElement('p'),
+    p3 = document.createElement('p');
+
+  p1.id = 'v-views';
+  p1.textContent = `Views: ${stats.viewCount}`;
+
+  p2.id = 'v-likes';
+  p2.textContent = `Likes : ${stats.likeCount}`;
+
+  p3.id = 'v-dislikes';
+  p3.textContent = `Dislikes : ${stats.dislikeCount}`;
+
+  // third div
+
+  const div3 = document.createElement('div');
+  const button1 = document.createElement('button'),
+    button2 = document.createElement('button'),
+    i1 = document.createElement('i'),
+    i2 = document.createElement('i');
+
+  button1.id = 'like';
+  button1.classList.add('btn');
+  button1.classList.add('btn-square');
+  button1.classList.add(rating === 'like' ? 'liked' : '_');
+  button1.setAttribute('data-videoid', videoId);
+
+  button2.id = 'dislike';
+  button2.classList.add('btn');
+  button2.classList.add('btn-square');
+  button2.classList.add(rating === 'dislike' ? 'disliked' : '_');
+  button2.setAttribute('data-videoid', videoId);
+
+  i1.classList.add('far');
+  i1.classList.add('fa-thumbs-up');
+
+  i2.classList.add('far');
+  i2.classList.add('fa-thumbs-down');
+
+  const text1 = document.createTextNode(rating === 'like' ? ' Liked' : ' Like'),
+    text2 = document.createTextNode(
+      rating === 'dislike' ? ' Disliked' : ' Dislike'
+    );
+
+  button1.append(i1);
+  button1.append(text1);
+
+  button2.append(i2);
+  button2.append(text2);
+
+  div1.append(strong);
+  div1.append(document.createElement('br'));
+  div1.append(em);
+  div1.append(text);
+  div1.append(a);
+
+  div2.append(p1);
+  div2.append(p2);
+  div2.append(p3);
+
+  div3.append(button1);
+  div3.append(button2);
+
+  videoDesc.append(div1);
+  videoDesc.append(div2);
+  videoDesc.append(div3);
+
+  return videoDesc;
 }
