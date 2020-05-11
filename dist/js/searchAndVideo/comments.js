@@ -45,11 +45,30 @@ function replyFunctionality(e) {
     // If hidden, show replies and change button text to hide replies
     if (!repliesUl.classList.contains('show')) {
       repliesUl.classList.add('show');
-      viewReplies.innerHTML = '<i class="fas fa-angle-up"></i> Hide Replies';
+
+      svUI.clearElementChildren(viewReplies);
+
+      const i = document.createElement('i');
+      i.classList.add('fas');
+      i.classList.add('fa-angle-up');
+
+      const text = document.createTextNode(' Hide Replies');
+
+      viewReplies.append(i);
+      viewReplies.append(text);
     } else {
       // hide replies and change button text to view replies
       repliesUl.classList.remove('show');
-      viewReplies.innerHTML = '<i class="fas fa-angle-down"></i> View Replies';
+      svUI.clearElementChildren(viewReplies);
+
+      const i = document.createElement('i');
+      i.classList.add('fas');
+      i.classList.add('fa-angle-down');
+
+      const text = document.createTextNode(' View Replies');
+
+      viewReplies.append(i);
+      viewReplies.append(text);
     }
   }
 

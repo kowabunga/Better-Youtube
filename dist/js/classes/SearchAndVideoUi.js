@@ -4,9 +4,16 @@ class SearchAndVideoUi {
     this.showResults = this.showResults.bind(this);
   }
 
+  clearElementChildren(target) {
+    while (target.hasChildNodes()) {
+      target.removeChild(target.firstChild);
+    }
+  }
+
   // Display videos on page
   displayVideos(data, pageSection) {
-    // console.log(data);
+    // Clear current videos on pagination
+
     let output = document.createDocumentFragment();
     // loop through data items and add video, name, title, etc. to list item and append to output
     if (data.items.length > 0) {
@@ -18,6 +25,7 @@ class SearchAndVideoUi {
       output = 'No videos.';
     }
     if (pageSection === 'search-results') {
+      this.clearElementChildren(searchedVideoItems);
       searchedVideoItems.append(output);
 
       // make pagination buttons work
@@ -29,6 +37,7 @@ class SearchAndVideoUi {
       );
     } else if (pageSection === 'relevant-videos') {
       // add output to section and make section visible on website
+      this.clearElementChildren(relevantVideoItems);
       relevantVideoItems.append(output);
       relevantVideos.style.display = 'flex';
 
@@ -37,6 +46,7 @@ class SearchAndVideoUi {
       videoDesc.style.displaySearchResults = 'block';
     } else if (pageSection === 'main-news') {
       // add results to page
+      this.clearElementChildren(newsSection);
       newsSection.append(output);
 
       // make pagination buttons work
@@ -48,6 +58,7 @@ class SearchAndVideoUi {
       );
     } else if (pageSection === 'web-development') {
       // add results to page
+      this.clearElementChildren(webDevSection);
       webDevSection.append(output);
 
       // make pagination buttons work
@@ -58,6 +69,7 @@ class SearchAndVideoUi {
         nextWebDevBtn
       );
     } else if (pageSection === 'channel-videos') {
+      this.clearElementChildren(channelVideosUl);
       channelVideosUl.append(output);
       this.paginationButtons(
         data.prevPageToken,
@@ -306,7 +318,7 @@ class SearchAndVideoUi {
     icon.classList.add('fas');
     icon.classList.add('fa-angle-down');
 
-    const aText = document.createTextNode('View Replies');
+    const aText = document.createTextNode(' View Replies');
 
     a.append(icon);
     a.append(aText);
@@ -339,7 +351,7 @@ class SearchAndVideoUi {
     icon.classList.add('fas');
     icon.classList.add('fa-angle-down');
 
-    const aText = document.createTextNode('View Replies');
+    const aText = document.createTextNode(' View Replies');
 
     a.append(icon);
     a.append(aText);

@@ -60,7 +60,7 @@ function showVideo(e) {
       .catch(err => console.log(err));
 
     // This line clears the comments ul if we load a new video
-    commentsUl.innerHTML = '';
+    svUI.clearElementChildren(commentsUl);
 
     youtube
       .getComments(e.target.getAttribute('data-videoid'))

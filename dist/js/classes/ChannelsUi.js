@@ -4,10 +4,10 @@ class ChannelsUi {
   }
 
   buildChannelDetailsSection(channelInfo) {
-    channelBanner.innerHTML = '';
-    channelDescription.innerHTML = '';
-    channelThumbnail.innerHTML = '';
-    channelTitle.innerHTML = '';
+    svUI.clearVideosList(channelBanner);
+    svUI.clearVideosList(channelDescription);
+    svUI.clearVideosList(channelThumbnail);
+    svUI.clearVideosList(channelTitle);
 
     // console.log(channelInfo);
     const brandingSettings = channelInfo.brandingSettings,
@@ -88,9 +88,7 @@ class ChannelsUi {
     const items = data.result.items;
 
     // Clear playlists if channel is loaded. Ensures new channel playlist sec. does not have playlists of prevoiusly selected channel. Also removes old playlists to show newly paginated playlists
-    while (mainPlaylistUl.hasChildNodes()) {
-      mainPlaylistUl.removeChild(mainPlaylistUl.firstChild);
-    }
+    svUI.clearVideosList(mainPlaylistUl);
 
     // Make sure playlists exist
     if (items.length > 0) {
