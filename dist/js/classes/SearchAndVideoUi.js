@@ -148,11 +148,20 @@ class SearchAndVideoUi {
     // If it is false, we just add the newly added comment to the beginning of the ul.
 
     // Loop through each item in data array to get comments and add to ul
-    // Also check and see if there are replies to the comment, if so add them. If not, add empty string.
+    // Also check and see if there are replies to the comment, if so add them. If not, inform user.
     if (getAllComments) {
       if (commentsList.length > 0) {
         commentsList.forEach(comment => {
-          const commentLi = this.buildCommentLi(comment);
+          const author =
+              comment.snippet.topLevelComment.snippet.authorDisplayName,
+            displayComment = comment.snippet.topLevelComment.snippet.textDisplay,
+            commentId = comment.id;
+          const commentLi = this.buildCommentLi(
+            commentId,
+            author,
+            displayComment,
+            comment
+          );
           output.append(commentLi);
         });
       } else {
@@ -164,7 +173,7 @@ class SearchAndVideoUi {
       commentsUl.append(output);
 
       // make pagination buttons work, pass in undefined for prevPage information. First check if there are comments (date.items will be greater than 0)
-      if (data.items.length > 0) {
+      data.items.length > 0 &&
         this.paginationButtons(
           undefined,
           data.nextPageToken,
@@ -172,22 +181,27 @@ class SearchAndVideoUi {
           moreCommentsBtn,
           data.items[0].snippet.videoId
         );
-      }
     } else {
-      const commentLi = this.buildCommentLi(data);
+      const author = data.snippet.topLevelComment.snippet.authorDisplayName,
+        displayComment = data.snippet.topLevelComment.snippet.textDisplay,
+        commentId = data.id;
+      // Build reply comment
+      const commentLi = this.buildCommentLi(
+        commentId,
+        author,
+        displayComment,
+        data
+      );
       output.append(commentLi);
       //  Here we prepend the new comment at the beginning, as it was just posted.
       commentsUl.prepend(output);
     }
   }
 
-  buildCommentLi(comment) {
-    const author = comment.snippet.topLevelComment.snippet.authorDisplayName;
-    const displayComment = comment.snippet.topLevelComment.snippet.textDisplay;
-
+  buildCommentLi(commentId, author, displayComment, hasReplies) {
     const li = document.createElement('li');
     li.classList.add('comment');
-    li.setAttribute('data-commentid', comment.id);
+    li.setAttribute('data-commentid', commentId);
 
     const div = document.createElement('div');
     div.id = 'comment-btns';
@@ -229,73 +243,19 @@ class SearchAndVideoUi {
     form.append(textInput);
     form.append(submitInput);
 
-    const replies =
-      comment.snippet.totalReplyCount > 0 &&
-      this.addReplies(comment.replies.comments, comment.id);
-
     li.append(div);
     li.append(pAuthor);
     li.append(document.createElement('br'));
     li.append(pAuthorComment);
     li.append(form);
 
-    replies && li.append(replies);
-
-    return li;
-  }
-
-  // This function is called based on the conditional statement in displayVideComments(). It is called if totalReplyCount > 0, i.e. there are comments on the page. If so, this function creates a new unordered list with all comments within it and returns that unordered list to the calling function to be displayed on the page.
-
-  buildReply(commentId, author, replyDisplay) {
-    const li = document.createElement('li');
-    li.classList.add('comment');
-    li.setAttribute('data-commentid', commentId);
-
-    const div = document.createElement('div');
-    div.id = 'coment-btns';
-
-    const button = document.createElement('button');
-    button.classList.add('reply-comment');
-    button.setAttribute('data-tooltip', 'Reply');
-
-    const icon = document.createElement('i');
-    icon.classList.add('fas');
-    icon.classList.add('fa-reply');
-
-    const pAuthor = document.createElement('p');
-    pAuthor.classList.add('author');
-    pAuthor.textContent = author;
-
-    const pAuthorComment = document.createElement('p');
-    pAuthorComment.classList.add('author-comment');
-    pAuthorComment.innerHTML = replyDisplay;
-
-    const form = document.createElement('form');
-    form.classList.add('reply-form');
-    form.setAttribute('autocomplete', 'off');
-
-    const textInput = document.createElement('input');
-    textInput.classList.add('input-box');
-    textInput.setAttribute('type', 'text');
-    textInput.setAttribute('placeholder', 'Add reply...');
-
-    const submitInput = document.createElement('input');
-    submitInput.id = 'submit-reply';
-    submitInput.classList.add('btn');
-    submitInput.setAttribute('value', 'Add Reply');
-    submitInput.setAttribute('type', 'submit');
-
-    button.append(icon);
-    div.append(button);
-
-    form.append(textInput);
-    form.append(submitInput);
-
-    li.append(div);
-    li.append(pAuthor);
-    li.append(document.createElement('br'));
-    li.append(pAuthorComment);
-    li.append(form);
+    // hasReplies is only defined if the comment has replies. Do nothing if hasReplies is undefined
+    if (hasReplies !== undefined) {
+      const replies =
+        hasReplies.snippet.totalReplyCount > 0 &&
+        this.addReplies(hasReplies.replies.comments, commentId);
+      replies && li.append(replies);
+    }
 
     return li;
   }
@@ -305,7 +265,7 @@ class SearchAndVideoUi {
     replies.forEach(reply => {
       const author = reply.snippet.authorDisplayName;
       const replyDisplay = reply.snippet.textDisplay;
-      output.append(this.buildReply(commentId, author, replyDisplay));
+      output.append(this.buildCommentLi(commentId, author, replyDisplay));
     });
 
     const returnOutput = document.createDocumentFragment();
@@ -338,7 +298,7 @@ class SearchAndVideoUi {
   addReply(reply, commentId, firstReply) {
     const author = reply.authorDisplayName;
     const replyDisplay = reply.textDisplay;
-    const output = this.buildReply(commentId, author, replyDisplay);
+    const output = this.buildCommentLi(commentId, author, replyDisplay);
     // If firstReply is true, add the replies ul + comment, else just add the comment
 
     const initReply = document.createDocumentFragment();

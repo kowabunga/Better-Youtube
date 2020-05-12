@@ -117,6 +117,9 @@ function fillInDescription(e) {
 function addVideoDescription(target) {
   // Calls getVideoRating to get authorized user rating, then gets video statistics once first api call has returned and calls function to build and populate video description section with video info, statistics, and like/dislike buttons
   // Like/dislike function is enabled only if user is logged in
+
+  // @TODO CHECK IF THIS IS THE RIGHT SPOT.
+  clearElementChildren(target);
   if (googleAuth.checkIfSignedIn()) {
     youtube
       .getVideoRating(target.getAttribute('data-videoid'))
