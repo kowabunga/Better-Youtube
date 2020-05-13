@@ -44,14 +44,27 @@
   // Ensures all items in video information section maintain reasonable space between each other (can be squished at small screen sizes)
   #video {
     &-information {
-      > div {
-        width: 30%;
-        + div {
-          width: 30%;
-          + div {
-            width: 30%;
-          }
-        }
+      grid-template-rows: repeat(3, 1fr);
+      justify-content: center;
+
+      &-desc {
+        align-self: center;
+        grid-column: 1/4;
+        grid-row: 1;
+        border-bottom: 1px solid rgb(192, 192, 192);
+      }
+      &-stats {
+        align-self: center;
+        grid-column: 1/4;
+        grid-row: 2;
+        border-bottom: 1px solid rgb(192, 192, 192);
+        border-right: none;
+        border-left: none;
+      }
+      &-rating-buttons {
+        align-self: center;
+        grid-column: 1/4;
+        grid-row: 3;
       }
     }
   }

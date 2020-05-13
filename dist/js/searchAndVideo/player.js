@@ -118,8 +118,6 @@ function addVideoDescription(target) {
   // Calls getVideoRating to get authorized user rating, then gets video statistics once first api call has returned and calls function to build and populate video description section with video info, statistics, and like/dislike buttons
   // Like/dislike function is enabled only if user is logged in
 
-  // @TODO CHECK IF THIS IS THE RIGHT SPOT.
-  clearElementChildren(target);
   if (googleAuth.checkIfSignedIn()) {
     youtube
       .getVideoRating(target.getAttribute('data-videoid'))
@@ -145,6 +143,9 @@ function addVideoDescription(target) {
 function videoDescBuilder(target, data, rating) {
   // if description (p element) exists, update video desc
   if (document.getElementById('video-information') !== null) {
+    // clear already existing information in P element, if it exists.
+    svUI.clearElementChildren(document.getElementById('video-information'));
+
     document
       .getElementById('video-information')
       .append(videoDescItemsBuilder(target, data, rating));
@@ -173,13 +174,13 @@ function videoDescItemsBuilder(target, videoStats, rating) {
     videoName = target.getAttribute('data-videoname'),
     videoId = target.getAttribute('data-videoid'),
     channelId = target.getAttribute('data-channelid'),
-    channelAuthor = target.getAttribute('data-author'),
-    videoRate = '';
+    channelAuthor = target.getAttribute('data-author');
 
   const videoDesc = document.createDocumentFragment();
 
   // first div
   const div1 = document.createElement('div');
+  div1.id = 'video-information-desc';
   const strong = document.createElement('strong');
   strong.textContent = videoName;
 
@@ -196,6 +197,7 @@ function videoDescItemsBuilder(target, videoStats, rating) {
 
   // second div
   const div2 = document.createElement('div');
+  div2.id = 'video-information-stats';
   const p1 = document.createElement('p'),
     p2 = document.createElement('p'),
     p3 = document.createElement('p');
@@ -212,6 +214,7 @@ function videoDescItemsBuilder(target, videoStats, rating) {
   // third div
 
   const div3 = document.createElement('div');
+  div3.id = 'video-information-rating-buttons';
   const button1 = document.createElement('button'),
     button2 = document.createElement('button'),
     i1 = document.createElement('i'),

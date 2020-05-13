@@ -296,6 +296,7 @@ class SearchAndVideoUi {
   }
 
   addReply(reply, commentId, firstReply) {
+    console.log(reply);
     const author = reply.authorDisplayName;
     const replyDisplay = reply.textDisplay;
     const output = this.buildCommentLi(commentId, author, replyDisplay);
@@ -330,13 +331,11 @@ class SearchAndVideoUi {
   }
 
   updateReplies(data, commentLi, commentId) {
-    if (commentLi.lastElementChild.classList.contains('replies-ul')) {
-      commentLi.lastElementChild.prepend(
-        this.addReply(data.snippet, commentId, false)
-      );
-    } else {
-      commentLi.append(this.addReply(data.snippet, commentId, true));
-    }
+    commentLi.lastElementChild.classList.contains('replies-ul')
+      ? commentLi.lastElementChild.prepend(
+          this.addReply(data.snippet, commentId, false)
+        )
+      : commentLi.append(this.addReply(data.snippet, commentId, true));
   }
 
   // Function to add data-attributes and disable/enable pagination buttons
@@ -385,15 +384,6 @@ class SearchAndVideoUi {
       videoSection.style.visibility = 'hidden';
     } else {
       this.hideResults();
-    }
-
-    // this if/else controls the background color based on light/dark mode selection
-    if (body.classList.contains('dark')) {
-      searchResults.classList.remove('light');
-      searchResults.classList.add('dark');
-    } else {
-      searchResults.classList.remove('dark');
-      searchResults.classList.add('light');
     }
   }
 
