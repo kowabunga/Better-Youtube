@@ -268,6 +268,23 @@ class SearchAndVideoUi {
       output.append(this.buildCommentLi(commentId, author, replyDisplay));
     });
 
+    const returnOutput = this.buildReply(output);
+    return returnOutput;
+  }
+
+  addReply(reply, commentId, firstReply) {
+    console.log(reply);
+    const author = reply.authorDisplayName;
+    const replyDisplay = reply.textDisplay;
+    const output = this.buildCommentLi(commentId, author, replyDisplay);
+    // If firstReply is true, add the replies ul + comment, else just add the comment
+
+    const initReply = this.buildReply(output);
+
+    return firstReply ? initReply : output;
+  }
+
+  buildReply(output) {
     const returnOutput = document.createDocumentFragment();
 
     const a = document.createElement('a');
@@ -292,42 +309,8 @@ class SearchAndVideoUi {
     returnOutput.append(document.createElement('br'));
     returnOutput.append(a);
     returnOutput.append(ul);
+
     return returnOutput;
-  }
-
-  addReply(reply, commentId, firstReply) {
-    console.log(reply);
-    const author = reply.authorDisplayName;
-    const replyDisplay = reply.textDisplay;
-    const output = this.buildCommentLi(commentId, author, replyDisplay);
-    // If firstReply is true, add the replies ul + comment, else just add the comment
-
-    const initReply = document.createDocumentFragment();
-
-    const a = document.createElement('a');
-    a.classList.add('view-replies');
-    a.setAttribute('href', '#/');
-
-    const icon = document.createElement('i');
-    icon.classList.add('fas');
-    icon.classList.add('fa-angle-down');
-
-    const aText = document.createTextNode(' View Replies');
-
-    a.append(icon);
-    a.append(aText);
-
-    const ul = document.createElement('ul');
-    ul.classList.add('replies-ul');
-    ul.append(output);
-
-    initReply.append(document.createElement('br'));
-    initReply.append(document.createElement('hr'));
-    initReply.append(document.createElement('br'));
-    initReply.append(a);
-    initReply.append(ul);
-
-    return firstReply ? initReply : output;
   }
 
   updateReplies(data, commentLi, commentId) {
