@@ -32,7 +32,7 @@ function changePage(e) {
 
 function loadChannel(e) {
   // On channel load, check if the playlist ul has items in it, if so remove them so that they will not be present when checking playlists for new channel
-  svUI.clearVideosList(mainPlaylistUl);
+  svUI.clearElementChildren(mainPlaylistUl);
 
   hideChannelBtn.style.display = 'block';
   showSearchResultsBtn.style.display = 'none';
