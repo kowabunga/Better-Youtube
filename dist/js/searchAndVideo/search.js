@@ -61,7 +61,7 @@ function submitQuery(e) {
     searchResults.style.display = 'flex';
 
     // Hide home page on search
-    if ((homePageContainer.style.display = 'block')) {
+    if (homePageContainer.style.display === 'block') {
       homePageContainer.style.display = 'none';
     }
   } else if (searchParameter === '') {

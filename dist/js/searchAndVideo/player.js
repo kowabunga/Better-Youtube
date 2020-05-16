@@ -16,6 +16,7 @@ function showVideo(e) {
   // If user clicks on channel author link, loads channel page
   if (e.target.classList.contains('channel-author-id')) {
     changePage(e);
+    return;
   }
 
   // Checking if target is video thumbnail or video title
@@ -48,7 +49,7 @@ function showVideo(e) {
     searchResults.classList.add('hide-search');
 
     // Test if search-items UL has more than one li in it - meaning the user has searched for something.
-    // If so, set the showSearchResultsBtn to block, otherwise keep at none
+    // If so, set the showSearchResultsBtn to block so that it is visible, otherwise keep at none
     if (searchedVideoItems.getElementsByTagName('li').length > 0) {
       showSearchResultsBtn.style.display = 'block';
     }
@@ -75,8 +76,9 @@ function showVideo(e) {
       svUI.hideResults();
     }
 
+    //@TODO CHECK THIS SPOT. MAKE SURE HOME PAGE CONTAINER HIDES WHEN VIDEO IS CLICKED UNDER ALL SCENARIOS
     // Hide home page videos on showing clicked video
-    if ((homePageContainer.style.display = 'block')) {
+    if (homePageContainer.style.display !== 'none') {
       homePageContainer.style.display = 'none';
     }
 

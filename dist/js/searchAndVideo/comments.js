@@ -24,7 +24,6 @@ function addComment(e) {
         videoCenter.getAttribute('data-channelid'),
         videoCenter.getAttribute('data-videoid')
       )
-      // .then(svUI.displayVideoComments(data.result, true))
       .then(data => svUI.displayVideoComments(data.result, false))
       .catch(err => console.log(err));
     commentInput.value = '';

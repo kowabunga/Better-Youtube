@@ -12,7 +12,7 @@ function revertPage() {
   }
 
   // Only want the view channel button to show when page reverts IF user is signed in
-  if ((viewChannel.style.display = 'none' && googleAuth.checkIfSignedIn())) {
+  if (viewChannel.style.display === 'none' && googleAuth.checkIfSignedIn()) {
     viewChannel.style.display = 'block';
   }
 }
@@ -60,8 +60,8 @@ function loadChannel(e) {
     }
 
     // Check if subscribe button is display none, if so make it block and visible
-    subscribeBtn.style.display =
-      'none' && (subscribeBtn.style.display = 'block');
+    subscribeBtn.style.display === 'none' &&
+      (subscribeBtn.style.display = 'block');
   }
   if (e.target.id === 'view-channel') {
     const channelId = e.target.getAttribute('data-channelid');
