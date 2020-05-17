@@ -80,18 +80,43 @@ function loadChannel(e) {
 
 function populateChannelSection(data, myChannel) {
   // save logged in user's channel id to view channel button. this will be used in changePage function to determine if current channel page is logged in user's page.
-  myChannel &&
-    viewChannel.setAttribute('data-channelid', data.result.items[0].id);
+  // data.result.items is null if logged in user account has not created a youtube channel.
+  if (!data.result.items) {
+    document.getElementById('channel-header').style.display = 'none';
+    document.getElementById('channel-info').style.display = 'none';
+    document.getElementById('channel-content').style.display = 'none';
 
-  const channelInfo = data.result.items[0];
-  // prevent channel header section from being rebuilt every time channel is loaded
-  chUI.buildChannelDetailsSection(channelInfo);
+    // If element with no-channel id doesn't exist:
+    if (!document.getElementById('no-channel')) {
+      channelContainer.style.display = 'flex';
+      const div = document.createElement('div');
+      div.id = 'no-channel';
+      div.textContent = 'You do not have a channel to display!';
+      channelContainer.appendChild(div);
+    }
+  } else {
+    channelContainer.style.display = 'grid';
+    // @TODO: Check if this works
+    if (document.getChannelInformation('no-channel')) {
+      document.getElementById('no-channel').remove();
+    }
+    document.getElementById('channel-header').style.display = 'block';
+    document.getElementById('channel-info').style.display = 'block';
+    document.getElementById('channel-content').style.display = 'block';
 
-  // Get videos for channel
-  youtube
-    .getPlaylistVideos(channelInfo.contentDetails.relatedPlaylists.uploads, 10)
-    .then(data => chUI.buildChannelVideosSection(data))
-    .catch(err => console.log(err));
+    myChannel &&
+      viewChannel.setAttribute('data-channelid', data.result.items[0].id);
+
+    const channelInfo = data.result.items[0];
+    // prevent channel header section from being rebuilt every time channel is loaded
+    chUI.buildChannelDetailsSection(channelInfo);
+
+    // Get videos for channel
+    youtube
+      .getPlaylistVideos(channelInfo.contentDetails.relatedPlaylists.uploads, 10)
+      .then(data => chUI.buildChannelVideosSection(data))
+      .catch(err => console.log(err));
+  }
 }
 
 function viewVideos(e) {

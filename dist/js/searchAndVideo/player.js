@@ -76,7 +76,6 @@ function showVideo(e) {
       svUI.hideResults();
     }
 
-    //@TODO CHECK THIS SPOT. MAKE SURE HOME PAGE CONTAINER HIDES WHEN VIDEO IS CLICKED UNDER ALL SCENARIOS
     // Hide home page videos on showing clicked video
     if (homePageContainer.style.display !== 'none') {
       homePageContainer.style.display = 'none';
