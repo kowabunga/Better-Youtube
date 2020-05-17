@@ -1,7 +1,14 @@
 class GoogleAuth {
+  /*
+  NOTES:
+  *
+  For anyone asking, I do know it is inadvisable to put secret keys on github. Not having sufficient backend knowlege to set up my own server hide the api keys with, the keys and other info has to remain in the JavaScript, for without it this app is useless. Until I figure out how to do so, these keys will have to remain here, otherwise the user will have to go generate and set up their own keys/oauth info individually.
+  *
+  */
   constructor() {
-    this.apiKey = 'your_api_key';
-    this.clientId = 'your_client_id';
+    this.apiKey = 'AIzaSyB18mxn8LyLJ3vUBHP1x1Jk67C0Db6YIXk';
+    this.clientId =
+      '332565945864-sk1ns9m4nh05h6nis2cthopv43nl394e.apps.googleusercontent.com';
     this.scopes = 'https://www.googleapis.com/auth/youtube.force-ssl';
     // Need to bind this to initClient function to be able to call apiKey and clientKey from inner function gapi.client.init()
     this.initClient = this.initClient.bind(this);
