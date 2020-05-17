@@ -1,5 +1,7 @@
 # MyTube
 
+**This project is temporarily disabled until I figure out how to hide the api/oauth secrets**
+
 My personalized version of what I'd like Youtube to look like, in so far as Youtube's API will let me go, that is.
 
 This project came from the idea that it can be annoying to be searching videos, accidently click a video link, and the page refreshes to the video. _Especially_ if you're four years deep in your search history, for whatever reason, and you now have to start from the beginning - or whereever Youtube puts you.
