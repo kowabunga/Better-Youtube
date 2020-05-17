@@ -88,16 +88,19 @@ function populateChannelSection(data, myChannel) {
 
     // If element with no-channel id doesn't exist:
     if (!document.getElementById('no-channel')) {
-      channelContainer.style.display = 'flex';
+      // channelContainer.style.display = 'flex';
       const div = document.createElement('div');
       div.id = 'no-channel';
       div.textContent = 'You do not have a channel to display!';
       channelContainer.appendChild(div);
     }
+    // } else {
+    //   channelContainer.style.display = 'flex';
+    // }
   } else {
     channelContainer.style.display = 'grid';
     // @TODO: Check if this works
-    if (document.getChannelInformation('no-channel')) {
+    if (document.getElementById('no-channel')) {
       document.getElementById('no-channel').remove();
     }
     document.getElementById('channel-header').style.display = 'block';
