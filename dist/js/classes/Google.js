@@ -2,7 +2,7 @@ class GoogleAuth {
   /*
   NOTES:
   *
-  For anyone asking, I do know it is inadvisable to put secret keys on github. Not having sufficient backend knowlege to set up my own server hide the api keys with, the keys and other info has to remain in the JavaScript, for without it this app is useless. Until I figure out how to do so, these keys will have to remain here, otherwise the user will have to go generate and set up their own keys/oauth info individually.
+  For anyone asking, I do know it is inadvisable to put secret keys on github - i.e. api key / oauth credentials. Not having sufficient backend knowlege to set up my own server hide the api keys with, the keys and other info has to remain in the JavaScript, for without it, this app is useless. Until I figure out how to do so, these keys will have to remain here, otherwise the user will have to go generate and set up their own keys/oauth info individually.
   *
   */
   constructor() {
@@ -20,10 +20,12 @@ class GoogleAuth {
     this.subscriptionBtn = document.getElementById('subscribe-btn');
     this.channelContainer = document.getElementById('channel-container');
   }
+
   // This function calls and loads
   loadClient() {
     gapi.load('client:auth2', this.initClient);
   }
+
   // Notes about this code:
   // The gapi.client.init function *lazily* loads auth2 if it is needed.
   // Since we will be using OAuth in the program, we can prepare it here.
