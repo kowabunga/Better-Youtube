@@ -14,3 +14,4 @@ googleAuth.loadClient();
 brand.addEventListener('click', () => window.location.reload());
 
 //
+console.log(process.env);
