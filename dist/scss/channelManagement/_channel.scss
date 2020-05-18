@@ -1,6 +1,6 @@
 #channel {
   &-container {
-    display: none;
+    display: grid;
     grid-template-columns: 1.5fr 5fr;
     grid-auto-rows: minmax(0, min-content) auto;
     grid-template-areas:
@@ -83,7 +83,7 @@
 
     &-playlists,
     &-videos {
-      display: none;
+      display: flex;
       justify-content: center;
       position: relative;
 
@@ -121,7 +121,7 @@
   display: flex;
 }
 .hide {
-  display: none;
+  display: none !important;
 }
 
 #no-channel {

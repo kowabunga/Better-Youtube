@@ -39,11 +39,10 @@ class SearchAndVideoUi {
       // add output to section and make section visible on website
       this.clearElementChildren(relevantVideoItems);
       relevantVideoItems.append(output);
-      relevantVideos.style.display = 'flex';
+      relevantVideos.classList.remove('hide');
 
       // add description and display below video
-      videoDesc.style.display = 'block';
-      videoDesc.style.displaySearchResults = 'block';
+      videoDesc.classList.remove('hide');
     } else if (pageSection === 'main-news') {
       // add results to page
       this.clearElementChildren(newsSection);

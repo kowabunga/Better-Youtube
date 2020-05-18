@@ -3,17 +3,17 @@ hideChannelBtn.addEventListener('click', revertPage);
 channelVideosBtn.addEventListener('click', viewVideos);
 
 function revertPage() {
-  hideChannelBtn.style.display = 'none';
-  channelContainer.style.display = 'none';
-  videoContainer.style.display = 'block';
+  hideChannelBtn.classList.add('hide');
+  channelContainer.classList.add('hide');
+  videoContainer.classList.remove('hide');
 
   if (searchedVideoItems.getElementsByTagName('li').length > 0) {
-    showSearchResultsBtn.style.display = 'block';
+    showSearchResultsBtn.classList.remove('hide');
   }
 
   // Only want the view channel button to show when page reverts IF user is signed in
-  if (viewChannel.style.display === 'none' && googleAuth.checkIfSignedIn()) {
-    viewChannel.style.display = 'block';
+  if (viewChannel.classList.contains('hide') && googleAuth.checkIfSignedIn()) {
+    viewChannel.classList.remove('hide');
   }
 }
 
@@ -21,10 +21,10 @@ function revertPage() {
 function changePage(e) {
   e.preventDefault();
 
-  channelContainer.style.display = 'grid';
-  videoContainer.style.display = 'none';
-  if (viewChannel.style.display === 'block') {
-    viewChannel.style.display = 'none';
+  channelContainer.classList.remove('hide');
+  videoContainer.classList.add('hide');
+  if (!viewChannel.classList.contains('hide')) {
+    viewChannel.classList.add('hide');
   }
 
   loadChannel(e);
@@ -34,8 +34,9 @@ function loadChannel(e) {
   // On channel load, check if the playlist ul has items in it, if so remove them so that they will not be present when checking playlists for new channel
   svUI.clearElementChildren(mainPlaylistUl);
 
-  hideChannelBtn.style.display = 'block';
-  showSearchResultsBtn.style.display = 'none';
+  hideChannelBtn.classList.remove('hide');
+  // @TODO check if this successfully hides and shows searchresults btn (above too)
+  showSearchResultsBtn.classList.add('hide');
 
   if (
     e.target.id === 'channel-author' ||
@@ -60,8 +61,8 @@ function loadChannel(e) {
     }
 
     // Check if subscribe button is display none, if so make it block and visible
-    subscribeBtn.style.display === 'none' &&
-      (subscribeBtn.style.display = 'block');
+    subscribeBtn.classList.contains('hide') &&
+      subscribeBtn.classList.remove('hide');
   }
   if (e.target.id === 'view-channel') {
     const channelId = e.target.getAttribute('data-channelid');
@@ -74,7 +75,7 @@ function loadChannel(e) {
     // check if target (view channel btn) channelid attribute is same as channelid attribute in subscribe button. If so, hide subscribe button.
     //Can't subscribe to yourself!
     channelId === viewChannel.getAttribute('data-channelid') &&
-      (subscribeBtn.style.display = 'none');
+      subscribeBtn.classList.add('hide');
   }
 }
 
@@ -82,30 +83,24 @@ function populateChannelSection(data, myChannel) {
   // save logged in user's channel id to view channel button. this will be used in changePage function to determine if current channel page is logged in user's page.
   // data.result.items is null if logged in user account has not created a youtube channel.
   if (!data.result.items) {
-    document.getElementById('channel-header').style.display = 'none';
-    document.getElementById('channel-info').style.display = 'none';
-    document.getElementById('channel-content').style.display = 'none';
+    document.getElementById('channel-header').classList.add('hide');
+    document.getElementById('channel-info').classList.add('hide');
+    document.getElementById('channel-content').classList.add('hide');
 
     // If element with no-channel id doesn't exist:
     if (!document.getElementById('no-channel')) {
-      // channelContainer.style.display = 'flex';
       const div = document.createElement('div');
       div.id = 'no-channel';
       div.textContent = 'You do not have a channel to display!';
       channelContainer.appendChild(div);
     }
-    // } else {
-    //   channelContainer.style.display = 'flex';
-    // }
   } else {
-    channelContainer.style.display = 'grid';
-    // @TODO: Check if this works
     if (document.getElementById('no-channel')) {
       document.getElementById('no-channel').remove();
     }
-    document.getElementById('channel-header').style.display = 'block';
-    document.getElementById('channel-info').style.display = 'block';
-    document.getElementById('channel-content').style.display = 'block';
+    document.getElementById('channel-header').classList.remove('hide');
+    document.getElementById('channel-info').classList.remove('hide');
+    document.getElementById('channel-content').classList.remove('hide');
 
     myChannel &&
       viewChannel.setAttribute('data-channelid', data.result.items[0].id);
@@ -124,6 +119,6 @@ function populateChannelSection(data, myChannel) {
 
 function viewVideos(e) {
   e.preventDefault();
-  channelPlaylistSec.style.display = 'none';
-  channelVideosSection.style.display = 'flex';
+  channelPlaylistSec.classList.add('hide');
+  channelVideosSection.classList.remove('hide');
 }

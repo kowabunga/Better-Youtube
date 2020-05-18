@@ -24,7 +24,7 @@ function showVideo(e) {
     e.target.classList.contains('thumbnail') ||
     e.target.classList.contains('video-title')
   ) {
-    videoPlayer.style.display = 'block';
+    videoPlayer.classList.remove('hide');
     videoSection.style.visibility = 'visible';
 
     videoPlayer.setAttribute(
@@ -51,7 +51,7 @@ function showVideo(e) {
     // Test if search-items UL has more than one li in it - meaning the user has searched for something.
     // If so, set the showSearchResultsBtn to block so that it is visible, otherwise keep at none
     if (searchedVideoItems.getElementsByTagName('li').length > 0) {
-      showSearchResultsBtn.style.display = 'block';
+      showSearchResultsBtn.classList.remove('hide');
     }
 
     // Call function to get relevant search videos.
@@ -77,14 +77,14 @@ function showVideo(e) {
     }
 
     // Hide home page videos on showing clicked video
-    if (homePageContainer.style.display !== 'none') {
-      homePageContainer.style.display = 'none';
+    if (!homePageContainer.classList.contains('hide')) {
+      homePageContainer.classList.add('hide');
     }
 
     // show video
-    resultsContainer.style.display = 'grid';
+    resultsContainer.classList.remove('hide');
 
-    if (channelContainer.style.display === 'grid') {
+    if (!channelContainer.classList.contains('hide')) {
       revertPage();
     }
   }

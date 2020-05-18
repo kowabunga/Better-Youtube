@@ -21,18 +21,20 @@
           ><span id="my">My</span><span id="tube">Tube</span></a
         >
         <div class="search-channel-btns">
-          <button class="btn btn-square" id="show-search">
+          <button class="btn btn-square hide" id="show-search">
             Search Results
           </button>
-          <button class="btn btn-square" id="hide-channel">
+          <button class="btn btn-square hide" id="hide-channel">
             Hide Channel
           </button>
         </div>
 
         <div id="login-buttons">
-          <button class="btn btn-square" id="view-channel">Your Channel</button>
+          <button class="btn btn-square hide" id="view-channel">
+            Your Channel
+          </button>
           <button class="btn btn-square" id="login">Login</button>
-          <button class="btn btn-square" id="logout">Logout</button>
+          <button class="btn btn-square hide" id="logout">Logout</button>
         </div>
       </header>
 
@@ -79,8 +81,8 @@
         </section>
 
         <!-- results container -->
-        <section id="results-container">
-          <div id="search-results" class="search-results">
+        <section id="results-container" class="hide">
+          <div id="search-results" class="search-results hide">
             <span id="window-close">&times;</span>
             <div id="results-term-field"></div>
             <button class="btn" id="prev-search">
@@ -98,6 +100,7 @@
           <section id="video">
             <div id="video-center">
               <iframe
+                class="hide"
                 id="player"
                 type="text/html"
                 frameborder="0"
@@ -106,7 +109,7 @@
               ></iframe>
             </div>
             <!-- relevent videos and comments section -->
-            <div id="relevant-videos">
+            <div id="relevant-videos" class="hide">
               <span id="video-desc">
                 Comments and Videos you may like...
                 <hr />
@@ -140,7 +143,7 @@
           </section>
         </section>
       </section>
-      <section id="channel-container" style="display: none;">
+      <section id="channel-container" class="hide">
         <div id="channel-header">
           <div id="channel-banner"></div>
         </div>
@@ -174,7 +177,7 @@
               <i class="btn fas fa-chevron-right fa-3x"></i>
             </button>
           </div>
-          <div id="channel-content-playlists">
+          <div id="channel-content-playlists" class="hide">
             <button class="btn" id="prev-playlist">
               <i class="btn fas fa-chevron-left fa-3x"></i>
             </button>

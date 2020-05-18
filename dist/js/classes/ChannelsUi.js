@@ -69,7 +69,7 @@ class ChannelsUi {
       data.result.items[0].snippet.channelId || null
     );
     svUI.displayVideos(data.result, 'channel-videos');
-    channelVideosSection.style.display = 'flex';
+    channelVideosSection.classList.remove('hide');
   }
 
   setSubscriptionButton(data, isSubscribed) {

@@ -56,7 +56,6 @@
   }
 
   &-desc {
-    display: none;
     text-align: center;
     margin-top: 1em;
   }
@@ -70,7 +69,7 @@
 
 #relevant-videos {
   grid-area: releventVideos;
-  display: none;
+  display: flex;
   flex-direction: column;
   flex-wrap: wrap;
 
@@ -99,7 +98,6 @@
 }
 
 #player {
-  display: none;
   box-shadow: 0 3px 10px darken($main-light-color, 25%);
 }
 

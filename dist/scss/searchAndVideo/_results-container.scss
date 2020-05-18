@@ -2,7 +2,7 @@
 /* search results container */
 #results-container {
   grid-area: results;
-  display: none;
+  display: grid;
   margin: 1em;
   grid-template-columns: 1fr;
   grid-template-areas:
@@ -15,7 +15,7 @@
 /* search results */
 #search {
   &-results {
-    display: none;
+    display: flex;
     grid-area: searchResults;
     padding: 1rem;
     transition: transform 0.5s ease-out;

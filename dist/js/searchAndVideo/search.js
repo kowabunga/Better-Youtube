@@ -46,7 +46,7 @@ function submitQuery(e) {
       svUI.showResults(e);
     }
     videoSection.style.visibility = 'hidden';
-    resultsContainer.style.display = 'grid';
+    resultsContainer.classList.remove('hide');
 
     // make request to api with search parameter and display in webpage
     youtube
@@ -58,11 +58,11 @@ function submitQuery(e) {
     searchInput.value = '';
 
     // show search results - none => flex
-    searchResults.style.display = 'flex';
+    searchResults.classList.remove('hide');
 
     // Hide home page on search
-    if (homePageContainer.style.display === 'block') {
-      homePageContainer.style.display = 'none';
+    if (!homePageContainer.classList.contains('hide')) {
+      homePageContainer.classList.add('hide');
     }
   } else if (searchParameter === '') {
     // If search is empty but submit is clicked/entered, add error classes

@@ -3,8 +3,8 @@ mainPlaylistUl.addEventListener('click', viewPlaylistVideos);
 
 function viewPlaylists(e) {
   e.preventDefault();
-  channelVideosSection.style.display = 'none';
-  channelPlaylistSec.style.display = 'flex';
+  channelVideosSection.classList.add('hide');
+  channelPlaylistSec.classList.remove('hide');
   createPlaylistSection(subscribeBtn.getAttribute('data-channelid'));
 }
 
@@ -21,8 +21,8 @@ function viewPlaylistVideos(e) {
       .then(data => chUI.buildChannelVideosSection(data))
       .catch(err => console.log(err));
   }
-  channelPlaylistSec.style.display = 'none';
-  channelVideosSection.style.display = 'flex';
+  channelPlaylistSec.classList.add('hide');
+  channelVideosSection.classList.remove('hide');
 }
 
 function createPlaylistSection(channelId) {

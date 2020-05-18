@@ -57,17 +57,17 @@ class GoogleAuth {
   updateSignInStatus(isSignedIn) {
     if (isSignedIn) {
       // If user is signed in, hide login button and display logout button. Also, display channel management buttons
-      this.loginBtn.style.display = 'none';
-      this.logoutBtn.style.display = 'block';
-      this.viewChannelBtn.style.display = 'block';
+      this.loginBtn.classList.add('hide');
+      this.logoutBtn.classList.remove('hide');
+      this.viewChannelBtn.classList.remove('hide');
 
       // reload on login
-      this.channelContainer.style.display === 'grid' && window.location.reload();
+      this.channelContainer.classList.remove('hide') && window.location.reload();
     } else {
       // If user is signed out, hide logout button and display login button. Also, hide channel management buttons
-      this.loginBtn.style.display = 'block';
-      this.logoutBtn.style.display = 'none';
-      this.viewChannelBtn.style.display = 'none';
+      this.loginBtn.classList.remove('hide');
+      this.logoutBtn.classList.add('hide');
+      this.viewChannelBtn.classList.add('hide');
 
       // If user signs out while on a channel page, remove subscribed class from channel sub. button
       if (this.subscriptionBtn.classList.contains('subscribed')) {
