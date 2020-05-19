@@ -1,5 +1,7 @@
 # MyTube
 
+**Please note:** The Youtube Data API has quota limits. In the event this site does not work, it is likely because the site has been used multiple times and has exceeded its api quota limit. Please try again the next day in this case.
+
 My personalized version of what I'd like Youtube to look like, in so far as Youtube's API will let me go, that is.
 
 This project came from the idea that it can be annoying to be searching videos, accidently click a video link, and the page refreshes to the video. _Especially_ if you're four years deep in your search history, for whatever reason, and you now have to start from the beginning - or whereever Youtube puts you.
