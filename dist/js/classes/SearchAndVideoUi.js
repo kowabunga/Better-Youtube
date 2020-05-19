@@ -272,7 +272,6 @@ class SearchAndVideoUi {
   }
 
   addReply(reply, commentId, firstReply) {
-    console.log(reply);
     const author = reply.authorDisplayName;
     const replyDisplay = reply.textDisplay;
     const output = this.buildCommentLi(commentId, author, replyDisplay);
@@ -362,8 +361,8 @@ class SearchAndVideoUi {
     if (searchResults.classList.contains('hide-search')) {
       searchResults.classList.remove('hide-search');
       searchResults.classList.add('show-search');
-      closeSearchBtn.style.visibility = 'visible';
-      videoSection.style.visibility = 'hidden';
+      closeSearchBtn.classList.remove('invisible');
+      videoSection.classList.add('invisible');
     } else {
       this.hideResults();
     }
@@ -374,8 +373,8 @@ class SearchAndVideoUi {
     body.style.overflow = 'auto';
     searchResults.classList.remove('show-search');
     searchResults.classList.add('hide-search');
-    closeSearchBtn.style.visibility = 'hidden';
-    videoSection.style.visibility = 'visible';
+    closeSearchBtn.classList.add('invisible');
+    videoSection.classList.remove('invisible');
   }
 
   editRating(result, clickedBtn) {

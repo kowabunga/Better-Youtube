@@ -1,7 +1,6 @@
 subscribeBtn.addEventListener('click', subscribeOrUnSubscribe);
 
 function subscribeOrUnSubscribe(e) {
-  //   console.log('click');
   if (googleAuth.checkIfSignedIn()) {
     e.preventDefault();
     if (subscribeBtn.classList.contains('subscribed')) {

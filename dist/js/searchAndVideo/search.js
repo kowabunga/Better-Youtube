@@ -45,8 +45,9 @@ function submitQuery(e) {
     if (searchResults.classList.contains('hide-search')) {
       svUI.showResults(e);
     }
-    videoSection.style.visibility = 'hidden';
-    resultsContainer.classList.remove('hide');
+    videoSection.classList.add('invisible');
+
+    resultsContainer.classList.remove('hide'); //
 
     // make request to api with search parameter and display in webpage
     youtube
@@ -58,7 +59,7 @@ function submitQuery(e) {
     searchInput.value = '';
 
     // show search results - none => flex
-    searchResults.classList.remove('hide');
+    searchResults.classList.remove('hide'); //
 
     // Hide home page on search
     if (!homePageContainer.classList.contains('hide')) {

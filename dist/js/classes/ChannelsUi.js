@@ -9,7 +9,6 @@ class ChannelsUi {
     svUI.clearElementChildren(channelThumbnail);
     svUI.clearElementChildren(channelTitle);
 
-    // console.log(channelInfo);
     const brandingSettings = channelInfo.brandingSettings,
       statistics = channelInfo.statistics,
       snippet = channelInfo.snippet;

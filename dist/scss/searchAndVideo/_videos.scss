@@ -1,5 +1,6 @@
 /* Main container */
 #videos-container {
+  display: grid;
   grid-area: mainContainer;
   grid-template-columns: 1fr;
   grid-template-areas:

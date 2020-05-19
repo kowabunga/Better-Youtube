@@ -61,8 +61,9 @@ class GoogleAuth {
       this.logoutBtn.classList.remove('hide');
       this.viewChannelBtn.classList.remove('hide');
 
-      // reload on login
-      this.channelContainer.classList.remove('hide') && window.location.reload();
+      // reload on login if channel container is visible
+      !this.channelContainer.classList.contains('hide') &&
+        window.location.reload();
     } else {
       // If user is signed out, hide logout button and display login button. Also, hide channel management buttons
       this.loginBtn.classList.remove('hide');

@@ -93,3 +93,15 @@ hr {
     overflow: auto;
   }
 }
+
+.show {
+  display: flex;
+}
+
+.hide {
+  display: none !important;
+}
+
+.invisible {
+  visibility: hidden !important;
+}

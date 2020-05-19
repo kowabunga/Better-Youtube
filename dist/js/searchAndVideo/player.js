@@ -25,7 +25,7 @@ function showVideo(e) {
     e.target.classList.contains('video-title')
   ) {
     videoPlayer.classList.remove('hide');
-    videoSection.style.visibility = 'visible';
+    videoSection.classList.remove('invisible');
 
     videoPlayer.setAttribute(
       'src',
