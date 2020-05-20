@@ -360,7 +360,7 @@ class SearchAndVideoUi {
       searchResults.classList.remove('hide-search');
       searchResults.classList.add('show-search');
       closeSearchBtn.classList.remove('invisible');
-      videoSection.classList.add('invisible');
+      // videoSection.classList.add('invisible');
     } else {
       this.hideResults();
     }
