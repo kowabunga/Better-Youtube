@@ -5,7 +5,6 @@
   border: none;
   background-color: transparent;
   color: $main-blue;
-  opacity: 0.9;
   transition: 0.2s ease-out;
 
   &-square {
@@ -17,19 +16,10 @@
     font-size: 1em;
     max-height: 39px;
 
-    &:hover {
-      text-shadow: 0 0 5px $main-blue;
-      box-shadow: 0 0 5px $main-blue, inset 0 0 5px $main-blue;
-    }
-
     &:active {
       text-shadow: 0 0 5px $main-blue;
       background-color: lighten($main-dark-color, 5);
     }
-  }
-
-  &:hover {
-    opacity: 1;
   }
 
   &:disabled {

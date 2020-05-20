@@ -26,12 +26,7 @@
     width: 80%;
     border: 2px solid $main-blue;
     color: $main-light-color;
-    transition: 0.2s ease-out;
-
-    &:focus,
-    &:hover {
-      box-shadow: 0 0 10px $main-blue;
-    }
+    background-color: transparent;
   }
 }
 
@@ -45,13 +40,6 @@
   width: 20%;
   text-align: center;
   color: $main-blue;
-  transition: 0.2s ease-out;
-
-  &:hover {
-    cursor: pointer;
-    box-shadow: 0 0 10px $main-blue;
-    text-shadow: 0 0 5px $main-blue;
-  }
 }
 
 #searched-term {
