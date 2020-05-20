@@ -231,7 +231,7 @@ class SearchAndVideoUi {
     const submitInput = document.createElement('input');
     submitInput.id = 'submit-reply';
     submitInput.classList.add('btn');
-    submitInput.setAttribute('value', 'Add Reply');
+    submitInput.setAttribute('value', 'Reply');
     submitInput.setAttribute('type', 'submit');
 
     button.append(icon);
