@@ -1,6 +1,6 @@
 /* -------------------------------------------------------------- */
 /* All Media Queries */
-
+//@TODO FIX MEDIA QUERIES FOR MOBILE
 @media (max-width: 1100px) {
   #comments {
     &-relvideos {
@@ -83,7 +83,6 @@
 
   #channel {
     &-container {
-      display: none;
       grid-template-columns: 1fr;
       grid-template-areas:
         'banner'
