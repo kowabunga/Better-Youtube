@@ -60,11 +60,6 @@ function submitQuery(e) {
 
     // show search results - none => flex
     searchResults.classList.remove('hide'); //
-
-    // Hide home page on search
-    if (!homePageContainer.classList.contains('hide')) {
-      homePageContainer.classList.add('hide');
-    }
   } else if (searchParameter === '') {
     // If search is empty but submit is clicked/entered, add error classes
     searchedTerm.innerText = 'Please enter something to search.';

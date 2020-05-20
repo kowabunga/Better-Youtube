@@ -4,6 +4,7 @@ class ChannelsUi {
   }
 
   buildChannelDetailsSection(channelInfo) {
+    // Remove information from previous channel
     svUI.clearElementChildren(channelBanner);
     svUI.clearElementChildren(channelDescription);
     svUI.clearElementChildren(channelThumbnail);
@@ -37,7 +38,6 @@ class ChannelsUi {
     subscribers.id = 'chan-subs';
 
     titleInfo.append(title);
-    // titleInfo.append(br);
     titleInfo.append(subscribers);
 
     channelTitle.append(titleInfo);

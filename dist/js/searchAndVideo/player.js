@@ -24,6 +24,11 @@ function showVideo(e) {
     e.target.classList.contains('thumbnail') ||
     e.target.classList.contains('video-title')
   ) {
+    // Hide home page on search
+    if (!homePageContainer.classList.contains('hide')) {
+      homePageContainer.classList.add('hide');
+    }
+
     videoPlayer.classList.remove('hide');
     videoSection.classList.remove('invisible');
 

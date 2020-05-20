@@ -12,8 +12,6 @@ class SearchAndVideoUi {
 
   // Display videos on page
   displayVideos(data, pageSection) {
-    // Clear current videos on pagination
-
     let output = document.createDocumentFragment();
     // loop through data items and add video, name, title, etc. to list item and append to output
     if (data.items.length > 0) {
@@ -275,10 +273,9 @@ class SearchAndVideoUi {
     const author = reply.authorDisplayName;
     const replyDisplay = reply.textDisplay;
     const output = this.buildCommentLi(commentId, author, replyDisplay);
-    // If firstReply is true, add the replies ul + comment, else just add the comment
-
     const initReply = this.buildReply(output);
 
+    // If firstReply is true, add the replies ul + comment, else just add the comment
     return firstReply ? initReply : output;
   }
 
@@ -312,6 +309,7 @@ class SearchAndVideoUi {
   }
 
   updateReplies(data, commentLi, commentId) {
+    // If last element of commentLi is the replies-ul (unordered list of existing replies), prepend new li to that existing list. otherwise, build replies ul and return that
     commentLi.lastElementChild.classList.contains('replies-ul')
       ? commentLi.lastElementChild.prepend(
           this.addReply(data.snippet, commentId, false)
@@ -375,6 +373,11 @@ class SearchAndVideoUi {
     searchResults.classList.add('hide-search');
     closeSearchBtn.classList.add('invisible');
     videoSection.classList.remove('invisible');
+
+    // If search results has items in it, show search results button
+    searchedVideoItems.getElementsByTagName('li').length > 0 &&
+      !homePageContainer.classList.contains('hide') &&
+      showSearchResultsBtn.classList.remove('hide');
   }
 
   editRating(result, clickedBtn) {
