@@ -360,7 +360,10 @@ class SearchAndVideoUi {
       searchResults.classList.remove('hide-search');
       searchResults.classList.add('show-search');
       closeSearchBtn.classList.remove('invisible');
-      videoSection.classList.add('invisible');
+      // Make video section hide *after* search results become visible.
+      setTimeout(() => {
+        videoSection.classList.add('hide');
+      }, 305);
     } else {
       this.hideResults();
     }
@@ -373,7 +376,7 @@ class SearchAndVideoUi {
     searchResults.classList.remove('show-search');
     searchResults.classList.add('hide-search');
     closeSearchBtn.classList.add('invisible');
-    videoSection.classList.remove('invisible');
+    videoSection.classList.remove('hide');
 
     // If search results has items in it, show search results button
     searchedVideoItems.getElementsByTagName('li').length > 0 &&
