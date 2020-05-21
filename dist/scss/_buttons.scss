@@ -48,14 +48,6 @@
   transform: translate(-1%, -50%);
 }
 
-#more-comments {
-  position: relative;
-  width: 125px;
-  margin-bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
 #prev-news,
 #prev-web-dev {
   position: absolute;
@@ -70,6 +62,14 @@
   top: 50%;
   right: 2%;
   transform: translate(-2%, -50%);
+}
+
+#more-comments {
+  position: relative;
+  width: 125px;
+  margin-bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 #show-search,
