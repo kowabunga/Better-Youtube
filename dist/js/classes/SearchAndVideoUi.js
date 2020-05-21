@@ -355,13 +355,12 @@ class SearchAndVideoUi {
   // show search results after they have been hidden
   showResults(e) {
     body.style.overflow = 'hidden';
-    body.style.position = 'relative';
     e.preventDefault();
     if (searchResults.classList.contains('hide-search')) {
       searchResults.classList.remove('hide-search');
       searchResults.classList.add('show-search');
       closeSearchBtn.classList.remove('invisible');
-      // videoSection.classList.add('invisible');
+      videoSection.classList.add('invisible');
     } else {
       this.hideResults();
     }
@@ -370,7 +369,6 @@ class SearchAndVideoUi {
   // hide search results if they are shown
   hideResults() {
     body.style.overflow = 'auto';
-    body.style.position = 'static';
 
     searchResults.classList.remove('show-search');
     searchResults.classList.add('hide-search');
