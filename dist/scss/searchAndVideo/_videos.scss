@@ -62,9 +62,10 @@
   }
 
   iframe {
-    width: 100%;
-    top: 101px;
-    height: 500px;
+    display: block;
+    width: 75%;
+    height: 600px;
+    margin: 0 auto;
   }
 }
 

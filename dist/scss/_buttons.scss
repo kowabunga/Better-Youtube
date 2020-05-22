@@ -15,10 +15,15 @@
     border: 2px solid $main-blue;
     font-size: 1em;
     max-height: 39px;
+    // transition: .3s ease-out;
 
     &:active {
       text-shadow: 0 0 5px $main-blue;
       background-color: lighten($main-dark-color, 5);
+    }
+
+    &:hover {
+      background-color: lighten($color: $main-dark-color, $amount: 10);
     }
   }
 
@@ -27,6 +32,10 @@
     opacity: 0.5;
     cursor: default;
     box-shadow: none;
+  }
+
+  &:hover {
+    background-color: lighten($color: $main-dark-color, $amount: 10);
   }
 }
 
