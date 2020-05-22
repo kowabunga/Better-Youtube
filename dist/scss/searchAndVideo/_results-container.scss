@@ -23,7 +23,6 @@
     justify-content: center;
     position: absolute;
     background-color: $main-dark-color;
-    border-top: 2px solid $light-gray;
     top: 320px;
     right: 0;
     left: 0;
@@ -50,7 +49,7 @@
     padding: 10px;
     height: 470px;
     width: 90%;
-    box-shadow: 0 0 5px $main-blue;
+    box-shadow: 0 0 5px $purple;
     border-radius: 5px;
     margin: 5px auto 0px auto;
     overflow: auto;
@@ -68,9 +67,10 @@
   padding: 15px 5px 5px 5px;
   height: 225px;
   width: 250px;
+  transition: 0.2s ease-out;
 
   &:hover {
-    box-shadow: 0 0 10px $main-blue;
+    box-shadow: 0 0 5px $main-light-color;
     border-radius: 10px;
     z-index: 5;
   }
@@ -109,7 +109,6 @@
   position: absolute;
   top: 15px;
   left: 20px;
-  color: $main-blue;
   transform: scale(2);
   transition: 0.2s;
   &:hover {

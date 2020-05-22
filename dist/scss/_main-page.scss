@@ -34,11 +34,11 @@ hr {
   box-shadow: 1px 1px 5px $main-blue, 0 0 10px $main-blue;
   border: 1px solid $main-blue;
   border-radius: 20px;
-  width: 400px;
+  width: 300px;
   cursor: pointer;
 
   #my {
-    font-size: 2em;
+    font-size: 1.5em;
   }
 
   #tube {
@@ -69,11 +69,16 @@ hr {
     flex-wrap: wrap;
     width: 90%;
     margin: 0 auto;
-    box-shadow: 0 0 5px $main-blue;
+    box-shadow: 0 0 5px $purple;
     border-radius: 5px;
     padding: 0.8em;
     overflow: auto;
   }
+}
+
+.fas.fa-chevron-left,
+.fas.fa-chevron-right {
+  color: $purple;
 }
 
 .show {
