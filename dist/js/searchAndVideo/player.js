@@ -179,11 +179,11 @@ function videoDescItemsBuilder(target, videoStats, rating) {
   const stats = videoStats.result.items[0].statistics,
     videoName = target.getAttribute('data-videoname'),
     videoId = target.getAttribute('data-videoid'),
+    videoDate = target.getAttribute('data-videodate'),
     channelId = target.getAttribute('data-channelid'),
     channelAuthor = target.getAttribute('data-author');
-
   const videoDesc = document.createDocumentFragment();
-
+  console.log(videoDate);
   // first div
   const div1 = document.createElement('div');
   div1.id = 'video-information-desc';
@@ -201,21 +201,24 @@ function videoDescItemsBuilder(target, videoStats, rating) {
   a.setAttribute('data-channelid', channelId);
   a.textContent = channelAuthor;
 
+  const p1 = document.createElement('p');
+  p1.textContent = `Published: ${videoDate}`;
+
   // second div
   const div2 = document.createElement('div');
   div2.id = 'video-information-stats';
-  const p1 = document.createElement('p'),
-    p2 = document.createElement('p'),
-    p3 = document.createElement('p');
+  const p2 = document.createElement('p'),
+    p3 = document.createElement('p'),
+    p4 = document.createElement('p');
 
-  p1.id = 'v-views';
-  p1.textContent = `Views: ${stats.viewCount}`;
+  p2.id = 'v-views';
+  p2.textContent = `Views: ${stats.viewCount}`;
 
-  p2.id = 'v-likes';
-  p2.textContent = `Likes : ${stats.likeCount}`;
+  p3.id = 'v-likes';
+  p3.textContent = `Likes : ${stats.likeCount}`;
 
-  p3.id = 'v-dislikes';
-  p3.textContent = `Dislikes : ${stats.dislikeCount}`;
+  p4.id = 'v-dislikes';
+  p4.textContent = `Dislikes : ${stats.dislikeCount}`;
 
   // third div
 
@@ -260,10 +263,11 @@ function videoDescItemsBuilder(target, videoStats, rating) {
   div1.append(em);
   div1.append(text);
   div1.append(a);
+  div1.append(p1);
 
-  div2.append(p1);
   div2.append(p2);
   div2.append(p3);
+  div2.append(p4);
 
   div3.append(button1);
   div3.append(button2);
