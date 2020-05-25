@@ -35,6 +35,12 @@
     border: 1px solid $main-blue;
     color: $main-light-color;
     background-color: transparent;
+    transition: 0.2s ease-out;
+
+    &:hover,
+    &:focus {
+      background-color: lighten($color: $main-dark-color, $amount: 10);
+    }
   }
 }
 
