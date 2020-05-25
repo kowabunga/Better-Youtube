@@ -15,15 +15,17 @@
   </head>
 
   <body class="dark">
-    <!-- main container -->
+    <header id="head">
+      <a href="#" id="brand"
+        ><span id="my">My</span><span id="tube">Tube</span></a
+      >
+    </header>
 
     <main id="container">
-      <!-- header section -->
-      <header id="head">
-        <a href="#" id="brand"
-          ><span id="my">My</span><span id="tube">Tube</span></a
-        >
-        <div class="search-channel-btns">
+      <!-- search container -->
+      <section id="search-container" class="dark">
+        <!-- search result/channel btn -->
+        <div id="search-channel-btns">
           <button class="btn btn-square hide" id="show-search">
             Search Results
           </button>
@@ -32,18 +34,7 @@
           </button>
         </div>
 
-        <div id="login-buttons">
-          <button class="btn btn-square hide" id="view-channel">
-            Your Channel
-          </button>
-          <button class="btn btn-square" id="login">Login</button>
-          <button class="btn btn-square hide" id="logout">Logout</button>
-        </div>
-      </header>
-
-      <section id="videos-container">
-        <!-- search container -->
-        <div id="search-container" class="dark">
+        <div id="search-mid-form">
           <form id="search-form" autocomplete="off">
             <input
               type="text"
@@ -57,6 +48,17 @@
           <span id="searched-term"></span>
         </div>
 
+        <!-- login btns -->
+        <div id="login-buttons">
+          <button class="btn btn-square hide" id="view-channel">
+            Your Channel
+          </button>
+          <button class="btn btn-square" id="login">Login</button>
+          <button class="btn btn-square hide" id="logout">Logout</button>
+        </div>
+      </section>
+
+      <section id="videos-container">
         <!-- Home page -->
         <section id="home-page-container">
           <h2>Web Development</h2>

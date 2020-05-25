@@ -5,14 +5,22 @@
     position: sticky;
     top: 0;
     left: 0;
-    grid-area: search;
+    grid-area: searchSection;
     height: 100px;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-areas: 'leftbtn form rightbtn';
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid $light-gray;
+    z-index: 100;
+  }
+
+  &-mid-form {
+    grid-area: form;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    border-bottom: 2px solid $light-gray;
-    z-index: 100;
   }
 
   &-form {
@@ -28,6 +36,24 @@
     color: $main-light-color;
     background-color: transparent;
   }
+}
+
+#login-buttons {
+  display: flex;
+  grid-area: rightbtn;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 0 0 0 auto;
+  width: 290px;
+}
+
+#search-channel-btns {
+  display: flex;
+  grid-area: leftbtn;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0 auto 0 0;
+  width: 300px;
 }
 
 #submit-search {

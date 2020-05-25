@@ -78,18 +78,19 @@
 
 #show-search,
 #hide-channel {
-  margin: 0 0 12px 12px;
+  margin-left: 5px;
+  width: 145px;
 }
 
 #view-channel {
-  margin-right: 12px;
+  width: 145px;
+  margin-right: 5px;
 }
 
 #login,
 #logout {
-  margin-right: 15px;
-  margin-bottom: 12px;
-  width: 80px;
+  margin-right: 5px;
+  width: 145px;
 }
 
 #like,
@@ -108,21 +109,6 @@
   color: crimson;
   border-color: crimson;
   box-shadow: 0 0 5px crimson !important;
-}
-
-#login-buttons {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-between;
-}
-
-.search-channel-btns {
-  display: flex;
-  position: absolute;
-  bottom: 0;
-  left: 0;
 }
 
 .sub-btn {

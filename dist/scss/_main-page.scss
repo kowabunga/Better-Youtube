@@ -3,7 +3,7 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-areas:
-    'head'
+    'searchSection'
     'mainContainer'
     'footer';
 }
@@ -15,25 +15,19 @@ hr {
 /* -------------------------------------------------------------- */
 /* header */
 #head {
-  grid-area: head;
   position: relative;
   z-index: 100;
   background-color: $main-dark-color;
-  max-height: 230px;
-  border-bottom: 2px solid $light-gray;
 }
 
 #brand {
   cursor: pointer;
   display: block;
-  margin: 1rem 0 4rem 3rem;
+  margin-bottom: 4rem;
   font-size: 3rem;
   text-align: center;
   text-decoration: none;
   color: $main-blue;
-  box-shadow: 1px 1px 5px $main-blue, 0 0 10px $main-blue;
-  border: 1px solid $main-blue;
-  border-radius: 20px;
   width: 300px;
   cursor: pointer;
 

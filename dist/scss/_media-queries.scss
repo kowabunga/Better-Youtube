@@ -2,6 +2,14 @@
 /* All Media Queries */
 //@TODO FIX MEDIA QUERIES FOR MOBILE
 @media (max-width: 1100px) {
+  #search-container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'form form'
+      'leftbtn rightbtn';
+    height: 150px;
+  }
+
   #video {
     iframe {
       width: 100%;
@@ -157,6 +165,34 @@
 }
 
 @media (max-width: 590px) {
+  #search-container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'form '
+      'leftbtn rightbtn';
+    height: 175px;
+  }
+
+  #login-buttons {
+    width: 165px;
+    justify-content: space-evenly;
+    flex-direction: column;
+  }
+
+  #search-channel-btns {
+    width: 165px;
+    justify-content: space-evenly;
+    flex-direction: column;
+  }
+
+  #login,
+  #logout,
+  #view-channel,
+  #show-search,
+  #hide-channel {
+    margin: 5px 10px;
+  }
+
   #brand {
     margin: 1rem auto 4rem auto;
   }
@@ -173,7 +209,7 @@
   }
 
   #submit-search {
-    border: 2px solid $main-blue;
+    border: 1px solid $main-blue;
   }
 
   #search-results {
