@@ -120,7 +120,7 @@ class SearchAndVideoUi {
     strong.textContent = item.snippet.title;
 
     const pText1 = document.createTextNode('Author: ');
-    const pText2 = this.formatDate(item.snippet.publishedAt);
+    const pText2 = `Published on: ${this.formatDate(item.snippet.publishedAt)}`;
 
     const a = document.createElement('a');
     a.classList.add('channel-author-id');
@@ -137,6 +137,28 @@ class SearchAndVideoUi {
     li.append(img);
     li.append(p);
     return li;
+  }
+  // extract what's needed from the ISO 8601 date format and return it in desired MM/DD/YY format.
+  formatDate(date) {
+    date = date.split('-');
+    const months = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sept',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
+    const year = parseInt(date[0]),
+      month = months[parseInt(date[1]) - 1],
+      day = parseInt(date[2].slice(0, 2));
+    return `${month} ${day}, ${year}`;
   }
 
   // Display video comments on page
@@ -426,27 +448,5 @@ class SearchAndVideoUi {
         }
       }
     }
-  }
-
-  formatDate(date) {
-    date = date.split('-');
-    const months = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sept',
-      'Oct',
-      'Nov',
-      'Dec',
-    ];
-    const year = parseInt(date[0]),
-      month = months[parseInt(date[1]) - 1],
-      day = parseInt(date[2].slice(0, 2));
-    return `${month} ${day}, ${year}`;
   }
 }

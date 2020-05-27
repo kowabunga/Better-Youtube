@@ -22,7 +22,6 @@
     flex-direction: column;
     justify-content: center;
     position: absolute;
-    background-color: $main-dark-color;
     top: 208px;
     right: 0;
     left: 0;
@@ -70,7 +69,7 @@
   transition: 0.2s ease-out;
 
   &:hover {
-    box-shadow: 0 0 5px $main-light-color;
+    box-shadow: 0 0 5px currentColor;
     border-radius: 10px;
     z-index: 5;
   }
@@ -118,7 +117,7 @@
 }
 
 .channel-author-id {
-  color: white;
+  color: currentColor;
   text-decoration: none;
   font-style: italic;
 }

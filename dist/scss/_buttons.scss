@@ -17,12 +17,11 @@
     max-height: 39px;
 
     &:active {
-      text-shadow: 0 0 5px $main-blue;
-      background-color: lighten($main-dark-color, 5);
+      box-shadow: 0 0 10px $main-blue;
     }
 
     &:hover {
-      background-color: lighten($color: $main-dark-color, $amount: 10);
+      box-shadow: 0 0 10px $main-blue;
     }
   }
 
@@ -100,9 +99,9 @@
 
 .subscribed,
 .liked {
-  color: rgb(39, 241, 32);
-  border-color: rgb(39, 241, 32);
-  box-shadow: 0 0 5px rgb(39, 241, 32) !important;
+  color: rgb(52, 201, 47);
+  border-color: rgb(52, 201, 47);
+  box-shadow: 0 0 5px rgb(52, 201, 47) !important;
 }
 
 .disliked {

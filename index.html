@@ -14,13 +14,16 @@
     <title>MyTube</title>
   </head>
 
-  <body class="light">
+  <body>
     <header id="head" class="light">
       <a href="#" id="brand"
         ><span id="my">My</span><span id="tube">Tube</span></a
       >
       <div class="color-change" id="color-change">
-        <div id="color-change-circle" class="color-change-circle left"></div>
+        <div id="color-change-circle" class="color-change-circle left">
+          <i id="sun" class="far fa-sun"></i>
+          <i id="moon" class="far fa-moon invisible"></i>
+        </div>
       </div>
     </header>
     <main id="container">
@@ -88,13 +91,15 @@
 
         <!-- results container -->
         <section id="results-container" class="hide">
-          <div id="search-results" class="search-results hide-search">
+          <!-- this -->
+          <div id="search-results" class="search-results light hide-search">
             <span id="window-close">&times;</span>
             <div id="results-term-field"></div>
             <button class="btn" id="prev-search">
               <i class="fas fa-chevron-left fa-3x"></i>
             </button>
-            <ul id="search-items"></ul>
+            <!-- this -->
+            <ul id="search-items" class="light"></ul>
             <button class="btn" id="next-search">
               <i class="fas fa-chevron-right fa-3x"></i>
             </button>
@@ -150,7 +155,7 @@
           </section>
         </section>
       </section>
-      <section id="channel-container" class="hide">
+      <section id="channel-container" class="hide light">
         <div id="channel-header">
           <div id="channel-banner"></div>
         </div>
@@ -198,7 +203,7 @@
         </div>
       </section>
     </main>
-    <footer id="footer">
+    <footer id="footer" class="light">
       <p>MyTube. Designed by <span id="name">Anthony Siletti</span></p>
     </footer>
 

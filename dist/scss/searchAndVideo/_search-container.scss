@@ -33,13 +33,13 @@
     border-radius: 10px 0 0 10px;
     width: 80%;
     border: 1px solid $main-blue;
-    color: $main-light-color;
+    color: currentColor;
     background-color: transparent;
     transition: 0.2s ease-out;
 
     &:hover,
     &:focus {
-      background-color: lighten($color: $main-dark-color, $amount: 10);
+      box-shadow: 0 0 10px $main-blue;
     }
   }
 }
@@ -74,7 +74,7 @@
   color: $main-blue;
 
   &:hover {
-    background-color: lighten($color: $main-dark-color, $amount: 10);
+    box-shadow: 0 0 10px $main-blue;
   }
 }
 
