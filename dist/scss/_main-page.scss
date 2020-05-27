@@ -17,7 +17,41 @@ hr {
 #head {
   position: relative;
   z-index: 100;
-  background-color: $main-dark-color;
+
+  .color-change {
+    width: 60px;
+    height: 25px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    right: 1em;
+    top: 1em;
+    border-radius: 20px;
+    border: 1px solid $main-blue;
+    background-color: transparent;
+    transform: scale(1.3);
+    margin-right: 5px;
+    cursor: pointer;
+
+    &-circle {
+      width: 19px;
+      height: 19px;
+      border-radius: 50%;
+      background-color: currentColor;
+      position: absolute;
+      z-index: 5;
+      transition: 0.3s ease-in;
+
+      &.left {
+        left: 5%;
+        transform: translateX(-5%);
+      }
+      &.right {
+        left: 95%;
+        transform: translateX(-95%);
+      }
+    }
+  }
 }
 
 #brand {

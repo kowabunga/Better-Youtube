@@ -72,6 +72,10 @@
   width: 20%;
   text-align: center;
   color: $main-blue;
+
+  &:hover {
+    background-color: lighten($color: $main-dark-color, $amount: 10);
+  }
 }
 
 #searched-term {

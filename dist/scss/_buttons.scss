@@ -26,10 +26,6 @@
     }
   }
 
-  &:hover {
-    background-color: lighten($color: $main-dark-color, $amount: 10);
-  }
-
   &:disabled {
     color: $main-blue;
     opacity: 0.5;
