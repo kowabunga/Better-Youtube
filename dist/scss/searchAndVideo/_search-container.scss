@@ -85,5 +85,10 @@
 /* We want this class to override the colors given by the id's while they are added */
 .search-error {
   border-color: crimson !important;
+  box-shadow: 0 0 5px crimson;
   color: crimson !important;
+
+  &:hover {
+    box-shadow: 0 0 10px crimson !important;
+  }
 }

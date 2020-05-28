@@ -7,6 +7,7 @@ function changeColorMode(e) {
     e.target.id === 'color-change-circle' ||
     e.target.classList.contains('far')
   ) {
+    // Check what position color switch button is in. On left side = light mode, on right side = dark mode
     if (colorChangeBtn.classList.contains('left')) {
       colorChangeBtn.classList.remove('left', 'light');
       colorChangeBtn.classList.add('right', 'dark');

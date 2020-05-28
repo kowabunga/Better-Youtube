@@ -128,6 +128,11 @@ class SearchAndVideoUi {
     a.setAttribute('data-channelid', item.snippet.channelId);
     a.textContent = item.snippet.channelTitle;
 
+    //TODO conditional icon for newly uploaded video
+    const publishedDate = new Date(this.formatDate(item.snippet.publishedAt));
+
+    const icon = this.isRecent(publishedDate);
+
     p.append(strong);
     p.append(pText1);
     p.append(a);
@@ -136,6 +141,8 @@ class SearchAndVideoUi {
 
     li.append(img);
     li.append(p);
+    icon && li.append(icon);
+
     return li;
   }
   // extract what's needed from the ISO 8601 date format and return it in desired MM/DD/YY format.
@@ -159,6 +166,55 @@ class SearchAndVideoUi {
       month = months[parseInt(date[1]) - 1],
       day = parseInt(date[2].slice(0, 2));
     return `${month} ${day}, ${year}`;
+  }
+
+  // function to determine the length of time between now and published date of video.
+  // creates and returns icon based on elapsed length of time determined
+  isRecent(publishedDate) {
+    const currentDate = new Date().getTime(),
+      publishedAt = publishedDate.getTime(),
+      icon = document.createElement('i');
+
+    // if video date is published between one week and three days ago
+    if (
+      currentDate - publishedAt <= 604800000 &&
+      currentDate - publishedAt > 259200000
+    ) {
+      icon.classList.add(
+        'date-icon',
+        'fas',
+        'fa-exclamation-circle',
+        'one-week'
+      );
+
+      // if date is between three days and one day
+    } else if (
+      currentDate - publishedAt <= 259200000 &&
+      currentDate - publishedAt > 86400000
+    ) {
+      icon.classList.add(
+        'date-icon',
+        'fas',
+        'fa-exclamation-circle',
+        'three-days'
+      );
+
+      // if date is within one day
+    } else if (
+      currentDate - publishedAt <= 8640000 &&
+      currentDate - publishedAt >= 0
+    ) {
+      icon.classList.add('date-icon', 'fas', 'fa-exclamation-circle', 'one-day');
+    } else {
+      icon.classList.add(
+        'date-icon',
+        'fas',
+        'fa-exclamation-circle',
+        'many-days'
+      );
+    }
+
+    return icon;
   }
 
   // Display video comments on page

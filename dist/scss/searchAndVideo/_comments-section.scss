@@ -100,7 +100,7 @@
 .comment {
   line-height: 1.5;
   margin: 2em 0;
-  box-shadow: 0 1px 4px currentColor;
+  box-shadow: 0 0 2px currentColor;
   padding: 0.75em;
   overflow: none;
   position: relative;
@@ -143,7 +143,7 @@
 }
 
 // Tooltips
-[data-tooltip] {
+.reply-comment {
   position: relative;
   cursor: default;
   padding: 0.3em 1em;
@@ -153,28 +153,28 @@
   transition: 0.15s ease-out;
   left: 94%;
   transform: scale(1.5);
-  color: $main-light-color;
-
-  &:hover {
-    color: $main-blue;
-  }
-
-  &:hover::after {
-    opacity: 1;
-    visibility: visible;
-  }
+  color: currentColor;
 
   &::after {
     position: absolute;
     width: 50px;
     left: -150%;
     font-size: 0.75em;
-    content: attr(data-tooltip);
+    content: 'Reply';
     color: white;
     background-color: rgba(0, 0, 0, 0.75);
     padding: 1px 3px;
     border-radius: 10px;
     visibility: hidden;
     opacity: 0;
+  }
+
+  &:hover {
+    color: $main-blue;
+
+    &::after {
+      opacity: 1;
+      visibility: visible;
+    }
   }
 }
