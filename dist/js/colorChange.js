@@ -1,77 +1,98 @@
 colorSwitcher.addEventListener('click', changeColorMode);
 
-function changeColorMode(e) {
-  // if color-switcher is clicked or the button itself is clicked or the icon in the button is clicked
-  if (
-    e.target.id === 'color-change' ||
-    e.target.id === 'color-change-circle' ||
-    e.target.classList.contains('far')
-  ) {
-    // Check what position color switch button is in. On left side = light mode, on right side = dark mode
-    if (colorChangeBtn.classList.contains('left')) {
-      colorChangeBtn.classList.remove('left', 'light');
-      colorChangeBtn.classList.add('right', 'dark');
-
-      sun.classList.add('invisible');
-      moon.classList.remove('invisible');
-
-      //   main container
-      footer.classList.remove('light');
-      footer.classList.add('dark');
-
-      // header section
-      header.classList.remove('light');
-      header.classList.add('dark');
-
-      // search container sectoin
-      searchContainer.classList.remove('light');
-      searchContainer.classList.add('dark');
-
-      // video container
-      videoContainer.classList.remove('light');
-      videoContainer.classList.add('dark');
-
-      //   search results
-      searchResults.classList.remove('light');
-      searchResults.classList.add('dark');
-      searchedVideoItems.classList.remove('light');
-      searchedVideoItems.classList.add('dark');
-
-      //   channel container
-      channelContainer.classList.remove('light');
-      channelContainer.classList.add('dark');
-    } else {
-      colorChangeBtn.classList.remove('right', 'dark');
-      colorChangeBtn.classList.add('left', 'light');
-
-      moon.classList.add('invisible');
-      sun.classList.remove('invisible');
-
-      //   main container
-      footer.classList.remove('dark');
-      footer.classList.add('light');
-
-      // header section
-      header.classList.remove('dark');
-      header.classList.add('light');
-
-      // search container section
-      searchContainer.classList.remove('dark');
-      searchContainer.classList.add('light');
-
-      // video container
-      videoContainer.classList.remove('dark');
-      videoContainer.classList.add('light');
-
-      //   search results
-      searchResults.classList.remove('dark');
-      searchResults.classList.add('light');
-      searchedVideoItems.classList.remove('dark');
-      searchedVideoItems.classList.add('light');
-
-      //   channel container
-      channelContainer.classList.remove('dark');
-      channelContainer.classList.add('light');
-    }
+// on dom load, check if there is a colorMode item in local storage.
+// If not, set it to the default color mode of "light"
+// If a variable does exist, set the color mode based on the current color in local storage
+window.addEventListener('DOMContentLoaded', () => {
+  let color;
+  if (!localStorage.getItem('colorMode')) {
+    color = header.classList.contains('light') ? 'light' : 'dark';
+    localStorage.setItem('colorMode', color);
+  } else {
+    color = localStorage.getItem('colorMode');
+    changeColorMode(null, color);
   }
+});
+
+function changeColorMode(e, wantedColor) {
+  let unwantedColor;
+  // Check what position color switch button is in. On left side = light mode, on right side = dark mode
+  if (wantedColor === 'dark' || colorChangeBtn.classList.contains('left')) {
+    !wantedColor && (wantedColor = 'dark');
+    unwantedColor = 'light';
+
+    //   main container
+    footer.classList.remove(unwantedColor);
+    footer.classList.add(wantedColor);
+
+    // header section
+    header.classList.remove(unwantedColor);
+    header.classList.add(wantedColor);
+
+    // search container sectoin
+    searchContainer.classList.remove(unwantedColor);
+    searchContainer.classList.add(wantedColor);
+
+    // video container
+    videoContainer.classList.remove(unwantedColor);
+    videoContainer.classList.add(wantedColor);
+
+    //   search results
+    searchResults.classList.remove(unwantedColor);
+    searchResults.classList.add(wantedColor);
+    searchedVideoItems.classList.remove(unwantedColor);
+    searchedVideoItems.classList.add(wantedColor);
+
+    //   channel container
+    channelContainer.classList.remove(unwantedColor);
+    channelContainer.classList.add(wantedColor);
+  } else {
+    !wantedColor && (wantedColor = 'light');
+    unwantedColor = 'dark';
+
+    //   main container
+    footer.classList.remove(unwantedColor);
+    footer.classList.add(wantedColor);
+
+    // header section
+    header.classList.remove(unwantedColor);
+    header.classList.add(wantedColor);
+
+    // search container section
+    searchContainer.classList.remove(unwantedColor);
+    searchContainer.classList.add(wantedColor);
+
+    // video container
+    videoContainer.classList.remove(unwantedColor);
+    videoContainer.classList.add(wantedColor);
+
+    //   search results
+    searchResults.classList.remove(unwantedColor);
+    searchResults.classList.add(wantedColor);
+    searchedVideoItems.classList.remove(unwantedColor);
+    searchedVideoItems.classList.add(wantedColor);
+
+    //   channel container
+    channelContainer.classList.remove(unwantedColor);
+    channelContainer.classList.add(wantedColor);
+  }
+
+  // handle positioning of color switch button based on wanted color
+  if (wantedColor === 'dark') {
+    colorChangeBtn.classList.remove('left', unwantedColor);
+    colorChangeBtn.classList.add('right', wantedColor);
+
+    sun.classList.add('invisible');
+    moon.classList.remove('invisible');
+  } else {
+    colorChangeBtn.classList.remove('right', unwantedColor);
+    colorChangeBtn.classList.add('left', wantedColor);
+
+    moon.classList.add('invisible');
+    sun.classList.remove('invisible');
+  }
+
+  // color choice in local storage
+  const color = header.classList.contains('light') ? 'light' : 'dark';
+  localStorage.setItem('colorMode', color);
 }
