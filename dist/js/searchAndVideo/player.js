@@ -71,7 +71,14 @@ function showVideo(e) {
     youtube
       .getComments(e.target.getAttribute('data-videoid'))
       .then(data => svUI.displayVideoComments(data.result, true))
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        // If comments are disabled, add li stating so and disable load more comments button
+        const li = svUI.returnErrorLi('Comments are disabled for this video.');
+
+        commentsUl.append(li);
+        moreCommentsBtn.setAttribute('disabled', true);
+      });
 
     // scroll to top so video can be seen
     window.scrollTo(0, 0);

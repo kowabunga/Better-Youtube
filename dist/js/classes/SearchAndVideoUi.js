@@ -197,6 +197,7 @@ class SearchAndVideoUi {
   }
 
   // the api returns the html named code of some things like ampersands, e.g. it returns &amp; and displays that as the text. This replaces a few of the ones I've encountered so far
+  // There might be a better, singular regex for it, but i'm not aware of it
   convertHtmlToNormal(string) {
     return string
       .replace(/&amp;/g, '&')
@@ -497,5 +498,12 @@ class SearchAndVideoUi {
         }
       }
     }
+  }
+
+  returnErrorLi(text) {
+    const li = document.createElement('li');
+    li.append(document.createTextNode(text));
+    li.classList.add('center');
+    return li;
   }
 }
