@@ -95,6 +95,29 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: pre-line;
+    text-align: center;
+    padding: 5px;
+    z-index: 7;
+    border-radius: 5px;
+    content: attr(data-videotitle);
+    background-color: $light-gray;
+    color: $main-light-color;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &:hover {
+    &::after {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 }
 
 .hide-search {

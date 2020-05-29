@@ -6,6 +6,7 @@ class Youtube {
       q: searchValue,
       type: 'video',
       maxResults: numOfSearchResults,
+      order: 'date',
     });
   }
 

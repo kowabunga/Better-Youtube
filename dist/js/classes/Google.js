@@ -6,9 +6,9 @@ class GoogleAuth {
   *
   */
   constructor() {
-    this.apiKey = 'AIzaSyAW23pspBb6JAyGqPK4ETOq7nfDlj1VcsY';
+    this.apiKey = 'AIzaSyBhiOo6_b8lUNwTF8O49T5--oz8YmSb3OU';
     this.clientId =
-      '503136643271-esha9lk90orj13ihltn0c2tnrrhaler0.apps.googleusercontent.com';
+      '157568292602-94ukdkpnv5le63mhfu35t7osmutalfjk.apps.googleusercontent.com';
     this.scopes = 'https://www.googleapis.com/auth/youtube.force-ssl';
     // Need to bind this to initClient function to be able to call apiKey and clientKey from inner function gapi.client.init()
     this.initClient = this.initClient.bind(this);

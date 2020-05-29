@@ -117,6 +117,7 @@ class SearchAndVideoUi {
       item.id.videoId || item.contentDetails.videoId
     );
     strong.setAttribute('data-channelid', item.snippet.channelId);
+    strong.setAttribute('data-videotitle', item.snippet.title);
     strong.textContent = item.snippet.title;
 
     const pText1 = document.createTextNode('Author: ');
@@ -128,7 +129,6 @@ class SearchAndVideoUi {
     a.setAttribute('data-channelid', item.snippet.channelId);
     a.textContent = item.snippet.channelTitle;
 
-    //TODO conditional icon for newly uploaded video
     const publishedDate = new Date(this.formatDate(item.snippet.publishedAt));
 
     const icon = this.isRecent(publishedDate);
@@ -175,42 +175,16 @@ class SearchAndVideoUi {
       publishedAt = publishedDate.getTime(),
       icon = document.createElement('i');
 
-    // if video date is published between one week and three days ago
+    // If video is within three days
     if (
-      currentDate - publishedAt <= 604800000 &&
-      currentDate - publishedAt > 259200000
-    ) {
-      icon.classList.add(
-        'date-icon',
-        'fas',
-        'fa-exclamation-circle',
-        'one-week'
-      );
-
-      // if date is between three days and one day
-    } else if (
       currentDate - publishedAt <= 259200000 &&
-      currentDate - publishedAt > 86400000
+      currentDate - publishedAt >= 0
     ) {
       icon.classList.add(
         'date-icon',
         'fas',
         'fa-exclamation-circle',
         'three-days'
-      );
-
-      // if date is within one day
-    } else if (
-      currentDate - publishedAt <= 8640000 &&
-      currentDate - publishedAt >= 0
-    ) {
-      icon.classList.add('date-icon', 'fas', 'fa-exclamation-circle', 'one-day');
-    } else {
-      icon.classList.add(
-        'date-icon',
-        'fas',
-        'fa-exclamation-circle',
-        'many-days'
       );
     }
 

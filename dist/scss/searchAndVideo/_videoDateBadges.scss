@@ -1,7 +1,4 @@
-.one-week,
-.three-days,
-.one-day,
-.many-days {
+.three-days {
   position: absolute;
   right: 10px;
   bottom: 10px;
@@ -31,27 +28,6 @@
   }
 }
 
-.many-days {
-  color: $many-days;
-
-  &::after {
-    color: $main-light-color;
-    background-color: $many-days;
-    content: 'Posted longer than one week ago.';
-  }
-}
-
-.one-week {
-  color: $one-week;
-
-  &::after {
-    color: $main-light-color;
-
-    background-color: $one-week;
-    content: 'Posted this week.';
-  }
-}
-
 .three-days {
   color: $three-days;
 
@@ -59,15 +35,5 @@
     color: $main-light-color;
     background-color: $three-days;
     content: 'Posted within the last three days';
-  }
-}
-
-.one-day {
-  color: $one-day;
-
-  &::after {
-    color: $main-light-color;
-    background-color: $one-day;
-    content: 'Posted today.';
   }
 }
