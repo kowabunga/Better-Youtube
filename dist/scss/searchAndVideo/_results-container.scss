@@ -98,16 +98,18 @@
 
   &::after {
     position: absolute;
-    top: 0;
+    bottom: 75px;
     left: 0;
     white-space: pre-line;
     text-align: center;
     padding: 5px;
+    margin: 5px;
     z-index: 7;
     border-radius: 5px;
     content: attr(data-videotitle);
-    background-color: $light-gray;
+    background-color: rgba($light-gray, 0.95);
     color: $main-light-color;
+    box-shadow: 0 0 5px currentColor;
     opacity: 0;
     visibility: hidden;
   }
