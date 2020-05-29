@@ -68,6 +68,7 @@
   height: 225px;
   width: 250px;
   transition: 0.2s ease-out;
+  line-height: 1.5;
 
   &:hover {
     box-shadow: 0 0 5px currentColor;
@@ -104,12 +105,10 @@
     text-align: center;
     padding: 5px;
     margin: 5px;
-    z-index: 7;
     border-radius: 5px;
     content: attr(data-videotitle);
     background-color: rgba($light-gray, 0.95);
     color: $main-light-color;
-    box-shadow: 0 0 5px currentColor;
     opacity: 0;
     visibility: hidden;
   }
@@ -140,6 +139,14 @@
     cursor: pointer;
     transform: scale(2.5);
   }
+}
+
+.channel-author {
+  display: block;
+  width: 210px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .channel-author-id {

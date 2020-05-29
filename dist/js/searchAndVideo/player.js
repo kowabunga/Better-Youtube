@@ -183,7 +183,7 @@ function videoDescItemsBuilder(target, videoStats, rating) {
     channelId = target.getAttribute('data-channelid'),
     channelAuthor = target.getAttribute('data-author');
   const videoDesc = document.createDocumentFragment();
-  console.log(videoDate);
+
   // first div
   const div1 = document.createElement('div');
   div1.id = 'video-information-desc';

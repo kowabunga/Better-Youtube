@@ -78,6 +78,7 @@ class SearchAndVideoUi {
   }
 
   buildVideoLi(item) {
+    const title = this.convertHtmlToNormal(item.snippet.title);
     // create list item
     const li = document.createElement('li');
     li.classList.add('search-item');
@@ -85,7 +86,7 @@ class SearchAndVideoUi {
       'data-videoid',
       item.id.videoId || item.contentDetails.videoId
     );
-    li.setAttribute('data-videoname', item.snippet.title);
+    li.setAttribute('data-videoname', title);
     li.setAttribute('data-author', item.snippet.channelTitle);
     li.setAttribute('data-channelid', item.snippet.channelId);
     li.setAttribute('data-videodate', this.formatDate(item.snippet.publishedAt));
@@ -94,7 +95,7 @@ class SearchAndVideoUi {
     const img = document.createElement('img');
     img.classList.add('thumbnail');
     img.setAttribute('src', item.snippet.thumbnails.medium.url);
-    img.setAttribute('alt', `Thumbnail for ${item.snippet.title}`);
+    img.setAttribute('alt', `Thumbnail for ${title}`);
     img.setAttribute(
       'data-videoid',
       item.id.videoId || item.contentDetails.videoId
@@ -117,8 +118,11 @@ class SearchAndVideoUi {
       item.id.videoId || item.contentDetails.videoId
     );
     strong.setAttribute('data-channelid', item.snippet.channelId);
-    strong.setAttribute('data-videotitle', item.snippet.title);
-    strong.textContent = item.snippet.title;
+    strong.setAttribute('data-videotitle', title);
+    strong.textContent = title;
+
+    const channelAuthor = document.createElement('div');
+    channelAuthor.classList.add('channel-author');
 
     const pText1 = document.createTextNode('Author: ');
     const pText2 = `Published on: ${this.formatDate(item.snippet.publishedAt)}`;
@@ -127,16 +131,17 @@ class SearchAndVideoUi {
     a.classList.add('channel-author-id');
     a.setAttribute('href', '#!');
     a.setAttribute('data-channelid', item.snippet.channelId);
-    a.textContent = item.snippet.channelTitle;
+    a.innerHTML = item.snippet.channelTitle;
 
     const publishedDate = new Date(this.formatDate(item.snippet.publishedAt));
 
     const icon = this.isRecent(publishedDate);
 
+    channelAuthor.append(pText1);
+    channelAuthor.append(a);
+
     p.append(strong);
-    p.append(pText1);
-    p.append(a);
-    p.append(document.createElement('br'));
+    p.append(channelAuthor);
     p.append(pText2);
 
     li.append(img);
@@ -189,6 +194,20 @@ class SearchAndVideoUi {
     }
 
     return icon;
+  }
+
+  // the api returns the html named code of some things like ampersands, e.g. it returns &amp; and displays that as the text. This replaces a few of the ones I've encountered so far
+  convertHtmlToNormal(string) {
+    return string
+      .replace(/&amp;/g, '&')
+      .replace(/&gt;/g, '>')
+      .replace(/&lt;/g, '<')
+      .replace(/&euro;/g, '€')
+      .replace(/&pound;/g, '£')
+      .replace(/&copy;/g, '©')
+      .replace(/&reg;/g, '®')
+      .replace(/&trade;/g, '™')
+      .replace(/&#39;/g, "'");
   }
 
   // Display video comments on page
