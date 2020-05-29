@@ -7,6 +7,7 @@ class Youtube {
       type: 'video',
       maxResults: numOfSearchResults,
       order: 'date',
+      relevanceLanguage: 'en',
     });
   }
 
@@ -19,6 +20,8 @@ class Youtube {
         type: 'video',
         maxResults: numOfResults,
         pageToken: pageToken,
+        order: 'date',
+        relevanceLanguage: 'en',
       });
     } else if (playlistId) {
       return gapi.client.youtube.playlistItems.list({
@@ -37,6 +40,8 @@ class Youtube {
       relatedToVideoId: videoId,
       type: 'video',
       maxResults: 10,
+      order: 'date',
+      relevanceLanguage: 'en',
     });
   }
 

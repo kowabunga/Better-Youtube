@@ -15,13 +15,16 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 function changeColorMode(e, wantedColor) {
-  let unwantedColor;
+  let unwantedColor = '';
   // Check what position color switch button is in. On left side = light mode, on right side = dark mode
   if (wantedColor === 'dark' || colorChangeBtn.classList.contains('left')) {
     !wantedColor && (wantedColor = 'dark');
     unwantedColor = 'light';
 
     //   main container
+    mainContainer.classList.remove(unwantedColor);
+    mainContainer.classList.add(wantedColor);
+
     footer.classList.remove(unwantedColor);
     footer.classList.add(wantedColor);
 
@@ -51,6 +54,9 @@ function changeColorMode(e, wantedColor) {
     unwantedColor = 'dark';
 
     //   main container
+    mainContainer.classList.remove(unwantedColor);
+    mainContainer.classList.add(wantedColor);
+
     footer.classList.remove(unwantedColor);
     footer.classList.add(wantedColor);
 
