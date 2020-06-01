@@ -5,15 +5,17 @@
 searchSubmit.addEventListener('click', submitQuery);
 showSearchResultsBtn.addEventListener('click', svUI.showResults);
 closeSearchBtn.addEventListener('click', svUI.hideResults);
+searchVideoBtn.addEventListener('click', svUI.showSearchResults);
+searchPlaylistBtn.addEventListener('click', searchAndShowPlaylists);
 
 // homepage
 function setUpHomePage() {
   youtube
-    .getSearchResults('web development', 12)
+    .getSearchResults('web development', 24)
     .then(data => svUI.displayVideos(data.result, 'web-development'))
     .catch(err => console.log(err));
   youtube
-    .getSearchResults('news', 12)
+    .getSearchResults('news', 24)
     .then(data => svUI.displayVideos(data.result, 'main-news'))
     .catch(err => console.log(err));
 }
@@ -51,7 +53,7 @@ function submitQuery(e) {
 
     // make request to api with search parameter and display in webpage
     youtube
-      .getSearchResults(searchParameter, 12)
+      .getSearchResults(searchParameter, 24)
       .then(data => svUI.displayVideos(data.result, 'search-results'))
       .catch(err => console.log(err));
     // display searched term and clear search box
@@ -80,4 +82,12 @@ function submitQuery(e) {
     }, 10000);
   }
   window.scrollTo(0, 0);
+}
+
+function searchAndShowPlaylists(e) {
+  e.preventDefault();
+  if (searchPlaylistSection.classList.contains('hide')) {
+    searchVideoSection.classList.add('hide');
+    searchPlaylistSection.classList.remove('hide');
+  }
 }

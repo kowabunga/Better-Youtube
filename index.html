@@ -14,7 +14,7 @@
     <title>MyTube</title>
   </head>
 
-  <body>
+  <body class="light">
     <header id="head" class="light">
       <a href="#" id="brand"
         ><span id="my">My</span><span id="tube">Tube</span></a
@@ -95,14 +95,32 @@
           <div id="search-results" class="search-results light hide-search">
             <span id="window-close">&times;</span>
             <div id="results-term-field"></div>
-            <button class="btn" id="prev-search">
-              <i class="fas fa-chevron-left fa-3x"></i>
-            </button>
-            <!-- this -->
-            <ul id="search-items" class="light"></ul>
-            <button class="btn" id="next-search">
-              <i class="fas fa-chevron-right fa-3x"></i>
-            </button>
+            <div id="search-results-button-switch">
+              <button class="btn btn-square" id="search-videos">Videos</button>
+              <button class="btn btn-square" id="search-playlists">
+                Playlists
+              </button>
+            </div>
+            <div class="search-video-section">
+              <button class="btn" id="prev-search">
+                <i class="fas fa-chevron-left fa-3x"></i>
+              </button>
+              <!-- this -->
+              <ul id="search-items" class="light"></ul>
+              <button class="btn" id="next-search">
+                <i class="fas fa-chevron-right fa-3x"></i>
+              </button>
+            </div>
+            <div class="search-playlist-section hide">
+              <button class="btn" id="prev-search-playlist">
+                <i class="fas fa-chevron-left fa-3x"></i>
+              </button>
+              <!-- this -->
+              <ul id="search-playlist-items" class="light"></ul>
+              <button class="btn" id="next-search-playlist">
+                <i class="fas fa-chevron-right fa-3x"></i>
+              </button>
+            </div>
 
             <!-- pagination buttons -->
           </div>

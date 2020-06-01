@@ -11,6 +11,17 @@ class Youtube {
     });
   }
 
+  // Get relevant videos
+  getRelevantVideos(videoId) {
+    return gapi.client.youtube.search.list({
+      part: 'snippet',
+      relatedToVideoId: videoId,
+      type: 'video',
+      maxResults: 10,
+      relevanceLanguage: 'en',
+    });
+  }
+
   // Get next page of search results using next page token in API call
   getPrevOrNextVideoPage(pageToken, searchValue, playlistId, numOfResults) {
     if (searchValue) {
@@ -31,18 +42,6 @@ class Youtube {
         pageToken: pageToken,
       });
     }
-  }
-
-  // Get relevant videos
-  getRelevantVideos(videoId) {
-    return gapi.client.youtube.search.list({
-      part: 'snippet',
-      relatedToVideoId: videoId,
-      type: 'video',
-      maxResults: 10,
-      order: 'date',
-      relevanceLanguage: 'en',
-    });
   }
 
   // Get comments

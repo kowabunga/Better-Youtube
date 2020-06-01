@@ -507,4 +507,9 @@ class SearchAndVideoUi {
     li.classList.add('center');
     return li;
   }
+
+  showSearchResults(e) {
+    searchPlaylistSection.classList.add('hide');
+    searchVideoSection.classList.remove('hide');
+  }
 }

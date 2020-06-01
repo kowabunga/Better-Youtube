@@ -31,12 +31,19 @@
 
     #results-term-field {
       text-align: center;
+      margin-bottom: 5px;
     }
 
     // Target search-items when search-results has class of show-search
     &.show-search > #search-items {
       height: calc(100vh - 375px);
       overflow-y: auto;
+    }
+
+    &-button-switch {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 

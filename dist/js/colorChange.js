@@ -21,6 +21,10 @@ function changeColorMode(e, wantedColor) {
     !wantedColor && (wantedColor = 'dark');
     unwantedColor = 'light';
 
+    // body
+    body.classList.remove(unwantedColor);
+    body.classList.add(wantedColor);
+
     //   main container
     mainContainer.classList.remove(unwantedColor);
     mainContainer.classList.add(wantedColor);
@@ -52,6 +56,9 @@ function changeColorMode(e, wantedColor) {
   } else {
     !wantedColor && (wantedColor = 'light');
     unwantedColor = 'dark';
+
+    body.classList.remove(unwantedColor);
+    body.classList.add(wantedColor);
 
     //   main container
     mainContainer.classList.remove(unwantedColor);
