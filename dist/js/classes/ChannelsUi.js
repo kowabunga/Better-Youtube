@@ -4,6 +4,7 @@ class ChannelsUi {
   }
 
   buildChannelDetailsSection(channelInfo) {
+    console.log(channelInfo);
     // Remove information from previous channel
     svUI.clearElementChildren(channelBanner);
     svUI.clearElementChildren(channelDescription);
@@ -15,13 +16,16 @@ class ChannelsUi {
       snippet = channelInfo.snippet;
 
     // create img element for channel banner and append
-    const banner = document.createElement('img');
-    banner.setAttribute('src', brandingSettings.image.bannerImageUrl);
-    banner.setAttribute(
-      'alt',
-      `${brandingSettings.channel.title}'s channel banner.`
-    );
-    channelBanner.append(banner);
+    // First check if channel has banner set. There is a default banner provided from youtube. If this banner is present (signified by 'default_banner' in banner image url), prevent the banner section from being added.
+    if (brandingSettings.image.bannerImageUrl.indexOf('default_banner') === -1) {
+      const banner = document.createElement('img');
+      banner.setAttribute('src', brandingSettings.image.bannerImageUrl);
+      banner.setAttribute(
+        'alt',
+        `${brandingSettings.channel.title}'s channel banner.`
+      );
+      channelBanner.append(banner);
+    }
 
     // Title and Subscriber count
     const titleInfo = document.createElement('div'),
@@ -52,6 +56,7 @@ class ChannelsUi {
     channelDescription.append(description);
 
     // Channel thumbnail
+    // All channels have default thumbnail. Unlike default banner, this is a visible image and can be put in regardless
     const thumbnail = document.createElement('img');
     thumbnail.setAttribute('src', `${snippet.thumbnails.high.url}`);
     thumbnail.setAttribute('alt', `${snippet.title}'s channel thumbnail.`);

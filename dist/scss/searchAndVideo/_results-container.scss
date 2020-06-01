@@ -101,16 +101,17 @@
     position: absolute;
     bottom: 75px;
     left: 0;
+    max-height: 129px;
     white-space: pre-line;
     text-align: center;
     padding: 5px;
-    margin: 5px;
-    border-radius: 5px;
+    margin: 5px 10px;
     content: attr(data-videotitle);
     background-color: rgba($light-gray, 0.95);
     color: $main-light-color;
     opacity: 0;
     visibility: hidden;
+    transition: 0.2s ease-in;
   }
 
   &:hover {

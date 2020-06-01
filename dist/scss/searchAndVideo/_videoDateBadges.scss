@@ -15,9 +15,10 @@
     box-shadow: 0 0 5px;
     font-family: 'Poppins', 'sans-serif';
     font-weight: 300;
-    font-size: 1em;
+    font-size: 0.8em;
     opacity: 0;
     visibility: hidden;
+    transition: 0.2s ease-in;
   }
 
   &:hover {
@@ -33,7 +34,7 @@
 
   &::after {
     color: $main-light-color;
-    background-color: $three-days;
+    background-color: $light-gray;
     content: 'Posted within the last three days';
   }
 }
