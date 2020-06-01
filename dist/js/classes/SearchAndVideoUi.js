@@ -182,8 +182,9 @@ class SearchAndVideoUi {
 
     // If video is within three days
     if (
-      currentDate - publishedAt <= 259200000 &&
-      currentDate - publishedAt >= 0
+      (currentDate - publishedAt <= 259200000 &&
+        currentDate - publishedAt >= 0) ||
+      currentDate - publishedAt < 0
     ) {
       icon.classList.add(
         'date-icon',
