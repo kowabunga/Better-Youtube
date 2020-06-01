@@ -47,6 +47,7 @@
     }
   }
 
+  &-playlist-items,
   &-items {
     display: flex;
     flex-wrap: wrap;
@@ -60,6 +61,11 @@
     margin: 5px auto 0px auto;
     overflow: auto;
   }
+}
+
+#search-playlist-section,
+#search-video-section {
+  position: relative;
 }
 
 .playlist-item,
