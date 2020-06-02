@@ -87,7 +87,7 @@ class ChannelsUi {
     }
   }
 
-  buildPlaylistSection(data, target) {
+  buildPlaylistSection(data, target, isSearch) {
     const playlistItems = document.createDocumentFragment();
     const items = data.result.items;
 
@@ -97,7 +97,9 @@ class ChannelsUi {
     // Make sure playlists exist
     if (items.length > 0) {
       items.forEach(item => {
-        const playlistItem = this.buildListItems(item);
+        const playlistItem = isSearch
+          ? this.buildSearchPlaylistItems(item)
+          : this.buildChannelPlaylistItems(item);
         playlistItems.append(playlistItem);
       });
     } else {
@@ -116,7 +118,7 @@ class ChannelsUi {
   }
 
   // TODO build list item for playlist search
-  buildListItems(item) {
+  buildChannelPlaylistItems(item) {
     console.log(item);
     const li = document.createElement('li');
     li.classList.add('playlist-item');
@@ -128,10 +130,67 @@ class ChannelsUi {
 
     const p = document.createElement('p');
     p.classList.add('playlist-title');
-    p.textContent = item.snippet.title;
+    p.textContent = svUI.convertHtmlToNormal(item.snippet.title);
 
     li.append(img);
     li.append(p);
+
+    return li;
+  }
+
+  buildSearchPlaylistItems(item) {
+    console.log(item);
+    const title = svUI.convertHtmlToNormal(item.snippet.title);
+
+    // create li element
+    const li = document.createElement('li');
+    li.classList.add('search-playlist-item');
+    li.setAttribute('data-playlistid', item.id.playlistId);
+
+    // create img element
+    const img = document.createElement('img');
+    img.classList.add('thumbnail');
+    img.setAttribute('src', item.snippet.thumbnails.medium.url);
+    img.setAttribute('alt', `Thumbnail for ${title}`);
+    img.setAttribute('data-playlistid', item.id.playlistId);
+
+    // create p element
+    const p = document.createElement('p');
+    p.setAttribute('data-playlistid', item.id.playlistId);
+
+    // create strong element within p element
+    const strong = document.createElement('strong');
+    strong.classList.add('playlist-title');
+    strong.setAttribute('data-playlistid', item.id.playlistId);
+    strong.setAttribute('data-playlisttitle', title);
+    strong.textContent = title;
+
+    const channelAuthor = document.createElement('div');
+    channelAuthor.classList.add('channel-author');
+
+    const pText1 = document.createTextNode('Author: ');
+    const pText2 = `Published on: ${svUI.formatDate(item.snippet.publishedAt)}`;
+
+    const a = document.createElement('a');
+    a.classList.add('channel-author-id');
+    a.setAttribute('href', '#!');
+    a.setAttribute('data-channelid', item.snippet.channelId);
+    a.innerHTML = item.snippet.channelTitle;
+
+    const publishedDate = new Date(svUI.formatDate(item.snippet.publishedAt));
+
+    const icon = svUI.isRecent(publishedDate);
+
+    channelAuthor.append(pText1);
+    channelAuthor.append(a);
+
+    p.append(strong);
+    p.append(channelAuthor);
+    p.append(pText2);
+
+    li.append(img);
+    li.append(p);
+    icon && li.append(icon);
 
     return li;
   }

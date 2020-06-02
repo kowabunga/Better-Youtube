@@ -99,6 +99,6 @@ function searchAndShowPlaylists(e) {
 
   youtube
     .getSearchResults(searchParameter, 24, 'playlist')
-    .then(data => chUI.buildPlaylistSection(data, searchedPlaylistItems))
+    .then(data => chUI.buildPlaylistSection(data, searchedPlaylistItems, true))
     .catch(err => console.log(err));
 }
