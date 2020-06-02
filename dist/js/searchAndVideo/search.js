@@ -11,11 +11,11 @@ searchPlaylistBtn.addEventListener('click', searchAndShowPlaylists);
 // homepage
 function setUpHomePage() {
   youtube
-    .getSearchResults('web development', 24)
+    .getSearchResults('web development', 24, 'video')
     .then(data => svUI.displayVideos(data.result, 'web-development'))
     .catch(err => console.log(err));
   youtube
-    .getSearchResults('news', 24)
+    .getSearchResults('news', 24, 'vide')
     .then(data => svUI.displayVideos(data.result, 'main-news'))
     .catch(err => console.log(err));
 }
@@ -53,13 +53,16 @@ function submitQuery(e) {
 
     // make request to api with search parameter and display in webpage
     youtube
-      .getSearchResults(searchParameter, 24)
+      .getSearchResults(searchParameter, 24, 'video')
       .then(data => svUI.displayVideos(data.result, 'search-results'))
       .catch(err => console.log(err));
     // display searched term and clear search box
     resultsTermDisplay.innerText = `Results for: ${searchParameter}`;
     searchInput.value = '';
 
+    if (searchVideoSection.classList.contains('hide')) {
+      svUI.showSearchResults();
+    }
     // show search results - none => flex
     searchResults.classList.remove('hide'); //
   } else if (searchParameter === '') {
@@ -90,4 +93,12 @@ function searchAndShowPlaylists(e) {
     searchVideoSection.classList.add('hide');
     searchPlaylistSection.classList.remove('hide');
   }
+
+  //call function to get search results but specify playlists as the requested result
+  // only want to call the api if it hasn't been called before -  check if old search param
+
+  youtube
+    .getSearchResults(searchParameter, 24, 'playlist')
+    .then(data => chUI.buildPlaylistSection(data, searchedPlaylistItems))
+    .catch(err => console.log(err));
 }

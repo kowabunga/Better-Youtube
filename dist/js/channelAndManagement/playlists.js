@@ -28,6 +28,6 @@ function viewPlaylistVideos(e) {
 function createPlaylistSection(channelId) {
   youtube
     .getChannelPlaylists(channelId, 10)
-    .then(data => chUI.buildPlaylistSection(data))
+    .then(data => chUI.buildPlaylistSection(data, mainPlaylistUl))
     .catch(err => console.log(err));
 }

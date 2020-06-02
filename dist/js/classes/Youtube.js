@@ -1,10 +1,10 @@
 class Youtube {
   // Get initial search results
-  getSearchResults(searchValue, numOfSearchResults) {
+  getSearchResults(searchValue, numOfSearchResults, type) {
     return gapi.client.youtube.search.list({
       part: 'snippet',
       q: searchValue,
-      type: 'video',
+      type: type,
       maxResults: numOfSearchResults,
       order: 'date',
       relevanceLanguage: 'en',

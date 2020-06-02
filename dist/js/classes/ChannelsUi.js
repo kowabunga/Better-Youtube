@@ -87,12 +87,12 @@ class ChannelsUi {
     }
   }
 
-  buildPlaylistSection(data) {
+  buildPlaylistSection(data, target) {
     const playlistItems = document.createDocumentFragment();
     const items = data.result.items;
 
     // Clear playlists if channel is loaded. Ensures new channel playlist sec. does not have playlists of prevoiusly selected channel. Also removes old playlists to show newly paginated playlists
-    svUI.clearElementChildren(mainPlaylistUl);
+    svUI.clearElementChildren(target);
 
     // Make sure playlists exist
     if (items.length > 0) {
@@ -103,9 +103,9 @@ class ChannelsUi {
     } else {
       const p = document.createElement('p');
       p.textContent = 'This channel has no playlists.';
-      mainPlaylistUl.append(p);
+      target.append(p);
     }
-    mainPlaylistUl.append(playlistItems);
+    target.append(playlistItems);
 
     svUI.paginationButtons(
       data.result.prevPageToken,
@@ -115,7 +115,9 @@ class ChannelsUi {
     );
   }
 
+  // TODO build list item for playlist search
   buildListItems(item) {
+    console.log(item);
     const li = document.createElement('li');
     li.classList.add('playlist-item');
     li.setAttribute('data-playlistid', item.id);
