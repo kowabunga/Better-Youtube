@@ -511,35 +511,22 @@ class SearchAndVideoUi {
   showSearchResults(e) {
     console.log(e.target.id);
     // add/remove active class from search result playlist/video buttons and from channel video/playlist buttons
+
+    // check if clicked button is search/playlist results
+    // hide appropriate section and toggle active button class
     if (e.target.id === 'search-videos' || e.target.id === 'search-playlists') {
-      if (searchPlaylistSection.classList.contains('hide')) {
-        searchPlaylistBtn.classList.add('active');
-        searchVideoBtn.classList.remove('active');
-        searchVideoSection.classList.add('hide');
-        searchPlaylistSection.classList.remove('hide');
-      } else {
-        searchVideoBtn.classList.add('active');
-        searchPlaylistBtn.classList.remove('active');
-        searchPlaylistSection.classList.add('hide');
-        searchVideoSection.classList.remove('hide');
-      }
+      searchPlaylistBtn.classList.toggle('active');
+      searchVideoBtn.classList.toggle('active');
+      searchVideoSection.classList.toggle('hide');
+      searchPlaylistSection.classList.toggle('hide');
     } else if (
       e.target.id === 'channel-playlists' ||
       e.target.id === 'channel-videos-btn'
     ) {
-      if (channelPlaylistSec.classList.contains('hide')) {
-        channelVideosSection.classList.add('hide');
-        channelPlaylistSec.classList.remove('hide');
-        channelPlaylistsBtn.classList.add('active');
-        channelVideosBtn.classList.remove('active');
-        console.log('call1');
-      } else {
-        console.log('call2');
-        channelPlaylistSec.classList.add('hide');
-        channelVideosSection.classList.remove('hide');
-        channelVideosBtn.classList.add('active');
-        channelPlaylistsBtn.classList.remove('active');
-      }
+      channelVideosSection.classList.toggle('hide');
+      channelPlaylistSec.classList.toggle('hide');
+      channelPlaylistsBtn.classList.toggle('active');
+      channelVideosBtn.classList.toggle('active');
     }
   }
 }
