@@ -89,10 +89,7 @@ function submitQuery(e) {
 
 function searchAndShowPlaylists(e) {
   e.preventDefault();
-  if (searchPlaylistSection.classList.contains('hide')) {
-    searchVideoSection.classList.add('hide');
-    searchPlaylistSection.classList.remove('hide');
-  }
+  svUI.showSearchResults(e, 'searchPlaylistSection');
 
   //call function to get search results but specify playlists as the requested result
   // only want to call the api if it hasn't been called before -  check if old search param

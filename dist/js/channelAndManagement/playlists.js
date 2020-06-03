@@ -3,8 +3,7 @@ mainPlaylistUl.addEventListener('click', viewPlaylistVideos);
 
 function viewPlaylists(e) {
   e.preventDefault();
-  channelVideosSection.classList.add('hide');
-  channelPlaylistSec.classList.remove('hide');
+  svUI.showSearchResults(e);
   createPlaylistSection(subscribeBtn.getAttribute('data-channelid'));
 }
 

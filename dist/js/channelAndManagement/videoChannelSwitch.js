@@ -119,6 +119,5 @@ function populateChannelSection(data, myChannel) {
 
 function viewVideos(e) {
   e.preventDefault();
-  channelPlaylistSec.classList.add('hide');
-  channelVideosSection.classList.remove('hide');
+  svUI.showSearchResults(e);
 }

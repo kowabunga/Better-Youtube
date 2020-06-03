@@ -25,6 +25,24 @@
     }
   }
 
+  &-underline {
+    cursor: pointer;
+    border: none;
+    font-size: 1em;
+    padding: 5px 10px;
+    margin-top: 10px;
+    opacity: 0.7;
+
+    &.active {
+      opacity: 1;
+      border-bottom: 1px solid $main-blue;
+    }
+
+    &:hover {
+      text-shadow: 0 0 10px $main-blue;
+    }
+  }
+
   &:disabled {
     color: $main-blue;
     opacity: 0.5;
