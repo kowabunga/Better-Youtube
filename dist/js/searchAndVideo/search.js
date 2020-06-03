@@ -15,7 +15,7 @@ function setUpHomePage() {
     .then(data => svUI.displayVideos(data.result, 'web-development'))
     .catch(err => console.log(err));
   youtube
-    .getSearchResults('news', 24, 'vide')
+    .getSearchResults('news', 24, 'video')
     .then(data => svUI.displayVideos(data.result, 'main-news'))
     .catch(err => console.log(err));
 }

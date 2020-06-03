@@ -118,7 +118,7 @@ class SearchAndVideoUi {
       item.id.videoId || item.contentDetails.videoId
     );
     strong.setAttribute('data-channelid', item.snippet.channelId);
-    strong.setAttribute('data-videotitle', title);
+    strong.setAttribute('data-title', title);
     strong.textContent = title;
 
     const channelAuthor = document.createElement('div');

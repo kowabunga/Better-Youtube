@@ -9,12 +9,13 @@ prevChannelVidBtn.addEventListener('click', paginateThrough);
 nextChannelVidBtn.addEventListener('click', paginateThrough);
 prevPlaylistBtn.addEventListener('click', paginateThrough);
 nextPlaylistBtn.addEventListener('click', paginateThrough);
-
+prevSearchPlaylistBtn.addEventListener('click', paginateThrough);
+nextSearchPlaylistBtn.addEventListener('click', paginateThrough);
 // Pagination
 function paginateThrough(e) {
   e.preventDefault();
   let targetSection = '',
-    numOfItems = 12,
+    numOfItems = 24,
     pageToken = '',
     playlistId;
 
@@ -71,6 +72,8 @@ function paginateThrough(e) {
     e.target.parentElement.id === 'prev-playlist' ||
     e.target.parentElement.id === 'next-playlist'
   ) {
+    // if target is prev channel playlists or next channel playlists button, set targetSection, num of items, and get page token from button
+    // exit function when finished
     e.target.parentElement.getAttribute('data-prevpage')
       ? (pageToken = e.target.parentElement.getAttribute('data-prevpage'))
       : (pageToken = e.target.parentElement.getAttribute('data-nextpage'));
@@ -84,10 +87,36 @@ function paginateThrough(e) {
       .then(data => chUI.buildPlaylistSection(data))
       .catch(err => console.log(err));
     return;
-  }
+  } else if (
+    e.target.parentElement.id === 'prev-search-playlist' ||
+    e.target.parentElement.id === 'next-search-playlist'
+  ) {
+    // if target is prev searched playlists or next searched playlists button, set targetSection, num of items, and get page token from button
+    // exit function when finished
+    e.target.parentElement.getAttribute('data-prevpage')
+      ? (pageToken = e.target.parentElement.getAttribute('data-prevpage'))
+      : (pageToken = e.target.parentElement.getAttribute('data-nextpage'));
 
+    youtube
+      .getPrevOrNextVideoPage(
+        pageToken,
+        searchParameter,
+        null,
+        numOfItems,
+        'playlist'
+      )
+      .then(data => chUI.buildPlaylistSection(data, searchedPlaylistItems, true))
+      .catch(err => console.log(err));
+    return;
+  }
   youtube
-    .getPrevOrNextVideoPage(pageToken, searchParameter, playlistId, numOfItems)
+    .getPrevOrNextVideoPage(
+      pageToken,
+      searchParameter,
+      playlistId,
+      numOfItems,
+      'video'
+    )
     .then(data => svUI.displayVideos(data.result, targetSection))
     .catch(err => console.log(err));
 }

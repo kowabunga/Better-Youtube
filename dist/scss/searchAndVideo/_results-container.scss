@@ -80,7 +80,6 @@
   max-width: 250px;
   padding: 15px 5px 5px 5px;
   height: 225px;
-  width: 250px;
   transition: 0.2s ease-out;
   line-height: 1.5;
 
@@ -101,6 +100,7 @@
   }
 }
 
+.playlist-title,
 .video-title {
   font-size: 1.1em;
   cursor: pointer;
@@ -119,13 +119,14 @@
     white-space: pre-line;
     text-align: center;
     padding: 5px;
-    margin: 5px 10px;
-    content: attr(data-videotitle);
+    margin: 5px 5px;
+    content: attr(data-title);
     background-color: rgba($light-gray, 0.95);
     color: $main-light-color;
     opacity: 0;
     visibility: hidden;
     transition: 0.2s ease-in;
+    width: 220px;
   }
 
   &:hover {

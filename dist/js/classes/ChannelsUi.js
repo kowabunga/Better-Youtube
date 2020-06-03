@@ -95,11 +95,22 @@ class ChannelsUi {
     svUI.clearElementChildren(target);
 
     // Make sure playlists exist
+    // console.log(data);
     if (items.length > 0) {
       items.forEach(item => {
         const playlistItem = isSearch
           ? this.buildSearchPlaylistItems(item)
           : this.buildChannelPlaylistItems(item);
+
+        //if isSearch is true (searched playlists), check and add page tokens for pagination
+        if (isSearch) {
+          svUI.paginationButtons(
+            data.result.prevPageToken,
+            data.result.nextPageToken,
+            prevSearchPlaylistBtn,
+            nextSearchPlaylistBtn
+          );
+        }
         playlistItems.append(playlistItem);
       });
     } else {
@@ -117,9 +128,8 @@ class ChannelsUi {
     );
   }
 
-  // TODO build list item for playlist search
   buildChannelPlaylistItems(item) {
-    console.log(item);
+    // console.log(item);
     const li = document.createElement('li');
     li.classList.add('playlist-item');
     li.setAttribute('data-playlistid', item.id);
@@ -139,7 +149,7 @@ class ChannelsUi {
   }
 
   buildSearchPlaylistItems(item) {
-    console.log(item);
+    // console.log(item);
     const title = svUI.convertHtmlToNormal(item.snippet.title);
 
     // create li element
@@ -162,7 +172,7 @@ class ChannelsUi {
     const strong = document.createElement('strong');
     strong.classList.add('playlist-title');
     strong.setAttribute('data-playlistid', item.id.playlistId);
-    strong.setAttribute('data-playlisttitle', title);
+    strong.setAttribute('data-title', title);
     strong.textContent = title;
 
     const channelAuthor = document.createElement('div');

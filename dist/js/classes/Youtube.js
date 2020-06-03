@@ -23,12 +23,18 @@ class Youtube {
   }
 
   // Get next page of search results using next page token in API call
-  getPrevOrNextVideoPage(pageToken, searchValue, playlistId, numOfResults) {
+  getPrevOrNextVideoPage(
+    pageToken,
+    searchValue,
+    playlistId,
+    numOfResults,
+    type
+  ) {
     if (searchValue) {
       return gapi.client.youtube.search.list({
         part: 'snippet',
         q: searchValue,
-        type: 'video',
+        type: type,
         maxResults: numOfResults,
         pageToken: pageToken,
         order: 'date',
