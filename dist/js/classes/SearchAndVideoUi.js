@@ -74,6 +74,20 @@ class SearchAndVideoUi {
         prevChannelVidBtn,
         nextChannelVidBtn
       );
+    } else if (pageSection === 'search-playlist-videos') {
+      console.log('called');
+      this.clearElementChildren(searchedVideoItems);
+      searchedVideoItems.append(output);
+      this.paginationButtons(
+        data.prevPageToken,
+        data.nextPageToken,
+        prevSearchBtn,
+        nextSearchBtn
+      );
+      searchPlaylistBtn.classList.toggle('active');
+      searchVideoBtn.classList.toggle('active');
+      searchVideoSection.classList.toggle('hide');
+      searchPlaylistSection.classList.toggle('hide');
     }
   }
 

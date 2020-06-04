@@ -63,17 +63,28 @@ class ChannelsUi {
     channelThumbnail.append(thumbnail);
   }
 
-  buildChannelVideosSection(data) {
-    channelVideosUl.setAttribute(
-      'data-playlistid',
-      data.result.items[0].snippet.playlistId || null
-    );
-    subscribeBtn.setAttribute(
-      'data-channelid',
-      data.result.items[0].snippet.channelId || null
-    );
-    svUI.displayVideos(data.result, 'channel-videos');
-    channelVideosSection.classList.remove('hide');
+  buildChannelVideosSection(data, ul, section, subBtn) {
+    if (subBtn) {
+      console.log('yes', ul, section);
+      ul.setAttribute(
+        'data-playlistid',
+        data.result.items[0].snippet.playlistId || null
+      );
+      subBtn.setAttribute(
+        'data-channelid',
+        data.result.items[0].snippet.channelId || null
+      );
+      svUI.displayVideos(data.result, 'channel-videos');
+      section.classList.remove('hide');
+    } else {
+      console.log(data);
+      ul.setAttribute(
+        'data-playlistid',
+        data.result.items[0].snippet.playlistId || null
+      );
+      svUI.displayVideos(data.result, 'search-playlist-videos');
+      section.classList.remove('hide');
+    }
   }
 
   setSubscriptionButton(data, isSubscribed) {
@@ -115,7 +126,7 @@ class ChannelsUi {
       });
     } else {
       const p = document.createElement('p');
-      p.textContent = 'This channel has no playlists.';
+      p.textContent = 'No playlists.';
       target.append(p);
     }
     target.append(playlistItems);

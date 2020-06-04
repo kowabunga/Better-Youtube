@@ -15,6 +15,8 @@ function revertPage() {
   if (viewChannel.classList.contains('hide') && googleAuth.checkIfSignedIn()) {
     viewChannel.classList.remove('hide');
   }
+
+  searchForm.classList.remove('invisible');
 }
 
 // Handles page change when switching from general youtube video searching/commenting etc. to channel management
@@ -25,6 +27,16 @@ function changePage(e) {
   videoContainer.classList.add('hide');
   if (!viewChannel.classList.contains('hide')) {
     viewChannel.classList.add('hide');
+  }
+
+  searchForm.classList.add('invisible');
+
+  // Make sure videos section is displayed
+  if (channelVideosSection.classList.contains('hide')) {
+    channelVideosSection.classList.toggle('hide');
+    channelPlaylistSec.classList.toggle('hide');
+    channelPlaylistsBtn.classList.toggle('active');
+    channelVideosBtn.classList.toggle('active');
   }
 
   loadChannel(e);
@@ -63,6 +75,8 @@ function loadChannel(e) {
     // Check if subscribe button is display none, if so make it block and visible
     subscribeBtn.classList.contains('hide') &&
       subscribeBtn.classList.remove('hide');
+
+    svUI.hideResults();
   }
   if (e.target.id === 'view-channel') {
     const channelId = e.target.getAttribute('data-channelid');
@@ -112,7 +126,14 @@ function populateChannelSection(data, myChannel) {
     // Get videos for channel
     youtube
       .getPlaylistVideos(channelInfo.contentDetails.relatedPlaylists.uploads, 10)
-      .then(data => chUI.buildChannelVideosSection(data))
+      .then(data =>
+        chUI.buildChannelVideosSection(
+          data,
+          channelPlaylistSec,
+          channelVideosSection,
+          subscribeBtn
+        )
+      )
       .catch(err => console.log(err));
   }
 }

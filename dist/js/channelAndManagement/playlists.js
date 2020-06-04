@@ -1,5 +1,7 @@
 channelPlaylistsBtn.addEventListener('click', viewPlaylists);
-mainPlaylistUl.addEventListener('click', viewPlaylistVideos);
+mainPlaylistUl.addEventListener('click', e => {
+  viewPlaylistVideos(e, channelPlaylistSec, channelVideosSection);
+});
 
 function viewPlaylists(e) {
   e.preventDefault();
@@ -8,7 +10,7 @@ function viewPlaylists(e) {
 }
 
 // Start here. Work on channel switcheroo
-function viewPlaylistVideos(e) {
+function viewPlaylistVideos(e, playlistSection, videoSection) {
   e.preventDefault();
   if (
     e.target.classList.contains('thumbnail') &&
@@ -16,17 +18,35 @@ function viewPlaylistVideos(e) {
   ) {
     const playlistId = e.target.parentElement.getAttribute('data-playlistid');
     youtube
-      .getPlaylistVideos(playlistId, 10)
-      .then(data => chUI.buildChannelVideosSection(data))
+      .getPlaylistVideos(playlistId, 24)
+      .then(data =>
+        chUI.buildChannelVideosSection(
+          data,
+          playlistSection,
+          videoSection,
+          subscribeBtn
+        )
+      )
+      .catch(err => console.log(err));
+    playlistSection.classList.add('hide');
+    videoSection.classList.remove('hide');
+  } else if (
+    e.target.classList.contains('thumbnail') &&
+    e.target.parentElement.classList.contains('search-playlist-item')
+  ) {
+    const playlistId = e.target.parentElement.getAttribute('data-playlistid');
+    youtube
+      .getPlaylistVideos(playlistId, 24)
+      .then(data =>
+        chUI.buildChannelVideosSection(data, playlistSection, videoSection, null)
+      )
       .catch(err => console.log(err));
   }
-  channelPlaylistSec.classList.add('hide');
-  channelVideosSection.classList.remove('hide');
 }
 
 function createPlaylistSection(channelId) {
   youtube
-    .getChannelPlaylists(channelId, 10)
+    .getChannelPlaylists(channelId, 24)
     .then(data => chUI.buildPlaylistSection(data, mainPlaylistUl, false))
     .catch(err => console.log(err));
 }

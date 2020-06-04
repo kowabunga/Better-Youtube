@@ -7,6 +7,9 @@ showSearchResultsBtn.addEventListener('click', svUI.showResults);
 closeSearchBtn.addEventListener('click', svUI.hideResults);
 searchVideoBtn.addEventListener('click', svUI.showSearchResults);
 searchPlaylistBtn.addEventListener('click', searchAndShowPlaylists);
+searchedPlaylistItems.addEventListener('click', e => {
+  viewPlaylistVideos(e, searchPlaylistSection, searchVideoSection);
+});
 
 // homepage
 function setUpHomePage() {
@@ -51,11 +54,17 @@ function submitQuery(e) {
 
     resultsContainer.classList.remove('hide'); //
 
-    // make request to api with search parameter and display in webpage
+    // make request to api with search parameter and display in webpage for both videos and playlists
     youtube
       .getSearchResults(searchParameter, 24, 'video')
       .then(data => svUI.displayVideos(data.result, 'search-results'))
       .catch(err => console.log(err));
+
+    youtube
+      .getSearchResults(searchParameter, 24, 'playlist')
+      .then(data => chUI.buildPlaylistSection(data, searchedPlaylistItems, true))
+      .catch(err => console.log(err));
+
     // display searched term and clear search box
     resultsTermDisplay.innerText = `Results for: ${searchParameter}`;
     searchInput.value = '';
@@ -90,12 +99,4 @@ function submitQuery(e) {
 function searchAndShowPlaylists(e) {
   e.preventDefault();
   svUI.showSearchResults(e, 'searchPlaylistSection');
-
-  //call function to get search results but specify playlists as the requested result
-  // only want to call the api if it hasn't been called before -  check if old search param
-
-  youtube
-    .getSearchResults(searchParameter, 24, 'playlist')
-    .then(data => chUI.buildPlaylistSection(data, searchedPlaylistItems, true))
-    .catch(err => console.log(err));
 }
