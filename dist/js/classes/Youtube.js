@@ -6,7 +6,7 @@ class Youtube {
       q: searchValue,
       type: type,
       maxResults: numOfSearchResults,
-      order: 'date',
+      order: type === 'playlist' ? 'relevance' : 'date',
       relevanceLanguage: 'en',
     });
   }
