@@ -94,15 +94,11 @@
     width: 230px;
     cursor: pointer;
   }
-
-  .video-title {
-    font-size: 1.3em;
-  }
 }
 
 .playlist-title,
 .video-title {
-  font-size: 1.1em;
+  font-size: 1.3em;
   cursor: pointer;
   // A lot of stuff for text overflow if I do say so myself...
   display: block;
@@ -170,6 +166,7 @@
   text-decoration: none;
   font-style: italic;
 }
+
 .channel-author-id:hover {
   text-decoration: underline;
 }
