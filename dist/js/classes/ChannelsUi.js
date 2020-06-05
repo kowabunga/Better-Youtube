@@ -63,10 +63,12 @@ class ChannelsUi {
     channelThumbnail.append(thumbnail);
   }
 
-  buildChannelVideosSection(data, ul, section, subBtn) {
+  buildChannelVideosSection(data, section1, section2, subBtn) {
+    // if sub btn is passed as arg, we are dealing with channel videos section. add attributes to appropriate sections
+    // call displayVideos and put in 'channel-videos' section
     if (subBtn) {
-      console.log('yes', ul, section);
-      ul.setAttribute(
+      console.log('yes', section1, section2);
+      section1.setAttribute(
         'data-playlistid',
         data.result.items[0].snippet.playlistId || null
       );
@@ -75,15 +77,24 @@ class ChannelsUi {
         data.result.items[0].snippet.channelId || null
       );
       svUI.displayVideos(data.result, 'channel-videos');
-      section.classList.remove('hide');
+      section2.classList.remove('hide');
     } else {
+      // if sub btn not passed, we are dealing with the search playlist section.
       console.log(data);
-      ul.setAttribute(
+      section1.setAttribute(
         'data-playlistid',
         data.result.items[0].snippet.playlistId || null
       );
       svUI.displayVideos(data.result, 'search-playlist-videos');
-      section.classList.remove('hide');
+      section1.classList.add('hide');
+
+      // remove invisible class from button & add active class
+      // show searched playlist items section
+      // remove active class from currently active button - playlists button
+      searchPlaylistItemsBtn.classList.remove('hide');
+      searchPlaylistItemsBtn.classList.add('active');
+      searchPlaylistBtn.classList.remove('active');
+      searchedPlaylistVideoSection.classList.remove('hide');
     }
   }
 

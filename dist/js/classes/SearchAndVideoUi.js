@@ -76,18 +76,14 @@ class SearchAndVideoUi {
       );
     } else if (pageSection === 'search-playlist-videos') {
       console.log('called');
-      this.clearElementChildren(searchedVideoItems);
-      searchedVideoItems.append(output);
+      this.clearElementChildren(searchPlaylistVideoItems);
+      searchPlaylistVideoItems.append(output);
       this.paginationButtons(
         data.prevPageToken,
         data.nextPageToken,
-        prevSearchBtn,
-        nextSearchBtn
+        prevPlaylistSearchItemBtn,
+        nextPlaylistSearchItemBtn
       );
-      searchPlaylistBtn.classList.toggle('active');
-      searchVideoBtn.classList.toggle('active');
-      searchVideoSection.classList.toggle('hide');
-      searchPlaylistSection.classList.toggle('hide');
     }
   }
 
@@ -528,19 +524,52 @@ class SearchAndVideoUi {
 
     // check if clicked button is search/playlist results
     // hide appropriate section and toggle active button class
-    if (e.target.id === 'search-videos' || e.target.id === 'search-playlists') {
-      searchPlaylistBtn.classList.toggle('active');
-      searchVideoBtn.classList.toggle('active');
-      searchVideoSection.classList.toggle('hide');
-      searchPlaylistSection.classList.toggle('hide');
-    } else if (
-      e.target.id === 'channel-playlists' ||
-      e.target.id === 'channel-videos-btn'
-    ) {
-      channelVideosSection.classList.toggle('hide');
-      channelPlaylistSec.classList.toggle('hide');
-      channelPlaylistsBtn.classList.toggle('active');
-      channelVideosBtn.classList.toggle('active');
+
+    if (e.target.id === 'search-playlists') {
+      searchPlaylistBtn.classList.add('active');
+      searchVideoBtn.classList.remove('active');
+
+      searchVideoSection.classList.add('hide');
+      searchPlaylistSection.classList.remove('hide');
+
+      searchPlaylistItemsBtn.classList.remove('active');
+      searchedPlaylistVideoSection.classList.add('hide');
+    } else if (e.target.id === 'search-videos') {
+      searchPlaylistBtn.classList.remove('active');
+      searchVideoBtn.classList.add('active');
+
+      searchVideoSection.classList.remove('hide');
+      searchPlaylistSection.classList.add('hide');
+
+      searchPlaylistItemsBtn.classList.remove('active');
+      searchedPlaylistVideoSection.classList.add('hide');
+    } else if (e.target.id === 'search-playlist-videos') {
+      searchPlaylistItemsBtn.classList.add('active');
+      searchedPlaylistVideoSection.classList.remove('hide');
+
+      searchPlaylistBtn.classList.remove('active');
+      searchVideoBtn.classList.remove('active');
+
+      searchVideoSection.classList.add('hide');
+      searchPlaylistSection.classList.add('hide');
+    } else if (e.target.id === 'channel-playlists') {
+      channelVideosSection.classList.add('hide');
+      channelPlaylistSec.classList.remove('hide');
+
+      channelPlaylistsBtn.classList.add('active');
+      channelVideosBtn.classList.remove('active');
+
+      searchPlaylistItemsBtn.classList.remove('active');
+      searchedPlaylistVideoSection.classList.add('hide');
+    } else if (e.target.id === 'channel-videos-btn') {
+      channelVideosSection.classList.remove('hide');
+      channelPlaylistSec.classList.add('hide');
+
+      channelPlaylistsBtn.classList.remove('active');
+      channelVideosBtn.classList.add('active');
+
+      searchPlaylistItemsBtn.classList.remove('active');
+      searchedPlaylistVideoSection.classList.add('hide');
     }
   }
 }

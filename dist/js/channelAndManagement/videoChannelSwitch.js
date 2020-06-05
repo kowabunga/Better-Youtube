@@ -32,7 +32,7 @@ function changePage(e) {
   searchForm.classList.add('invisible');
 
   // Make sure videos section is displayed
-  if (channelVideosSection.classList.contains('hide')) {
+  if (!channelVideosSection.classList.contains('hide')) {
     channelVideosSection.classList.toggle('hide');
     channelPlaylistSec.classList.toggle('hide');
     channelPlaylistsBtn.classList.toggle('active');

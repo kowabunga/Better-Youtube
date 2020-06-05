@@ -51,6 +51,8 @@ function changeColorMode(e, wantedColor) {
     searchedVideoItems.classList.add(wantedColor);
     searchedPlaylistItems.classList.remove(unwantedColor);
     searchedPlaylistItems.classList.add(wantedColor);
+    searchPlaylistVideoItems.classList.remove(unwantedColor);
+    searchPlaylistVideoItems.classList.add(wantedColor);
 
     //   channel container
     channelContainer.classList.remove(unwantedColor);
@@ -88,6 +90,8 @@ function changeColorMode(e, wantedColor) {
     searchedVideoItems.classList.add(wantedColor);
     searchedPlaylistItems.classList.remove(unwantedColor);
     searchedPlaylistItems.classList.add(wantedColor);
+    searchPlaylistVideoItems.classList.remove(unwantedColor);
+    searchPlaylistVideoItems.classList.add(wantedColor);
 
     //   channel container
     channelContainer.classList.remove(unwantedColor);

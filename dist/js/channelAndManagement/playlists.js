@@ -41,6 +41,7 @@ function viewPlaylistVideos(e, playlistSection, videoSection) {
         chUI.buildChannelVideosSection(data, playlistSection, videoSection, null)
       )
       .catch(err => console.log(err));
+    svUI.showSearchResults(e);
   }
 }
 

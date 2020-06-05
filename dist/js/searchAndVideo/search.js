@@ -6,9 +6,10 @@ searchSubmit.addEventListener('click', submitQuery);
 showSearchResultsBtn.addEventListener('click', svUI.showResults);
 closeSearchBtn.addEventListener('click', svUI.hideResults);
 searchVideoBtn.addEventListener('click', svUI.showSearchResults);
-searchPlaylistBtn.addEventListener('click', searchAndShowPlaylists);
+searchPlaylistBtn.addEventListener('click', svUI.showSearchResults);
+searchPlaylistItemsBtn.addEventListener('click', svUI.showSearchResults);
 searchedPlaylistItems.addEventListener('click', e => {
-  viewPlaylistVideos(e, searchPlaylistSection, searchVideoSection);
+  viewPlaylistVideos(e, searchPlaylistSection, searchedPlaylistItems);
 });
 
 // homepage
@@ -94,9 +95,4 @@ function submitQuery(e) {
     }, 10000);
   }
   window.scrollTo(0, 0);
-}
-
-function searchAndShowPlaylists(e) {
-  e.preventDefault();
-  svUI.showSearchResults(e, 'searchPlaylistSection');
 }

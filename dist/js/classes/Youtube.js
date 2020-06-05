@@ -6,6 +6,7 @@ class Youtube {
       q: searchValue,
       type: type,
       maxResults: numOfSearchResults,
+      // choose result order based on if type is playlist (most relevant first) or video (newest first)
       order: type === 'playlist' ? 'relevance' : 'date',
       relevanceLanguage: 'en',
     });
@@ -37,7 +38,8 @@ class Youtube {
         type: type,
         maxResults: numOfResults,
         pageToken: pageToken,
-        order: 'date',
+        // choose result order based on if type is playlist (most relevant first) or video (newest first)
+        order: type === 'playlist' ? 'relevance' : 'date',
         relevanceLanguage: 'en',
       });
     } else if (playlistId) {

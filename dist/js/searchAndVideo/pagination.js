@@ -11,6 +11,7 @@ prevPlaylistBtn.addEventListener('click', paginateThrough);
 nextPlaylistBtn.addEventListener('click', paginateThrough);
 prevSearchPlaylistBtn.addEventListener('click', paginateThrough);
 nextSearchPlaylistBtn.addEventListener('click', paginateThrough);
+
 // Pagination
 function paginateThrough(e) {
   e.preventDefault();
@@ -109,6 +110,7 @@ function paginateThrough(e) {
       .catch(err => console.log(err));
     return;
   }
+
   youtube
     .getPrevOrNextVideoPage(
       pageToken,

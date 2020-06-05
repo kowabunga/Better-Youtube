@@ -15,23 +15,36 @@ const body = document.body,
   showSearchResultsBtn = document.getElementById('show-search'),
   searchSubmit = document.getElementById('submit-search'),
   resultsTermDisplay = document.getElementById('results-term-field'),
-  searchVideoBtn = document.getElementById('search-videos'), //
-  searchPlaylistBtn = document.getElementById('search-playlists'), //
+  searchVideoBtn = document.getElementById('search-videos'),
+  searchPlaylistBtn = document.getElementById('search-playlists'),
+  searchPlaylistItemsBtn = document.getElementById('search-playlist-videos'),
   prevSearchBtn = document.getElementById('prev-search'),
   nextSearchBtn = document.getElementById('next-search'),
-  prevSearchPlaylistBtn = document.getElementById('prev-search-playlist'), //
-  nextSearchPlaylistBtn = document.getElementById('next-search-playlist'), //
+  prevSearchPlaylistBtn = document.getElementById('prev-search-playlist'),
+  nextSearchPlaylistBtn = document.getElementById('next-search-playlist'),
   prevWebDevBtn = document.getElementById('prev-web-dev'),
   nextWebDevBtn = document.getElementById('next-web-dev'),
   prevNewsBtn = document.getElementById('prev-news'),
   nextNewsBtn = document.getElementById('next-news'),
   prevChannelVidBtn = document.getElementById('prev-channel-video'),
   nextChannelVidBtn = document.getElementById('next-channel-video'),
+  prevPlaylistSearchItemBtn = document.getElementById(
+    'prev-search-playlist-video'
+  ),
+  nextPlaylistSearchItemBtn = document.getElementById(
+    'next-search-playlist-video'
+  ),
   hideChannelBtn = document.getElementById('hide-channel'),
   resultsContainer = document.getElementById('results-container'),
   searchedVideoItems = document.getElementById('search-items'),
   searchedPlaylistItems = document.getElementById('search-playlist-items'), //
   searchPlaylistSection = document.getElementById('search-playlist-section'), //
+  searchedPlaylistVideoSection = document.getElementById(
+    'search-playlist-videos-section'
+  ),
+  searchPlaylistVideoItems = document.getElementById(
+    'search-playlist-video-items'
+  ),
   searchVideoSection = document.getElementById('search-video-section'), //
   videoContainer = document.getElementById('videos-container'),
   videoSection = document.getElementById('video'),
