@@ -30,9 +30,13 @@ function changePage(e) {
   }
 
   searchForm.classList.add('invisible');
+  //@TODO temp until I figure out what's unhiding this
+  setTimeout(() => {
+    showSearchResultsBtn.classList.add('hide');
+  }, 1);
 
   // Make sure videos section is displayed
-  if (!channelVideosSection.classList.contains('hide')) {
+  if (channelVideosSection.classList.contains('hide')) {
     channelVideosSection.classList.toggle('hide');
     channelPlaylistSec.classList.toggle('hide');
     channelPlaylistsBtn.classList.toggle('active');
@@ -43,12 +47,14 @@ function changePage(e) {
 }
 
 function loadChannel(e) {
+  console.log('loaded');
   // On channel load, check if the playlist ul has items in it, if so remove them so that they will not be present when checking playlists for new channel
   svUI.clearElementChildren(mainPlaylistUl);
 
   hideChannelBtn.classList.remove('hide');
-  // @TODO check if this successfully hides and shows searchresults btn (above too)
-  showSearchResultsBtn.classList.add('hide');
+  // @TODO this isn't working. make it work
+  !showSearchResultsBtn.classList.contains('hide') &&
+    showSearchResultsBtn.classList.add('hide');
 
   if (
     e.target.id === 'channel-author' ||

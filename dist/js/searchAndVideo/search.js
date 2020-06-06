@@ -74,7 +74,7 @@ function submitQuery(e) {
       svUI.showSearchResults();
     }
     // show search results - none => flex
-    searchResults.classList.remove('hide'); //
+    searchResults.classList.remove('hide');
   } else if (searchParameter === '') {
     // If search is empty but submit is clicked/entered, add error classes
     searchedTerm.innerText = 'Please enter something to search.';

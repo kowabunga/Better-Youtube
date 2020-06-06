@@ -519,7 +519,6 @@ class SearchAndVideoUi {
   }
 
   showSearchResults(e) {
-    console.log(e.target.id);
     // add/remove active class from search result playlist/video buttons and from channel video/playlist buttons
 
     // check if clicked button is search/playlist results
@@ -527,19 +526,19 @@ class SearchAndVideoUi {
 
     if (e.target.id === 'search-playlists') {
       searchPlaylistBtn.classList.add('active');
-      searchVideoBtn.classList.remove('active');
-
-      searchVideoSection.classList.add('hide');
       searchPlaylistSection.classList.remove('hide');
+
+      searchVideoBtn.classList.remove('active');
+      searchVideoSection.classList.add('hide');
 
       searchPlaylistItemsBtn.classList.remove('active');
       searchedPlaylistVideoSection.classList.add('hide');
     } else if (e.target.id === 'search-videos') {
       searchPlaylistBtn.classList.remove('active');
-      searchVideoBtn.classList.add('active');
-
-      searchVideoSection.classList.remove('hide');
       searchPlaylistSection.classList.add('hide');
+
+      searchVideoBtn.classList.add('active');
+      searchVideoSection.classList.remove('hide');
 
       searchPlaylistItemsBtn.classList.remove('active');
       searchedPlaylistVideoSection.classList.add('hide');
@@ -548,25 +547,25 @@ class SearchAndVideoUi {
       searchedPlaylistVideoSection.classList.remove('hide');
 
       searchPlaylistBtn.classList.remove('active');
-      searchVideoBtn.classList.remove('active');
-
-      searchVideoSection.classList.add('hide');
       searchPlaylistSection.classList.add('hide');
+
+      searchVideoBtn.classList.remove('active');
+      searchVideoSection.classList.add('hide');
     } else if (e.target.id === 'channel-playlists') {
-      channelVideosSection.classList.add('hide');
+      channelPlaylistsBtn.classList.add('active');
       channelPlaylistSec.classList.remove('hide');
 
-      channelPlaylistsBtn.classList.add('active');
       channelVideosBtn.classList.remove('active');
+      channelVideosSection.classList.add('hide');
 
       searchPlaylistItemsBtn.classList.remove('active');
       searchedPlaylistVideoSection.classList.add('hide');
     } else if (e.target.id === 'channel-videos-btn') {
+      channelVideosBtn.classList.add('active');
       channelVideosSection.classList.remove('hide');
-      channelPlaylistSec.classList.add('hide');
 
       channelPlaylistsBtn.classList.remove('active');
-      channelVideosBtn.classList.add('active');
+      channelPlaylistSec.classList.add('hide');
 
       searchPlaylistItemsBtn.classList.remove('active');
       searchedPlaylistVideoSection.classList.add('hide');

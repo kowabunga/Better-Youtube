@@ -6,6 +6,10 @@ relevantVideoItems.addEventListener('click', showVideo);
 newsSection.addEventListener('click', showVideo);
 webDevSection.addEventListener('click', showVideo);
 channelVideosUl.addEventListener('click', showVideo);
+searchPlaylistVideoItems.addEventListener('click', showVideo);
+searchedPlaylistItems.addEventListener('click', e => {
+  if (e.target.classList.contains('channel-author-id')) changePage(e);
+});
 
 /* ------------------------------------------------------------------------- */
 
