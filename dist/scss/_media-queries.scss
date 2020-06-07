@@ -49,6 +49,8 @@
     }
   }
 
+  #prev-search-playlist-video,
+  #prev-search-playlist,
   #prev-playlist,
   #prev-channel-video,
   #prev-search {
@@ -57,6 +59,8 @@
     transform: translate(-3%, -50%);
   }
 
+  #next-search-playlist-video,
+  #next-search-playlist,
   #next-playlist,
   #next-channel-video,
   #next-search {
@@ -65,6 +69,8 @@
     transform: translate(-3%, -50%);
   }
 
+  #search-playlist-video-items,
+  #search-playlist-items,
   #search-items {
     width: 85%;
   }
@@ -87,6 +93,8 @@
     }
   }
 
+  #search-playlist-video-items,
+  #search-playlist-items,
   #search-items {
     flex-direction: row;
     flex-wrap: wrap;
@@ -261,6 +269,8 @@
     }
   }
 
+  #prev-search-playlist-video,
+  #prev-search-playlist,
   #prev-playlist,
   #prev-channel-video,
   #prev-search {
@@ -269,6 +279,8 @@
     transform: translate(-12%, -50%);
   }
 
+  #next-search-playlist-video,
+  #next-search-playlist,
   #next-playlist,
   #next-channel-video,
   #next-search {

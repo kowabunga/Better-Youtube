@@ -11,6 +11,8 @@ prevPlaylistBtn.addEventListener('click', paginateThrough);
 nextPlaylistBtn.addEventListener('click', paginateThrough);
 prevSearchPlaylistBtn.addEventListener('click', paginateThrough);
 nextSearchPlaylistBtn.addEventListener('click', paginateThrough);
+prevPlaylistSearchItemBtn.addEventListener('click', paginateThrough);
+nextPlaylistSearchItemBtn.addEventListener('click', paginateThrough);
 
 // Pagination
 function paginateThrough(e) {
@@ -107,6 +109,25 @@ function paginateThrough(e) {
         'playlist'
       )
       .then(data => chUI.buildPlaylistSection(data, searchedPlaylistItems, true))
+      .catch(err => console.log(err));
+    return;
+  } else if (
+    e.target.parentElement.id === 'prev-search-playlist-video' ||
+    e.target.parentElement.id === 'next-search-playlist-video'
+  ) {
+    // if target is prev searched playlists items or next searched playlists items button, set targetSection, num of items, and get page token from button
+    targetSection = 'search-playlist-videos';
+    // exit function when finished
+    e.target.parentElement.getAttribute('data-prevpage')
+      ? (pageToken = e.target.parentElement.getAttribute('data-prevpage'))
+      : (pageToken = e.target.parentElement.getAttribute('data-nextpage'));
+
+    // get playlistid
+    playlistId = searchPlaylistSection.getAttribute('data-playlistid');
+
+    youtube
+      .getPrevOrNextVideoPage(pageToken, null, playlistId, numOfItems, 'video')
+      .then(data => svUI.displayVideos(data.result, targetSection))
       .catch(err => console.log(err));
     return;
   }
