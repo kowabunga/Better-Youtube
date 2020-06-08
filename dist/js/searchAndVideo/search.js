@@ -8,6 +8,7 @@ closeSearchBtn.addEventListener('click', svUI.hideResults);
 searchVideoBtn.addEventListener('click', svUI.showSearchResults);
 searchPlaylistBtn.addEventListener('click', svUI.showSearchResults);
 searchPlaylistItemsBtn.addEventListener('click', svUI.showSearchResults);
+channelPlaylistItemsBtn.addEventListener('click', svUI.showSearchResults);
 searchedPlaylistItems.addEventListener('click', e => {
   viewPlaylistVideos(e, searchPlaylistSection, searchedPlaylistItems);
 });

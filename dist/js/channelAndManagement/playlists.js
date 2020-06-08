@@ -1,6 +1,7 @@
+channelVideosBtn.addEventListener('click', loadVideosOnClick);
 channelPlaylistsBtn.addEventListener('click', viewPlaylists);
 mainPlaylistUl.addEventListener('click', e => {
-  viewPlaylistVideos(e, channelPlaylistSec, channelVideosSection);
+  viewPlaylistVideos(e, channelPlaylistSec, channelPlaylistItemsSec);
 });
 
 function viewPlaylists(e) {
@@ -9,7 +10,6 @@ function viewPlaylists(e) {
   createPlaylistSection(subscribeBtn.getAttribute('data-channelid'));
 }
 
-// Start here. Work on channel switcheroo
 function viewPlaylistVideos(e, playlistSection, videoSection) {
   e.preventDefault();
   if (
@@ -17,6 +17,12 @@ function viewPlaylistVideos(e, playlistSection, videoSection) {
     e.target.parentElement.classList.contains('playlist-item')
   ) {
     const playlistId = e.target.parentElement.getAttribute('data-playlistid');
+    const target =
+      e.target.classList.contains('thumbnail') &&
+      e.target.parentElement.classList.contains('playlist-item')
+        ? true
+        : false;
+
     youtube
       .getPlaylistVideos(playlistId, 24)
       .then(data =>
@@ -24,7 +30,8 @@ function viewPlaylistVideos(e, playlistSection, videoSection) {
           data,
           playlistSection,
           videoSection,
-          subscribeBtn
+          subscribeBtn,
+          target
         )
       )
       .catch(err => console.log(err));
@@ -51,3 +58,5 @@ function createPlaylistSection(channelId) {
     .then(data => chUI.buildPlaylistSection(data, mainPlaylistUl, false))
     .catch(err => console.log(err));
 }
+
+function loadVideosOnClick() {}

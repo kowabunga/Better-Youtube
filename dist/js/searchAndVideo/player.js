@@ -7,6 +7,7 @@ newsSection.addEventListener('click', showVideo);
 webDevSection.addEventListener('click', showVideo);
 channelVideosUl.addEventListener('click', showVideo);
 searchPlaylistVideoItems.addEventListener('click', showVideo);
+mainPlaylistItemsUl.addEventListener('click', showVideo);
 searchedPlaylistItems.addEventListener('click', e => {
   if (e.target.classList.contains('channel-author-id')) changePage(e);
 });

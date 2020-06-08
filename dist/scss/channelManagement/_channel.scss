@@ -81,12 +81,14 @@
       }
     }
 
+    &-playlists-items,
     &-playlists,
     &-videos {
       display: flex;
       justify-content: center;
       position: relative;
 
+      &-main-items,
       &-main,
       &-list {
         display: flex;

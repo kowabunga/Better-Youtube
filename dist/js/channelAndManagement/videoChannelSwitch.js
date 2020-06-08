@@ -43,6 +43,17 @@ function changePage(e) {
     channelVideosBtn.classList.toggle('active');
   }
 
+  // Make sure only videos section is displayed
+  channelVideosBtn.classList.add('active');
+  channelVideosSection.classList.remove('hide');
+
+  channelPlaylistsBtn.classList.remove('active');
+  channelPlaylistSec.classList.add('hide');
+
+  channelPlaylistItemsBtn.classList.remove('active');
+  channelPlaylistItemsBtn.classList.add('hide');
+  channelPlaylistItemsSec.classList.add('hide');
+
   loadChannel(e);
 }
 
@@ -52,7 +63,6 @@ function loadChannel(e) {
   svUI.clearElementChildren(mainPlaylistUl);
 
   hideChannelBtn.classList.remove('hide');
-  // @TODO this isn't working. make it work
   !showSearchResultsBtn.classList.contains('hide') &&
     showSearchResultsBtn.classList.add('hide');
 

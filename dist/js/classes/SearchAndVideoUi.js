@@ -74,6 +74,15 @@ class SearchAndVideoUi {
         prevChannelVidBtn,
         nextChannelVidBtn
       );
+    } else if (pageSection === 'channel-playlist-items') {
+      this.clearElementChildren(mainPlaylistItemsUl);
+      mainPlaylistItemsUl.append(output);
+      this.paginationButtons(
+        data.prevPageToken,
+        data.nextPageToken,
+        prevPlaylistItemBtn,
+        nextPlaylistItemBtn
+      );
     } else if (pageSection === 'search-playlist-videos') {
       console.log('called');
       this.clearElementChildren(searchPlaylistVideoItems);
@@ -558,8 +567,8 @@ class SearchAndVideoUi {
       channelVideosBtn.classList.remove('active');
       channelVideosSection.classList.add('hide');
 
-      searchPlaylistItemsBtn.classList.remove('active');
-      searchedPlaylistVideoSection.classList.add('hide');
+      channelPlaylistItemsBtn.classList.remove('active');
+      channelPlaylistItemsSec.classList.add('hide');
     } else if (e.target.id === 'channel-videos-btn') {
       channelVideosBtn.classList.add('active');
       channelVideosSection.classList.remove('hide');
@@ -567,8 +576,17 @@ class SearchAndVideoUi {
       channelPlaylistsBtn.classList.remove('active');
       channelPlaylistSec.classList.add('hide');
 
-      searchPlaylistItemsBtn.classList.remove('active');
-      searchedPlaylistVideoSection.classList.add('hide');
+      channelPlaylistItemsBtn.classList.remove('active');
+      channelPlaylistItemsSec.classList.add('hide');
+    } else if (e.target.id === 'channel-playlists-items') {
+      channelPlaylistItemsBtn.classList.add('active');
+      channelPlaylistItemsSec.classList.remove('hide');
+
+      channelVideosBtn.classList.remove('active');
+      channelVideosSection.classList.add('hide');
+
+      channelPlaylistsBtn.classList.remove('active');
+      channelPlaylistSec.classList.add('hide');
     }
   }
 }

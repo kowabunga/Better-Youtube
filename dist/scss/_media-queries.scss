@@ -49,6 +49,7 @@
     }
   }
 
+  #prev-playlist-item,
   #prev-search-playlist-video,
   #prev-search-playlist,
   #prev-playlist,
@@ -59,6 +60,7 @@
     transform: translate(-3%, -50%);
   }
 
+  #next-playlist-item,
   #next-search-playlist-video,
   #next-search-playlist,
   #next-playlist,
@@ -72,12 +74,13 @@
   #search-playlist-video-items,
   #search-playlist-items,
   #search-items {
-    width: 85%;
+    width: 80%;
   }
 
   #channel-content {
     &-videos-list,
-    &-playlists-main {
+    &-playlists-main,
+    &-playlists-main-items {
       width: 80%;
     }
   }
@@ -262,13 +265,7 @@
     height: 300px;
   }
 
-  #channel-content {
-    &-videos-list,
-    &-playlists-main {
-      width: 80%;
-    }
-  }
-
+  #prev-playlist-item,
   #prev-search-playlist-video,
   #prev-search-playlist,
   #prev-playlist,
@@ -279,6 +276,7 @@
     transform: translate(-12%, -50%);
   }
 
+  #next-playlist-item,
   #next-search-playlist-video,
   #next-search-playlist,
   #next-playlist,

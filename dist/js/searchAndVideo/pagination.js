@@ -13,6 +13,8 @@ prevSearchPlaylistBtn.addEventListener('click', paginateThrough);
 nextSearchPlaylistBtn.addEventListener('click', paginateThrough);
 prevPlaylistSearchItemBtn.addEventListener('click', paginateThrough);
 nextPlaylistSearchItemBtn.addEventListener('click', paginateThrough);
+prevPlaylistItemBtn.addEventListener('click', paginateThrough);
+nextPlaylistItemBtn.addEventListener('click', paginateThrough);
 
 // Pagination
 function paginateThrough(e) {
@@ -70,7 +72,27 @@ function paginateThrough(e) {
 
     // Channel videos are set up as playlists. In order to paginate through, it needs the playlist ID
     playlistId = channelVideosUl.getAttribute('data-playlistid');
-    numOfItems = 10;
+  } else if (
+    e.target.parentElement.id === 'prev-playlist-item' ||
+    e.target.parentElement.id === 'next-playlist-item'
+  ) {
+    // ! --------------------------- HERE ---------------------------------
+    //! NOT RETURNING CORRECT ITEMS
+    // if target is prev channel playlist items or next channel playlist items button, set targetSection, num of items, and get page token from button
+
+    targetSection = 'channel-playlist-items';
+    e.target.parentElement.getAttribute('data-prevpage')
+      ? (pageToken = e.target.parentElement.getAttribute('data-prevpage'))
+      : (pageToken = e.target.parentElement.getAttribute('data-nextpage'));
+
+    // Channel videos are set up as playlists. In order to paginate through, it needs the playlist ID
+    playlistId = channelPlaylistSec.getAttribute('data-playlistid');
+
+    youtube
+      .getPrevOrNextVideoPage(pageToken, null, playlistId, numOfItems, 'video')
+      .then(data => svUI.displayVideos(data.result, targetSection))
+      .catch(err => console.log(err));
+    return;
   } else if (
     e.target.parentElement.id === 'prev-playlist' ||
     e.target.parentElement.id === 'next-playlist'
@@ -115,6 +137,7 @@ function paginateThrough(e) {
     e.target.parentElement.id === 'prev-search-playlist-video' ||
     e.target.parentElement.id === 'next-search-playlist-video'
   ) {
+    console.log('clicked');
     // if target is prev searched playlists items or next searched playlists items button, set targetSection, num of items, and get page token from button
     targetSection = 'search-playlist-videos';
     // exit function when finished

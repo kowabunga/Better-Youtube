@@ -74,8 +74,17 @@ const body = document.body,
   channelVideosUl = document.getElementById('channel-content-videos-list'),
   channelVideosBtn = document.getElementById('channel-videos-btn'),
   channelPlaylistSec = document.getElementById('channel-content-playlists'),
+  channelPlaylistItemsSec = document.getElementById(
+    'channel-content-playlists-items'
+  ), //
   channelPlaylistsBtn = document.getElementById('channel-playlists'),
+  channelPlaylistItemsBtn = document.getElementById('channel-playlists-items'),
   subscribeBtn = document.getElementById('subscribe-btn'),
   mainPlaylistUl = document.getElementById('channel-content-playlists-main'),
+  mainPlaylistItemsUl = document.getElementById(
+    'channel-content-playlists-main-items'
+  ), //
   prevPlaylistBtn = document.getElementById('prev-playlist'),
-  nextPlaylistBtn = document.getElementById('next-playlist');
+  nextPlaylistBtn = document.getElementById('next-playlist'),
+  prevPlaylistItemBtn = document.getElementById('prev-playlist-item'), //
+  nextPlaylistItemBtn = document.getElementById('next-playlist-item'); //

@@ -63,11 +63,10 @@ class ChannelsUi {
     channelThumbnail.append(thumbnail);
   }
 
-  buildChannelVideosSection(data, section1, section2, subBtn) {
+  buildChannelVideosSection(data, section1, section2, subBtn, target) {
     // if sub btn is passed as arg, we are dealing with channel videos section. add attributes to appropriate sections
     // call displayVideos and put in 'channel-videos' section
     if (subBtn) {
-      console.log('yes', section1, section2);
       section1.setAttribute(
         'data-playlistid',
         data.result.items[0].snippet.playlistId || null
@@ -76,11 +75,18 @@ class ChannelsUi {
         'data-channelid',
         data.result.items[0].snippet.channelId || null
       );
-      svUI.displayVideos(data.result, 'channel-videos');
+      svUI.displayVideos(data.result, 'channel-playlist-items');
       section2.classList.remove('hide');
+
+      // If target is channel playlist, change active/hidden classes on appropriate channel subsections
+      if (target) {
+        channelPlaylistItemsBtn.classList.add('active');
+        channelPlaylistItemsBtn.classList.remove('hide');
+        channelPlaylistsBtn.classList.remove('active');
+        channelPlaylistItemsSec.classList.remove('hide');
+      }
     } else {
       // if sub btn not passed, we are dealing with the search playlist section.
-      console.log(data);
       section1.setAttribute(
         'data-playlistid',
         data.result.items[0].snippet.playlistId || null
