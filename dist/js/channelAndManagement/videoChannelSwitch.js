@@ -147,7 +147,9 @@ function populateChannelSection(data, myChannel) {
           data,
           channelPlaylistSec,
           channelVideosSection,
-          subscribeBtn
+          subscribeBtn,
+          false,
+          true
         )
       )
       .catch(err => console.log(err));

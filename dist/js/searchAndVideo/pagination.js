@@ -76,8 +76,6 @@ function paginateThrough(e) {
     e.target.parentElement.id === 'prev-playlist-item' ||
     e.target.parentElement.id === 'next-playlist-item'
   ) {
-    // ! --------------------------- HERE ---------------------------------
-    //! NOT RETURNING CORRECT ITEMS
     // if target is prev channel playlist items or next channel playlist items button, set targetSection, num of items, and get page token from button
 
     targetSection = 'channel-playlist-items';
