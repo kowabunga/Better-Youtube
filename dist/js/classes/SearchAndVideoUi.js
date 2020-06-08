@@ -22,18 +22,7 @@ class SearchAndVideoUi {
     } else {
       output = 'No videos.';
     }
-    if (pageSection === 'search-results') {
-      this.clearElementChildren(searchedVideoItems);
-      searchedVideoItems.append(output);
-
-      // make pagination buttons work
-      this.paginationButtons(
-        data.prevPageToken,
-        data.nextPageToken,
-        prevSearchBtn,
-        nextSearchBtn
-      );
-    } else if (pageSection === 'relevant-videos') {
+    if (pageSection === 'relevant-videos') {
       // add output to section and make section visible on website
       this.clearElementChildren(relevantVideoItems);
       relevantVideoItems.append(output);
@@ -41,59 +30,82 @@ class SearchAndVideoUi {
 
       // add description and display below video
       videoDesc.classList.remove('hide');
+    } else if (pageSection === 'search-results') {
+      this.displayVideoHelper(
+        output,
+        searchedVideoItems,
+        data.prevPageToken,
+        data.nextPageToken,
+        prevSearchBtn,
+        nextSearchBtn
+      );
     } else if (pageSection === 'main-news') {
-      // add results to page
-      this.clearElementChildren(newsSection);
-      newsSection.append(output);
-
-      // make pagination buttons work
-      this.paginationButtons(
+      this.displayVideoHelper(
+        output,
+        newsSection,
         data.prevPageToken,
         data.nextPageToken,
         prevNewsBtn,
         nextNewsBtn
       );
     } else if (pageSection === 'web-development') {
-      // add results to page
-      this.clearElementChildren(webDevSection);
-      webDevSection.append(output);
-
-      // make pagination buttons work
-      this.paginationButtons(
+      this.displayVideoHelper(
+        output,
+        webDevSection,
         data.prevPageToken,
         data.nextPageToken,
         prevWebDevBtn,
         nextWebDevBtn
       );
     } else if (pageSection === 'channel-videos') {
-      this.clearElementChildren(channelVideosUl);
-      channelVideosUl.append(output);
-      this.paginationButtons(
+      this.displayVideoHelper(
+        output,
+        channelVideosUl,
         data.prevPageToken,
         data.nextPageToken,
         prevChannelVidBtn,
         nextChannelVidBtn
       );
     } else if (pageSection === 'channel-playlist-items') {
-      this.clearElementChildren(mainPlaylistItemsUl);
-      mainPlaylistItemsUl.append(output);
-      this.paginationButtons(
+      this.displayVideoHelper(
+        output,
+        mainPlaylistItemsUl,
         data.prevPageToken,
         data.nextPageToken,
         prevPlaylistItemBtn,
         nextPlaylistItemBtn
       );
     } else if (pageSection === 'search-playlist-videos') {
-      console.log('called');
-      this.clearElementChildren(searchPlaylistVideoItems);
-      searchPlaylistVideoItems.append(output);
-      this.paginationButtons(
+      this.displayVideoHelper(
+        output,
+        searchPlaylistVideoItems,
         data.prevPageToken,
         data.nextPageToken,
         prevPlaylistSearchItemBtn,
         nextPlaylistSearchItemBtn
       );
     }
+  }
+
+  displayVideoHelper(
+    output,
+    target,
+    prevPageToken,
+    nextPageToken,
+    prevPageBtn,
+    nextPageBtn
+  ) {
+    // add results to page
+    this.clearElementChildren(target);
+    target.append(output);
+
+    // Make pagination buttons work
+    this.paginationButtons(
+      prevPageToken,
+      nextPageToken,
+      prevPageBtn,
+      nextPageBtn
+    );
   }
 
   buildVideoLi(item) {

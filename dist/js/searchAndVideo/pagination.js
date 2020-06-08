@@ -107,7 +107,7 @@ function paginateThrough(e) {
         10,
         subscribeBtn.getAttribute('data-channelid')
       )
-      .then(data => chUI.buildPlaylistSection(data))
+      .then(data => chUI.buildPlaylistSection(data, mainPlaylistUl, false))
       .catch(err => console.log(err));
     return;
   } else if (
