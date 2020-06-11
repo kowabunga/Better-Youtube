@@ -20,14 +20,13 @@
     padding: 1rem;
     transition: transform 0.5s ease-out;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     position: absolute;
     top: 208px;
-    right: 0;
     left: 0;
-    bottom: 0;
+    right: 0;
+    height: 100vh;
     width: 100%;
-    z-index: 1;
 
     #results-term-field {
       text-align: center;
@@ -35,10 +34,10 @@
     }
 
     // Target search-items when search-results has class of show-search
-    &.show-search > #search-items {
-      height: calc(100vh - 375px);
-      overflow-y: auto;
-    }
+    // &.show-search > #search-items {
+    //   height: calc(100vh - 375px);
+    //   overflow-y: auto;
+    // }
 
     &-button-switch {
       display: flex;
@@ -55,7 +54,7 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 10px;
-    height: 470px;
+    height: 50vh;
     width: 90%;
     box-shadow: 0 0 5px $main-blue;
     border-radius: 5px;
@@ -146,12 +145,12 @@
 #window-close {
   position: absolute;
   top: 45px;
-  left: 50px;
-  transform: scale(2);
-  transition: 0.2s;
+  left: 25px;
+  z-index: 50;
+  transform: scale(2.5);
   &:hover {
     cursor: pointer;
-    transform: scale(2.5);
+    color: $main-blue;
   }
 }
 
