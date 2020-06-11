@@ -230,6 +230,11 @@
     border: 1px solid $main-blue;
   }
 
+  // Target search-items when search-results has class of show-search
+  .show-search > #search-items {
+    height: 50%;
+  }
+
   #search-results {
     flex-direction: column;
     align-items: center;
@@ -240,6 +245,10 @@
 
   .buttons {
     justify-content: space-around;
+  }
+
+  #submit-comment {
+    font-size: 0.8em;
   }
   .hide-search {
     top: 362px;
@@ -264,7 +273,7 @@
   #search-items,
   #web-dev,
   #news {
-    width: 85%;
+    width: 90%;
   }
 
   #prev-playlist-item,

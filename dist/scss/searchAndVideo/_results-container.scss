@@ -33,12 +33,6 @@
       margin-bottom: 5px;
     }
 
-    // Target search-items when search-results has class of show-search
-    // &.show-search > #search-items {
-    //   height: calc(100vh - 375px);
-    //   overflow-y: auto;
-    // }
-
     &-button-switch {
       display: flex;
       align-items: center;
@@ -54,7 +48,7 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 10px;
-    height: 50vh;
+    height: 75vh;
     width: 90%;
     box-shadow: 0 0 5px $main-blue;
     border-radius: 5px;
@@ -135,7 +129,7 @@
 }
 
 .hide-search {
-  transform: translateY(-125vh);
+  transform: translateY(-500vh);
 }
 
 .show-search {

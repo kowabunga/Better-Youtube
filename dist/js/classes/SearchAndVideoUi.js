@@ -461,7 +461,9 @@ class SearchAndVideoUi {
 
   // show search results after they have been hidden
   showResults(e) {
-    body.style.overflow = 'hidden';
+    let height = Math.max(body.scrollHeight, body.offsetHeight);
+    searchResults.style.height = `${height}px`;
+
     e.preventDefault();
     if (searchResults.classList.contains('hide-search')) {
       searchResults.classList.remove('hide-search');
@@ -478,8 +480,6 @@ class SearchAndVideoUi {
 
   // hide search results if they are shown
   hideResults() {
-    body.style.overflow = 'auto';
-
     searchResults.classList.remove('show-search');
     searchResults.classList.add('hide-search');
     closeSearchBtn.classList.add('invisible');
