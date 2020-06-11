@@ -67,8 +67,6 @@ function submitQuery(e) {
       .then(data => chUI.buildPlaylistSection(data, searchedPlaylistItems, true))
       .catch(err => console.log(err));
 
-    // display searched term and clear search box
-    resultsTermDisplay.innerText = `Results for: ${searchParameter}`;
     searchInput.value = '';
 
     if (searchVideoSection.classList.contains('hide')) {
