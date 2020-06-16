@@ -1,5 +1,6 @@
 // cachine dom items
 const body = document.body,
+  html = document.documentElement,
   mainContainer = document.getElementById('container'),
   header = document.getElementById('head'),
   colorSwitcher = document.getElementById('color-change'),

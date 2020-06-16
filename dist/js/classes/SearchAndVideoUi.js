@@ -461,7 +461,13 @@ class SearchAndVideoUi {
 
   // show search results after they have been hidden
   showResults(e) {
-    let height = Math.max(body.scrollHeight, body.offsetHeight);
+    let height = Math.max(
+      body.scrollHeight,
+      body.offsetHeight,
+      html.clientHeight,
+      html.scrollHeight,
+      html.offsetHeight
+    );
     searchResults.style.height = `${height}px`;
 
     e.preventDefault();
