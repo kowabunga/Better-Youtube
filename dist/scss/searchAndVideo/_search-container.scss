@@ -24,7 +24,8 @@
   }
 
   &-form {
-    width: 370px;
+    display: flex;
+    width: 375px;
   }
 
   &-input {
@@ -33,14 +34,10 @@
     border-radius: 10px 0 0 10px;
     width: 80%;
     border: 1px solid $main-blue;
+    border-right: none;
     color: currentColor;
     background-color: transparent;
     transition: 0.2s ease-out;
-
-    &:hover,
-    &:focus {
-      box-shadow: 0 0 10px $main-blue;
-    }
   }
 }
 
@@ -68,13 +65,13 @@
   margin-left: -4px;
   border-radius: 0 10px 10px 0;
   border: 1px solid $main-blue;
-  border-left: 0px;
-  width: 20%;
+  border-left: none;
+  width: 10%;
   text-align: center;
   color: $main-blue;
 
   &:hover {
-    box-shadow: 0 0 10px $main-blue;
+    text-shadow: 0 0 10px $main-blue;
   }
 }
 
